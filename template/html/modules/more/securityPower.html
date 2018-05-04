@@ -1,0 +1,72 @@
+<style>
+	html{
+		min-width: 1366px;
+	}
+</style>
+<div class="morelayer secondLevel">
+	<div class="secondLevel-head" >
+		<div class="pull-left secondLevel-head-left"><span class="title">{{facility?'实有安防设施':'实有力量与装备'}}</span></div>
+		<ul class="head-menu clearfix" ng-if="tabShow">
+			<li class="head-menu-li" ng-class="{active: initType == 0}" ng-click="switchMenu(0)">实有力量</li>
+			<li class="head-menu-li" ng-class="{active: initType == 1}" ng-click="switchMenu(1)">实有装备</li>
+		</ul>
+		<div class="pull-right secondLevel-head-right">
+			<i class="icon-house"></i>
+			<span class="title">{{villageName}}</span>
+		</div>
+	</div>
+	<!--实有力量-->
+	<div class="actuaStrong">
+		<div class="fact-company" ng-if="initType==0">
+			<div class="head-title">{{facility?'小区实有安防设施统计':'小区实有力量统计'}}</div>
+			<span class="unit-title">单位：个</span>
+			<div class="statistics-content">
+				<div class="statistics-item" ng-if="facility" ng-repeat="item in facilityList">
+					<span style="cursor: pointer;" class="item-num" ng-style="{'bottom':item.height+85+'px'}" title="{{item.num}}" ng-click="toDevicePage(item)">{{item.num}}</span>
+					<div class="item-box" style="cursor: pointer;" ng-style="{'height':item.style*100+'%'}" ng-click="toDevicePage(item)"></div>
+					<span class="item-name" title="{{item.name}}">{{item.name}}</span>
+				</div>
+				<div class="statistics-item" ng-if="!facility" ng-repeat="item in dataPowerList">
+					<span style="cursor: pointer;" class="item-num" ng-style="{'bottom':item.height+85+'px'}" title="{{item.num}}"  ng-click="toFactPeoplePage(item)">{{item.num}}</span>
+					<div class="item-box" style="cursor: pointer;" ng-click="toFactPeoplePage(item)" ng-style="{'height':item.style*100+'%'}"></div>
+					<span class="item-name" title="{{item.name}}">{{item.name}}</span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<!--实有装备--> 
+	<div class="equip-content" ng-if="initType==1">
+		<div class="list-title clearfix">
+			<span class="pull-left line-bg"></span>
+			<span class="text">共<strong>{{page1.totalRow}}</strong>条记录</span>
+			<span class="pull-right line-bg"></span>
+		</div>
+		<div class="equip-list-box">
+			<ul class="equip-list-ul clearfix">
+				<li class="equip-list-li" ng-repeat = "item in securityZhuangBeiData">
+					<div class="equip-list-li-box">
+						<div class="img-box">
+							<img src="{{item.equipPic | transferPic}}" />
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+        <pagination total-items="page1.totalRow"
+                    ng-model="initParams.pageNumber"
+                    max-size="3"
+                    items-per-page="initParams.pageSize"
+                    class="pagination-sm pull-right"
+                    previous-text="上一页"
+                    next-text="下一页"
+                    first-text="首页"
+                    last-text="末页"
+                    ng-click="searchSecurityZhuangbei()">
+        </pagination>
+    </div>
+	</div>
+
+</div>

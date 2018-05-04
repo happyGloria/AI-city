@@ -1,0 +1,461 @@
+.trace {
+  min-height: 600px;
+  overflow-x: hidden;
+  .side {
+    ul.menu {
+      li {
+        text-indent: 50px;
+        border: solid transparent;
+        border-width: 1px 0;
+
+        > a {
+          display: block;
+          line-height: 38px;
+          border-left: 4px solid transparent;
+          color: #707070;
+
+          &:before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            vertical-align: 1px;
+            margin-right: 10px;
+          }
+          &:hover {
+            background-color: #fff;
+          }
+        }
+
+        &.node.active {
+          border-color: #dedede;
+          box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.1);
+          position: relative;
+          z-index: 2;
+
+          > a {
+            color: #00a0e9;
+            border-color: #00a0e9;
+            background-color: #fff;
+          }
+        }
+        &.tree {
+          > a {
+            font-weight: bold;
+            &:before {
+              background: url('../img/map/timeSelectIcoHide.png') center no-repeat;
+            }
+          }
+          > ul {
+            display: none;
+          }
+          &.active {
+            > a:before {
+              background-image: url('../img/map/timeSelectIcoShow.png');
+            }
+            > ul {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .body-main {
+    height: 100%;
+    min-height: inherit;
+    margin-left: 200px;
+    padding-right: 60px;
+    margin-right: 0;
+    background-color: #efefef;
+    position: relative;
+
+    .search-bar {
+      width: 730px;
+      margin: auto;
+      padding: 20px 0 15px 0;
+    }
+
+    .input-group {
+      .form-control, .btn {
+        border-radius: 4px !important;
+      }
+      .btn {
+        border: 0;
+        font-size: 12px;
+        height: 40px;
+        outline: 0;
+
+        &.btn-gray {
+          width: 100px;
+          color: #959595;
+          background-color: #dcdcdc;
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+        }
+        &.btn-success {
+          width: 110px;
+          margin: 0 10px;
+          background-color: #4eaf38;
+        }
+        &.btn-primary {
+          width: 74px;
+          background-color: #0389c7;
+        }
+      }
+      .form-control {
+        height: 40px;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        box-shadow: none;
+      }
+    }
+
+    .btn-list {
+      height: 28px;
+      text-align: center;
+      .btn-default {
+        height: 28px;
+        margin-right: 10px;
+        padding-left: 20px;
+        font-size: 12px;
+        color: #333;
+        border-color: #dedede;
+        border-radius: 2px;
+        outline: 0;
+        background-color: #eee;
+        &:after {
+          content: '';
+          width: 9px;
+          height: 9px;
+          margin-left: 10px;
+          display: inline-block;
+          background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJAQMAAADaX5RTAAAABlBMVEUAAACZmZl+9SADAAAAAXRSTlMAQObYZgAAAB1JREFUCNdjONjA8LiBoZyBwY6BQQZEAtlAEaA4AF1fBs9phxD6AAAAAElFTkSuQmCC') center no-repeat;
+        }
+      }
+    }
+
+    .labels {
+      padding: 20px 0;
+      text-align: center;
+      label {
+        margin-right: 30px;
+        margin-bottom: 0;
+        &:before {
+          content: '';
+          width: 14px;
+          height: 14px;
+          display: inline-block;
+          vertical-align: -2px;
+          margin-right: 10px;
+          border-radius: 50%;
+        }
+        &.plane:before {
+          background-color: #119cfe;
+        }
+        &.train:before {
+          background-color: #00b254;
+        }
+        &.bus:before {
+          background-color: #f04c23;
+        }
+        &.ship:before {
+          background-color: #8680ff;
+        }
+        &.hotel:before{
+          background-color: #ff9f00;
+        }
+        &.netBar:before{
+          background-color: #e4007f;
+        }
+      }
+    }
+
+    #timeline {
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    svg {
+      overflow: hidden;
+      font: 12px/1.5 Simsun, sans-serif;
+
+      .domain {
+        fill: none;
+      }
+
+      line {
+        shape-rendering: crispEdges;
+      }
+
+      .axis line {
+        fill: none;
+        stroke-width: 1px;
+        stroke-dasharray: 4;
+      }
+
+      .x.axis {
+        circle {
+          fill: #383838;
+        }
+        line {
+          stroke: #383838;
+          stroke-opacity: 1;
+        }
+      }
+
+      .y.axis {
+        line {
+          stroke: #383838;
+        }
+        line.base {
+          stroke: #383838;
+          stroke-width: 2px;
+          stroke-dasharray: 0;
+        }
+        .tick:last-of-type {
+          //display: none;
+        }
+        text {
+          fill: #959595;
+          display: none;
+        }
+      }
+
+      rect.pane {
+        fill: none;
+        pointer-events: all;
+      }
+
+      g {
+        &.item {
+          g {
+            cursor: pointer;
+            circle {
+              &[r='17'] {
+                fill: none;
+                stroke: #cfcfcf;
+                stroke-dasharray: 3;
+              }
+            }
+            &:hover circle[r='17'] {
+              stroke: #0096ff;
+              stroke-dasharray: 0;
+            }
+            &.plane {
+              circle[r='7'] {
+                fill: rgb(17, 156, 254);
+              }
+            }
+            &.train {
+              circle[r='7'] {
+                fill: rgb(0, 178, 24);
+              }
+            }
+            &.bus {
+              circle[r='7'] {
+                fill: rgb(240, 76, 35);
+              }
+            }
+            &.ship {
+              circle[r='7'] {
+                fill: #8680ff;
+              }
+            }
+            &.hotel {
+              circle[r='7'] {
+                fill: #ff9f00;
+              }
+            }
+            &.netbar {
+              circle[r='7'] {
+                fill: #e4007f;
+              }
+            }
+          }
+        }
+      }
+
+    }
+    .drag-tips {
+      width: 122px;
+      height: 49px;
+      background: url('../img/map/drag-tips.png') center no-repeat;
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      margin-left: -61px;
+    }
+    .month-day-scale {
+      width: 60px;
+      height: 100%;
+      background: #e5e5e5;
+      position: absolute;
+      right: 1px;
+      top: 0;
+      z-index: 100;
+      border-left: 1px solid #dedede;
+      span.scale-txt {
+        display: block;
+        width: 60px;
+        height: 50px;
+        text-align: center;
+        font-size: 12px;
+        line-height: 50px;
+        color: #999;
+        position: absolute;
+        left: 0;
+        &.month {
+          top: 0;
+        }
+        &.day {
+          bottom: 0;
+        }
+      }
+      .scale-box {
+        display: block;
+        position: absolute;
+        top: 50px;
+        bottom: 50px;
+        width: 60px;
+        .scale-bottom {
+          width: 13px;
+          height: 100%;
+          background: #e5e5e5;
+          border: 1px solid #c9c9c9;
+          border-radius: 7px;
+          position: absolute;
+          top: 0;
+          left: 25px;
+          .scale-progress {
+            width: 1px;
+            height: 1px;
+            margin-left: -1px;
+            border-left: 1px solid #00a0e9;
+            position: absolute;
+            top: 7px;
+            left: 50%;
+            z-index: 2;
+          }
+          span.scale-btn {
+            padding: 8px;
+            border: 1px solid #00a0e9;
+            border-radius: 50%;
+            background-color: #e5e5e5;
+            position: absolute;
+            top: 0;
+            left: -7px;
+            z-index: 3;
+            cursor: pointer;
+            i {
+              width: 7px;
+              height: 7px;
+              border-radius: 50%;
+              background-color: #7ecef4;
+              display: block;
+            }
+          }
+          &:after {
+            content: '';
+            width: 1px;
+            margin-left: -1px;
+            border-left: 1px solid #959595;
+            position: absolute;
+            top: 7px;
+            bottom: 7px;
+            left: 50%;
+            z-index: 1;
+          }
+        }
+
+      }
+    }
+  }
+
+  &.side-hide .body-main {
+    margin-left: 0;
+  }
+.cursor-grab{
+  cursor: url("/template/img/map/openhand.cur") 8 8, default;
+}
+  .timeline-tip {
+    height: 175px;
+    position: absolute;
+    left: 900px;
+    top: 500px;
+    display: none;
+    font-family: 'simsun';
+    min-width: 200px;
+    .line {
+      width: 25px;
+      height: 70px;
+      border-right: 1px dashed #119cfe;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .info-box {
+      height: 90px;
+      margin-top: 75px;
+      i{
+        font-style: normal;
+      }
+      .time {
+        color: #666666;
+        font-weight: normal;
+        line-height: 30px;
+        font-size: 12px;
+        .startTime{
+          font-weight: normal;
+          font-size: 14px;
+          color: #666666;
+        }
+        .address{
+          color: #119cfe;
+          font-weight: bold;
+          font-size: 14px;
+        }
+      }
+      .station {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        color: #666666;
+        font-size: 14px;
+        i {
+          font-style: normal;
+          display: inline-block;
+          &.line-type {
+            font-size: 12px;
+          }
+          &.ico-to {
+            width: 30px;
+            height: 30px;
+            background: url(/template/img/map/trace-station-arrow.png);
+            vertical-align: top;
+          }
+        }
+      }
+      .tip-num {
+        line-height: 30px;
+        width: 100%;
+        height: 30px;
+        i {
+          font-style: normal;
+          &.num-type {
+            color: #666666;
+            font-size: 12px;
+          }
+          &.num {
+            color: #119cfe;
+            font-size: 14px;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+

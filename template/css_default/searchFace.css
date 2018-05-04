@@ -1,0 +1,548 @@
+/* line 1, ../scss_default/searchFace.scss */
+.face-detect {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+/* line 5, ../scss_default/searchFace.scss */
+.face-detect .queryIndex {
+  width: 100%;
+  height: 100%;
+  background: #262d35 url(/template/img/search/face/face-bodybg.png) center center no-repeat;
+  position: relative;
+}
+/* line 10, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox {
+  width: 660px;
+  height: 660px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -330px 0 0 -330px;
+}
+/* line 17, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-addphoto {
+  background: url(/template/img/search/face/face-add-imgbg.png);
+  width: 410px;
+  height: 410px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-top: 20px;
+  position: relative;
+}
+/* line 25, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-addphoto #img_selected_photo {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-size: cover;
+  overflow: hidden;
+}
+/* line 31, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-addphoto #img_selected_photo img {
+  width: 100%;
+  height: 100%;
+}
+/* line 37, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-addphoto img.circle-mask-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 430px;
+  height: 430px;
+}
+/* line 45, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-addphoto .add-btnphoto {
+  background-image: url(/template/img/search/face/add-facephoto1.png);
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  bottom: -50px;
+  left: 150px;
+  text-align: center;
+  line-height: 150px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Microsoft YaHei';
+  padding-top: 0;
+  color: #fff;
+}
+/* line 59, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-addphoto .add-btnphoto .webuploader-pick {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+/* line 67, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-addphoto .add-btnphoto:hover {
+  background-image: url(/template/img/search/face/add-facephoto.png);
+  width: 120px;
+  height: 120px;
+}
+/* line 74, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item {
+  border-radius: 5px;
+  border: 2px dotted #3897d4;
+  padding: 10px;
+  width: 580px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 80px;
+  background-color: #262d35;
+  position: relative;
+}
+/* line 84, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item h2 {
+  position: absolute;
+  top: -15px;
+  left: 10px;
+  display: block;
+  padding: 5px 10px;
+  background-color: #262d35;
+  font-size: 14px;
+  color: #3895d1;
+  border-radius: 20px;
+}
+/* line 96, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-checks {
+  display: inline-block;
+  max-height: 100px;
+  overflow-x: hidden;
+  margin: 20px 0 0 10px;
+}
+/* line 102, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-checks li {
+  padding: 8px 0;
+  float: left;
+}
+/* line 106, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-checks li a {
+  cursor: pointer;
+  padding-left: 25px;
+  margin-right: 10px;
+  width: 140px;
+  display: block;
+  background: url(/template/img/search/face/face-checkbox-off.png) no-repeat;
+  color: #c6c6c7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 118, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-checks li a:hover {
+  background: url(/template/img/search/face/face-checkbox-hover.png) no-repeat;
+  color: #00a0e9;
+}
+/* line 122, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-checks li.current a {
+  background: url(/template/img/search/face/checkbox-on.png) no-repeat;
+}
+/* line 125, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-check-item {
+  border-radius: 5px;
+  border: 2px dotted #3897d4;
+  padding: 10px;
+  width: 580px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 80px;
+  background-color: #262d35;
+  position: relative;
+}
+/* line 136, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-check-item h2 {
+  position: absolute;
+  top: -15px;
+  left: 10px;
+  display: block;
+  padding: 5px 10px;
+  background-color: #262d35;
+  font-size: 14px;
+  color: #3895d1;
+  border-radius: 20px;
+}
+/* line 147, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-check-item .face-seabtn {
+  cursor: pointer;
+  background: url(/template/img/search/face/face-seabtn.png);
+  width: 180px;
+  height: 50px;
+  position: absolute;
+  bottom: -25px;
+  left: 200px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 50px;
+  text-align: center;
+  padding-left: 20px;
+}
+/* line 162, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-check-item .face-seabtn:hover {
+  background: url(/template/img/search/face/face-seabtn-h.png);
+}
+/* line 166, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-seabtn {
+  cursor: pointer;
+  background: url(/template/img/search/face/face-seabtn.png);
+  width: 200px;
+  height: 50px;
+  position: absolute;
+  bottom: -25px;
+  left: 200px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 50px;
+  text-align: center;
+  padding-left: 20px;
+}
+/* line 180, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .face-itembox .face-check-item .face-seabtn:hover {
+  background: url(/template/img/search/face/face-seabtn-h.png);
+}
+/* line 187, ../scss_default/searchFace.scss */
+.face-detect .queryIndex .avatar-clip {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 199, ../scss_default/searchFace.scss */
+.face-detect .resultBody {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+/* line 204, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main {
+  background: #eee;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* line 210, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-top {
+  margin: 20px auto;
+  width: 98%;
+}
+/* line 213, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-top .form-group {
+  box-shadow: none;
+}
+/* line 215, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-top .form-group label {
+  width: auto;
+  min-width: 36px;
+}
+/* line 219, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-top .form-group dl {
+  display: inline-block;
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+/* line 225, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-top .form-group span.sex-type {
+  height: 20px;
+  line-height: 20px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+/* line 230, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-top .form-group span.sex-type:first-child {
+  padding-left: 0;
+}
+/* line 233, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-top .form-group span.sex-type:before {
+  display: inline-block;
+  width: 16px;
+  height: 20px;
+  background: url(/template/img/search/face/radio-off.png) center no-repeat;
+  content: '';
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+/* line 243, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-top .form-group span.sex-type.active:before {
+  background: url(/template/img/search/face/radio-on.png) center no-repeat;
+}
+/* line 251, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom {
+  width: 98%;
+  position: absolute;
+  top: 95px;
+  bottom: 0;
+  background: none;
+  left: 1%;
+  border: 0;
+}
+/* line 259, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom.noTop {
+  top: 90px;
+}
+/* line 262, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom.noTop .content .side-left {
+  padding-top: 10px;
+}
+/* line 267, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* line 271, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left {
+  width: 180px;
+  position: absolute;
+  left: 0px;
+  top: 20px;
+  bottom: 20px;
+  background: #fff;
+  border: 1px solid #dedede;
+}
+/* line 279, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .user-img {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+/* line 283, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .user-img img {
+  width: 100%;
+  border-radius: 2%;
+}
+/* line 287, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .user-img .reChoose {
+  width: 100%;
+  padding: 0 5px;
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  z-index: 500;
+}
+/* line 294, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .user-img .reChoose button {
+  width: 100%;
+  opacity: 0.8;
+}
+/* line 300, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .choose-data {
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+/* line 305, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .choose-data ul li {
+  padding: 0 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  position: relative;
+  cursor: pointer;
+  color: #666;
+  margin-bottom: 5px;
+}
+/* line 313, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .choose-data ul li:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  background: url(/template/img/search/face/face-checkbox-off.png) center no-repeat;
+  margin-right: 5px;
+  vertical-align: bottom;
+}
+/* line 322, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .choose-data ul li:hover {
+  color: #00a0e9;
+}
+/* line 324, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .choose-data ul li:hover:before {
+  background: url(/template/img/search/face/face-checkbox-hover.png) center no-repeat;
+}
+/* line 329, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .choose-data ul li.active:before {
+  background: url(/template/img/search/face/checkbox-on.png) center no-repeat;
+}
+/* line 336, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .button-area {
+  width: 100%;
+  padding: 0 10px;
+}
+/* line 339, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .side-left .button-area button {
+  width: 100%;
+}
+/* line 344, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .libTab {
+  position: absolute;
+  left: 200px;
+  right: 0;
+  top: 20px;
+}
+/* line 349, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .libTab .libActive {
+  color: #fff;
+  background-color: #0baafc;
+}
+/* line 353, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .libTab li {
+  display: inline-block;
+  width: 100px;
+  line-height: 24px;
+  text-align: center;
+  background-color: #fff;
+  cursor: pointer;
+}
+/* line 362, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right {
+  position: absolute;
+  left: 200px;
+  right: 0;
+  top: 44px;
+  bottom: 20px;
+  overflow-y: auto;
+}
+/* line 369, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border: 1px solid #dedede;
+  background: #fff;
+}
+/* line 375, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+/* line 379, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item {
+  width: 176px;
+  float: left;
+  margin: 15px 0 0 8px;
+  position: relative;
+}
+/* line 384, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-img {
+  width: 100%;
+  height: auto;
+  position: relative;
+  text-align: center;
+}
+/* line 389, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-img img {
+  width: auto;
+  height: 176px;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+/* line 395, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-img .item-info {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  text-align: left;
+}
+/* line 406, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-img .item-info dl {
+  width: 90%;
+  height: 90%;
+  margin: 5% auto;
+}
+/* line 410, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-img .item-info dl dd {
+  width: 100%;
+  height: 30px;
+  float: left;
+  color: #fff;
+  font-size: 12px;
+  line-height: 30px;
+  margin-top: 2px;
+}
+/* line 418, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-img .item-info dl dd span {
+  padding-right: 4px;
+}
+/* line 426, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item.active .item-info {
+  display: block;
+}
+/* line 429, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item.active .item-txt {
+  border-bottom: 3px solid #ff8d33;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+/* line 435, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-txt {
+  width: 100%;
+  height: auto;
+  font-size: 12px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0);
+}
+/* line 440, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-txt dl {
+  width: 90%;
+  margin: 10px auto;
+}
+/* line 443, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-txt dl dt {
+  width: 100%;
+  color: #333;
+  height: 30px;
+  line-height: 30px;
+  font-weight: normal;
+}
+/* line 449, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-txt dl dt:hover {
+  color: #ea3f28;
+}
+/* line 453, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-txt dl dd {
+  width: 100%;
+  color: #666;
+}
+/* line 460, ../scss_default/searchFace.scss */
+.face-detect .resultBody .result-main .form-bottom .content .content-right .item-container .item-lists .item .item-percent {
+  width: 40px;
+  height: 36px;
+  background: #e15050;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: #fff;
+  line-height: 36px;
+  text-align: right;
+  position: absolute;
+  bottom: 12px;
+  right: 0;
+  font-weight: 600;
+  padding-right: 2px;
+}
+
+/* line 485, ../scss_default/searchFace.scss */
+#img_box {
+  text-align: center;
+  width: 600px;
+  height: 280px;
+}
+/* line 489, ../scss_default/searchFace.scss */
+#img_box img {
+  max-width: 100%;
+  max-height: 100%;
+}

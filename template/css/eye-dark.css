@@ -1,0 +1,119 @@
+.eye-frame, .eye-frame .eye-content, .eye-frame .eye-content #svgContainer {
+	background-color: #14202e !important;
+}
+
+.eye-frame .eye-tabs .nav-tabs {
+	border-bottom: 1px solid #323b47;
+}
+
+.eye-frame .eye-tabs .nav-tabs > li > a {
+	color: #c9c7c5;
+}
+
+.eye-frame .eye-tabs .nav-tabs > li.active > a, .eye-frame .eye-tabs .nav-tabs > li > a:hover, .eye-frame .eye-tabs .nav-tabs > li.active > a:focus {
+	color: #3299cf;
+}
+
+.datePickerFromBelow .conditionInput {
+	color: #999;
+	background-color: #eee;
+}
+
+.archive .search-bar .search-bar-group .btn-primary {
+	background-color: #0389c7;
+}
+
+.archive .search-bar .search-bar-group .form-control,
+.eye-frame .space .search-bar .input-group-lg > .form-control,
+.eye-frame .space .search-bar .input-group-lg > .input-group-addon,
+.eye-frame .space .search-bar .input-group-lg > .input-group-btn > .dropdown-toggle,
+.peopleFind .searchArea div .atlasInput, .peopleAtlas .searchArea div .atlasInput,
+.peopleFind .searchArea .showTimeType button, .peopleAtlas .searchArea .showTimeType button {
+	background-color: #eee;
+}
+
+.eye-frame .space .search-bar .input-group-btn:last-child > .btn,
+.peopleFind .searchArea .searchButton button, .peopleAtlas .searchArea .searchButton button {
+	border: 0;
+}
+
+.archive .people-portrait #svgContainer #avatar img {
+	background-position: 0 -115px;
+	background-color: transparent;
+}
+
+.archive .people-portrait #svgContainer #avatar img.male {
+	background-position: 0 -115px;
+}
+
+.archive .people-portrait #svgContainer #avatar img.female {
+	background-position: -115px -115px;
+}
+
+@-webkit-keyframes avatar {
+	0% { background-position: 0 -115px; }
+	50% { background-position: -115px -115px; }
+	100% { background-position: -230px -115px; }
+}
+
+@-moz-keyframes avatar {
+	0% { background-position: 0 -115px; }
+	50% { background-position: -115px -115px; }
+	100% { background-position: -230px -115px; }
+}
+
+@-ms-keyframes avatar {
+	0% { background-position: 0 -115px; }
+	50% { background-position: -115px -115px; }
+	100% { background-position: -230px -115px; }
+}
+
+@keyframes avatar {
+	0% { background-position: 0 -115px; }
+	50% { background-position: -115px -115px; }
+	100% { background-position: -230px -115px; }
+}
+
+.archive .people-portrait #svgContainer svg .outer > circle {
+	stroke: #23537a;
+	fill-opacity: 0;
+}
+
+.archive .people-portrait #svgContainer svg .outer .mark circle:nth-of-type(even) {
+	fill-opacity: 0;
+}
+
+.archive .people-portrait #svgContainer svg .outer .mark circle:not(.point) {
+	fill: #93fadc;
+}
+
+.archive .people-portrait #svgContainer svg .outer .mark circle.point {
+	fill: #93fadc;
+}
+
+.archive .people-portrait #svgContainer svg .mark text {
+	fill: #fff;
+}
+
+.archive .people-portrait #svgContainer svg .center > circle {
+	fill-opacity: 0;
+	stroke: #8eb8e0;
+}
+
+.archive .people-portrait #svgContainer svg .center .mark circle:not(.point) {
+	fill-opacity: 0;
+	stroke: #adf5e7;
+	stroke-width: 2px;
+}
+
+.archive .people-portrait #svgContainer svg .center .mark circle.point {
+	fill: #adf5e7;
+}
+
+.archive .people-portrait #svgContainer svg .avatar > circle {
+	stroke: #81abd2;
+}
+
+.eye-frame .space #svgContainer .name {
+	fill: #c9c7c5;
+}

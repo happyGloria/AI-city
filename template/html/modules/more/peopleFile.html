@@ -1,0 +1,671 @@
+
+		<div class="peopelFile">
+			<div class="head-title">一人一档</div>
+			<div class="main-people-content">
+				<div class="person-information">
+					<div class="header-photo">
+						<div class="img-box">
+							<img src="{{peopleFile.idCardPic | transferPic}}" />
+						</div>
+					</div>
+					<ul class="information-list">
+						<li class="information-list-li name">
+							<label class="label-text">姓名：</label>
+							<span class="span-text">{{peopleFile.peopleName|| '--'}}<span class="label-title bg-blue" ng-if="peopleFile.peopleTypeName">{{peopleFile.peopleTypeName}}</span></span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text">性别：</label>
+							<span class="span-text">{{peopleFile.gender || '--'}}</span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text">年龄：</label>
+							<span class="span-text">{{peopleFile.age || '--'}}</span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text">身份证号：</label>
+							<span class="span-text">{{peopleFile.credentialNo || '--'}}</span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text">民族：</label>
+							<span class="span-text">{{peopleFile.nation || '--'}}</span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text">国籍：</label>
+							<span class="span-text">{{peopleFile.nationality || '--'}}</span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text">文化程度：</label>
+							<span class="span-text">{{peopleFile.education || '--'}}</span>
+						</li>
+						<li class="information-list-li" style="height: 14px">
+							<label class="label-text">人物标签：</label>
+							<span class="span-text peoplebgcolor">
+										&nbsp;<span  class="label-title" ng-repeat="item in peopleFile.bqArr" ng-class="item.bg">{{item.name}}</span>
+							</span>
+						</li>
+						<!-- <li class="information-list-li">
+							<label class="label-text">人员状态：</label>
+							<span class="span-text">{{peopleFile.stateMsg || '--'}}</span>
+						</li> -->
+						<li class="information-list-li">
+							<label class="label-text">婚姻状况：</label>
+							<span class="span-text">{{peopleFile.maritalStatus || '--'}}</span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text">居住住址：</label>
+							<span class="span-text">{{peopleFile.residenceAddress || '--'}}</span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text">电话：</label>
+							<span class="span-text">{{peopleFile.phoneNo || '--'}}</span>
+						</li>
+						<li class="information-list-li">
+							<label class="label-text"><a href="" id="shijuFile">查看更多</a></label>
+						</li>
+					</ul>
+				</div>
+				<div class="relation">
+					<div class="relation-con">
+						<div class="center-photo">
+							<img src="{{peopleFile.idCardPic | transferPic}}" />
+						</div>
+						<ul class="ul-list">
+							<li class="zhufangxinxi" ng-class="showInformation=='housingInformation'?'active':''" ng-click="changeInformation('housingInformation')">
+								<i class="li-icon"></i>
+								<span class="span-name">住房信息</span>
+							</li>
+							<li class="yangan" ng-class="showInformation=='smokeDeviceInformation'?'active':''" ng-click="changeInformation('smokeDeviceInformation')">
+								<i class="li-icon"></i>
+								<span class="span-name">烟感信息</span>
+							</li>
+							<li class="cheliangxinxi" ng-class="showInformation=='carInformation'?'active':''" ng-click="changeInformation('carInformation')">
+								<i class="li-icon"></i>
+								<span class="span-name">车辆信息</span>
+							</li>
+							<li class="jingqing" ng-class="showInformation=='eventInformation'?'active':''" ng-click="changeInformation('eventInformation')">
+								<i class="li-icon"></i>
+								<span class="span-name">事件</span>
+							</li>
+							<li class="menjinjilu" ng-class="showInformation=='doorRecordInformation'?'active':''" ng-click="changeInformation('doorRecordInformation')">
+								<i class="li-icon"></i>
+								<span class="span-name">门禁记录</span>
+							</li>
+							<li class="renlianzhuapai" ng-class="showInformation=='checkFaceInformation'?'active':''" ng-click="changeInformation('checkFaceInformation')" ng-dblclick = "dbchangeInformation()">
+								<i class="li-icon"></i>
+								<span class="span-name">人脸抓拍</span>
+							</li>
+							<li class="gaojingxinxi" ng-class="showInformation=='giveAlarmInformation'?'active':''" ng-click="changeInformation('giveAlarmInformation')">
+								<i class="li-icon"></i>
+								<span class="span-name">告警信息</span>
+							</li>
+							<li class="mac" ng-class="showInformation=='captrueMacInformation'?'active':''" ng-click="changeInformation('captrueMacInformation')">
+								<i class="li-icon"></i>
+								<span class="span-name">MAC信息</span>
+							</li>
+							<li class="danweixinxi" ng-class="showInformation=='companyInformation'?'active':''" ng-click="changeInformation('companyInformation')">
+								<i class="li-icon"></i>
+								<span class="span-name">单位信息</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="information-con">
+					<!--住房信息 start-->
+					<div class="personnel-con" ng-if="showInformation=='housingInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">住房信息</span>
+						</div>
+						<div class="personnel-tab">
+							<div class="tab-list-head" ng-if="false">
+								<div class="prev-left" ng-if="false">
+									<i class="icon icon-prev"></i>
+								</div>
+								<ul class="tab-list">
+									<li class="tab-list-li clearfix">
+										<span class="tab-list-li-menu active">{{peopleFile.detailHouseNO}}</span>
+									</li>
+								</ul>
+								<div class="next-right" ng-if="false">
+									<i class="icon icon-next"></i>
+								</div>
+							</div>
+							<div class="tab-content">
+								<div class="">
+									<div class="tab-pane-head clearfix">
+										<span class="pull-left" style="font-size: 0.14rem">{{peopleFile.detailAddress}}</span>
+										<!--<i class="icon down-icon">-->
+										<select id="selectYear">
+							              <option value="2017" selected>2017年</option>
+							              <option value="2018">2018年</option>
+							            </select>
+										<select id="selectMonth">
+										<option value="12" selected style="font-size: 0.14rem">12月</option>
+										<option value="11">11月</option>
+										<option value="10">10月</option>
+										<option value="9">9月</option>
+										<option value="8">8月</option>
+										<option value="7">7月</option>
+										<option value="6">6月</option>
+										<option value="5">5月</option>
+										<option value="4">4月</option>
+										<option value="3">3月</option>
+										<option value="2">2月</option>
+										<option value="1">1月</option>
+									    </select>
+										</span>
+									</div>
+									<div class="message-number clearfix">
+										<!--水-->
+										<div class="message-box water-con pull-left">
+											<i class="icon water-icon"></i>
+											<a>
+											<span class="water-num" ng-click ="queryWaterElectric()">{{waterModel}}</span>
+											</a>
+										</div>
+										<!--电-->
+										<div class="message-box electricity-con pull-left">
+											<i class="icon electricity-icon"></i>
+											<a>
+											<span class="electricity-num" ng-click ="queryWaterElectric()">{{electricModel}}</span>
+											</a>
+										</div>
+										<!--媒-->
+										<div class="message-box gas-con pull-left">
+											<i class="icon gas-icon"></i>
+											<a>
+											<span class="gas-num" ng-click ="queryWaterElectric()">{{gasModel}}</span>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+					<!--住房信息 end-->
+					
+					<!--人员信息 start-->
+					<div class="personnel-con" ng-if="showInformation=='housingInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">人员信息</span>
+							<!-- <span class="more-btn pull-right">更多</span> -->
+						</div>
+						<ul class="list">
+							<li class="list-li" ng-repeat="item in houseData.peopleList">
+								<div class="face-photo-box">
+									<img src="{{item.idCardPic | transferPic}}" />
+									<span class="sex-label man" ng-class="item.gender == '男'?'man':'woman'"></span>
+								</div>
+								<div class="right-box">
+									<div class="list-li-box">
+										<label class="label-text">姓名：</label>
+										<span class="span-text">{{item.peopleName || '--'}}
+										    <span class="label-title bg-blue" style="position: absolute;right:0;top:0;">{{getPeopleType(item.peopleType)}}</span>
+										</span>
+									</div>
+									<div class="list-li-box">
+										<label class="label-text">证件号码：</label>
+										<span class="span-text" ng-if="!item.credentialNo">--</span>
+										<a href="#/index/peoplefile/{{item.credentialNo}}/{{villageCode}}" ng-if="item.credentialNo" target="_blank"><span class="span-text">{{item.credentialNo}}</span></a>
+									</div>
+									<div class="list-li-box">
+										<label class="label-text">年龄：</label>
+										<span class="span-text">{{item.age || '--'}}</span>
+									</div>
+									<div class="list-li-box">
+										<label class="label-text">户主关系：</label>
+				      					<span class="span-text">{{item.householderRelation || '--'}}</span>
+									</div>
+									<div class="list-li-box">
+										<label class="label-text">电话号码：</label>
+										<span class="span-text">{{item.phoneNo || '--'}}</span>
+									</div>
+									<div class="list-li-box" style="height:14px;">
+										<label class="label-text">人物标签：</label>
+										<span class="span-text peoplebgcolor">
+											<span style="padding:2px;margin-right:2px;"  class="label-title" ng-repeat="items in item.lableArr" ng-class="items.bg">{{items.name || '--'}}</span>
+										</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--人员信息 end-->
+
+					<!--门禁记录 start-->
+					<div class="entrance-record" ng-if="showInformation=='doorRecordInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">门禁记录</span>
+							<span class="more-btn pull-right"><a ng-click="clickMore(1)">更多</a></span>
+							<!-- <span class="map-btn pull-right"><i class="icon icon-map"></i>地图查看</span> -->
+						</div>
+						<ul class="list">
+							<li class="list-li" ng-repeat="item in doorRecords">
+								<div class="list-li-box">
+									<label class="label-text">门禁机：</label>
+									<span class="span-text">{{item.deviceName || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">访问时间：</label>
+									<span class="span-text">{{item.openTime || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">开门类型：</label>
+									<span class="span-text">{{item.openType || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">抓拍影像：</label>
+									<span class="span-text" style="height: 18px;">
+										<i class="base-icon icon-photo" ng-show="item.imgUrl" ng-click="doorImgClick(item)"></i>
+										<i class="base-icon icon-video" ng-show="item.videoUrl" ng-click="doorVideoClick(item)"></i>
+									</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--门禁记录 end-->
+
+					<!--事件 start-->
+					<div class="entrance-record personnel-con" ng-if="showInformation=='eventInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">事件</span>
+						</div>
+						<div class="personnel-tab" style="margin-bottom: 5px;">
+							<div class="tab-list-head">
+								<!-- <div class="prev-left" ng-if="eventListData&&eventListData.length>1" ng-click='prevOrNextEvent(-1)'>
+									<i class="icon icon-prev"></i>
+								</div>  -->
+								<ul class="tab-list">
+									<li class="tab-list-li clearfix">
+										<span ng-repeat="(index,item) in eventListData" class="tab-list-li-menu" ng-class="eventIndex==index?'active':''" ng-click="prevOrNextEvent(index,'tab')">{{item.labelType}}</span>
+									</li>
+								</ul>
+								<!-- <div class="next-right" ng-if="eventListData&&eventListData.length>1" ng-click='prevOrNextEvent(1)'>
+									<i class="icon icon-next"></i>
+								</div>  -->
+							</div>
+						</div>
+						<ul class="list">
+							<li class="list-li" ng-if="eventListData[eventIndex].labelType=='刷卡异常'" ng-repeat="item in eventListData[eventIndex].result">
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">报警时间：</label>
+									<span class="span-text">{{item.warningTime}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">报警类型：</label>
+									<span class="span-text">{{item.typeDesc}}</span>
+								</div>
+							</li>
+							
+							<li class="list-li" ng-if="eventListData[eventIndex].labelType=='110警情'" ng-repeat="item in eventListData[eventIndex].result">
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">案件编号：</label>
+									<span class="span-text">{{item.case_id || '--'}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">报警时间：</label>
+									<span class="span-text">{{item.inbound_time || '--'}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">案发地址：</label>
+									<span class="span-text">{{item.case_address || '--'}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">报警手机号码：</label>
+									<span class="span-text">{{item.caller_no || '--'}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">案件描述：</label>
+									<span class="span-text">{{item.case_desc || '--'}}</span>
+								</div>
+							</li>
+							
+							<li class="list-li" ng-if="eventListData[eventIndex].labelType=='感知离开'" ng-repeat="item in eventListData[eventIndex].result">
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">证件号码：</label>
+									<span class="span-text">{{item.IdentityCard || '--'}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">时间：</label>
+									<span class="span-text">{{item.OpenedTime || '--'}}</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--事件 end-->
+
+					<!--Mac start-->
+					<div class="entrance-record personnel-con" ng-if="showInformation=='captrueMacInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">Mac设备</span>
+							<span class="more-btn pull-right"><a ng-click="clickMore(3)">更多</a></span>
+							<span class="map-btn pull-right" ng-click="toMapTrack(2)"><i class="icon icon-map"></i>地图查看</span>
+						</div>
+						<div class="personnel-tab">
+							<div class="tab-list-head">
+								<div class="prev-left" ng-if="macTab.prevCarDisabled" ng-click='prevOrNextMac(-1)'>
+									<i class="icon icon-prev"></i>
+								</div>
+								<ul class="tab-list">
+									<li class="tab-list-li clearfix">
+										<!-- <span class="tab-list-li-menu">移动设备</span> -->
+										<span class="tab-list-li-menu" ng-class="(macTab.macTabIndex+0)==macTab.macListIndex?'active':''" ng-if="macData[macTab.macTabIndex]" ng-click="prevOrNextMac(macTab.macTabIndex,1)">{{macData[macTab.macTabIndex].shebei}}</span>
+										<span class="tab-list-li-menu" ng-class="(macTab.macTabIndex+1)==macTab.macListIndex?'active':''" ng-if="macData[macTab.macTabIndex+1]" ng-click="prevOrNextMac(macTab.macTabIndex+1,1)">{{macData[macTab.macTabIndex+1].shebei}}</span>
+										<span class="tab-list-li-menu" ng-class="(macTab.macTabIndex+2)==macTab.macListIndex?'active':''" ng-if="macData[macTab.macTabIndex+2]" ng-click="prevOrNextMac(macTab.macTabIndex+2,1)">{{macData[macTab.macTabIndex+2].shebei}}</span>
+									</li>
+								</ul>
+								<div class="next-right" ng-if="macTab.nextCarDisabled" ng-click='prevOrNextMac(1)'>
+									<i class="icon icon-next"></i>
+								</div>
+							</div>
+							<div class="tab-content" style="line-height: 20px;color: #333; text-align: center;">用户Mac:{{macData[macTab.macListIndex].mac || '--'}}</div>
+						</div>
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">Mac记录</span>
+						</div>
+						<ul class="list" ng-if="showMacRecord">
+							<li class="list-li" ng-repeat="item in maRecordData">
+								<div class="list-li-box">
+									<label class="label-text">时间：</label>
+									<span class="span-text">{{item.collectTime || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">位置：</label>
+									<span class="span-text">{{item.deviceName || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">基站Mac：</label>
+									<span class="span-text">{{item.deviceId || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">用户Mac：</label>
+									<span class="span-text">{{item.userMac || '--'}}</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--Mac end-->
+
+					<!--烟感信息 start-->
+					<div class="smoke-con" ng-if="showInformation=='smokeDeviceInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">烟感信息</span>
+						</div>
+						<ul class="list">
+							<li class="list-li" ng-repeat="item in smokeDeviceData">
+								<div class="list-li-box-head">
+									<label class="label-text">设备名称：</label>
+									<span class="span-text">{{item.name || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">设备编号：</label>
+									<span class="span-text">{{item.deviceNo || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">设备状态：</label>
+									<span class="span-text">{{item.stateDesc || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">地 址：</label>
+									<span class="span-text">{{item.detailAddress || '--'}}</span>
+								</div>
+							</li>
+						</ul>
+
+					</div>
+					<!--烟感信息 end-->
+
+					<!--报警信息 start-->
+					<div class="alarm-con" ng-if="showInformation=='smokeDeviceInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">报警记录</span>
+							<!-- <span class="more-btn pull-right">更多</span> -->
+						</div>
+						<ul class="list">
+							<li class="list-li" ng-repeat="item in smokeData">
+								<div class="list-li-box">
+									<label class="label-text">报警时间：</label>
+									<span class="span-text">{{item.alarmTime || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">报警类型：</label>
+									<span class="span-text">{{item.alarmTypeName || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">设备编号：</label>
+									<span class="span-text">{{item.deviceNo || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">设备状态：</label>
+									<span class="span-text">{{item.stateName || '--'}}</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!--告警记录 start-->
+					<div class="alarm-con" ng-if="showInformation=='giveAlarmInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">告警记录</span>
+							<!-- <span class="more-btn pull-right">更多</span> -->
+						</div>
+						<ul class="list">
+							<li class="list-li" ng-repeat="item in doorAlarmData">
+								<div class="list-li-box">
+									<label class="label-text">报警时间：</label>
+									<span class="span-text">{{item.warningTime}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">报警类型：</label>
+									<span class="span-text">{{item.typeDesc}}</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--报警记录 end-->
+
+					<!--车辆记录start-->
+					<div class="cars-con personnel-con" ng-if="showInformation=='carInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">车辆记录</span>
+							<span class="more-btn pull-right"><a ng-click="clickMore(2)">更多</a></span>
+						</div>
+						<div ng-if="!notShuju" class="personnel-tab">
+							<div class="tab-list-head">
+								<div class="prev-left" ng-if="carTab.prevCarDisabled" ng-click='prevOrNextCar(-1)'>
+									<i class="icon icon-prev"></i>
+								</div>
+								<ul class="tab-list">
+									<li class="tab-list-li clearfix">
+										<span class="tab-list-li-menu" ng-class="(carTab.carTabIndex+0)==carTab.carListIndex?'active':''" ng-if="carNoData[carTab.carTabIndex]" ng-click="prevOrNextCar(carTab.carTabIndex,1)">{{carNoData[carTab.carTabIndex]}}</span>
+										<span class="tab-list-li-menu" ng-class="(carTab.carTabIndex+1)==carTab.carListIndex?'active':''" ng-if="carNoData[carTab.carTabIndex+1]" ng-click="prevOrNextCar(carTab.carTabIndex+1,1)">{{carNoData[carTab.carTabIndex+1]}}</span>
+										<span class="tab-list-li-menu" ng-class="(carTab.carTabIndex+2)==carTab.carListIndex?'active':''" ng-if="carNoData[carTab.carTabIndex+2]" ng-click="prevOrNextCar(carTab.carTabIndex+2,1)">{{carNoData[carTab.carTabIndex+2]}}</span>
+									</li>
+								</ul>
+								<div class="next-right" ng-if="carTab.nextCarDisabled" ng-click='prevOrNextCar(1)'>
+									<i class="icon icon-next"></i>
+								</div>
+							</div>
+						</div>	
+						<div ng-if="!notShuju" class="car-photo">
+							<div class="car-photo-img">
+								<img src="{{carListData[carTab.carListIndex].platePic | transferPic}}" />
+							</div>
+							<span class="car-number">{{carNoData[carTab.carListIndex]}}</span>
+						</div>
+						<div ng-if="!notShuju" class="personnel-tab">
+							<ul class="tab-list">
+								<li class="tab-list-li clearfix">
+									<span class="tab-list-li-menu" ng-class="{'active':showCarTab.villageCarRecord}" ng-click="changeCarTab('villageCarRecord')">小区过车记录</span>
+									<span class="tab-list-li-menu" ng-class="{'active':showCarTab.breakRuleRecord}" ng-click="changeCarTab('breakRuleRecord')">违章记录</span>
+									<span class="tab-list-li-menu" ng-class="{'active':showCarTab.passRecord}" ng-click="changeCarTab('passRecord')">卡口过车记录</span>
+								</li>
+							</ul>
+						</div>
+						<ul ng-if="!notShuju" class="list" ng-repeat="item in carListData" ng-show="showCarTab.villageCarRecord">
+							<li class="list-li">
+								<div class="list-li-box">
+									<label class="label-text">进      出：</label>
+									<span class="span-text" ng-if="item.inOutType ==1">进</span>
+									<span class="span-text" ng-if="item.inOutType ==2">出</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">时间：</label>
+									<span class="span-text">{{item.inOutTime || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">关卡：</label>
+									<span class="span-text">{{item.tollgateName || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">地 址：</label>
+									<span class="span-text">{{item.address || '--'}}</span>
+								</div>
+							</li>
+						</ul>
+						<ul ng-if="!notShuju" class="list" ng-repeat="item in breakRuleData" ng-show="showCarTab.breakRuleRecord">
+							<li class="list-li">
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">时间：</label>
+									<span class="span-text">{{item.peccancy_time || ''}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">违章类型：</label>
+									<span class="span-text">{{getPeccancytypeName(item.peccancytype_code) || ''}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px;">
+									<label class="label-text">违章地点：</label>
+									<span class="span-text">{{item.device_name || ''}}</span>
+								</div>
+								<div class="list-li-box" style="height: 40px; position: relative;">
+									<label class="label-text">违章照片：</label>
+									<i style="position: absolute;left: 100px;" class="base-icon icon-photo" ng-show="item.pic_path != ''" ng-click="clickPicToLarge(item.pic_path)"></i>
+								</div>
+							</li>
+						</ul>
+						<ul ng-if="!notShuju" class="list" ng-repeat="item in passData" ng-show="showCarTab.passRecord">
+							<li class="list-li">
+								<div class="list-li-box">
+									<label class="label-text">时间：</label>
+									<span class="span-text">{{item.inouttime || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">关卡：</label>
+									<span class="span-text">{{item.sbmc || '--'}}</span>
+								</div>
+								<div class="list-li-box">
+									<label class="label-text">行驶方向：</label>
+									<span class="span-text" ng-if="item.inouttype ==1">自东向西</span>
+									<span class="span-text" ng-if="item.inouttype ==2">自西向东</span>
+									<span class="span-text" ng-if="item.inouttype ==3">自南向北</span>
+									<span class="span-text" ng-if="item.inouttype ==4">自北向南</span>
+								</div>
+								<div class="list-li-box" style="height: 40px; position: relative;">
+									<label class="label-text">过车照片：</label>
+									<i style="position: absolute;left: 100px;" class="base-icon icon-photo" ng-show="item.platepic != ''" ng-click="clickPicToLarge(item.platepic)"></i>
+								</div>
+							</li>
+						</ul>
+						<i ng-if="showNoDate" style="display:block;height:140px;font-size: 12px;text-align: center;line-height:140px;background: black;opacity: 0.5;">暂无数据</i>
+					</div>
+					<!--车辆记录 end-->
+
+					<!--人脸抓拍start-->
+					<div class="face-con" ng-if="showInformation=='checkFaceInformation'">
+						<div class="right-head clearfix">
+							<i class="label-i pull-left"></i>
+							<span class="title pull-left">人脸抓拍</span>
+							<!-- <span class="more-btn pull-right">更多</span> -->
+							<span class="map-btn pull-right" ng-click="toMapTrack(1)"><i class="icon icon-map"></i>地图查看</span>
+						</div>
+						<ul class="list">
+							<li class="list-li" ng-repeat="item in facePath">
+								<div class="face-photo-box">
+									<img src="{{item.faceUrl}}" />
+								</div>
+								<div class="right-box">
+									<div class="list-li-box">
+										<label class="label-text">相似度：</label>
+										<span class="span-text span-number">{{item.similarity}}%</span>
+									</div>
+									<div class="list-li-box">
+										<label class="label-text">时间：</label>
+										<span class="span-text">{{item.captureTime}}</span>
+									</div>
+									<div class="list-li-box">
+										<label class="label-text">地 址：</label>
+										<span class="span-text">{{item.name}}</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--人脸抓拍end-->
+
+					<!--单位信息start-->
+					<div class="unit-con" ng-if="showInformation=='companyInformation'">
+								<div class="right-head clearfix">
+									<i class="label-i pull-left"></i>
+									<span class="title pull-left">单位信息</span>
+									<!-- <span class="more-btn pull-right">更多</span> -->
+								</div>
+								<div ng-if="!notShuju" class="unit-photo">
+									<div class="unit-photo-img">
+										<img src="{{companyData[0].companyPic | transferPic}}" />
+									</div>
+									<div class="unit-photo-information">
+										<span class="unit-name">{{companyData[0].companyName}}</span>
+										<span class="unit-address">{{companyData[0].companyAdress}}</span>
+									</div>
+									
+								</div>
+								<!-- <ul ng-if="!notShuju" class="list">
+									<li class="list-li">
+										<div class="list-li-box">
+											<label class="label-text">姓名：</label>
+											<span class="span-text"></span>
+										</div>
+										<div class="list-li-box">
+											<label class="label-text">性别：</label>
+											<span class="span-text"></span>
+										</div>
+										<div class="list-li-box">
+											<label class="label-text">身份证号：</label>
+											<span class="span-text"></span>
+										</div>
+										<div class="list-li-box">
+											<label class="label-text">户籍地：</label>
+											<span class="span-text"></span>
+										</div>
+										<div class="list-li-box">
+											<label class="label-text">在沪居住地：</label>
+											<span class="span-text"></span>
+										</div>
+										<div class="list-li-box">
+											<label class="label-text">联系方式：</label>
+											<span class="span-text"></span>
+										</div>
+									</li>
+								</ul> -->
+							</div>
+				    <div ng-if="showInformationLoading" style="position: absolute; top: 0;bottom: 0; left: 0; right: 0;  background: black;opacity:0.5; text-align: center;padding-top: 100%;">
+				    	<i ng-if="!notShuju" class="ball-clip-rotate"></i>
+				    	<i ng-if="notShuju">{{hasNoResult}}</i>
+				    </div>
+				    <div ng-if="childShowLoading" style="position: absolute; top: 3.84rem;bottom: 0; left: 0; right: 0;  background: black;opacity:0.5; text-align: center;padding-top: 100%;">
+				    	<i ng-if="childShowLoading" class="ball-clip-rotate" style="position: absolute;top: 2rem;left: 50%;"></i>
+				    	<i ng-if="childNotShuju">{{hasNoResult}}</i>
+				    </div>    
+				</div>
+		</div>
+

@@ -1,0 +1,290 @@
+.tacticsPanel{
+  width: 100%;
+  background: #f3f3f3;
+  overflow: hidden;
+  .tacticsTitle{
+    font-size: 12px;
+    color: #333;
+    line-height: 50px;
+    height: 50px;
+    width: 100%;
+    .tacticsTitlePanel{
+      font-weight: bold;
+      margin-right: 0px;
+    }
+  }
+  .tacticsCanvas{
+    height: 860px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .tacticsCanvastitle{
+      height:50px;
+      width:100%;
+      background-color: #ffffff;
+      border: 1px solid #DEDEDE;
+      font-size: 12px;
+    }
+    .tacticsCanvasToolBox{
+      height:52px;
+      border: 1px solid #DEDEDE;
+    }
+    .tacticsCanvasMain{
+      height: 748px;
+      border: 1px solid #DEDEDE;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      margin-top: -1px;
+      .tacticsCanvasTools{
+        border: 1px solid #DEDEDE;
+        height: 100%;
+        width: 114px;
+        float: left;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        z-index: 9;
+        -webkit-user-select: none;
+        .tacticsCanvasToolsTitle{
+          background-color: #A9A9A9;
+          height: 30px;
+          text-align: center;
+          line-height: 30px;
+          color: #F3F3F3;
+        }
+        .tacticsCanvasToolsBar{
+          text-align: center;
+          .tacticsCanvasToolsBarDiv{
+            width: 80px;
+            height: 70px;
+            text-align: center;
+            margin: 15px auto 10px auto;
+          }
+          .tacticsCanvasToolBarDivFocus{
+            background-color: #C9C9C9;
+          }
+        }
+      }
+      .tacticsCanvasPanel{
+        border: 4px solid #DEDEDE;
+        height: 100%;
+        padding: 0;
+        margin: 0 380px 0 114px;
+        background-color: #ffffff;
+      }
+      .tacticsCanvasInfo{
+        border: 1px solid #DEDEDE;
+        height: 100%;
+        width: 380px;
+        padding: 0;
+        margin: 0;
+        overflow-y: auto;
+        background-color: #ffffff;
+        position: absolute;
+        right: 0;
+        top: 0;
+        .tacticsCanvasInfoTitle{
+          background-color: #A9A9A9;
+          height: 30px;
+          text-align: left;
+          line-height: 30px;
+          color: #F3F3F3;
+        }
+        .tacticsCanvasInfoPanel{
+          height: 96%;
+          background-color: #FFFFFF;
+          .tacticsCanvasInfoRow{
+            text-align: left;
+            margin: 10px auto 10px auto;
+            padding: 0;
+            .tacticsCanvasInfoTitleHead{
+              font-weight: 800;
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .btn {
+    height: 30px;
+    min-width: 37px;
+    padding: 2px 12px;
+    border-radius: 4px;
+    color: #fff;
+    border: 0;
+  }
+
+  .btn-default {
+    background-color: #FFFFFF;
+    border-color: #eee;
+    border: 1px solid #DDDDDD;
+  }
+  .nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #FFFFFF;
+  }
+
+  .btn_hover{
+    background-color: #fff;
+    border-color: #adadad;
+  }
+}
+
+.layout-split-west {
+  border-right: 5px solid rgba(255, 255, 255, 0);
+}
+.Q-Canvas:last-of-type{
+  display: none;
+}
+
+.layerRow{
+  text-align: center;
+  margin: 10px auto 10px auto;
+  color: #000000;
+  .div {
+    color: #000000;
+    select{
+      color:#000000;
+    }
+  }
+}
+
+#dataSiurceFidelTab .tableStyle{
+  height: 340px;
+  overflow-y:auto;
+  padding: 0;
+}
+
+.layui-layer-btn{
+  text-align: right;
+  padding: 0 10px 12px;
+  pointer-events: auto;
+}
+
+.layercalculatepanel{
+  border: 1px solid #DEDEDE;
+  height: 320px;
+  margin: 10px auto 10px auto;
+}
+
+.layerOutPrintMain{
+  border: 1px solid #DEDEDE;
+  height: 470px;
+  overflow-y:auto;
+}
+
+.conditionInput {
+  background: url(../img/canlendar.png) 151px no-repeat;
+}
+
+.conditionInput1 {
+  background: url(../img/canlendar.png) 174px no-repeat;
+}
+
+.radioClass{
+  margin-left: 33px;
+}
+
+.tacticsListTitle{
+  border:none;
+  top: 0px;
+  padding-top: 0px;
+}
+
+.tacticsListTitleli{
+  border-left: 1px solid #eee;
+}
+
+.tacticsListTitlea{
+  margin-left: 47px;
+}
+
+.tacticsListTool{
+  height:48px;
+  background-color: #FFFFFF;
+  padding: 0;
+  margin: 0;
+}
+
+.tacticsListTable{
+  background-color: #FFFFFF;
+  padding: 0;
+  margin: 0;
+}
+
+.tacticsSpan{
+  margin-left: 10px;
+}
+
+.runTime{
+  width: 300px;
+  float: left;
+  .runTimeTitle{
+    width: 60px;
+    float: left;
+  }
+}
+
+.runTimeRadionList{
+  float: left;
+  .runTimeRadionListRadio{
+    width: 600px;
+    float: left;
+  }
+  .runTimeRadionListInput{
+    width: 200px;
+    float: left;
+  }
+}
+
+.selectClass{
+  width: 100%;
+  color: #000000;
+}
+
+.selectClass2{
+  color: #000000;
+}
+
+.tableClass{
+  border: 1px solid #DEDEDE;
+}
+
+.start{
+  color: #F5AC57;
+}
+
+.running_tactics{
+  color:#009944;
+}
+
+.mod-dropdownlist .dropdown-select .dropdown-input {
+  zoom: 1;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 30px;
+  height: 30px;
+  margin-right: 46px;
+}
+
+.mod-dropdownlist .dropdown-options li.dropdown-options-focus a, .mod-dropdownlist .dropdown-options li.dropdown-options-focus a{
+  text-align: left;
+}
+
+.mod-dropdownlist .dropdown-options li a {
+  display: block;
+  width: 100%;
+  padding: 0 10px;
+  white-space: nowrap;
+  font-size: 12px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #666;
+  cursor: pointer;
+  text-align: left;
+}

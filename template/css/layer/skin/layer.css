@@ -1,0 +1,783 @@
+/*!
+ 弹出窗样式
+ */
+
+*html {
+	background-image: url(about:blank);
+	background-attachment: fixed
+}
+
+html #layui_layer_skinlayercss {
+	display: none;
+	position: absolute;
+	width: 1989px
+}
+
+.layui-layer,
+.layui-layer-shade {
+	position: fixed;
+	_position: absolute;
+	pointer-events: auto
+}
+
+.layui-layer-shade {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	_height: expression(document.body.offsetHeight+"px")
+}
+
+.layui-layer {
+	top: 150px;
+	left: 50%;
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+	-webkit-background-clip: content;
+	box-shadow: 0.01rem 0.01rem 0.5rem rgba(0, 0, 0, .3);
+	border-radius: 0.02rem;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	-webkit-animation-duration: .3s;
+	animation-duration: .3s
+}
+
+.layui-layer-close {
+	position: absolute
+}
+
+.layui-layer-content {
+	position: relative
+}
+
+.layui-layer-border {
+	border: 0.01rem solid #B2B2B2;
+	border: 0.01rem solid rgba(0, 0, 0, .3);
+	box-shadow: 0.01rem 0.01rem 0.05rem rgba(0, 0, 0, .2)
+}
+
+.layui-layer-moves {
+	position: absolute;
+	border: 0.03rem solid #666;
+	border: 0.03rem solid rgba(0, 0, 0, .5);
+	cursor: move;
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, .3);
+	filter: alpha(opacity=50)
+}
+
+/*.layui-layer-load {
+	background: url(default/loading-0.gif) center center no-repeat #fff;
+}*/
+
+.layui-layer-ico {
+	background: url(default/icon.png) no-repeat
+}
+
+.layui-layer-btn a,
+.layui-layer-dialog .layui-layer-ico,
+.layui-layer-setwin a {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	vertical-align: top
+}
+
+@-webkit-keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.5);
+		transform: scale(.5)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+}
+
+@keyframes bounceIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.5);
+		-ms-transform: scale(.5);
+		transform: scale(.5)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		transform: scale(1)
+	}
+}
+
+.layui-anim {
+	-webkit-animation-name: bounceIn;
+	animation-name: bounceIn
+}
+
+@-webkit-keyframes bounceOut {
+	100% {
+		opacity: 0;
+		-webkit-transform: scale(.7);
+		transform: scale(.7)
+	}
+	30% {
+		-webkit-transform: scale(1.03);
+		transform: scale(1.03)
+	}
+	0% {
+		-webkit-transform: scale(1);
+		transform: scale(1)
+	}
+}
+
+@keyframes bounceOut {
+	100% {
+		opacity: 0;
+		-webkit-transform: scale(.7);
+		-ms-transform: scale(.7);
+		transform: scale(.7)
+	}
+	30% {
+		-webkit-transform: scale(1.03);
+		-ms-transform: scale(1.03);
+		transform: scale(1.03)
+	}
+	0% {
+		-webkit-transform: scale(1);
+		-ms-transform: scale(1);
+		transform: scale(1)
+	}
+}
+
+.layui-anim-close {
+	-webkit-animation-name: bounceOut;
+	animation-name: bounceOut;
+	-webkit-animation-duration: .2s;
+	animation-duration: .2s
+}
+
+@-webkit-keyframes zoomInDown {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.1) translateY(-2000px);
+		transform: scale(.1) translateY(-2000px);
+		-webkit-animation-timing-function: ease-in-out;
+		animation-timing-function: ease-in-out
+	}
+	60% {
+		opacity: 1;
+		-webkit-transform: scale(.475) translateY(60px);
+		transform: scale(.475) translateY(60px);
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out
+	}
+}
+
+@keyframes zoomInDown {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.1) translateY(-2000px);
+		-ms-transform: scale(.1) translateY(-2000px);
+		transform: scale(.1) translateY(-2000px);
+		-webkit-animation-timing-function: ease-in-out;
+		animation-timing-function: ease-in-out
+	}
+	60% {
+		opacity: 1;
+		-webkit-transform: scale(.475) translateY(60px);
+		-ms-transform: scale(.475) translateY(60px);
+		transform: scale(.475) translateY(60px);
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out
+	}
+}
+
+.layui-anim-01 {
+	-webkit-animation-name: zoomInDown;
+	animation-name: zoomInDown
+}
+
+@-webkit-keyframes fadeInUpBig {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(2000px);
+		transform: translateY(2000px)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0)
+	}
+}
+
+@keyframes fadeInUpBig {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(2000px);
+		-ms-transform: translateY(2000px);
+		transform: translateY(2000px)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+		transform: translateY(0)
+	}
+}
+
+.layui-anim-02 {
+	-webkit-animation-name: fadeInUpBig;
+	animation-name: fadeInUpBig
+}
+
+@-webkit-keyframes zoomInLeft {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.1) translateX(-2000px);
+		transform: scale(.1) translateX(-2000px);
+		-webkit-animation-timing-function: ease-in-out;
+		animation-timing-function: ease-in-out
+	}
+	60% {
+		opacity: 1;
+		-webkit-transform: scale(.475) translateX(48px);
+		transform: scale(.475) translateX(48px);
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out
+	}
+}
+
+@keyframes zoomInLeft {
+	0% {
+		opacity: 0;
+		-webkit-transform: scale(.1) translateX(-2000px);
+		-ms-transform: scale(.1) translateX(-2000px);
+		transform: scale(.1) translateX(-2000px);
+		-webkit-animation-timing-function: ease-in-out;
+		animation-timing-function: ease-in-out
+	}
+	60% {
+		opacity: 1;
+		-webkit-transform: scale(.475) translateX(48px);
+		-ms-transform: scale(.475) translateX(48px);
+		transform: scale(.475) translateX(48px);
+		-webkit-animation-timing-function: ease-out;
+		animation-timing-function: ease-out
+	}
+}
+
+.layui-anim-03 {
+	-webkit-animation-name: zoomInLeft;
+	animation-name: zoomInLeft
+}
+
+@-webkit-keyframes rollIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateX(-100%) rotate(-120deg);
+		transform: translateX(-100%) rotate(-120deg)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateX(0) rotate(0);
+		transform: translateX(0) rotate(0)
+	}
+}
+
+@keyframes rollIn {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateX(-100%) rotate(-120deg);
+		-ms-transform: translateX(-100%) rotate(-120deg);
+		transform: translateX(-100%) rotate(-120deg)
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateX(0) rotate(0);
+		-ms-transform: translateX(0) rotate(0);
+		transform: translateX(0) rotate(0)
+	}
+}
+
+.layui-anim-04 {
+	-webkit-animation-name: rollIn;
+	animation-name: rollIn
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0
+	}
+	100% {
+		opacity: 1
+	}
+}
+
+.layui-anim-05 {
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn
+}
+
+@-webkit-keyframes shake {
+	0%,
+	100% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0)
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		-webkit-transform: translateX(-10px);
+		transform: translateX(-10px)
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		-webkit-transform: translateX(10px);
+		transform: translateX(10px)
+	}
+}
+
+@keyframes shake {
+	0%,
+	100% {
+		-webkit-transform: translateX(0);
+		-ms-transform: translateX(0);
+		transform: translateX(0)
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		-webkit-transform: translateX(-10px);
+		-ms-transform: translateX(-10px);
+		transform: translateX(-10px)
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		-webkit-transform: translateX(10px);
+		-ms-transform: translateX(10px);
+		transform: translateX(10px)
+	}
+}
+
+.layui-anim-06 {
+	-webkit-animation-name: shake;
+	animation-name: shake
+}
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0
+	}
+	100% {
+		opacity: 1
+	}
+}
+
+.layui-layer-title {
+	padding: 0 0.8rem 0 0.2rem;
+	height: 0.42rem;
+	line-height: 0.42rem;
+	border-bottom: 0.01rem solid #eee;
+	font-size: 0.14rem;
+	color: #333;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	background-color: #F8F8F8;
+	border-radius: 0.02rem 0.02rem 0 0
+}
+
+.layui-layer-setwin {
+	position: absolute;
+	right: 0.15rem;
+	*right: 0;
+	top: 0.15rem;
+	font-size: 0;
+	line-height: initial
+}
+
+.layui-layer-setwin a {
+	position: relative;
+	width: 0.16rem;
+	height: 0.16rem;
+	margin-left: 0.1rem;
+	font-size: 0.12rem;
+	_overflow: hidden
+}
+
+.layui-layer-setwin .layui-layer-min cite {
+	position: absolute;
+	width: 0.14rem;
+	height: 0.02rem;
+	left: 0;
+	top: 50%;
+	margin-top: -0.01rem;
+	background-color: #2E2D3C;
+	cursor: pointer;
+	_overflow: hidden
+}
+
+.layui-layer-setwin .layui-layer-min:hover cite {
+	background-color: #2D93CA
+}
+
+.layui-layer-setwin .layui-layer-max {
+	background-position: -0.32rem -0.4rem;
+}
+
+.layui-layer-setwin .layui-layer-max:hover {
+	background-position: -0.16rem -0.4rem;
+}
+
+.layui-layer-setwin .layui-layer-maxmin {
+	background-position: -0.65rem -0.4rem;
+}
+
+.layui-layer-setwin .layui-layer-maxmin:hover {
+	background-position: -0.49rem -0.4rem
+}
+
+.layui-layer-setwin .layui-layer-close1 {
+	background-position: 0 -0.4rem;
+	background-size:2.1rem 0.61rem;
+	cursor: pointer;
+}
+
+.layui-layer-setwin .layui-layer-close1:hover {
+	opacity: .7
+}
+
+.layui-layer-setwin .layui-layer-close2 {
+	position: absolute;
+	right: -0.28rem;
+	top: -0.28rem;
+	width: 0.3rem;
+	height: 0.3rem;
+	margin-left: 0;
+	background-position: -1.49rem -0.31rem;
+	*right: -0.18rem;
+	_display: none
+}
+
+.layui-layer-setwin .layui-layer-close2:hover {
+	background-position: -1.8rem -0.31rem;
+}
+
+.layui-layer-btn {
+	text-align: center;
+	padding: 0 0.1rem 0.12rem;
+	pointer-events: auto
+}
+
+.layui-layer-btn a {
+	height: 0.28rem;
+	line-height: 0.23rem;
+	margin: 0 0.06rem;
+	padding: 0 0.15rem;
+	border: 0.01rem solid #dedede;
+	background-color: #f1f1f1;
+	color: #333;
+	border-radius:0.02rem;
+	font-weight: 400;
+	cursor: pointer;
+	text-decoration: none
+}
+
+.layui-layer-btn a:hover {
+	opacity: .9;
+	text-decoration: none
+}
+
+.layui-layer-btn a:active {
+	opacity: .7
+}
+
+.layui-layer-btn .layui-layer-btn0 {
+	border-color: #4898d5;
+	background-color: #2e8ded;
+	color: #fff
+}
+
+.layui-layer-dialog {
+	min-width: 2.6rem;
+}
+
+.layui-layer-dialog .layui-layer-content {
+	position: relative;
+	padding: 0.2rem;
+	line-height: 0.24rem;
+	word-break: break-all;
+	font-size: 0.14rem;
+	overflow: auto
+}
+
+.layui-layer-dialog .layui-layer-content .layui-layer-ico {
+	position: absolute;
+	top: 0.16rem;
+	left: 0.15rem;
+	_left: -0.4rem;
+	width: 0.3rem;
+	height: 0.3rem;
+}
+
+.layui-layer-ico1 {
+	background-position: -0.3rem 0;
+}
+
+.layui-layer-ico2 {
+	background-position: -0.6rem 0;
+}
+
+.layui-layer-ico3 {
+	background-position: -0.9rem 0;
+}
+
+.layui-layer-ico4 {
+	background-position: -1.2rem 0;
+}
+
+.layui-layer-ico5 {
+	background-position: -1.5rem 0;
+}
+
+.layui-layer-ico6 {
+	background-position: -1.8rem 0;
+}
+
+.layui-layer-rim {
+	border: 0.06rem solid #8D8D8D;
+	border: 0.06rem solid rgba(0, 0, 0, .3);
+	border-radius: 0.05rem;
+	box-shadow: none
+}
+
+.layui-layer-msg {
+	min-width: 1.8rem;
+	border: 0.01rem solid #D3D4D3;
+	box-shadow: none
+}
+
+.layui-layer-hui {
+	min-width: 1rem;
+	background-color: rgba(0, 0, 0, .6);
+	background-color: #000\9;
+	filter: alpha(opacity=60);
+	color: #fff;
+	border: none
+}
+
+.layui-layer-hui .layui-layer-content {
+	padding: 0.12rem 0.25rem;
+	text-align: center;
+}
+
+.layui-layer-dialog .layui-layer-padding {
+	padding: 0.2rem 0.2rem 0.2rem 0.55rem;
+	text-align: left;
+}
+
+.layui-layer-page .layui-layer-content {
+	position: relative;
+	overflow: auto
+}
+
+.layui-layer-iframe .layui-layer-btn,
+.layui-layer-page .layui-layer-btn {
+	padding-top: 0.1rem;
+}
+
+.layui-layer-nobg {
+	background: 0 0
+}
+
+.layui-layer-iframe .layui-layer-content {
+	overflow: hidden
+}
+
+.layui-layer-iframe iframe {
+	display: block;
+	width: 100%
+}
+
+.layui-layer-loading {
+	border-radius: 100%;
+	background: 0 0;
+	box-shadow: none;
+	border: none
+}
+
+.layui-layer-loading .layui-layer-content {
+	width: 0.6rem;
+	height: 0.24rem;
+	background: url(default/loading-0.gif) no-repeat
+}
+
+.layui-layer-loading .layui-layer-loading1 {
+	width: 0.37rem;
+	height: 0.37rem;
+	background: url(default/loading-1.gif) no-repeat
+}
+
+.layui-layer-ico16,
+.layui-layer-loading .layui-layer-loading2 {
+	width: 0.32rem;
+	height: 0.32rem;
+	background: url(default/loading-2.gif) no-repeat
+}
+
+.layui-layer-tips {
+	background: 0 0;
+	box-shadow: none;
+	border: none
+}
+
+.layui-layer-tips .layui-layer-content {
+	position: relative;
+	line-height: 0.22rem;
+	min-width: 0.12rem;
+	padding: 0.05rem 0.1rem;
+	font-size: 0.12rem;
+	_float: left;
+	border-radius: 0.03rem;
+	box-shadow: 0.01rem 0.01rem 0.03rem rgba(0, 0, 0, .3);
+	background-color: #F90;
+	color: #fff
+}
+
+.layui-layer-tips .layui-layer-close {
+	right: -0.02rem;
+	top: -0.01rem;
+}
+
+.layui-layer-tips i.layui-layer-TipsG {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-width: 0.05rem;
+	border-color: transparent;
+	border-style: dashed;
+	*overflow: hidden
+}
+
+.layui-layer-tips i.layui-layer-TipsB,
+.layui-layer-tips i.layui-layer-TipsT {
+	left: 0.05rem;
+	border-right-style: solid;
+	border-right-color: #F90
+}
+
+.layui-layer-tips i.layui-layer-TipsT {
+	bottom: -0.08rem;
+}
+
+.layui-layer-tips i.layui-layer-TipsB {
+	top: -0.08rem;
+}
+
+.layui-layer-tips i.layui-layer-TipsL,
+.layui-layer-tips i.layui-layer-TipsR {
+	top: 0.01rem;
+	border-bottom-style: solid;
+	border-bottom-color: #F90
+}
+
+.layui-layer-tips i.layui-layer-TipsR {
+	left: -0.08rem;
+	display: none;
+}
+
+.layui-layer-tips i.layui-layer-TipsL {
+	right: -0.08rem;
+	display: none
+}
+
+.layui-layer-lan[type=dialog] {
+	min-width: 2.8rem;
+}
+
+.layui-layer-lan .layui-layer-title {
+	background: #4476A7;
+	color: #fff;
+	border: none
+}
+
+.layui-layer-lan .layui-layer-btn {
+	padding: 0.1rem;
+	text-align: right;
+	border-top: 0.01rem solid #E9E7E7
+}
+
+.layui-layer-lan .layui-layer-btn a {
+	background: #BBB5B5;
+	border: none
+}
+
+.layui-layer-lan .layui-layer-btn .layui-layer-btn1 {
+	background: #C9C5C5
+}
+
+.layui-layer-molv .layui-layer-title {
+	background: #009f95;
+	color: #fff;
+	border: none
+}
+
+.layui-layer-molv .layui-layer-btn a {
+	background: #009f95
+}
+
+.layui-layer-molv .layui-layer-btn .layui-layer-btn1 {
+	background: #92B8B1
+}
+
+
+/*
+date: 2016/5/5
+description: 自定义样式
+author: zhurongrong
+*/
+
+.layui-layer {
+	border-radius: 0.02rem;
+	*background: #fff;
+	font-size:0.12rem;
+}
+
+.layui-layer-title {
+	background: #fff;
+	border-bottom: 0.01rem solid #eee;
+}
+
+.layer {
+	display: none;
+	position: relative;
+	height: 100%;
+}
+
+.layer .btn-box {
+	position: absolute;
+	bottom: 0.12rem;
+	right: 0.1rem;
+}
+
+.layer .btn-box-left {
+	position: absolute;
+	bottom: 0.12rem;
+	left: 0.1rem;
+}
+
+.layer-form-group {
+	padding: 0.2rem 0.3rem;
+	border-bottom: 0.01rem solid #eee;
+}

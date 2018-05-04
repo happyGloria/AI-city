@@ -1,0 +1,559 @@
+.areaContainer.slider {
+
+  .left {
+    margin-left: -280px;
+    box-shadow: none;
+    .change {
+      transform: rotateY(180deg);
+      -ms-transform: rotateY(180deg);
+      -moz-transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+  }
+  .maphold {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .searchResult{
+    margin-left: 0;
+  }
+}
+
+.areaContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+
+  .common {
+    background: url(../img/map/collide.png) no-repeat;
+  }
+
+  .spirit {
+    background: url(../img/map/sprite.png) no-repeat;
+  }
+
+  .guodu {
+    -o-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+  }
+  //左边菜单样式
+  .left {
+    width: 280px;
+    height: 100%;
+    box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, .1);
+    float: left;
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+    //@extend .guodu;
+    .leftContent {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      color: #959595;
+      .head {
+        font-size: 12px;
+        border-bottom: 1px solid #e1e1e1;
+        .guijikehua {
+          height: 40px;
+          line-height: 40px;
+          .headText {
+            vertical-align: middle;
+          }
+          .touxiang {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+            display: inline-block;
+            @extend .common;
+            background-position: -88px -104px;
+            margin-left: 10px;
+          }
+        }
+      }
+
+      //左侧主要样式
+      .content {
+        color: #959595;
+        background-color: #f8f8f8;
+        .area-tab {
+          height: 40px;
+          line-height: 40px;
+          background-color: #e9e9e9;
+          border-bottom: 1px solid #e1e1e1;
+          i {
+            width: 1px;
+            background-color: #dbdbdb;
+            height: 30px;
+            display: inline-block;
+            float: left;
+            margin-top: 5px;
+          }
+          .isCurrent {
+            color: #626262;
+          }
+          span {
+            float: left;
+            width: 139px;
+            text-align: center;
+            cursor: pointer;
+            &:hover {
+              color: #626262;
+            }
+          }
+        }
+
+        //布控任务样式
+        .work {
+          //min-height: 250px;
+          .renwu {
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px dashed #dedede;
+            span {
+              margin-left: 10px;
+              //cursor: pointer;
+            }
+            button {
+              margin-left: 120px;
+            }
+          }
+
+          .renwuList {
+            padding: 5px 0;
+            ul {
+
+              li {
+                height: 30px;
+                line-height: 30px;
+                padding-left: 10px;
+                cursor: pointer;
+                .renwuCon {
+                  div {
+                    color: #00a0e9;
+                    display: none;
+                    margin-right: 10px;
+                    span {
+                      cursor: pointer;
+                      margin-right: 7px;
+                      margin-left: 7px;
+                    }
+
+                    i {
+                      width: 1px;
+                      border-right: 1px dashed #00a0e9;
+                    }
+                  }
+                }
+
+                &:hover {
+                  .renwuCon {
+                    div {
+                      display: inline-block;
+                      float: right;
+                    }
+                  }
+
+                  background-color: #e7e7e7;
+                }
+              }
+
+            }
+          }
+
+          //新增重点区域的样式
+          .addArea, .updateArea {
+            width: 260px;
+            height: 230px;
+            position: absolute;
+            z-index: 2;
+            background-color: #fff;
+            margin-left: 10px;
+            -moz-box-shadow: 3px 3px 5px #ccc;
+            box-shadow: 3px 3px 5px #ccc;
+            .arrow {
+              width: 16px;
+              height: 16px;
+              transform: rotate(45deg);
+              -ms-transform: rotate(45deg); /* IE 9 */
+              -moz-transform: rotate(45deg); /* Firefox */
+              -webkit-transform: rotate(45deg); /* Safari 和 Chrome */
+              -o-transform: rotate(45deg); /* Opera */
+              position: absolute;
+              top: -8px;
+              right: 12%;
+              background-color: #fff;
+            }
+            //重点区域
+            .area {
+              height: 30px;
+              display: inline-block;
+              margin-top: 10px;
+              margin-left: 10px;
+              .areaText {
+                font-size: 12px;
+                line-height: 30px;
+                min-width: 50px;
+                float: left;
+              }
+
+              .dropcomm {
+                float: left;
+                margin-left: 10px;
+                min-width: 170px;
+              }
+            }
+
+            //触警人员身份证号
+            .ident {
+              display: block;
+              margin-top: 10px;
+              span {
+                width: 60px;
+                float: left;
+                margin-left: 10px;
+              }
+
+              textarea {
+                display: inline-block;
+                width: 170px;
+                height: 70px;
+                margin: 0px 0px 0px 12px;
+                resize: none;
+                color: #959595;
+                font-size: 12px;
+              }
+            }
+            .conver{
+              margin-left: 88px;
+            }
+            //导入
+            .daoru {
+              display: inline-block;
+              margin-left: 30px;
+              margin-top: 10px;
+              .download{
+                padding: 2px 6px;
+              }
+              button {
+                padding: 2px 12px;
+                min-width: 45px;
+              }
+              span {
+                font-size: 12px;
+              }
+            }
+
+            .butt-group {
+              display: inline-block;
+              margin-left: 55px;
+              margin-top: 10px;
+              button {
+                &:last-child {
+                  margin-left: 10px;
+                  color: #333;
+                }
+              }
+            }
+          }
+          .addArea {
+            top: 140px;
+            height: 245px;
+          }
+          .updateArea {
+            //margin-top: -144px;
+            height: 185px;
+            .arrow {
+              top: -8px;
+              left: 12%;
+              background-color: #fff;
+            }
+          }
+        }
+        .tongji {
+          //min-height: 200px;
+          padding-bottom: 10px;
+          .conten {
+            &:first-child{
+              margin-top: 10px;
+            }
+            margin-top: 6px;
+            font-size: 12px;
+            .startTime {
+              height: 34px;
+              width: 260px;
+              margin-left: 10px;
+              line-height: 32px;
+              background-color: #fff;
+              .conditionText {
+                display: inline-block;
+                color: #959595;
+                float: left;
+                width: 68px;
+                text-align: center;
+                //padding-left: 5px;
+                border: 1px solid #dbdbdb;
+                border-right: none;
+                .down {
+                  width: 22px;
+                  height: 22px;
+                  cursor: pointer;
+                  position: absolute;
+                  top: 7px;
+                  background: url(../img/map/menu_down.png) no-repeat;
+                }
+              }
+
+              .margin-right-12 {
+                width: 192px;
+                float: left;
+                .isDiabled {
+                  background-color: #ccc;
+                  cursor: default;
+                  span {
+                    cursor: default;
+                  }
+                }
+                a {
+                  height: 34px;
+                  border-radius: 0 !important;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  .dropdown-icon {
+                    top: 8px;
+                  }
+                }
+              }
+
+              .calendInput {
+                background: url(../img/canlendar.png) 170px 9px no-repeat;
+              }
+
+              .conditionInput {
+                display: inline-block;
+                width: 192px;
+                height: 34px;
+                border-radius: 0;
+              }
+            }
+          }
+          .query {
+            background-color: #00a0e9;
+            width: 260px;
+            height: 36px;
+            margin-top: 10px;
+            margin-left: 10px;
+            border: none;
+          }
+        }
+      }
+
+    }
+
+    .change {
+      width: 10px;
+      height: 40px;
+      z-index: 1000;
+      top: 45%;
+      left: 280px;
+      background: url(../img/map/slider.png) no-repeat;
+      position: absolute;
+      cursor: pointer;
+      box-shadow: 2px 0 6px #cbc8c8;
+    }
+  }
+
+  .searchResult {
+    font-size: 14px;
+    border-bottom: 1px solid #333;
+    color: #333;
+    cursor: pointer;
+    height: 48px;
+    //line-height: 48px;
+    //border-bottom: 1px dotted #dedede;
+    background-size: 16px 16px;
+    height: 100%;
+    margin-left: 280px;
+    position: relative;
+    .head {
+      line-height: 70px;
+      text-align: center;
+      font-size: 16px;
+    }
+  }
+  //地图部分样式
+  .maphold {
+    height: 100%;
+    margin-left: 280px;
+    position: relative;
+    @extend .guodu;
+    #areaId {
+      width: 100%;
+      height: 100%;
+      //地图切换主题的按钮
+      .changeTheme{
+        height: 40px;
+        background-color: #fff;
+        //box-shadow: 0 5px 5px #ccc;
+        position: absolute;
+        right: 5px;
+        z-index: 500;
+        margin-top: 5px;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        div {
+          display: inline-block;
+          margin-top: 10px;
+          margin-right: 10px;
+          &:first-child {
+            margin-left: 10px;
+          }
+          span{
+            float: left;
+            cursor: pointer;
+          }
+
+          .active{
+            background-image: url(../img/login/resurfacing-ico.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: default;
+          }
+
+          .color{
+            display: inline-block;
+            width: 21px;
+            height: 21px;
+            margin-right: 3px;
+          }
+        }
+
+        .original{
+          .color{
+            background-color: #ffb35b;
+          }
+        }
+
+        .classic{
+          .color{
+            background-color: #03060d;
+          }
+        }
+      }
+      .olMapViewport {
+        z-index: 0;
+      }
+      //图层选择  start
+      .layerSelect {
+        //width: 15%;
+        height: 40px;
+        background-color: #fff;
+        //box-shadow: 0 5px 5px #ccc;
+        position: absolute;
+        right: 5px;
+        z-index: 1;
+        margin-top: 50px;
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        div {
+          display: inline-block;
+          margin-top: 10px;
+          margin-right: 10px;
+          &:first-child {
+            margin-left: 10px;
+          }
+          .text {
+            vertical-align: top;
+          }
+
+          .comm {
+            display: inline-block;
+            cursor: pointer;
+            background: url(../img/map/collide.png) no-repeat;
+          }
+
+          .internetBarHover {
+            background-position: -88px -208px !important;
+          }
+
+          .internetBar {
+            width: 15px;
+            height: 14px;
+            background-position: -88px -234px;
+            &:hover {
+              @extend .internetBarHover;
+            }
+          }
+          .wifiHover {
+            background-position: -114px -52px !important;
+          }
+          .wifi {
+            width: 18px;
+            height: 14px;
+            background-position: -114px -78px;
+            &:hover {
+              @extend .wifiHover;
+            }
+          }
+          .hotelHover {
+            background-position: -88px -182px !important;
+          }
+          .hotel {
+            width: 15px;
+            height: 15px;
+            background-position: -88px -156px;
+            &:hover {
+              @extend .hotelHover;
+            }
+          }
+
+          .showInternetBar {
+            @extend .internetBarHover;
+          }
+
+          .showWiFi {
+            @extend .wifiHover;
+          }
+
+          .showHotel {
+            @extend .hotelHover;
+          }
+        }
+      }
+      //图层选择   end
+
+    }
+  }
+}
+
+.area-people {
+  display: block;
+  overflow: hidden;
+  div {
+    margin: 16px 12px;
+    border: 1px solid #dedede;
+    width: 370px;
+    height: 564px;
+    overflow: auto;
+    ul {
+      li {
+        text-align: center;
+        line-height: 40px;
+
+        &:nth-child(even) {
+          background-color: #f4f4f4;
+        }
+      }
+    }
+  }
+}

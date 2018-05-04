@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<!--加载父元素中引用的bootstrap-->
+	<script>
+		window.onload=
+				function()
+				{
+					var linkBootstrap=window.parent.document.getElementById("bootstrap.css");
+
+					var head=document.getElementsByTagName("head").item(0);
+					var l=document.createElement("link");
+					l.rel = 'stylesheet';
+					l.type = 'text/css';
+					l.href=linkBootstrap.href;
+					head.appendChild(l);
+				}
+	</script>
+
+</head>
+<body class="loadFileBody">
+<form id="fileForm" method="post" enctype="multipart/form-data" target="proxy">
+	<label>请选择模板文件：</label>
+	<div class="input-group">
+		<input type="text" class="form-control" id="fileName" placeholder="" readonly>
+		<span class="input-group-addon"><input type="file" id="userFile" name="userFile">选择文件</span>
+	</div>
+	<div style="text-align: center; margin-top: 20px;">
+		<button class="btn btn-primary">开始上传</button>
+	</div>
+	<div id="message"></div>
+</form>
+<iframe id="proxy" name="proxy" src="about:blank" style="display: none;"></iframe>
+<script>
+	(function (){
+		var $fileForm = document.getElementById('fileForm');
+		var $fileName = document.getElementById('fileName');
+		var $userFile = document.getElementById('userFile');
+		var $message = document.getElementById('message');
+		var message = '共<i>{}</i>条数据，成功导入<i>{}</i>条，失败<i>{}</i>条';
+		$fileForm.setAttribute('action', '/PBD/org/orgImport');
+		$fileForm.onsubmit = function (){
+			if ( $userFile.value.length <= 0 ) {
+				$message.innerHTML = '请选择模板文件！';
+				return false;
+			}
+			var indexPosition = $userFile.value.lastIndexOf(".");
+			if (indexPosition != -1) {
+				if ($userFile.value.substring(indexPosition).indexOf(".xls") == -1) {
+					$message.innerHTML = '请上传标准excel文件！';
+					return false;
+				}
+			} else {
+				$message.innerHTML = '请上传标准excel文件！';
+				return false;
+			}
+			$message.innerHTML = '正在上传...';
+		};
+		$userFile.onchange = function (arg){
+			var value = this.value, split = value.indexOf('/') > -1 ? '/' : '\\', name = value.split(split);
+			$fileName.value = name[name.length - 1];
+		};
+
+		function complete (){
+			var text = window.frames[0].document.body.innerText;
+			try {
+				var result = JSON.parse(text) || {};
+				if ( result.resultCode === '200' ) {
+					var data = result.data;
+					$message.innerHTML = message.replace('{}', data.count).replace('{}', data.success).replace('{}', data.lost);
+				} else {
+					if ( result.resultCode === '401' ) {
+						setTimeout(function (){
+							parent.location.href = '/#index/login/';
+						}, 1000);
+					}
+					fail('导入失败！', result.resultMessage);
+				}
+			} catch ( error ) {
+				fail('导入异常, 请稍后重试！');
+			}
+		}
+
+		function fail (text, message){
+			$message.innerHTML = text;
+			if ( message ) {
+				parent.notify && parent.notify.error(message);
+			}
+		}
+
+		var $proxy = document.getElementById('proxy');
+		setTimeout(function (){
+			if ( $proxy.attachEvent ) {
+				$proxy.attachEvent("onload", complete);
+			} else {
+				$proxy.onload = complete;
+			}
+		}, 250);
+	})();
+</script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+		<div class="box-container community_bg community-con">
+			<div class="header"></div>
+			<div class="main-content">
+				<div class="left-content clearfix">
+					<div class="left-left-con">
+						<!--开门记录start-->
+						<div class="main-box open-door infos">
+							<i class="top-left-bg"></i>
+							<div class="head-top">
+								<span class="span-text">一标六实</span>
+							</div>
+							<div class="item-con infos">
+								<div id="tlt" class="box-body">
+									<ul>
+										<li class="pic-item" style="cursor: pointer;" ng-click="openDataList('实有人口统计','/#/index/factPeopleChart/')"><span class="icon-civil"></span><span class="name">实有人口</span><span class="pic-sp"></span><span class="value">4749</span></li>
+										<li class="pic-item"><span class="icon-building"></span><span class="name">实有房屋</span><span class="pic-sp"></span><span class="value">85个门洞</span></li>
+										<li class="pic-item"><span class="icon-zone"></span><span class="name">实有单位</span><span class="pic-sp"></span><span class="value"><a href=
+										"#/index/factCompany/" target="_blank" style="color:#fff">7</a></span></li>
+										<li class="pic-item" style="cursor: pointer;"><span class="icon-zone"></span><span class="name">实有安防设施</span><span class="pic-sp"></span><span class="value"><a href=
+										"#/index/securityPower/1/" target="_blank" style="color:#fff">512</a></span></li>
+										<li class="pic-item" style="cursor: pointer;"><span class="icon-civil"></span><span class="name">实有治安力量</span><span class="pic-sp"></span><span class="value"><a href=
+										"#/index/securityPower/0/" target="_blank" style="color:#fff">120</a></span></li>
+										<li class="pic-item" style="cursor: pointer;" ng-click="openDataList('实有事件','/#/index/warningList/')"><span class="icon-cell"></span><span class="name">实有事件</span><span class="pic-sp"></span><span class="value">{{SensoryData.policeInfoToday}}</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!--开门记录start-->
+						<!--烟感报警start-->
+						<div class="main-box smoke-alarm">
+							<i class="top-left-bg"></i>
+							<div class="head-top">
+								<span class="span-text">设备统计</span>
+							</div>
+							<div class="item-con devices infos">
+								<div id="tlt" class="box-body">
+									<ul>
+										<li class="pic-item" style="cursor: pointer;" ng-click="openDataList('摄像机','/#/index/camera/')"><span class="icon-fixed"></span><span class="name">摄像机数</span><span class="pic-sp"></span><span class="value">170</span></li>
+										<li class="pic-item" style="cursor: pointer;" ng-click="openDataList('人脸卡口','/#/index/faceCameralist/')"><span class="icon-iod"></span><span class="name">人脸卡口数</span><span class="pic-sp"></span><span class="value">5</span></li>
+										<li class="pic-item" style="cursor: pointer;" ng-click="openDataList('车辆卡口','/#/index/communityCar/')"><span class="icon-car"></span><span class="name">车辆卡口数</span><span class="pic-sp"></span><span class="value">2</span></li>
+										<li class="pic-item" style="cursor: pointer;" ng-click="openDataList('烟感设备','/#/index/smoke/')"><span class="icon-checked"></span><span class="name">烟感设备数</span><span class="pic-sp"></span><span class="value">9</span></li>
+										<li class="pic-item" style="cursor: pointer;" ng-click="openDataList('WIFI设备','/#/index/communityMac/')"><span class="icon-wifi"></span><span class="name">WIFI采集器</span><span class="pic-sp"></span><span class="value">18</span></li>
+										<li class="pic-item" style="cursor: pointer;" ng-click="openDataList('门禁设备','/#/index/doorrecord/')"><span class="icon-zone"></span><span class="name">门禁设备数</span><span class="pic-sp"></span><span class="value">85</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+		<!--烟感报警end-->
+		</div>
+		<div class="left-right-con">
+			<!--地图start-->
+			<div class="main-box map-con" style="bottom: 0.2rem">
+				<div class="head-top clearfix">
+					<span class="span-text">小区概况</span>
+				</div>
+				<div class="item-con">
+					<div id="twoMap" style="width: 100%; height: 100%"></div>
+			        <div class="layerSelect">
+			            <ul>
+			                <li ng-repeat="layer in layerList" ng-class="{isCurrentLi: layer.isChecked == 'true'}" ng-click="selectLayer(layer)" style="cursor: pointer;">
+			                    <span class="checkbox" ng-class="{checked:layer.isChecked == 'true'}"></span>
+			                    <span class="text">{{layer.name}}</span>
+			                </li>
+			            </ul>
+			        </div>
+				</div>
+			</div>
+			<!--地图end-->
+			<div class="left-right-bottom clearfix">
+				<!--小区监控start-->
+				<div class="main-box case-statistics" style="display: none">
+					<i class="top-left-bg"></i>
+					<div class="head-top">
+						<span class="span-text">警情统计</span>
+					</div>
+					<div class="item-con" style="height: 2.86rem">
+						<div id="ix17" class="filters">
+							<span class="label">选择统计月份</span>
+							<select id="selectMonth">
+								<option value="11" selected>2017年11月</option>
+								<option value="10">2017年10月</option>
+								<option value="9">2017年9月</option>
+								<option value="8">2017年8月</option>
+								<option value="7">2017年7月</option>
+								<option value="6">2017年6月</option>
+								<option value="5">2017年5月</option>
+								<option value="4">2017年4月</option>
+								<option value="3">2017年3月</option>
+								<option value="2">2017年2月</option>
+								<option value="1">2017年1月</option>
+							</select>
+						</div>
+					<div id="main" style="width: 100%;height: 2.86rem;"></div>
+					</div>
+				</div>
+				<!--小区监控end-->
+			</div>
+		</div>
+		</div>
+
+		<!--右侧start-->
+		<div class="right-content">
+			<div class="main-box police-data">
+				<i class="top-left-bg"></i>
+				<div class="head-top">
+					<span class="span-text">感知数据</span>
+				</div>
+				<div class="item-con forces">
+					<div id="trt" class="box-body">
+						<ul>
+							<li class="pic-item">
+								<span class="icon-fixed"></span><span class="info"><div class="up"><span class="name">人脸抓拍</span><span class="value" id="today-face"></div><span class="pic-sp"></span><div class="down"><span class="name">最近1小时</span><span class="value" id="total-face"></span>
+									</span></div>
+									</span>
+									</li>
+									<li class="pic-item">
+										<span class="icon-car"></span><span class="info"> <div class="up"><span class="name">过车总数</span><span class="value" id="today-car"></span></div><span class="pic-sp"></span>
+								<div class="down"><span class="name">最近1小时</span><span class="value" id="total-car"></span></div>
+								</span>
+								</li>
+								<li class="pic-item">
+									<span class="icon-zone"></span><span class="info"> <div class="up"><span class="name">开门总数</span><span class="value" id="today-door"></span></div><span class="pic-sp"></span>
+							<div class="down"><span class="name">最近1小时</span><span class="value" id="total-door"></span></div>
+							</span>
+							</li>
+							<li class="pic-item">
+								<span class="icon-wifi"></span><span class="info"> <div class="up"><span class="name">MAC总数</span><span class="value" id="today-mac"></span></div><span class="pic-sp"></span>
+									<div class="down"><span class="name">最近1小时</span><span class="value" id="total-mac"></span></div>
+								</span>
+							</li>
+							<li class="pic-item">
+								<span class="icon-mac"></span><span class="info"> <div class="up"><span class="name">告警总数</span><span class="value" id="today-warn"></span></div><span class="pic-sp"></span>
+								<div class="down"><span class="name">最近1小时</span><span class="value" id="total-warn"></span></div>
+								</span>
+							</li>
+						</ul>
+					</div>
+			</div>
+		</div>
+			<div class="main-box excellent-bad forces">
+				<i class="top-left-bg"></i>
+				<div class="head-top">
+					<span class="span-text">实时人员统计</span>
+				</div>
+				<div class="item-con rank">
+<!-- 					<div id="trb" class="box-body" style="padding:0;">
+						<ul>
+							<li class="best" style="margin-top: 20px;">
+								<div class="title"><span class="icon icon-happy"></span><span class="name">质态优秀小区</span></div>
+								<div class="zones">
+									<a>
+									<span class="name">田林十二村</span>
+									<br>
+									<span class="info">本月警情<b>{{ policeMonthData.count }}</b>起</span>
+									<span class="pic-down" ng-show="policeMonthData.status == 'down'"></span>
+									<span class="pic-up" ng-show="policeMonthData.status == 'up'"></span>
+									<span class="percent">{{ policeMonthData.compare }}%</span>
+									</a>
+								</div>
+							</li>
+							<li class="worst" style="margin-top: 50px;">
+								<div class="title"><span class="icon icon-sadface"></span><span class="name">质态较差小区</span></div>
+								<div class="zones">
+									<a data-href="$zones.clickZone" data-key="286"><span class="rect"></span><span class="name">某某小区</span>
+									<br><span class="info">本月警情<b>56</b>起</span><span class="pic-up"></span><span class="percent">28%</span></a>
+								</div>
+							</li>
+						</ul>
+					</div> -->
+					<div id="trb" class="box-body newstate" style="padding:5px 7px 0px 3px;">
+						<span><label>实时人口统计</label><div id="peopleScroll"></div></span>
+						<span ng-click="clickPower()" style="cursor: pointer;"><label>实时力量</label><div id="powerScroll"></div></span>
+						<span><label>当前统计时段</label><div>{{realState.time}}</div></span>
+						<span><label>当前时段进流量</label><div id="in1Scroll"></div></span>
+						<span><label>当前时段出流量</label><div id="out1Scroll"></div></span>
+						<span><label>今日总进流量</label><div id="allInScroll"></div></span>
+						<span><label>今日总出流量</label><div id="allOutScroll"></div></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右侧end-->
+		</div>
+		</div>
+		<script id="xiaoqu" type="ng/template">
+			<div style="width:380px;height:180px;background:rgba(0, 32, 58, 0.9);border: 1px solid #0066b7;padding: 20px;">
+				<div style="float:left"><img src="/template/img/timg.jpeg" width="130" height="90" /></div>
+				<div style="float:left;margin-left:5px;">
+					<ul class="xiaoqu">
+						<li>
+							<span class="title">小区名称：</span>
+							<span class="text">田林十二村</span>
+						</li>
+						<li>
+							<span class="title">小区地址：</span>
+							<span class="text">徐汇区钦州路528号</span>
+						</li>
+						<li>
+							<span class="title">门洞</span>
+							<span class="text">85个</span>
+						</li>
+						<li>
+							<span class="title">居民户数</span>
+							<span class="text">4749</span>
+						</li>
+					</ul>
+				</div>
+				<div style="float: right;font-size: 14px;color: #fff;border: 1px solid #024479;padding: 5px;" ng-click="closeLayer()"><a href='/#/index/community/2/' style="color: #89c7df" target="_blank">进入小区</a></div>
+ 
+			</div>
+		</script>

@@ -1,0 +1,226 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Demo地听三维</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/> 
+    	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=53UN7o8NfOAIPVkXkETKNhpC"></script>
+    	
+    <script type='text/javascript' src='jslib/jquery.min.js'></script> 
+    <script type='text/javascript' src='jslib/LoadPrefab.js'></script>
+    <script type='text/javascript' src='jslib/u3d_Event.js'></script>
+    <script type='text/javascript' src='jslib/u3d_Dynamic.js'></script>
+    <script type='text/javascript' src='jslib/u3d_Layer.js'></script>
+    <script type='text/javascript' src='jslib/u3d_Measure.js'></script>
+    <script type='text/javascript' src='jslib/u3d_Search.js'></script>
+    <script type='text/javascript' src='jslib/u3d_UserData.js'></script>
+    <script type='text/javascript' src='jslib/u3d_RButtonDown.js'></script>
+    <script type='text/javascript' src='jslib/u3d_LButtonDown.js'></script>
+    <script type='text/javascript' src='jslib/u3d_GUI.js'></script>
+    <script type='text/javascript' src='jslib/u3d_Main.js'></script>
+    <script type="text/javascript" src="jslib/u3d_Weather.js"></script>
+    <script type="text/javascript" src="jslib/UnityObject2.js"></script>
+    <script type="text/javascript">
+        debugger;
+        var config = {
+            width: 1200,
+            height: 900,
+            params: {enableDebugging: "0"}
+        };
+        var u = new UnityObject2(config);
+        jQuery(function () {
+            var $missingScreen = jQuery("#unityPlayer").find(".missing");
+            var $brokenScreen = jQuery("#unityPlayer").find(".broken");
+            $missingScreen.hide();
+            $brokenScreen.hide();
+
+            u.observeProgress(function (progress) {
+                switch (progress.pluginStatus) {
+                    case "broken":
+                        $brokenScreen.find("a").click(function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            u.installPlugin();
+                            return false;
+                        });
+                        $brokenScreen.show();
+                        break;
+                    case "missing":
+                        var lobj_downloadImg = document.getElementById("downloadImg");
+                        lobj_downloadImg.style.display = "";
+
+                        $missingScreen.find("a").click(function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            u.installPlugin();
+                            return false;
+                        });
+                        $missingScreen.show();
+                        break; 
+                }
+            });
+            var unityUrl = "unity/diting.unity3d";
+            u.initPlugin(jQuery("#unityPlayer")[0], unityUrl);
+        });
+
+        function downWebPlayer() {
+            window.open("UnityWebPlayerFull.exe");
+        }
+    </script>
+    <style type="text/css">
+        <!--
+        body {
+            font-family: Helvetica, Verdana, Arial, sans-serif;
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+ 
+        div.content {
+            margin: auto;
+            width: 960px;
+        }
+
+        div.broken,
+        div.missing {
+            margin: auto;
+            margin-top: 300px;
+            width: 193px;
+        }
+
+        div.broken a,
+        div.missing a {
+            height: 63px;
+            position: relative;
+            top: -31px;
+        }
+        div.broken img,
+        div.missing img {
+            border-width: 0px;
+        }
+        div.broken {
+            display: none;
+        }
+        div#unityPlayer {
+            cursor: default;
+            width: 960px;
+        }
+        -->
+    </style>
+    <script> 
+         
+ 
+        function pickobj(){
+            pick("onpickcb");//传入回调函数名称，请写在本页面
+
+        }
+        //pick回调方法，pval为点击 到的模型名称
+        function onpickcb(pVal) {
+            $("#objnamevalue").val(pVal);
+        }
+        function flytotest(){
+            var objname = $("#objnamevalue").val();//模型名称
+            var dis = "10";//高度
+            FlyToObj(objname,dis);
+        }
+        function highlighttest(){
+            var objname = $("#objnamevalue").val();//模型名称
+            highObjLight(objname);
+        }
+        function fhighlighttest(){
+            var objname = $("#objnamevalue").val();//模型名称
+            FlashingCurrentObject(objname);
+        }
+        function hideHightLighttest(){
+            //var objname = $("#objnamevalue").value();//模型名称
+            hideHightLight("");
+        }
+  
+        function loadPrefabDatas(){
+            //此处需要配制三维数据服务器，需提供商架设三维服务器后把配制ID及信息交互与开发者
+            var data = '[' +
+                '{"IP":"47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "building"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "dixing"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "daolu"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "lvhua"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "tree"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "xiaopin"}' +
+                ']';
+            PrefabLoad(data);
+        }
+        var bl_show=true;
+        function changeMap(){
+          debugger;
+          var obj2d=document.all.allmap;
+          var obj3d=document.all.unityPlayer;
+          obj3d.style.width="800px"
+          if(bl_show){
+            obj2d.style.display="none";
+            obj3d.style.display="";
+          }else{
+            obj2d.style.display="";
+            obj3d.style.display="none";
+          }
+          bl_show=!bl_show;
+        }
+    </script>
+    <style>
+        .testul{text-align: left}
+        .testul li{
+            height:40px;list-style-type: none;
+        }
+    </style>
+</head>
+<body onload="">
+
+	
+    <div style="width:290px;float:left;">
+        <ul class="testul">
+            <li><input type="button" onclick="changeMap()" value="切换二三维地图"/></li>
+            <li><input type="button" onclick="loadPrefabDatas()" value="加载三维模型"/></li>
+            <li><input value="或取对象名称" type="button" onclick="pickobj()"/><input id="objnamevalue" value=""/></li>
+            <li><input value="定位到对象" type="button" onclick="flytotest()"/></li>
+            <li><input value="高亮对像" type="button" onclick="highlighttest()"/></li>
+            <li><input value="高亮闪烁" type="button" onclick="fhighlighttest()"/></li>
+            <li><input value="取消高亮" type="button" onclick="hideHightLighttest()"/></li>
+           
+        </ul>
+ 
+    </div>
+    <div id="unityPlayer" style="float:left;display:none">
+        <div class="missing">
+            <a title="Unity Web Player. Install now!" onclick="downWebPlayer();">
+                <img alt="Down Web Player." id="downloadImg" src="imgs/downWebPlayer.png" style="display:none;cursor:hand"
+                     width="193" height="63"/>
+            </a>
+        </div>
+        <div class="broken">
+            <a href="http://unity3d.com/webplayer/"
+               title="Unity Web Player. Install now! Restart your browser after install.">
+                <img alt="Unity Web Player. Install now! Restart your browser after install." src="" width="193"
+                     height="63"/>
+            </a>
+        </div>
+    </div>
+    	<div id="allmap" style="width:1200px;height:900px;display:''"></div>
+</body>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(121.404, 31.115), 12);  // 初始化地图,设置中心点坐标和地图级别
+	//添加地图类型控件
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));	  
+	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	
+	
+	//添加点击地图监听事件，点击地图后显示当前经纬度
+	function showInfo(e){
+		alert(e.point.lng + ", " + e.point.lat);
+	}
+	map.addEventListener("click", showInfo);
+	
+</script>
+</html>

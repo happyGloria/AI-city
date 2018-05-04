@@ -1,0 +1,169 @@
+<div class="morelayer secondLevel">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">CK</span></div>
+		<ul class="head-menu clearfix">
+			<li class="head-menu-li active" ng-click="changeTab('fireRecord',true)" ng-class="{'active':showTab.fireRecord}">CK报警</li>
+			<li class="head-menu-li" ng-click="changeTab('fireDevice')" ng-class="{'active':showTab.fireDevice}">CK设备</li>
+		</ul>
+		<div class="pull-right secondLevel-head-right">
+			<i class="icon-house"></i>
+			<span class="title ng-binding">{{villageName}}</span>
+		</div>
+	</div>
+	<div class="population-per">
+		<div ng-show="showTab.fireRecord" class="tab-find clearfix">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">用户名称</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireRecordParams.userName" placeholder="请输入用户名称">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">用户地址</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireRecordParams.userAddress" placeholder="请输入用户地址">
+				</div>
+				<!-- <div class="form-group-level clearfix">
+					<label class="control-label pull-left">负责人</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireRecordParams.chargePersonName" placeholder="请输入负责人">
+				</div> -->
+				<button class="btn search-btn btn-blue margin-left-10" ng-click="ckAlarmList(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="20%" />
+						<col width="20%" />
+						<col width="8%" />
+						<col width="10%" />
+						<col width="16%" />
+						<col width="16%" />
+						
+						<!-- <col width="10%" />
+						<col width="10%" /> -->
+					</colgroup>
+					<thead>
+						<tr>
+							<th>用户名称</th>
+							<th>用户地址</th>
+							<th>报警类型</th>
+							<th>报警详情</th>
+							<th>负责人</th>
+							<th>联系方式</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in ckAlarmData track by $index">
+							<td>{{item.userName}}</td>
+							<td>{{item.userAddress}}</td>
+							<td>{{item.alarmType}}</td>
+							<td>{{item.alarmDesc}}</td>
+							<td>{{item.chargePersonName}}</td>
+							<td>{{item.chargePersonTelphone}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="fireRecordPage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div>
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="fireRecordPage.totalRow > 0">
+	            <pagination total-items="fireRecordPage.totalRow"
+	                        ng-model="fireRecordParams.pageNumber"
+	                        max-size="3"
+	                        items-per-page="fireRecordParams.pageSize"
+	                        class="pagination-sm pull-right"
+	                        previous-text="上一页"
+	                        next-text="下一页"
+	                        first-text="首页"
+	                        last-text="末页"
+	                        ng-click="ckAlarmList()">
+	            </pagination>
+	        </div>
+		</div>
+		
+		<div ng-show="showTab.fireDevice">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">用户名称</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireDeviceParams.userName" placeholder="请输入用户名称">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">用户地址</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireDeviceParams.userAddress" placeholder="请输入用户地址">
+				</div>
+				<!-- <div class="form-group-level clearfix">
+					<label class="control-label pull-left">楼栋号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireDeviceParams.buildingNo" placeholder="请输入楼栋号">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">楼层号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireDeviceParams.floorNo" placeholder="请输入楼层号">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">门牌号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireDeviceParams.houseNo" placeholder="请输入门牌号">
+				</div> -->
+				<button class="btn search-btn btn-blue margin-left-10" ng-click="ckDeviceListAll(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="10%" />
+						<col width="10%" />
+						<col width="10%" />
+						<col width="20%" />
+						<!-- <col width="14%" />
+						<col width="12%" />
+						<col width="12%" />
+						<col width="12%" /> -->
+						
+					</colgroup>
+					<thead>
+						<tr>
+							<th>用户名称</th>
+							<th>用户地址</th>
+							<th>负责人</th>
+							<th>联系方式</th>
+							<!-- <th>小区名称</th>
+							<th>楼栋号</th>
+							<th>楼层号</th>
+							<th>门牌号</th> -->
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in ckDeviceData">
+							<td>{{item.userName}}</td>
+							<td>{{item.userAddress}}</td>
+							<td>{{item.chargePersonName}}</td>
+							<td>{{item.chargePersonTelphone}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="fireDevicePage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div>
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="fireDevicePage.totalRow > 0">
+	            <pagination total-items="fireDevicePage.totalRow"
+	                        ng-model="fireDeviceParams.pageNumber"
+	                        max-size="3"
+	                        items-per-page="fireDeviceParams.pageSize"
+	                        class="pagination-sm pull-right"
+	                        previous-text="上一页"
+	                        next-text="下一页"
+	                        first-text="首页"
+	                        last-text="末页"
+	                        ng-click="ckDeviceListAll()">
+	            </pagination>
+	        </div>
+		</div>
+	</div>
+</div>
+

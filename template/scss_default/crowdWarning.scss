@@ -1,0 +1,617 @@
+.face-page {
+  padding: 20px;
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .date-scope {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom:1}
+
+  .date-scope .date-item {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom:1;padding: 5px 10px;
+    margin-right: 6px;
+    border-radius: 4px;
+    cursor: pointer
+  }
+
+  .date-scope .date-item:hover {
+    background: #ececec
+  }
+
+  .date-scope .date-item.selected {
+    background: #0baafc;
+    color: #fff
+  }
+
+  .date-label {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom:1;padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background: #e7e7e7
+  }
+
+  .filter-form {
+    background-color: #ffffff;
+    //  height: 205px;
+    border:#DEDEDE solid 1px;
+    .condition-tips,.time-panel, .camera-filter, .status-filter, .base-filter {
+      height: 50px;
+      padding:10px;
+      border-bottom: 1px solid #ebebeb;
+      .control-label{
+        margin:0;
+        line-height:28px;
+      }
+      .tips-opera{
+        cursor:pointer;
+        line-height:30px;
+      }
+      .tip-item{
+        float: left;
+        border: dotted 1px #ff4400;
+        height: 21px;
+        line-height: 21px;
+        padding: 0 25px 0 5px;
+        margin: 5px 5px 0 0;
+        color: #ff4400;
+        background-color: #fff;
+        position:relative;
+        .type-name{
+          color: #666666;
+          display: inline-block;
+          display: inline-block;
+          top: -6px;
+          position: relative;
+        }
+        .tips-item {
+          display: inline-block;
+          max-width: 150px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .filter-del-icon.dataFilter {
+          font-style:normal;
+          width: 20px;
+          height: 20px;
+          line-height:20px;
+          margin: 0;
+          cursor: pointer;
+          position: absolute;
+          right: 0;
+          top: 0;
+          text-align:center;
+          font-size:16px;
+          font-weight:bold;
+        }
+        .filter-del-icon.dataFilter:hover{
+          background-color:#ff4400;
+          color:#FFFFFF;
+        }
+      }
+    }
+    .camera-text{
+      width: 800px;
+      line-height: 25px;
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .base-filter{
+      border:none;
+    }
+    .icon-item {
+      display: inline-block;
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+      background: url(../img/map/face/pic.png) -160px -64px no-repeat;
+      cursor: pointer;
+    }
+    .pull-left {
+      float: left;
+    }
+
+    .status-item {
+      width: 300px;
+      float: left;
+      li {
+        cursor: pointer;
+        margin-left: 8px;
+        padding: 0 8px;
+        line-height: 28px;
+        float: left;
+      }
+
+      li:hover {
+        background: #ececec;
+      }
+      li.status-active {
+        background: #0baafc;
+        color: #fff;
+      }
+
+    }
+    .select_wrapper{
+      width: 170px;
+      float: left;
+    }
+    .em-line{
+      float: left;
+      line-height: 26px;
+      margin:0 5px;
+    }
+    .select-option{
+      height: 26px;
+      line-height: 26px;
+      font-size: 12px;
+      overflow: hidden;
+      white-space: nowrap;
+      z-index: 300;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      &:hover{
+        background-color: #eee;
+      }
+    }
+    .select_container {
+      height: 26px;
+      line-height: 26px;
+      width: 170px;
+      background-color: white;
+      border: solid 1px #DDD;
+      margin-left: 2px;
+      display: inline-block;
+      border-radius: 2px;
+      font-size: 0;
+      .text {
+        text-indent: 5px;
+        display: inline-block;
+        cursor: default;
+        font-size: 12px;
+      }
+      .arrow-down {
+        display: inline-block;
+        float: right;
+        width: 17px;
+        height: 13px;
+        margin-right: 5px;
+        margin-top: 5px;
+        background: url(../img/base.png) 0px -48px no-repeat;
+        cursor: pointer;
+      }
+
+    }
+    .score-select{
+      width: 170px;
+
+    }
+    .select-active{
+      background-color: #00a0e9;
+      color: #fff;
+    }
+    .lib-form {
+      width: 385px;
+
+    }
+  }
+  .table-form {
+    width: 100%;
+    background-color: #fff;
+    //  height: 580px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border:#DEDEDE solid 1px;
+    .table-form-top{
+      margin-bottom:10px;
+      padding:0 20px;
+      .tips-container{
+        margin-right: 50px;
+        .tip-item{
+          float: left;
+          border: dotted 1px #ff4400;
+          height: 21px;
+          line-height: 21px;
+          padding: 0 25px 0 5px;
+          margin: 5px 5px 0 0;
+          color: #ff4400;
+          background-color: #fff;
+          position:relative;
+          .type-name{
+            color: #666666;
+            display: inline-block;
+            display: inline-block;
+            top: -6px;
+            position: relative;
+          }
+          .tips-item {
+            display: inline-block;
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .filter-del-icon.dataFilter {
+            font-style:normal;
+            width: 20px;
+            height: 20px;
+            line-height:20px;
+            margin: 0;
+            cursor: pointer;
+            position: absolute;
+            right: 0;
+            top: 0;
+            text-align:center;
+            font-size:16px;
+            font-weight:bold;
+          }
+          .filter-del-icon.dataFilter:hover{
+            background-color:#ff4400;
+            color:#FFFFFF;
+          }
+        }
+      }
+      .input-group{
+        width:280px;
+      }
+      .checkbox{
+        margin:6px 30px;
+      }
+
+    }
+
+  }
+  .table-content{
+    .list-img-span{
+      position: relative;
+      top: 2px;
+      cursor: pointer;
+      width: 73px;
+      height: 90px;
+      overflow: hidden;
+      display: inline-block;
+      img{
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .list-img-span:hover{
+      img{
+        -ms-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -ms-webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -webkit-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+      }
+      .fn-panorama-ic{
+        display: block;
+      }
+      .fn-panorama-link{
+        display: block;
+      }
+    }
+    .fn-panorama-ic{
+      width:20px;
+      height:20px;
+      background: url(../img/map/face/panorama-whiter.png) no-repeat center;
+      position: relative;
+      top: -22px;
+      display: none;
+      float: right;
+      cursor: pointer;
+
+    }
+    .fn-panorama-link{
+      width:20px;
+      height:20px;
+      background: url(../img/map/face/personid-facelog.png) no-repeat center;
+      position: relative;
+      top: -22px;
+      display: none;
+      float: right;
+      cursor: pointer;
+    }
+    .sim-icon{
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      line-height: 56px;
+      text-align: center;
+      color: #fff;
+      font-size: 20px;
+      font-style: normal;
+      background: url(../img/map/face/pic.png) -436px -244px no-repeat;
+    }
+  }
+}
+.layui-layer-content .role-layer-content{
+  padding: 20px 30px;
+  .role-input{
+    height: 35px;
+    width:400px;
+
+  }
+  .roletree-form{
+    border: 1px solid #eee;
+    width: 400px;
+    height:300px;
+    margin-top: 20px;
+  }
+  .top-info {
+    height: 240px;
+    border-bottom: dashed 1px #CCC;
+    .leftItem, .rightItem {
+      width: 163px;
+      height:230px;
+      overflow: hidden;
+      float: left;
+      margin-right: 5px;
+      background: url(../img/map/face/person-default.png) no-repeat;
+      .photo-img{
+        width:163px;
+        height:200px;
+        overflow:hidden;
+        text-align:center;
+        position: relative;
+        .img-box{
+          width:auto;
+          height:100%;
+          position:absolute;
+          top:50%;
+          left:50%;
+          -webkit-transform:translate(-50%,-50%);
+          -ms-transform:translate(-50%,-50%);
+          -moz-transform:translate(-50%,-50%);
+          transform:translate(-50%,-50%);
+        }
+        img{
+          width:auto;
+          height:100%;
+          margin:0 auto;
+        }
+        img:hover{
+          -ms-transform: scale(1.1);
+          -moz-transform: scale(1.1);
+          -webkit-transform: scale(1.1);
+          -ms-webkit-transition: all 0.3s ease 0s;
+          -moz-transition: all 0.3s ease 0s;
+          -webkit-transition: all 0.3s ease 0s;
+          transition: all 0.3s ease 0s;
+        }
+      }
+    }
+    .rightItem .detail-rate-icon{
+      margin-left: 101px;
+    }
+    .photo{
+      width: auto;
+      height: 200px;
+      display: inline;
+
+    }
+    .lfetphoto {
+      margin-left: -18.5px;
+    }
+    .rightphoto {
+      margin-left: -18.5px;
+    }
+    .info-label {
+      display: block;
+      height: 30px;
+      line-height: 30px;
+      width: 163px;
+      text-indent: 5px;
+      background-color: #f4f4f4;
+      font-size: 12px;
+      //    position:absolute;
+      //    left:0;
+      //    bottom:0;
+      //    width:100%;
+      //    height:30px;
+      //    line-height:30px;
+      .name{
+        width: 61px;
+      }
+    }
+    .fn-panorama-ic{
+      width:20px;
+      height:20px;
+      background: url(../img/map/face/panorama-gray.png) no-repeat center;
+      position: relative;
+      margin-top: 5px;
+      cursor: pointer;
+
+    }
+    .fn-panorama-link{
+      width:20px;
+      height:20px;
+      background: url(../img/map/face/personid-facelog.png) no-repeat center;
+      position: relative;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+    .middleItem{
+      width: 300px;
+      float: left;
+      .info-item{
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        color: #444444;
+        font-weight: bold;
+        .value-item{
+          display: inline-block;
+          height: 25px;
+          width: 230px;
+          font-style: normal;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin-left: 10px;
+        }
+        .detail-leb{
+          display: inline-block;
+          top: -60px;
+          position: relative;
+        }
+        .details{
+          overflow-y: auto;
+          word-break: break-all;
+          height: 80px;
+        }
+      }
+    }
+
+  }
+  .fn-text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .detail-rate-icon{
+    position: absolute;
+    margin-top: -32px;
+    margin-left: 67px;
+    display: inline-block;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-style: normal;
+    background: url(../img/map/face/pic.png) -436px -244px no-repeat;
+    em {
+      font-size: 12px;
+      font-style: normal;
+    }
+  }
+  .active {
+    border: solid 2px #ff8d33 !important;
+  }
+  .buttom-item{
+    height: 200px;
+    padding-top: 10px;
+    .candidate-item{
+      float: left;
+      height: 200px;
+      width: 130px;
+      margin-left: 11px;
+      padding: 1px;
+      border: solid 2px #f4f4f4;
+      .photo-img{
+        width:122px;
+        height:150px;
+        overflow:hidden;
+        text-align:center;
+        position: relative;
+        .img-box{
+          width:auto;
+          height:100%;
+          position:absolute;
+          top:50%;
+          left:50%;
+          -webkit-transform:translate(-50%,-50%);
+          -ms-transform:translate(-50%,-50%);
+          -moz-transform:translate(-50%,-50%);
+          transform:translate(-50%,-50%);
+        }
+        img{
+          width:auto;
+          height:100%;
+          margin:0 auto;
+        }
+        img:hover{
+          -ms-transform: scale(1.1);
+          -moz-transform: scale(1.1);
+          -webkit-transform: scale(1.1);
+          -ms-webkit-transition: all 0.3s ease 0s;
+          -moz-transition: all 0.3s ease 0s;
+          -webkit-transition: all 0.3s ease 0s;
+          transition: all 0.3s ease 0s;
+        }
+      }
+      .info-name{
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
+        height: 23px;
+        line-height: 23px;
+        text-indent: 5px;
+
+      }
+      .info-lib{
+        display: block;
+        height: 23px;
+        line-height: 23px;
+        font-size: 12px;
+        text-indent: 5px;
+        color: #444444;
+      }
+    }
+    .candidate-item.active{
+
+      border: solid 2px #ff8d33;
+    }
+
+  }
+
+}
+.bigimg-form{
+  width: 750px;
+  height: 426px;
+  border: 1px solid #eee;
+}
+
+//弹框里面删除
+.delect-icon{
+  position:absolute;
+  width:16px;
+  height:16px;
+  top:14px;
+  right:50px;
+  z-index:99;
+  background: url(../img/map/face/pic.png) no-repeat;
+  background-position: -40px -106px;
+}
+
+//树状图修改
+#camera-layer .ztree{
+  li span.button.ico_docu {
+    width: 20px;
+    height: 20px;
+    background: url(/template/img/map/face/chicon.png) 0 0  no-repeat !important;
+    margin-top: 3px;
+  }
+  li span.button.ico_close, li span.button.ico_open{
+    width: 20px;
+    height: 20px;
+    background: url(/template/img/map/face/picon.png) 0 0  no-repeat !important;
+    margin-top: 3px;
+  }
+  li span.button.chk, li span.button.chk.checkbox_false_full_focus{
+    width: 20px;
+    height: 20px;
+    background:url(../img/checkbox.png) no-repeat;
+    background-position:0 0;
+  }
+  .ztree li span.button.chk.checkbox_true_full{
+
+  }
+  li span.button.chk.checkbox_true_full,li span.button.chk.checkbox_true_full_focus{
+    background-position:0 -60px;
+  }
+}
+

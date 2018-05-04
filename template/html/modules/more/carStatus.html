@@ -1,0 +1,43 @@
+<div class="morelayer" style="padding:20px;">
+	<div class="fact-company">
+		<div class="form-bottom">				
+			<ul>
+				<li ng-repeat = "item in carStatusData">
+					<div class="img-box">
+						<!-- <img src="/PBD/SYDW/SYDWPic?companyid={{item.companyid}}"> -->
+						<img src="{{item.PlatePic}}" ng-click="toCatList(item.PlateNumber)">
+
+					</div>
+					<div class="text-span">
+						<span class="text" ng-click="toCatList(item.PlateNumber)">车牌号：{{item.PlateNumber}}</span>
+						<span>时间：{{item.InOutTime}}</span>
+					</div>
+				</li>
+				
+			</ul>
+			<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div> 
+            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>  						
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+            <pagination total-items="page1.totalRow"
+                        ng-model="initParams.pageNumber"
+                        max-size="3"
+                        items-per-page="initParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="carStatus()">
+            </pagination>
+        </div>
+	</div>
+</div>
+
+
+

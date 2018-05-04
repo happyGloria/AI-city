@@ -1,0 +1,51 @@
+<div class="morelayer secondLevel">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">实有单位</span></div>
+		<div class="pull-right secondLevel-head-right">
+			<i class="icon-house"></i>
+			<span class="title">{{villageName}}</span>
+		</div>
+	</div>
+	<div class="list-title clearfix">
+		<span class="pull-left line-bg"></span>
+		<span class="text">共<strong>{{page1.totalRow}}</strong>个实有单位</span>
+		<span class="pull-right line-bg"></span>
+	</div>
+	<div class="unit-list-box">
+		<ul class="unit-list-ul clearfix">
+			<li class="unit-list-li" ng-repeat = "item in factCompanyData">
+				<div class="unit-list-li-box">
+					<div class="img-box">
+						<img src="{{item.companyPic | transferPic}}">
+					</div>
+					<div class="text-box">
+						<div class="clearfix">
+							<span class="name pull-left">{{item.companyName}}</span>
+							<span class="people-details pull-right" ng-click="layerPeopleDetail(item.companyid)">从业人员详情</span>
+						</div>
+						<div class="unit-address">{{item.companyAdress}}</div>
+					</div>
+				</div>
+			</li>			
+		</ul>
+		
+        
+	</div>
+	<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+        <pagination total-items="page1.totalRow"
+                    ng-model="initParams.pageNumber"
+                    max-size="3"
+                    items-per-page="initParams.pageSize"
+                    class="pagination-sm pull-right"
+                    previous-text="上一页"
+                    next-text="下一页"
+                    first-text="首页"
+                    last-text="末页"
+                    ng-click="factCompany()">
+        </pagination>
+    </div>
+    <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+		<div class="ball-clip-rotate"></div>
+	</div> 
+</div>
+

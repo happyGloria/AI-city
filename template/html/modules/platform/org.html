@@ -1,0 +1,133 @@
+<div class="form-top">
+	<label class="control-label">机构名称：</label>
+	<input type="text" class="form-control" ng-model="orgListReq2.orgSearchName" placeholder="请输入机构名称">
+	<div class="form-group" ng-click="queryOrgName()">
+		<button type="button" class="btn btn-icon-blue">
+			<i class="icon-base icon-24 icon-btn-query"></i>
+			<span class="btn-icon-text">查询</span>
+		</button>
+	</div>
+</div>
+<div class="form-bottom form-bottom-fixed">
+	<div class="table-top btn-box">
+		<button type="button" class="btn btn-icon-blue" ng-click="createMechanism()">
+            <i class="icon-base icon-24 icon-btn-add"></i>
+            <span class="btn-icon-text">新增机构</span>
+        </button>
+		<button type="button" class="btn btn-icon-orange" ng-click="changeMechanismTab()">
+          <!--  <i class="icon-base icon-24"></i>-->
+            <span class="btn-icon-text">{{mechanismTab}}</span>
+        </button>
+	</div>
+	<div id="mechanismTree" class="ztree" ng-if="mechanismTab=='列表结构'"></div>
+	<div ng-if="mechanismTab=='树形结构'">
+		<table class="table table-base waterprint">
+			<colgroup>
+				<col width="20%" />
+				<col width="20%" />
+				<col width="20%" />
+				<col width="20%" />
+				<col width="20%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>机构代码</th>
+					<th>机构名</th>
+					<th>父机构名</th>
+					<th>删除标识</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in orgList track by $index">
+					<td>{{item.orgCode}}</td>
+					<td>{{item.orgName}}</td>
+					<td>{{item.parentName==-1?'无':item.parentName}}</td>
+					<td>{{item.deleteFlag==0?'未删除':'删除'}}</td>
+					<td class="operatePer">
+						<span class="result-findBtn table-icon icon-editor" ng-click="updateOrg(item)" title="修改"></span>
+						<span class="result-findBtn table-icon icon-delect" ng-click="delOrg(item.id)" title="删除 "></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="table-empty" ng-if="orgListReq.totalNum==0 && !loader">
+			<i class="icon-base icon-32 icon-table-empty"></i>
+			<span class="empty-text">没有查询到符合条件的记录</span>
+		</div>
+		<div ng-if="loader" style="position: absolute;top:30%;left:50%">
+			<div class="ball-clip-rotate"></div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="orgListReq.totalNum > 0">
+			<pagination total-items="orgListReq.totalNum" ng-model="orgListReq.currentPage" max-size="3" items-per-page="orgListReq.pageSize" class="pagination-sm pull-right" previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页" ng-click="querylistOrg()">
+			</pagination>
+		</div>
+	</div>
+</div>
+<!--新增弹出窗-->
+<script id="layer-mechanism-create" type="ng/template">
+	<form class="layer" style="display: block">
+		<div class="layer-form-group">
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">机构代码：</label>
+				<input type="text" class="form-control" placeholder="请输入部门编码" ng-model="newOrg.orgCode">
+			</div>
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">机构名：</label>
+				<input type="text" class="form-control" placeholder="请输入组织机构名" ng-model="newOrg.orgName">
+			</div>
+			<!--ng-class="{open:result.length > 0}"-->
+			<div class="form-group dropdown">
+				<span style="color: red">*</span>
+				<label class="control-label">父级机构名称：</label>
+				<input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" autocomplete="off" placeholder="" ng-model="newOrg.parentName" ng-keyup="newParentNameKeyUp()" ng-focus="newParentNameFocus()" ng-blur="newParentNameBlur()">
+				<!--				<input type="hidden" class="form-control" placeholder="" ng-model="addParentOrgId">-->
+				<div id="newOrgTree" class="dropdown-menu autocomplete ztree" role="menu" aria-labelledby="dropdownMenu" style="left: 85px"></div>
+			</div>
+		</div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="orgSubmit()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="layerCancel()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+</script>
+
+<!--修改弹出窗-->
+<script id="layer-mechanism-upt" type="ng/template">
+	<form class="layer" style="display: block">
+		<div class="layer-form-group">
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">机构代码：</label>
+				<input type="text" class="form-control" placeholder="请输入部门编码" ng-model="oldOrg.orgCode">
+			</div>
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">机构名：</label>
+				<input type="text" class="form-control" placeholder="请输入组织机构名" ng-model="oldOrg.orgName">
+			</div>
+			<!--ng-class="{open:result.length > 0}"-->
+			<div class="form-group dropdown">
+				<span style="color: red">*</span>
+				<label class="control-label">父级机构名称：</label>
+				<input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" autocomplete="off" placeholder="" ng-model="oldOrg.parentName" ng-keyup="oldParentNameKeyUp()" ng-focus="oldParentNameFocus()" ng-blur="">
+				<!--				<input type="hidden" class="form-control" placeholder="" ng-model="addParentOrgId">-->
+				<div id="oldOrgTree" class="dropdown-menu autocomplete ztree" role="menu" aria-labelledby="dropdownMenu" style="left: 85px"></div>
+			</div>
+		</div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="updateOrgTrue()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="updateOrgCancel()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+</script>

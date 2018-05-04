@@ -1,0 +1,131 @@
+.log .log-top {
+  font-size: 12px;
+  color: #000;
+  padding: 10px 23px;
+  .back {
+    color: #999999;
+    cursor: pointer;
+  }
+}
+
+.log .topcalss {
+  margin-top: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.log .setinpt {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  min-width: 175px;
+  height: 30px;
+  border: 1px solid #dbdbdb;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 12px;
+  color: #333;
+  border-radius: 4px;
+}
+
+.log .overflowList {
+  max-width: 175px;
+  margin-left: 40px;
+  overflow: hidden;
+  overflow-x: auto ;
+}
+
+.log .log-operator {
+  list-style: none;
+  li {
+    margin: 28px 80px;
+    display: inline-block;
+    font-size: 14px;
+    color: #999999;
+    font-weight: bold;
+    span {
+      font-size: 14px;
+      color: #666666;
+      font-weight: normal;
+    }
+  }
+}
+
+.log .display {
+  display: none;
+}
+.log{
+  table{
+    tbody{
+      td{
+        &[ng-click]{
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+.loginCount-page {
+  padding: 20px;
+  .section-title {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .section-content {
+    border-radius: 4px;
+    position: absolute;
+    width: 98%;
+    top: 50px;
+    bottom: 20px;
+    .form-bottom{
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 93px;
+      bottom: 0;
+      background-color: #fff;
+      #lineChart{
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        width: 90%;
+        top: 50px;
+        bottom: 50px;
+      }
+    }
+  }
+  .form-group-wrap {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 3px 1px rgba(233,233,233,.75);
+    .control-label {
+      min-width: 60px;
+    }
+    .form-group {
+      margin: 5px 20px 5px 0;
+      .control-label{
+        min-width: 20px;
+      }
+      &:nth-last-child(2){
+        margin-right: 10px;
+      }
+      &.datetimepicker{
+        input{
+          &.timeSelect{
+            background: url(../img/canlendar.png) 151px no-repeat;
+          }
+        }
+      }
+    }
+  }
+}
+.log-online{
+  .online-top {
+    font-size: 12px;
+    color: #000;
+    padding: 10px 23px;
+  }
+}

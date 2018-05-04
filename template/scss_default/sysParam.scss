@@ -1,0 +1,68 @@
+.body.sysParam-page {
+  padding: 20px;
+  .section-title {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .section-content {
+    border-radius: 4px;
+    .form-bottom{
+      table{
+        tr{
+          td{
+            cursor: default;
+          }
+        }
+        .operate{
+          cursor: pointer;
+          span{
+            display: inline-block;
+            padding: 0 5px;
+            color: #0baafc;
+            font-size: 12px;
+            &:hover{
+              color: #f3982d;
+            }
+          }
+        }
+      }
+    }
+  }
+  .form-group-wrap {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 3px 1px rgba(233,233,233,.75);
+    .control-label {
+      min-width: 60px;
+    }
+    .form-group {
+      margin: 5px 20px 5px 0;
+      .control-label{
+        min-width: 20px;
+      }
+      &:nth-last-child(2){
+        margin-right: 10px;
+      }
+    }
+  }
+}
+.layui-layer-content{
+  .form-group{
+    input.datetimepicker{
+      background-image: url(/template/img/canlendar.png);
+      background-position: 151px center;
+      background-repeat: no-repeat;
+    }
+    .msgSelected {
+      font-size: 12px;
+      label {
+        &:last-child {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

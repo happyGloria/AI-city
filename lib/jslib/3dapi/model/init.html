@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>初始化</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+    <script type='text/javascript' src='../jquery-1.9.1.min.js'></script>
+    <script type="text/javascript" src="../UnityObject2.js"></script>
+    <script type="text/javascript" src="../uzft.js"></script>
+    <script>
+        jQuery(function () {
+            var ls_width = $("html").width()-30;
+            var ls_height = $("html").height()-30;
+            var unityUrl = "http://47.93.174.30/diting/diting.unity3d";
+            var swObj = new uzft("unityPlayer",unityUrl,ls_width,ls_height);
+            swObj.init();
+        });
+        //左键
+        function u_onLeftBtd(pVal){
+        }
+        //右键
+        function u_onRightBtd(pVal){
+        }
+        function u_onInitFinish(pVal){
+        }
+    </script>
+<body style="text-align: center">
+<div id="unityPlayer" style="margin:auto"></div>
+</body>
+</html>

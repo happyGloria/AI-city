@@ -1,0 +1,1109 @@
+/* line 1, ../scss_default/configCenter.scss */
+.configCenter {
+  height: 100%;
+  min-height: 800px;
+  margin-left: 200px;
+  padding: 16px;
+  position: relative;
+}
+/* line 7, ../scss_default/configCenter.scss */
+.configCenter .time {
+  background: url(../img/canlendar.png) 150px no-repeat;
+}
+/* line 10, ../scss_default/configCenter.scss */
+.configCenter th {
+  color: #666666 !important;
+}
+/* line 15, ../scss_default/configCenter.scss */
+.configCenter tr:hover td {
+  background-color: #f9f9f9;
+  color: #00A1F2;
+}
+/* line 21, ../scss_default/configCenter.scss */
+.configCenter select {
+  color: inherit;
+}
+/* line 25, ../scss_default/configCenter.scss */
+.configCenter .edit {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+  background-position: -40px -62px;
+}
+/* line 35, ../scss_default/configCenter.scss */
+.configCenter .edit:hover {
+  background-position: -57px -62px;
+}
+/* line 39, ../scss_default/configCenter.scss */
+.configCenter .delete {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+  background-position: -40px -106px;
+}
+/* line 49, ../scss_default/configCenter.scss */
+.configCenter .delete:hover {
+  background-position: -57px -106px;
+}
+/* line 55, ../scss_default/configCenter.scss */
+.configCenter td .status {
+  position: relative;
+  top: 6px;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+}
+/* line 64, ../scss_default/configCenter.scss */
+.configCenter td .active {
+  background-position: -82px -61px;
+}
+/* line 67, ../scss_default/configCenter.scss */
+.configCenter td .noActive {
+  background-position: -82px -83px;
+}
+/* line 73, ../scss_default/configCenter.scss */
+.configCenter .fn-ic {
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+  background: url(../img/configCenter/person-default.png) no-repeat center #f1f0f0;
+}
+/* line 78, ../scss_default/configCenter.scss */
+.configCenter .fn-ic img {
+  width: auto;
+  height: 100%;
+  margin: 0;
+  display: inline;
+  transition: all 500ms;
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -o-transition: all 500ms;
+}
+/* line 89, ../scss_default/configCenter.scss */
+.configCenter .fn-ic:hover img {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+/* line 100, ../scss_default/configCenter.scss */
+.configCenter .fn-122-150 {
+  width: 122px;
+  height: 150px;
+  vertical-align: middle;
+}
+
+/* line 110, ../scss_default/configCenter.scss */
+.taskManager .fn-text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 117, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .link-libs, .taskManager .editTask .select_wrapper .link-libs {
+  position: relative;
+  top: 10px;
+  width: 300px;
+  height: 28px;
+  line-height: 28px;
+}
+/* line 124, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select_container, .taskManager .editTask .select_wrapper .select_container {
+  height: 26px;
+  line-height: 26px;
+  width: 350px;
+  background-color: white;
+  border: solid 1px #DDD;
+  margin-left: 2px;
+  display: inline-block;
+  border-radius: 2px;
+  font-size: 0;
+  -webkit-transition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+  -os-transition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+  -moz-transition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+  -mstransition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+  transition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+}
+/* line 139, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select_container .text, .taskManager .editTask .select_wrapper .select_container .text {
+  width: 90%;
+  text-indent: 5px;
+  display: inline-block;
+  cursor: default;
+  font-size: 12px;
+}
+/* line 147, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select_container .arrow-up, .taskManager .editTask .select_wrapper .select_container .arrow-up {
+  display: inline-block;
+  float: right;
+  width: 10px;
+  height: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+  background: url("../img/configCenter/arrow.png") -10px 0 no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+}
+/* line 159, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .fn-inline, .taskManager .editTask .select_wrapper .fn-inline {
+  display: inline-block !important;
+}
+/* line 162, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .sr-only, .taskManager .editTask .select_wrapper .sr-only {
+  display: none;
+}
+/* line 166, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select-pubdiv, .taskManager .editTask .select_wrapper .select-pubdiv {
+  width: 300px;
+  left: 84px;
+  top: 40px;
+  position: absolute;
+  max-height: 150px;
+  z-index: 5000;
+  background-color: white;
+  border: solid 1px #becad4;
+  moz-box-shadow: 2px 2px 10px #909090;
+  -webkit-box-shadow: 2px 2px 10px #909090;
+  box-shadow: 2px 2px 10px #909090;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* line 180, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select-pubdiv li, .taskManager .editTask .select_wrapper .select-pubdiv li {
+  height: 26px;
+  line-height: 26px;
+  padding-left: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  cursor: pointer;
+}
+/* line 189, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select-pubdiv li .fn-icon, .taskManager .editTask .select_wrapper .select-pubdiv li .fn-icon {
+  background: url("../img/home/homemap/pic.png") no-repeat;
+  background-position: -2px -40px;
+}
+/* line 193, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select-pubdiv li .active, .taskManager .editTask .select_wrapper .select-pubdiv li .active {
+  background-position: -18px -40px !important;
+}
+/* line 196, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select-pubdiv li .checkbox-bright-icon, .taskManager .editTask .select_wrapper .select-pubdiv li .checkbox-bright-icon {
+  background-position: -2px -40px;
+}
+/* line 200, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select-pubdiv li .checkbox-bright-icon, .taskManager .editTask .select_wrapper .select-pubdiv li .checkbox-bright-icon {
+  position: relative;
+  top: 4px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+/* line 208, ../scss_default/configCenter.scss */
+.taskManager .addTask .select_wrapper .select-pubdiv li:hover, .taskManager .editTask .select_wrapper .select-pubdiv li:hover {
+  background-color: #edf2f8;
+}
+
+/* line 219, ../scss_default/configCenter.scss */
+.facelibManager .operator {
+  line-height: 30px;
+  margin-bottom: 5px;
+}
+/* line 225, ../scss_default/configCenter.scss */
+.facelibManager .add .information, .facelibManager .editLib .information {
+  height: 90px;
+  border-radius: 2px;
+  border: solid 1px #e1e1e1;
+  background: #f9f9f9;
+  margin: 0;
+}
+/* line 231, ../scss_default/configCenter.scss */
+.facelibManager .add .information .baseText, .facelibManager .editLib .information .baseText {
+  line-height: 88px;
+  border-right: 1px dashed #ccc;
+}
+/* line 236, ../scss_default/configCenter.scss */
+.facelibManager .add .information .col-md-4, .facelibManager .editLib .information .col-md-4 {
+  line-height: 45px;
+}
+/* line 239, ../scss_default/configCenter.scss */
+.facelibManager .add .information .col-md-12, .facelibManager .editLib .information .col-md-12 {
+  line-height: 45px;
+}
+/* line 241, ../scss_default/configCenter.scss */
+.facelibManager .add .information .col-md-12 input, .facelibManager .editLib .information .col-md-12 input {
+  width: 80%;
+}
+/* line 246, ../scss_default/configCenter.scss */
+.facelibManager .add .addLib, .facelibManager .editLib .addLib {
+  line-height: 40px;
+  margin: 0;
+  margin-top: 5px;
+  border-radius: 2px;
+  border: solid 1px #e1e1e1;
+  background: #f9f9f9;
+}
+/* line 254, ../scss_default/configCenter.scss */
+.facelibManager .add .cont, .facelibManager .editLib .cont {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+  margin: 0;
+}
+/* line 260, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li, .facelibManager .editLib .cont ul li {
+  display: inline-block;
+  width: 130px;
+  height: 208px;
+  margin: 5px 20px 10px 0;
+}
+/* line 265, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li .imgContainer, .facelibManager .editLib .cont ul li .imgContainer {
+  width: 122px;
+  height: 150px;
+  overflow: hidden;
+}
+/* line 269, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li .imgContainer img, .facelibManager .editLib .cont ul li .imgContainer img {
+  width: 200px;
+  height: 100%;
+  margin-left: -30px;
+}
+/* line 273, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li .imgContainer img:hover, .facelibManager .editLib .cont ul li .imgContainer img:hover {
+  -ms-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -ms-webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+/* line 286, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li .img-select, .facelibManager .editLib .cont ul li .img-select {
+  position: absolute;
+  margin: -145px 0 0 5px;
+  opacity: 0;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+  background-position: -127px -27px;
+}
+/* line 295, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li .img-select:hover, .facelibManager .editLib .cont ul li .img-select:hover {
+  background-position: -100px -27px;
+}
+/* line 300, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li .active, .facelibManager .editLib .cont ul li .active {
+  opacity: 1;
+  background-position: -100px -27px;
+}
+/* line 305, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li .edit, .facelibManager .editLib .cont ul li .edit {
+  margin-left: 36px;
+  opacity: 0;
+}
+/* line 309, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li .delete, .facelibManager .editLib .cont ul li .delete {
+  opacity: 0;
+}
+/* line 313, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li:hover .edit, .facelibManager .add .cont ul li:hover .delete, .facelibManager .editLib .cont ul li:hover .edit, .facelibManager .editLib .cont ul li:hover .delete {
+  opacity: 1;
+}
+/* line 316, ../scss_default/configCenter.scss */
+.facelibManager .add .cont ul li:hover .img-select, .facelibManager .editLib .cont ul li:hover .img-select {
+  opacity: 1;
+}
+/* line 322, ../scss_default/configCenter.scss */
+.facelibManager .add .cont .noResult, .facelibManager .editLib .cont .noResult {
+  width: 170px;
+  height: 124px;
+  margin: 0 auto;
+  margin-top: 50px;
+  background: url(../img/configCenter/no-people-bg.png) no-repeat center 30%;
+}
+
+/* line 335, ../scss_default/configCenter.scss */
+.history .search-panel {
+  height: 40px;
+  width: 550px;
+  overflow: hidden;
+  margin: 10px auto;
+  box-sizing: border-box;
+  position: relative;
+}
+/* line 342, ../scss_default/configCenter.scss */
+.history .search-panel .picbox {
+  position: absolute;
+  width: 56px;
+  max-width: 413px;
+  height: 36px;
+  overflow: hidden;
+  left: 3px;
+  top: 2px;
+}
+/* line 351, ../scss_default/configCenter.scss */
+.history .search-panel .text {
+  width: 450px;
+  height: 40px;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 0 80px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  box-sizing: border-box;
+  float: left;
+}
+/* line 363, ../scss_default/configCenter.scss */
+.history .search-panel .textsearch-btn {
+  width: 100px;
+  height: 40px;
+  background: #00A1F1;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 0;
+  float: left;
+  cursor: pointer;
+}
+/* line 376, ../scss_default/configCenter.scss */
+.history .search-panel .disabled {
+  background: #ccc;
+}
+/* line 380, ../scss_default/configCenter.scss */
+.history .search-panel .imgsearch-btn {
+  position: absolute;
+  top: 7px;
+  right: 110px;
+  width: 29px;
+  height: 24px;
+  background: url(../img/configCenter/camera.png) no-repeat center center;
+  cursor: pointer;
+  text-align: center;
+  line-height: 24px;
+}
+/* line 392, ../scss_default/configCenter.scss */
+.history .search {
+  line-height: 50px;
+}
+
+/* line 397, ../scss_default/configCenter.scss */
+.history-page {
+  overflow: hidden;
+}
+/* line 399, ../scss_default/configCenter.scss */
+.history-page .fn-text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 404, ../scss_default/configCenter.scss */
+.history-page .fn-ic {
+  display: inline-block;
+  overflow: hidden;
+  text-align: center;
+  background: url(../img/configCenter/person-default.png) no-repeat center #f1f0f0;
+}
+/* line 409, ../scss_default/configCenter.scss */
+.history-page .fn-ic img {
+  width: auto;
+  height: 100%;
+  margin: 0;
+  display: inline;
+  transition: all 500ms;
+  -webkit-transition: all 500ms;
+  -moz-transition: all 500ms;
+  -o-transition: all 500ms;
+}
+/* line 420, ../scss_default/configCenter.scss */
+.history-page .fn-ic:hover img {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+/* line 431, ../scss_default/configCenter.scss */
+.history-page .fn-122-150 {
+  width: 100%;
+  height: 150px;
+  vertical-align: middle;
+}
+/* line 437, ../scss_default/configCenter.scss */
+.history-page .show-container {
+  margin-top: 10px;
+}
+/* line 439, ../scss_default/configCenter.scss */
+.history-page .show-container ul {
+  list-style: none;
+}
+/* line 441, ../scss_default/configCenter.scss */
+.history-page .show-container ul li.info-list-item {
+  display: inline-block;
+  margin: 0 5px 10px 5px;
+  border: 1px solid #999;
+  width: 122px;
+}
+/* line 446, ../scss_default/configCenter.scss */
+.history-page .show-container ul li.info-list-item .detail-text-info {
+  background-color: #ccc;
+  padding: 5px 8px;
+}
+/* line 449, ../scss_default/configCenter.scss */
+.history-page .show-container ul li.info-list-item .detail-text-info .text-label {
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 459, ../scss_default/configCenter.scss */
+.addface-page {
+  overflow: hidden;
+}
+/* line 461, ../scss_default/configCenter.scss */
+.addface-page .content {
+  padding: 20px;
+}
+/* line 463, ../scss_default/configCenter.scss */
+.addface-page .content .box {
+  width: 220px;
+  margin: 0 auto;
+  vertical-align: top;
+}
+/* line 467, ../scss_default/configCenter.scss */
+.addface-page .content .box .imgCon {
+  width: 220px;
+  height: 270px;
+  display: inline-block;
+  overflow: hidden;
+  border: solid 1px #f4f4f4;
+  background: url(../img/configCenter/add-bg.png) no-repeat center center #eeeeee;
+}
+/* line 475, ../scss_default/configCenter.scss */
+.addface-page .content .box ul {
+  font-size: 0;
+  width: 230px;
+  vertical-align: middle;
+}
+/* line 479, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c {
+  display: inline-block;
+  font-size: 12px;
+  width: 38px;
+  height: 38px;
+  margin: 6px 8px 0 0;
+  cursor: pointer;
+  border: solid 2px #fff;
+  background: url(../img/configCenter/add-file.png) no-repeat center #8fc31f;
+}
+/* line 488, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c img {
+  width: 100%;
+}
+/* line 492, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c .img-container {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+}
+/* line 497, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c .img-container .webuploader-pick {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+/* line 508, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c .img-container .uploader-container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 38px;
+  height: 38px;
+  overflow: hidden;
+  bottom: auto;
+  right: auto;
+}
+/* line 517, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c .img-container .uploader-container .webuploader-element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+/* line 522, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c .img-container .uploader-container label {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+  background: white;
+}
+/* line 533, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c .fn-icon {
+  background: url(../img/home/homemap/pic.png) no-repeat;
+}
+/* line 537, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c .pic-del-icon {
+  background-position: -100px -151px;
+  position: relative;
+  float: right;
+  width: 12px;
+  height: 12px;
+  top: -44px;
+  left: 5px;
+}
+/* line 547, ../scss_default/configCenter.scss */
+.addface-page .content .box ul li.crud-peo-upl-s-c .fn-hidden {
+  display: none !important;
+}
+/* line 554, ../scss_default/configCenter.scss */
+.addface-page .addRight {
+  margin-bottom: 10px;
+}
+/* line 556, ../scss_default/configCenter.scss */
+.addface-page .addRight .sex {
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+  background-position: -80px -130px;
+}
+/* line 567, ../scss_default/configCenter.scss */
+.addface-page .addRight .active {
+  background-position: -80px -149px;
+}
+/* line 570, ../scss_default/configCenter.scss */
+.addface-page .addRight select {
+  color: inherit;
+  width: 174px;
+}
+/* line 575, ../scss_default/configCenter.scss */
+.addface-page .addRight textarea {
+  width: 260px;
+  height: 110px;
+}
+
+/* line 585, ../scss_default/configCenter.scss */
+.taskManager .operator {
+  line-height: 30px;
+  margin-bottom: 5px;
+}
+/* line 590, ../scss_default/configCenter.scss */
+.taskManager .addTask .breadcrumb, .taskManager .editTask .breadcrumb {
+  margin-bottom: 0;
+}
+/* line 593, ../scss_default/configCenter.scss */
+.taskManager .addTask .row, .taskManager .editTask .row {
+  line-height: 45px;
+}
+/* line 595, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .taskName, .taskManager .editTask .row .taskName {
+  width: 450px;
+}
+/* line 599, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .validTimd, .taskManager .editTask .row .validTimd {
+  width: 96px;
+}
+/* line 603, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .introduce, .taskManager .editTask .row .introduce {
+  width: 70%;
+}
+/* line 607, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left, .taskManager .addTask .row .right, .taskManager .editTask .row .left, .taskManager .editTask .row .right {
+  height: 390px;
+  border: solid 1px #E1E1E1;
+  background-color: #f9f9f9;
+}
+/* line 611, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .selectCamera, .taskManager .addTask .row .right .selectCamera, .taskManager .editTask .row .left .selectCamera, .taskManager .editTask .row .right .selectCamera {
+  margin-top: 5px;
+}
+/* line 614, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .c-l-content, .taskManager .addTask .row .right .c-l-content, .taskManager .editTask .row .left .c-l-content, .taskManager .editTask .row .right .c-l-content {
+  margin-top: 5px;
+}
+/* line 616, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .c-l-content .active, .taskManager .addTask .row .right .c-l-content .active, .taskManager .editTask .row .left .c-l-content .active, .taskManager .editTask .row .right .c-l-content .active {
+  background-color: #EEEEEE;
+}
+/* line 619, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .c-l-content li, .taskManager .addTask .row .right .c-l-content li, .taskManager .editTask .row .left .c-l-content li, .taskManager .editTask .row .right .c-l-content li {
+  padding-left: 20px;
+  height: 30px;
+  line-height: 30px;
+  cursor: pointer;
+  list-style: none;
+}
+/* line 625, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .c-l-content li .camera-icon, .taskManager .addTask .row .right .c-l-content li .camera-icon, .taskManager .editTask .row .left .c-l-content li .camera-icon, .taskManager .editTask .row .right .c-l-content li .camera-icon {
+  float: left;
+  margin-top: 8px;
+  display: inline-block;
+  width: 13px;
+  height: 12px;
+  background: url("../img/home/homemap/pic.png") no-repeat;
+  background-position: -135px -64px;
+}
+/* line 635, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .c-l-content li .c-name, .taskManager .addTask .row .right .c-l-content li .c-name, .taskManager .editTask .row .left .c-l-content li .c-name, .taskManager .editTask .row .right .c-l-content li .c-name {
+  display: inline-block;
+  width: 85%;
+  text-indent: 5px;
+  color: #505050;
+}
+/* line 642, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .c-l-content li .del-icon, .taskManager .addTask .row .right .c-l-content li .del-icon, .taskManager .editTask .row .left .c-l-content li .del-icon, .taskManager .editTask .row .right .c-l-content li .del-icon {
+  display: none;
+  float: right;
+  margin: 6px 2px 0 0;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background: url("../img/home/homemap/pic.png") no-repeat;
+  background-position: -40px -106px;
+}
+/* line 652, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .c-l-content li:hover, .taskManager .addTask .row .right .c-l-content li:hover, .taskManager .editTask .row .left .c-l-content li:hover, .taskManager .editTask .row .right .c-l-content li:hover {
+  background-color: #EEEEEE;
+}
+/* line 654, ../scss_default/configCenter.scss */
+.taskManager .addTask .row .left .c-l-content li:hover .del-icon, .taskManager .addTask .row .right .c-l-content li:hover .del-icon, .taskManager .editTask .row .left .c-l-content li:hover .del-icon, .taskManager .editTask .row .right .c-l-content li:hover .del-icon {
+  display: block;
+}
+/* line 662, ../scss_default/configCenter.scss */
+.taskManager .addTask .but, .taskManager .editTask .but {
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* line 672, ../scss_default/configCenter.scss */
+.task-page .left {
+  margin-left: 5px;
+  display: inline-block;
+}
+/* line 675, ../scss_default/configCenter.scss */
+.task-page .left .search {
+  height: 40px;
+  line-height: 40px;
+  width: 500px;
+}
+/* line 681, ../scss_default/configCenter.scss */
+.task-page .left .search input {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  text-indent: 20px;
+  background: url(../img/analyze/search.png) 96% no-repeat;
+}
+/* line 690, ../scss_default/configCenter.scss */
+.task-page .left .content {
+  height: 335px;
+  width: 500px;
+  min-width: 500px;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #fff;
+  margin-top: 5px;
+}
+/* line 700, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree {
+  height: auto;
+}
+/* line 703, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree li .button-comm, .task-page .left .content #cameraTree li span.button.pIcon02_ico_open, .task-page .left .content #cameraTree li span.button.pIcon02_ico_close, .task-page .left .content #cameraTree li span.button.icon02_ico_docu, .task-page .left .content #cameraTree li span.button.chk.checkbox_false_full, .task-page .left .content #cameraTree li span.button.chk.checkbox_false_full_focus, .task-page .left .content #cameraTree li span.button.chk.checkbox_true_full, .task-page .left .content #cameraTree li span.button.chk.checkbox_true_full_focus {
+  line-height: 0;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 0 none;
+  cursor: pointer;
+  outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-image: url(../img/analyze/zTreeStandard.png);
+}
+/* line 718, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree li span.button.pIcon02_ico_open, .task-page .left .content #cameraTree li span.button.pIcon02_ico_close {
+  margin: 0 3px;
+  background-position: -14px -73px;
+}
+/* line 724, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree li span.button.icon02_ico_docu {
+  background-position: -46px -72px;
+}
+/* line 729, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree li span.button.chk.checkbox_false_full {
+  background-position: 0 -92px;
+}
+/* line 734, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree li span.button.chk.checkbox_false_full_focus {
+  background-position: 0 -92px;
+}
+/* line 739, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree li span.button.chk {
+  width: 16px;
+  height: 16px;
+  background-size: inherit;
+}
+/* line 745, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree li span.button.chk.checkbox_true_full {
+  background-position: -16px -92px;
+}
+/* line 750, ../scss_default/configCenter.scss */
+.task-page .left .content #cameraTree li span.button.chk.checkbox_true_full_focus {
+  background-position: -16px -92px;
+}
+/* line 759, ../scss_default/configCenter.scss */
+.task-page .right {
+  width: 240px;
+  height: 378px;
+  display: inline-block;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #fff;
+}
+/* line 767, ../scss_default/configCenter.scss */
+.task-page .right .top {
+  line-height: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: bold;
+  border-bottom: 1px solid #e5e5e5;
+}
+/* line 774, ../scss_default/configCenter.scss */
+.task-page .right .middle {
+  height: 100%;
+  padding: 5px 0;
+  overflow-y: auto;
+}
+/* line 778, ../scss_default/configCenter.scss */
+.task-page .right .middle ul {
+  list-style: none;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/* line 782, ../scss_default/configCenter.scss */
+.task-page .right .middle ul li {
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  padding: 0 2px;
+}
+/* line 788, ../scss_default/configCenter.scss */
+.task-page .right .middle ul li .fn-icon {
+  position: relative;
+  top: 6px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+}
+/* line 796, ../scss_default/configCenter.scss */
+.task-page .right .middle ul li .camera-icon {
+  background-position: -135px -64px;
+  top: 8px;
+  float: left;
+}
+/* line 801, ../scss_default/configCenter.scss */
+.task-page .right .middle ul li .fn-text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* line 807, ../scss_default/configCenter.scss */
+.task-page .right .middle ul li .c-name {
+  text-indent: 3px;
+  display: inline-block;
+  width: 180px;
+}
+/* line 813, ../scss_default/configCenter.scss */
+.task-page .right .middle ul li .del-icon {
+  display: none;
+  float: right;
+  cursor: pointer;
+  background-position: -40px -106px;
+}
+/* line 819, ../scss_default/configCenter.scss */
+.task-page .right .middle ul li:hover {
+  background-color: #edf2f8;
+}
+/* line 821, ../scss_default/configCenter.scss */
+.task-page .right .middle ul li:hover .del-icon {
+  display: inline-block;
+}
+
+/* line 834, ../scss_default/configCenter.scss */
+.plateform .operater {
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 5px;
+}
+/* line 842, ../scss_default/configCenter.scss */
+.plateform .fn-icon {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+}
+/* line 852, ../scss_default/configCenter.scss */
+.plateform .edit {
+  background-position: -40px -62px;
+}
+/* line 854, ../scss_default/configCenter.scss */
+.plateform .edit:hover {
+  background-position: -57px -62px;
+}
+/* line 859, ../scss_default/configCenter.scss */
+.plateform .refresh {
+  background-position: -40px -85px;
+}
+/* line 861, ../scss_default/configCenter.scss */
+.plateform .refresh:hover {
+  background-position: -57px -85px;
+}
+/* line 866, ../scss_default/configCenter.scss */
+.plateform .remove {
+  background-position: -40px -106px;
+}
+/* line 868, ../scss_default/configCenter.scss */
+.plateform .remove:hover {
+  background-position: -57px -106px;
+}
+
+/* line 876, ../scss_default/configCenter.scss */
+.userManager .add {
+  height: 30px;
+  margin-bottom: 5px;
+}
+/* line 882, ../scss_default/configCenter.scss */
+.userManager th {
+  color: #666666 !important;
+}
+/* line 887, ../scss_default/configCenter.scss */
+.userManager tr:hover td {
+  background-color: #f9f9f9;
+  color: #00A1F2;
+}
+/* line 894, ../scss_default/configCenter.scss */
+.userManager td .status {
+  position: relative;
+  top: 6px;
+  display: inline-block;
+  width: 38px;
+  height: 20px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+}
+/* line 903, ../scss_default/configCenter.scss */
+.userManager td .active {
+  background-position: -82px -61px;
+}
+/* line 906, ../scss_default/configCenter.scss */
+.userManager td .noActive {
+  background-position: -82px -83px;
+}
+/* line 909, ../scss_default/configCenter.scss */
+.userManager td .edit {
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+  background-position: -40px -62px;
+}
+/* line 919, ../scss_default/configCenter.scss */
+.userManager td .edit:hover {
+  background-position: -57px -62px;
+}
+/* line 923, ../scss_default/configCenter.scss */
+.userManager td .delete {
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+  background-position: -40px -106px;
+}
+/* line 933, ../scss_default/configCenter.scss */
+.userManager td .delete:hover {
+  background-position: -57px -106px;
+}
+
+/* line 940, ../scss_default/configCenter.scss */
+.adduser-page, .edituser-page, .addPlateform-page, .editPlateform-page {
+  overflow: hidden;
+}
+/* line 942, ../scss_default/configCenter.scss */
+.adduser-page .add, .edituser-page .add, .addPlateform-page .add, .editPlateform-page .add {
+  margin: 10px 0;
+}
+/* line 944, ../scss_default/configCenter.scss */
+.adduser-page .add .title, .edituser-page .add .title, .addPlateform-page .add .title, .editPlateform-page .add .title {
+  display: inline-block;
+  width: 100px;
+  text-align: right;
+  margin-right: 5px;
+}
+/* line 951, ../scss_default/configCenter.scss */
+.adduser-page .add .sex, .edituser-page .add .sex, .addPlateform-page .add .sex, .editPlateform-page .add .sex {
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/home/homemap/pic.png) no-repeat;
+  background-position: -80px -130px;
+}
+/* line 963, ../scss_default/configCenter.scss */
+.adduser-page .add .active, .edituser-page .add .active, .addPlateform-page .add .active, .editPlateform-page .add .active {
+  background-position: -80px -149px;
+}
+/* line 967, ../scss_default/configCenter.scss */
+.adduser-page .add input, .edituser-page .add input, .addPlateform-page .add input, .editPlateform-page .add input {
+  width: 264px;
+}
+
+/* line 975, ../scss_default/configCenter.scss */
+.logManager .record {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 5px;
+}
+/* line 980, ../scss_default/configCenter.scss */
+.logManager .record span {
+  margin-right: 10px;
+}
+/* line 984, ../scss_default/configCenter.scss */
+.logManager th {
+  color: #666666 !important;
+}
+
+/* line 992, ../scss_default/configCenter.scss */
+.deviceManager select {
+  color: inherit;
+}
+/* line 996, ../scss_default/configCenter.scss */
+.deviceManager thead th {
+  color: #666666 !important;
+}
+/* line 1002, ../scss_default/configCenter.scss */
+.deviceManager tbody .location {
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/configCenter/location-icon.png) no-repeat center center;
+  bottom: 45px;
+  right: 0;
+}
+/* line 1016, ../scss_default/configCenter.scss */
+.deviceManager tbody tr:hover td {
+  background-color: #f9f9f9;
+  color: #00A1F2;
+}
+
+/* line 1026, ../scss_default/configCenter.scss */
+.device-page .location {
+  margin-left: 20px;
+  line-height: 60px;
+}
+
+/* line 1035, ../scss_default/configCenter.scss */
+.serviceManager thead th {
+  color: #666666 !important;
+}
+/* line 1042, ../scss_default/configCenter.scss */
+.serviceManager tbody tr td .refresh {
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+  background: url(../img/configCenter/tests-state.png) no-repeat center 30%;
+}
+/* line 1054, ../scss_default/configCenter.scss */
+.serviceManager tbody tr:hover td {
+  background-color: #f9f9f9;
+  color: #00A1F2;
+}
+
+/* line 1065, ../scss_default/configCenter.scss */
+.systemSetting .row {
+  line-height: 50px;
+  border-bottom: 1px solid #e1e1e1;
+}
+/* line 1068, ../scss_default/configCenter.scss */
+.systemSetting .row .sysTitle {
+  font-weight: bold;
+}
+/* line 1071, ../scss_default/configCenter.scss */
+.systemSetting .row .form-control {
+  color: inherit;
+}
+/* line 1076, ../scss_default/configCenter.scss */
+.systemSetting .row .memery .progress {
+  margin-top: 15px;
+  width: 312px;
+}
+
+/* line 1086, ../scss_default/configCenter.scss */
+.logStatis .date {
+  background: url(../img/canlendar.png) 150px no-repeat;
+}
+/* line 1089, ../scss_default/configCenter.scss */
+.logStatis .logSelect {
+  color: inherit;
+}
+/* line 1093, ../scss_default/configCenter.scss */
+.logStatis #logChart {
+  width: 100%;
+  height: 360px;
+}

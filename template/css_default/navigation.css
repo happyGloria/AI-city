@@ -1,0 +1,375 @@
+/* line 1, ../scss_default/navigation.scss */
+h1, h2, h3, h4, h5, h6, a {
+  font-size: 100%;
+  font-family: "Microsoft Yahei";
+}
+
+/* line 6, ../scss_default/navigation.scss */
+li {
+  list-style: none;
+}
+
+/* line 11, ../scss_default/navigation.scss */
+a:hover {
+  cursor: pointer;
+}
+
+/* line 16, ../scss_default/navigation.scss */
+.head-v3 {
+  position: relative;
+  z-index: 9999;
+  min-width: 1366px;
+}
+/* line 20, ../scss_default/navigation.scss */
+.head-v3 .navigation-inner {
+  margin: 0 auto;
+  /*width: 980px;*/
+  position: relative;
+}
+/* line 24, ../scss_default/navigation.scss */
+.head-v3 .navigation-inner .navigation-v2 {
+  float: left;
+  margin-left: 0.2rem;
+  height: 0.5rem;
+}
+/* line 28, ../scss_default/navigation.scss */
+.head-v3 .navigation-inner .navigation-v2 .police {
+  display: inline-block;
+  width: 0.37rem;
+  height: 0.37rem;
+  margin-right: 0.08rem;
+  position: absolute;
+  top: 0.07rem;
+  vertical-align: middle;
+  background: url("../../template/img/police.png") no-repeat;
+  background-size: cover;
+}
+/* line 39, ../scss_default/navigation.scss */
+.head-v3 .navigation-inner .navigation-v2 .policeText {
+  font-weight: bold;
+  font-size: 0.22rem;
+  line-height: 0.5rem;
+  font-family: 'Microsoft Yahei';
+  color: #fff;
+  margin-left: 0.47rem;
+}
+
+/* line 53, ../scss_default/navigation.scss */
+.navigation-up {
+  height: 50px;
+  background: #007ee9;
+  min-width: 1366px;
+}
+/* line 57, ../scss_default/navigation.scss */
+.navigation-up .navigation-v3 {
+  margin-left: 0.3rem;
+  float: left;
+  _margin-left: 0.1rem;
+}
+/* line 61, ../scss_default/navigation.scss */
+.navigation-up .navigation-v3 ul {
+  float: left;
+}
+/* line 65, ../scss_default/navigation.scss */
+.navigation-up .navigation-v3 li {
+  float: left;
+  font: normal 0.14rem/0.49rem "Microsoft Yahei";
+  color: #fff;
+}
+/* line 69, ../scss_default/navigation.scss */
+.navigation-up .navigation-v3 li h2 {
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+}
+/* line 73, ../scss_default/navigation.scss */
+.navigation-up .navigation-v3 li h2 a {
+  padding: 0 0.13rem;
+  color: #fff;
+  display: inline-block;
+  font: normal 0.14rem/0.49rem "Microsoft Yahei";
+  line-height: 50px;
+}
+/* line 85, ../scss_default/navigation.scss */
+.navigation-up .navigation-v3 .nav-up-selected, .navigation-up .navigation-v3 li:hover {
+  background: #00a1f2;
+  *border-bottom: 0.05rem solid #5bc5ff;
+  height: 0.5rem;
+}
+/* line 91, ../scss_default/navigation.scss */
+.navigation-up .navigation-v3 .navUpSelectedInPage {
+  background: #0776ae;
+  height: 0.5rem;
+  *border-bottom: 0.05rem solid #5bc5ff;
+}
+/* line 99, ../scss_default/navigation.scss */
+.navigation-up .navigation-head {
+  max-height: 0.5rem;
+  float: right;
+  color: #fff;
+  font-size: 0.12rem;
+  font-family: Simsun;
+}
+/* line 105, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .time {
+  float: left;
+  margin-right: 0.2rem;
+  font-size: 0.22rem;
+  line-height: 0.5rem;
+  font-family: 'Microsoft Yahei';
+}
+/* line 113, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .showTime {
+  float: left;
+  margin: 0.08rem 0;
+  font-size: 0.12rem;
+  font-family: 'Microsoft Yahei';
+}
+/* line 122, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .head-img {
+  float: left;
+  color: #ffffff;
+  font-size: 0.12rem;
+  margin-left: 0.2rem;
+  margin-right: 0.14rem;
+}
+/* line 128, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .head-img .touxiang {
+  float: left;
+  width: 0.2rem;
+  height: 0.2rem;
+  display: block;
+  margin: 0.15rem 0.1rem 0.15rem 0;
+  padding-left: 0.1rem;
+  border-left: 0.01rem solid #4da5f0;
+  text-align: center;
+}
+/* line 137, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .head-img .touxiang img {
+  width: 0.2rem;
+  height: 0.2rem;
+}
+/* line 143, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .head-img .isWoman {
+  background: url(../img/user-woman.png) no-repeat;
+  background-size: 100%;
+}
+/* line 148, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .head-img .userText {
+  float: right;
+  margin: 0.15rem 0 0.15rem 0.1rem;
+  line-height: 0.2rem;
+  padding-right: 0.1rem;
+  border-right: 0.01rem solid #4da5f0;
+}
+/* line 155, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .head-img .ng-binging {
+  vertical-align: middle;
+}
+/* line 159, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .alarming {
+  padding: 0.16rem 0.1rem;
+  float: left;
+}
+/* line 162, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .alarming .alarm-tip {
+  border-radius: 0.45rem;
+  background: red;
+  border: 0.01rem solid red;
+  width: 0.2rem;
+  height: 0.15rem;
+  color: #fff;
+  text-align: center;
+  line-height: 0.13rem;
+  font-size: 0.12rem;
+  margin: -0.25rem 0 0 0.08rem;
+}
+/* line 176, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing {
+  padding: 0.1rem 0;
+  float: left;
+}
+/* line 180, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing > a {
+  width: 0.3rem;
+  height: 0.3rem;
+  display: block;
+  background: url("../img/login/resurfacing.png") center no-repeat;
+  border-radius: 0.02rem;
+  background-size: 0.18rem 0.14rem;
+  cursor: pointer;
+}
+/* line 190, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing > a:hover, .navigation-up .navigation-head .resurfacing.open > a {
+  background-color: #0389c7;
+}
+/* line 194, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing .dropdown-menu {
+  width: 2rem;
+  height: 0.9rem;
+  margin: 0;
+  padding: 0.15rem;
+  border: 0;
+  border-radius: 0 0 0.02rem 0.02rem;
+  box-shadow: 0 0.01rem 0.04rem 0 rgba(188, 188, 188, 0.75);
+}
+/* line 202, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing .dropdown-menu:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border: 0.08rem solid;
+  border-color: transparent transparent #fff transparent;
+  position: absolute;
+  top: -0.16rem;
+  right: 0.08rem;
+}
+/* line 212, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing .dropdown-menu p {
+  margin-bottom: 0.08rem;
+  color: #666;
+}
+/* line 216, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing .dropdown-menu > a {
+  width: 0.32rem;
+  height: 0.32rem;
+  float: left;
+  margin-right: 0.02rem;
+}
+/* line 221, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing .dropdown-menu > a.default {
+  background-color: #0baafc;
+}
+/* line 224, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing .dropdown-menu > a.dark {
+  background-color: #23537a;
+}
+/* line 227, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .resurfacing .dropdown-menu > a.active {
+  background-image: url("../img/login/resurfacing-ico.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 0.15rem 0.15rem;
+  cursor: default;
+}
+/* line 237, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .navigation-logout {
+  display: inline-block;
+  padding: 0.16rem 0.15rem;
+  cursor: pointer;
+}
+/* line 241, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .navigation-logout img {
+  vertical-align: middle;
+  width: 0.14rem;
+  height: 0.14rem;
+}
+/* line 248, ../scss_default/navigation.scss */
+.navigation-up .navigation-head .navigation-logout:active {
+  background: #0389c7;
+  border-radius: 0.02rem;
+  outline: none;
+}
+
+/* line 255, ../scss_default/navigation.scss */
+.class1, .navigation-down .menu-2 dd a, .navigation-down .menu-3 dd a {
+  color: #fff;
+  font: normal 0.16rem "Microsoft Yahei";
+}
+
+/* line 259, ../scss_default/navigation.scss */
+.navigation-down {
+  position: absolute;
+  top: 0.6rem;
+  left: 0;
+  width: 100%;
+}
+/* line 264, ../scss_default/navigation.scss */
+.navigation-down .nav-down-menu {
+  width: 100%;
+  margin: 0;
+  padding: 0 0 0 2.75rem;
+  background: #0776ae;
+  position: absolute;
+  top: 0;
+}
+/* line 271, ../scss_default/navigation.scss */
+.navigation-down .nav-down-menu .navigation-down-inner {
+  margin: auto;
+  width: 100%;
+  position: relative;
+}
+/* line 277, ../scss_default/navigation.scss */
+.navigation-down .nav-down-menu dl {
+  float: left;
+  margin: 0.18rem 0.8rem 0.18rem 0;
+}
+/* line 284, ../scss_default/navigation.scss */
+.navigation-down .menu-1 dl {
+  margin: 0.1rem 0.4rem 0.1rem 0;
+}
+/* line 287, ../scss_default/navigation.scss */
+.navigation-down .menu-1 dt {
+  font: normal 0.16rem "Microsoft Yahei";
+  color: #61789e;
+  padding-bottom: 0.1rem;
+  border-bottom: 0.01rem solid #61789e;
+  margin-bottom: 0.1rem;
+}
+/* line 296, ../scss_default/navigation.scss */
+.navigation-down .menu-1 dd a {
+  color: #fff;
+  font: normal 0.14rem/0.3rem "Microsoft Yahei";
+}
+/* line 299, ../scss_default/navigation.scss */
+.navigation-down .menu-1 dd a:hover {
+  color: #5bc5ff;
+  border-bottom: 0.02rem solid #5bc5ff;
+}
+/* line 304, ../scss_default/navigation.scss */
+.navigation-down .menu-1 dd .secondNavUpSelected {
+  color: #60aff6;
+  height: 0.6rem;
+  border-bottom: 0.02rem solid #5bc5ff;
+}
+
+/* line 328, ../scss_default/navigation.scss */
+.navigation-pwd {
+  color: #d2d9a9;
+}
+
+/* line 331, ../scss_default/navigation.scss */
+.form-control {
+  display: inline;
+  width: 20em;
+  color: #d2d9a9;
+}
+
+@media screen and (max-width : 1100px) {
+  /* line 339, ../scss_default/navigation.scss */
+  .navigation-up .navigation-head {
+    display: none;
+  }
+}
+/* line 344, ../scss_default/navigation.scss */
+.logout {
+  text-align: center;
+}
+/* line 346, ../scss_default/navigation.scss */
+.logout .logoutCon {
+  padding-top: 0.5rem;
+}
+
+/*新增css*/
+.head-v3 .navigation-right{
+  color:#fff;
+  position:absolute;
+  right:50px;
+  top:0;
+  line-height:50px;
+  font-size:16px;
+}
+.head-v3 .navigation-right .layout{
+  cursor:pointer;
+  margin-left:20px;
+}

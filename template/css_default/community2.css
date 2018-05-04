@@ -1,0 +1,35 @@
+.leftCommunity,.mapAndBottom,.rightComunity{
+	float:left;
+}
+.leftCommunity,.rightComunity{
+	width:15%;
+	height:100%
+}
+.mapAndBottom{
+	border:1px solid green;
+	width:50%;
+	height:800px;
+}
+.leftCommunity #doorData,.leftCommunity #importantZone,.leftCommunity #alarmData{
+	width:100%;
+	height:300px;
+	margin-bottom:20px;
+	border:1px solid red;
+}
+#bottomDiv{
+	width:100%;
+}
+/*#carData,#monitorData,#macData{
+	width:30%;
+	height:200px;
+	margin-right:10px;
+	float:left
+}*/
+#monitorData{
+	width:100%;
+	height:200px;
+	border:1px solid red;
+}
+#mapDiv{
+	height:100%;
+}

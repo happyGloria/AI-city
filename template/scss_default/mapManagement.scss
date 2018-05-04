@@ -1,0 +1,296 @@
+.mapManagement {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .checked {
+    background-position: 0 -20px;
+  }
+  #mapManagement {
+    width: 100%;
+    height: 100%;
+    .olMapViewport {
+      z-index: 0;
+    }
+
+    //配置不同的地图
+    .mapConfig {
+      width: 500px;
+      height: 400px;
+      background-color: transparent;
+      position: absolute;
+      font-size: 12px;
+      left: 5px;
+      z-index: 1;
+      margin-top: 20px;
+      //opacity: 0.8;
+      //filter: alpha(opacity=80);
+      // -webkit-user-select: none;
+      // -moz-user-select: none;
+      // -ms-user-select: none;
+      // user-select: none;
+      ul {
+
+        .isCurrent {
+          color: #fff;
+          background-color: #00a0e9;
+        }
+        li {
+          width: 88px;
+          line-height: 28px;
+          text-align: center;
+          border-top: 1px solid #6dc2e9;
+          border-left: 1px solid #6dc2e9;
+          border-bottom: 1px solid #6dc2e9;
+          //float: left;
+          display: inline-block;
+          cursor: pointer;
+          background-color: #fff;
+          &:last-child {
+            border-right: 1px solid #00a0e9;
+          }
+        }
+      }
+
+      .config {
+        background-color: #fff;
+        .pgisConfig, .offlineMap, .onlineMap, .layerImport {
+          padding-top: 20px;
+          .form-group {
+            //line-height: 30px;
+            .col-sm-4 {
+              color: #000;
+              width: 110px;
+              line-height: 30px;
+              padding-right: 0;
+              select {
+                color: #000;
+                width: 80px;
+                height: 30px;
+                font-size: 12px;
+              }
+            }
+            .col-sm-8 {
+              padding-left: 0;
+              input {
+                width: 286px;
+                height: 30px;
+              }
+              select {
+                color: #000;
+                width: 286px;
+              }
+
+              .checkbox {
+                display: inline-block;
+                margin: 0;
+              }
+              .chosedFileName {
+                white-space:nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                color: #000;
+                width: 135px;
+                height: 30px;
+                min-width: inherit;
+                display: inline-block;
+                vertical-align: middle;
+              }
+            }
+
+            .example {
+              margin-left: 105px;
+              color: #999;
+            }
+
+            .example1 {
+              color: #999;
+              margin-left: 0;
+              margin-top: 30px;
+              display: block;
+            }
+          }
+
+        }
+        .onlineMap {
+          .mapCate {
+            height: 20px;
+            line-height: 20px;
+            margin-bottom: 10px;
+            display: block;
+            .title {
+              vertical-align: top;
+              margin-left: 15px;
+            }
+            .mapCateName {
+              display: inline-block;
+              margin-left: 43px;
+              .checkbox {
+                display: inline-block;
+                margin: 0;
+              }
+              .vector {
+                cursor: default;
+                opacity: 0.3;
+                filter: alpha(opacity=30);
+              }
+              .text {
+                vertical-align: top;
+              }
+            }
+
+          }
+        }
+        .reload {
+          margin-bottom: 20px;
+          margin-left: 110px;
+        }
+      }
+    }
+
+    //图层选择  start
+    .layerSelect {
+      //height: 40px;
+      width: 320px;
+      //height: 100px;
+      background-color: #fff;
+      position: absolute;
+      font-size: 12px;
+      right: 5px;
+      z-index: 1;
+      margin-top: 20px;
+      //opacity: 0.8;
+      //filter: alpha(opacity=80);
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      .title {
+        line-height: 30px;
+        color: #fff;
+        background-color: #00a0e9;
+        span {
+          margin-left: 18px;
+        }
+      }
+      ul {
+        vertical-align: middle;
+        .isCurrentLi {
+          opacity: 1;
+          filter: alpha(opacity=100);
+        }
+        li {
+          display: inline-block;
+          height: 20px;
+          line-height: 20px;
+          margin-top: 8px;
+          width: 100px;
+          opacity: 0.5;
+          filter: alpha(opacity=50);
+          &:first-child {
+            margin-left: 16px;
+          }
+
+          &:nth-child(4) {
+            margin-left: 16px;
+          }
+          .text {
+            vertical-align: top;
+          }
+
+          .checkbox {
+            display: inline-block;
+            margin: 0;
+          }
+
+          .comm {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            //cursor: pointer;
+            background: url(../img/map/tool.png) no-repeat;
+          }
+
+          .kakouHover {
+            background-position: -20px 0 !important;
+          }
+
+          .kakou {
+            background-position: 0 0;
+          }
+          .jizhanHover {
+            background-position: -20px -20px !important;
+          }
+          .jizhan {
+            background-position: 0 -20px;
+          }
+
+          .gpsHover {
+            background-position: -20px -60px !important;
+          }
+          .gps {
+            background-position: 0 -60px;
+          }
+
+          .showKakou {
+            @extend .kakouHover;
+          }
+
+          .showJizhan {
+            @extend .jizhanHover;
+          }
+
+          .showGps {
+            @extend .gpsHover;
+          }
+
+          .internetBarHover {
+            background-position: -60px 0 !important;
+          }
+
+          .internetBar {
+            background-position: -40px 0;
+          }
+          .wifiHover {
+            background-position: -20px -40px !important;
+          }
+          .wifi {
+            background-position: 0 -40px;
+          }
+          .hotelHover {
+            background-position: -60px -20px !important;
+          }
+          .hotel {
+            background-position: -40px -20px;
+          }
+
+          .showInternetBar {
+            @extend .internetBarHover;
+          }
+
+          .showWifi {
+            @extend .wifiHover;
+          }
+
+          .showHotel {
+            @extend .hotelHover;
+          }
+        }
+      }
+
+      .line {
+        width: 100%;
+        border-top: 1px solid #ececec;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .button-group {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        .btn-cancel {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}

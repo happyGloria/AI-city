@@ -1,0 +1,163 @@
+html, body, body > div, body > div > div.ng-scope, body > div > div.ng-scope > div[ui-view="main"] {
+  height: 100% !important;
+}
+body > .layout > div[ui-view] {
+  padding-top: 0px !important;
+  height: 100%;
+}
+*{
+    box-sizing: border-box;
+}
+html, body {
+//min-width: 1160px;
+//min-height: 600px;
+}
+.sm-starmap-application {
+  min-height:100%;
+  background:url(../img/login/b.gif) no-repeat;
+  background-size:cover;
+  .shade{
+    background-color: #000;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.2;
+  }
+}
+@media screen and (max-width: 1440px) {
+  html {
+    font-size:75px !important;
+  }
+}
+@media screen and (min-width: 1440px) and (max-width: 1601px) {
+  html {
+    font-size: 85px !important;
+  }
+}
+@media screen and (min-width: 1601px) and (max-width: 1921px) {
+  html {
+    font-size: 100px !important;
+  }
+}
+.content-box{
+    width:8.31rem;
+    margin:0 auto;
+    position:absolute;
+    z-index:11;
+    left:50%;
+    top:50%;
+    -webkit-transform:translate(-50%,-50%);
+    -ms-transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+    .content-top{
+        width:8.31rem;
+        height:7.57rem;
+        position:relative;
+        .logo-con{
+            position:absolute;
+            top:50%;
+            left:50%;
+            width:3rem;
+            height:3.42rem;
+            margin-top:-1.71rem;
+            margin-left:-1.5rem;
+            .logo-con-top{
+                width:3rem;
+                height:3rem;
+                margin-top:1.5rem;
+                background:url(../img/login/logo.gif) no-repeat;
+                background-size:3rem 3rem;
+            }
+            .logn-con-bottom{
+                position:absolute;
+                left:0;
+                bottom:0;
+                opacity:0;
+                width:2.44rem;
+                height:1.41rem;
+                margin-left:0.28rem;
+                background:url(../img/login/police-big-data.png) no-repeat;
+                background-size:2.44rem 1.41rem;
+            }
+        }
+    }
+    .input-con{
+        opacity: 0;
+        padding:0.26rem 0.76rem 0.05rem 0.76rem;
+        .user,.password{
+            width:3.29rem;
+            height:0.46rem;
+            border:none;
+            padding-left:0.53rem;
+            color:#FFFFFF;
+            outline:none;
+            input{
+                border-width:0;
+                outline:none;
+                margin: 0.12rem;
+                width: 2.4rem;
+                font-size:0.12rem;
+                line-height:0.20rem;
+                background-color:transparent;
+            }
+            input:focus{
+                outline:none;
+            }
+        }
+        .user.focus,.password.focus{
+          -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+        }
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px rgba(24,63,97,1) inset;
+            -webkit-text-fill-color: #20c5de;
+        }
+        input::-moz-placeholder {
+          color: #20c5de;
+          opacity: 1;
+        }
+        input:-ms-input-placeholder {
+          color: #20c5de;
+        }
+        input::-webkit-input-placeholder {
+          color: #20c5de;
+        }
+        .user{
+            background:url(../img/login/user-bg.png) no-repeat;
+            background-size:3.29rem 0.46rem;
+        }
+        .password{
+            background:url(../img/login/password-bg.png) no-repeat;
+            background-size:3.29rem 0.46rem;
+        }
+    }
+    .login-btn{
+        opacity: 0;
+        width:4.44rem;
+        height:0.99rem;
+        background:url(../img/login/login-btn.png) no-repeat;
+        background-size:4.44rem 0.99rem;
+        margin:0 auto;
+        cursor:pointer;
+        .logo-text{
+            width:0.55rem;
+            height:0.99rem;
+            background:url(../img/login/login-text.png) center center no-repeat;
+            background-size:0.55rem 0.48rem;
+            margin:0 auto;
+        }
+    } 
+}
+.logo-gif{
+    position:absolute;
+    width:3rem;
+    height:3rem;
+    left:50%;
+    top:50%;
+    margin-left:-1.5rem;
+    margin-top:-1.5rem;
+    background:url(../img/login/logo.gif) no-repeat;
+    background-size:3rem 3rem;
+}

@@ -1,0 +1,53 @@
+<div class="body trackShow">
+
+    <div id="macTrackId" class="map-main">
+        <!--左侧-->
+        <div class="left-sider">
+            <div class="left-content">
+                <div class="left-head">
+                    <span class="head-txt">MAC轨迹</span>
+                    <span class="head-btn" ng-click="toggleFilter()"></span>
+                </div>
+                <div class="left-filter">
+                    <div class="filter-item">
+                        <div class="filter-name">MAC:<span style="color: red">*</span></div>
+                        <div class="filter-val">
+                            <input type="text" placeholder="请输入MAC" ng-model="mac">
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <div class="filter-name">开始时间:<span style="color: red">*</span></div>
+                        <div class="filter-val"><input type="text" class="calendInput" ng-model="startTime" id="startTime"/></div>
+                    </div>
+                    <div class="filter-item">
+                        <div class="filter-name">结束时间:<span style="color: red">*</span></div>
+                        <div class="filter-val"><input type="text" class="calendInput" ng-model="endTime" id="endTime"/></div>
+                    </div>
+                    <div class="filter-item analyze" ng-click="macTrack(1)">轨迹分析</div>
+                </div>
+                <div class="left-result">
+                    <div class="pages" ng-if="!!resultLists.length">
+                        <span>共<i>{{resultLists.length}}</i>条记录</span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="result-lists" ng-if="!!resultLists.length">
+                        <div class="list-item" ng-repeat="item in resultLists track by $index" ng-class="{'active':item.active}" ng-click="chooseMarker(item,$index)">
+                            <div class="index"><span>{{$index+1}}</span></div>
+                            <div class="content">
+                                <p class="carNum">用户Mac：{{item.userMac}}</p>
+                                <p class="address">地点：{{item.deviceName}}</p>
+                                <p class="time">时间：{{item.collectTime}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+

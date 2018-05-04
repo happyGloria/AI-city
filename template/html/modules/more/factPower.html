@@ -1,0 +1,282 @@
+<div class="morelayer secondLevel"  ng-if="initParams.label != '警员'">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">实有力量</span></div>
+	</div>
+	<div class="population-per">
+		<div class="" style="margin-bottom:14px;">
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">姓名</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.certificatesName" placeholder="请输入姓名">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">身份证</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.credentialNo" placeholder="请输入身份证">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">电话</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.phonenumber" placeholder="请输入电话">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">居住地址</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.residentialAddress" placeholder="请输入居住地址">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">手机mac地址</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.mac" placeholder="请输入手机mac地址">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">人物标签</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.label" placeholder="请输入人物标签">
+			</div>
+			<button class="btn search-btn btn-blue margin-left-10" ng-click="factPower(1)">查询</button>
+		</div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="10%" />
+					<col width="20%" />
+					<col width="15%" />
+					<col width="20%" />
+					<col width="20%" />
+					<col width="15%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>身份证</th>
+						<th>手机</th>
+						<th>居住地址</th>
+						<th>手机mac地址</th>
+						<th>人物标签</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in factPowerData track by $index">
+						<td>{{item.certificatesName}}</td>
+						<td ng-show="item.realpowerFlag == '0'">{{item.credentialNo}}</td>
+						<td ng-show="item.realpowerFlag == '1'"><a href="#/index/peoplefile/{{item.credentialNo}}/{{villageCode}}" target="_blank">{{item.credentialNo}}</a></td>
+						<td>{{item.phonenumber}}</td>
+						<td ng-if="item.buildingNo && item.houseNo"><a href="" ng-click="toResident(item)">{{item.residentialAddress + item.buildingNo+"栋"+item.houseNo+"室"}}</a></td>
+						<td ng-if="!item.buildingNo">{{item.residentialAddress}}</td>
+						<td>{{item.mac}}</td>
+						<td>{{item.label}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>
+            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+            <pagination total-items="page1.totalRow"
+                        ng-model="initParams.pageNumber"
+                        max-size="3"
+                        items-per-page="initParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="factPower()">
+            </pagination>
+        </div>
+	</div>
+</div>
+
+<!-- 警員 -->
+<div class="morelayer secondLevel" ng-if="initParams.label === '警员'">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">警员</span></div>
+		<ul class="head-menu clearfix">
+			<li class="head-menu-li" ng-click="changePoliceTab('info')" ng-class="{'active':policeTab.info}">警员信息</li>
+			<li class="head-menu-li" ng-click="changePoliceTab('gps')" ng-class="{'active':policeTab.gps}">警员排班表</li>
+		</ul>
+	</div>
+	<div class="population-per" ng-show="policeTab.info">
+		<div class="" style="margin-bottom:14px;">
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">姓名</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="policeParams.policeName" placeholder="请输入姓名">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">警号</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="policeParams.pcNumber" placeholder="请输入警号">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">电话</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="policeParams.policeMobileNo" placeholder="请输入电话">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">部门</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="policeParams.department" placeholder="请输入部门">
+			</div>
+			<button class="btn search-btn btn-blue margin-left-10" ng-click="police(1)">查询</button>
+		</div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="25%" />
+					<col width="25%" />
+					<col width="25%" />
+					<col width="25%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>警号</th>
+						<th>电话</th>
+						<th>部门</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in policeData track by $index">
+						<td>{{item.policeName}}</td>
+						<td>{{item.pcNumber}}</td>
+						<td>{{item.policeMobileNo}}</td>
+						<td>{{item.department}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="policePage.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>
+            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="policePage.totalRow > 0">
+            <pagination total-items="policePage.totalRow"
+                        ng-model="policeParams.pageNumber"
+                        max-size="3"
+                        items-per-page="policeParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="police()">
+            </pagination>
+        </div>
+	</div>
+	<div class="population-per" ng-show="policeTab.gps">
+		<div class="" style="margin-bottom:14px;">
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">姓名</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="policeGpsParams.peopleName" placeholder="请输入姓名">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">警号</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="policeGpsParams.policeNumber" placeholder="请输入警号">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">电话</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="policeGpsParams.telephone" placeholder="请输入电话">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">部门编号</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="policeGpsParams.department" placeholder="请输入部门">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">勤务模式</label>
+				<select ng-model="policeGpsParams.serviceMode" class="pull-left">
+					<option ng-repeat="x in serviceModeNameList" value="{{x.code}}">{{x.name}}</option>
+				</select>
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">工作状态</label>
+				<select ng-model="policeGpsParams.workStatus" class="pull-left">
+					<option ng-repeat="x in workStatusNameList" value="{{x.code}}">{{x.name}}</option>
+				</select>
+			</div>
+			<!-- <div class="form-group-level clearfix">
+				<label class="control-label pull-left">区块</label>
+				<select ng-model="policeGpsParams.serviceMode" class="pull-left">
+					<option ng-repeat="x in serviceModeNameList" value="{{x.code}}">{{x.name}}</option>
+				</select>
+			</div> -->
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">工作时间</label>
+		        <div class="datetimepicker pull-left">
+		        	<input type="text" id="warningStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="policeGpsParams.startTime" placeholder="开始时间">
+		        </div>
+		        <div class="pull-left">--</div>
+		        <div class="datetimepicker">
+		        	<input type="text" id="warningEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="policeGpsParams.endTime" placeholder="结束时间">
+		        </div>
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">上传EXCECL</label>
+				<div style="display:inline-block;width:38px;height:38px;margin-left:1px;background:-webkit-linear-gradient(top,rgba(40,157,255,0.5),rgba(40,157,255,0.3));background: -ms-linear-gradient(top,rgba(40,157,255,0.5),rgba(40,157,255,0.3));">
+					<input class="add-btn" type="button" name="" style="background: url(/template/img/secondLevel/add_icon.png) -8px -8px no-repeat;width:38px;height:38px;border:none;">
+					<input type="file" style="z-index: 9999;width:38px;height:38px;display:inline-block;opacity:0;position:relative;top:-53px;cursor: pointer;" id="imageFile" class="upload" name="mpFile" ng-click="uploadImg()">
+				</div>
+			</div>
+			<button class="btn search-btn btn-blue margin-left-10" ng-click="policeGps()">查询</button>
+		</div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<!-- <colgroup>
+					<col width="25%" />
+					<col width="25%" />
+					<col width="25%" />
+					<col width="25%" />
+				</colgroup> -->
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>警号</th>
+						<th>手机</th>
+						<th>部门</th>
+						<th>勤务模式</th>
+						<th>状态</th>
+						<th>工作开始时间</th>
+						<th>工作结束时间</th>
+						<th>区块</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in policeGpsData track by $index">
+						<td ng-click="locationFun(item)">{{item.peopleName}}</td>
+						<td>{{item.policeNumber}}</td>
+						<td>{{item.telephone}}</td>
+						<td>{{item.department}}</td>
+						<td>{{item.serviceName}}</td>
+						<td>{{item.workStatusName}}</td>
+						<td>{{item.startWorkTime}}</td>
+						<td>{{item.endWorkTime}}</td>
+						<td>{{item.regionName}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="policeGpsPage.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>
+            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="policeGpsPage.totalRow > 0">
+            <pagination total-items="policeGpsPage.totalRow"
+                        ng-model="policeGpsParams.pageNumber"
+                        max-size="3"
+                        items-per-page="policeGpsParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="policeGps()">
+            </pagination>
+        </div>
+	</div>
+</div>
+
+
+
+

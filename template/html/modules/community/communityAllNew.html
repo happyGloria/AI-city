@@ -1,0 +1,256 @@
+<!--<div class="communityAllNew">
+    十个小区
+    <div class="div" id="faceECharts"></div>
+</div>
+
+<div id="2dMap" style="width: 100%; height: 100%"></div>-->
+<style>
+	body{
+		overflow-x:hidden;
+	}
+</style>
+<div class="communityAllNew">
+	<div class="ocx_object"></div>
+	<!-- <div class="header"></div> -->
+	<div class="index-container">
+	<div class="header" style="background: none"> 
+		<div class="header-top">
+			<div class="blue-bg"></div>
+			<div class="line-bg"></div>
+		</div>
+		<div class="header-center clearfix">
+			<div class="big-name pull-left">奉贤智能安防系统</div>
+			<span class="line-bg"></span>
+		</div>
+	</div>
+	</div>
+	<div class="footer"></div>
+	<div class="main-content">
+		<!--左侧内容-->
+		<div class="left-content">
+			<div class="left-toggle" ng-class="!leftOpen?'shouqi':''">
+				<span class="btn-side" ng-click="leftToggleClick()"></span>
+				<span class="text">实<br/>有<br/>数<br/>据<br/>统<br/>计</span>
+			</div>
+			<!-- <div class="btn-side" ng-class="!leftOpen?'shouqi':''" ng-click="leftToggleClick()"></div> -->
+				<div class="left-top-bg"></div>
+				<div class="left-bottom-bg"></div>
+				<!-- <div class="right-toggle" ng-class="!rightOpen?'shouqi':''">
+					<span class="btn-side" ng-click="leftToggleClick()"></span>
+					<span class="text">实<br/>有<br/>数<br/>据<br/>统<br/>计</span>
+				</div> -->
+				<!--一标六实-->
+				<div class="tag-content">
+					<span class="title-top-bg"></span>
+					<div class="title">一标六实</div>
+					<ul class="tag-ul clearfix">
+						<li class="tag-ul-li li-population">
+							<span class="tag-li-name">实有人口</span>
+							<span class="tag-li-num"><a href="#/index/communityAllNewChart/1" target="_blank">{{sixEntityCountData.peopleCount || 0}}</a></span>
+						</li>
+						<li class="tag-ul-li li-house">
+							<span class="tag-li-name">实有房屋</span>
+							<span class="tag-li-num"><a href="#/index/communityAllNewChart/2" target="_blank">{{sixEntityCountData.buildingCount || 0}}</a></span>
+						</li>
+						<li class="tag-ul-li li-unit">
+							<span class="tag-li-name">实有单位</span>
+							<span class="tag-li-num"><a href="#/index/communityAllNewChart/3" target="_blank">{{ sixEntityCountData.realCompany || 0}}</a></span>
+						</li>
+						<li class="tag-ul-li li-facility">
+							<span class="tag-li-name">实有安防设施</span>
+							<span class="tag-li-num"><a href="#/index/communityAllNewChart/4" target="_blank">{{ sixEntityCountData.securityEquipmentCount|| 0 }}</a></span>
+						</li>
+						<li class="tag-ul-li li-strength">
+							<span class="tag-li-name">实有力量 / 装备</span>
+							<span class="tag-li-num"><a href="#/index/communityAllNewChart/5" target="_blank">{{ sixEntityCountData.realPowerEquipmentCount || 0 }}</a></span>
+						</li>
+						<li class="tag-ul-li li-incident">
+							<span class="tag-li-name">实有警情事件</span>
+							<span class="tag-li-num" ng-click="toAllPolice()"><a >{{ sixEntityCountData.policeEventCount || 0 }}</a></span>
+						</li>
+					</ul>
+				</div>
+				<!--实有力量-->
+				<div class="left-strength">
+					<div class="title">实有力量在线统计</div>
+					<div class="allNumber clearfix">
+						<span class="pull-left line-bg"></span>
+						<span class="number-text">共计<strong>{{allRealPowerData}}</strong>人</span>
+						<span class="pull-right line-bg line-bg-right"></span>
+					</div>
+					<div class="strength-list">
+						<ul class="strength-list-ul clearfix">
+							<li class="strength-list-li" ng-click="goToPower('1')">
+								<span class="strength-list-li-top">警员</span>
+								<span class="strength-list-li-bottom">{{realPowerData.jy || 0}}</span>
+							</li>
+							<li class="strength-list-li" ng-click="goToPower('2')">
+								<span class="strength-list-li-top">居委干部</span>
+								<span class="strength-list-li-bottom">{{realPowerData.jwgb || 0}}</span>
+							</li>
+							<li class="strength-list-li" ng-click="goToPower('3')">
+								<span class="strength-list-li-top">楼组长</span>
+								<span class="strength-list-li-bottom">{{realPowerData.lzz || 0}}</span>
+							</li>
+							<li class="strength-list-li" ng-click="goToPower('4')">
+								<span class="strength-list-li-top">志愿者</span>
+								<span class="strength-list-li-bottom">{{realPowerData.zyz || 0}}</span>
+							</li>
+						</ul>
+						<ul class="strength-list-ul clearfix strength-list-ul-green">
+							<li class="strength-list-li" ng-click="goToPower('5')">
+								<span class="strength-list-li-top">保安</span>
+								<span class="strength-list-li-bottom">{{realPowerData.ba || 0}}</span>
+							</li>
+							<li class="strength-list-li" ng-click="goToPower('6')">
+								<span class="strength-list-li-top">保洁</span>
+								<span class="strength-list-li-bottom">{{realPowerData.bj || 0}}</span>
+							</li>
+							<li class="strength-list-li" ng-click="goToPower('7')">
+								<span class="strength-list-li-top">保绿</span>
+								<span class="strength-list-li-bottom">{{realPowerData.bl || 0}}</span>
+							</li>
+							<li class="strength-list-li" ng-click="goToPower('8')">
+								<span class="strength-list-li-top">快递</span>
+								<span class="strength-list-li-bottom">{{realPowerData.kd || 0}}</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--实有警情-->
+				<div class="today-condition perception-content">
+					<span class="title-top-bg"></span>
+					<div class="hebdomad-statistics">
+						<span class="titleAndTab">今日实有警情事件情况统计</span>
+						<ul class="hebdomad-tabs clearfix pull-right">
+							<li class="hebdomad-tabs-li pull-left" ng-click="changeChartsTab('类型')" ng-class="changeCharts=='类型'?'active':''">类型</li>
+							<li class="hebdomad-tabs-li pull-left" ng-click="changeChartsTab('状态')" ng-class="changeCharts=='状态'?'active':''">状态</li>
+						</ul>
+					</div>
+
+					<ul class="today-condition-ul" ng-if="changeCharts=='类型'?'active':''">
+						<li class="today-condition-ul-li" ng-repeat="item in daySenseList track by $index" ng-if="$index<6" ng-click="toFactEvent(item)">
+							<span class="name">{{item.name}}</span>
+							<div class="progress-box clearfix">
+								<div class="progress-box-bar" ng-style="{'width':item.style}"><span class="num">{{item.value}}</span></div>
+							</div>							
+						</li>	
+					</ul>
+					<ul class="today-condition-ul" ng-if="changeCharts=='状态'?'active':''">
+						<li class="today-condition-ul-li" ng-repeat="item in dayEventList track by $index" ng-if="$index<6" ng-click="toEventCharts()">
+							<span class="name">{{item.name}}</span>
+							<div class="progress-box clearfix">
+								<div class="progress-box-bar" ng-style="{'width':item.style}"><span class="num">{{item.value}}</span></div>
+							</div>							
+						</li>	
+					</ul>
+					<span class="title-bottom-bg"></span>
+				</div>
+			</div>
+		
+		<!--右侧内容-->
+		<div class="right-content">
+			<div class="right-toggle" ng-class="!rightOpen?'shouqi':''">
+				<span class="btn-side" ng-click="rightToggleClick()"></span>
+				<span class="text">感<br/>知<br/>数<br/>据<br/>统<br/>计</span>
+			</div>
+			<div class="perception-content perception-allNum">
+				<div class="head-title">
+					<span>感知数量总量</span>
+					<div id="senseNum"></div>
+					<div class="line-bg"></div>
+				</div>
+				<div class="hebdomad-statistics">
+					<div class="clearfix">
+						<span class="pull-left">一周感知数据量统计</span>
+						<ul class="hebdomad-tabs clearfix">
+							<li class="hebdomad-tabs-li pull-left" ng-click="changeTab('villageCode')" ng-class="changeTabAction=='villageCode'?'active':''">小区</li>
+							<li class="hebdomad-tabs-li pull-left" ng-click="changeTab('type')" ng-class="changeTabAction=='type'?'active':''">类型</li>
+						</ul>
+						<a href="javascript:;" class="pull-right"></a>
+					</div>
+					<div id="weekperceptionTypeCharts"></div>
+				</div>
+			</div>
+			<div class="perception-content perception-todayNum">
+				<div class="head-title">
+					<span>今日感知增量</span>
+					<div id='ppNum'></div>
+					<div class="line-bg"></div>
+				</div>
+				<div class="clearfix perception-addCon">
+					<div class="pull-left perception-addCon-left" id="perceptionAllCharts">
+					</div>
+					<ul class="pull-left perception-addCon-right">
+						<li class="clearfix guoche">
+							<div class="pull-left echarts-left" id='car'></div>
+							<div class="pull-left">过车感知：{{perceptionValue.car.value}}</div>
+						</li>
+						<li class="clearfix kaimen">
+							<div class="pull-left echarts-left" id='openDoor'></div>
+							<div class="pull-left">开门记录：{{perceptionValue.openDoor.value}}</div>
+						</li>
+						<li class="clearfix renlian">
+							<div class="pull-left echarts-left" id='face'></div>
+							<div class="pull-left">人脸抓拍：{{perceptionValue.face.value}}</div>
+						</li>
+						<li class="clearfix shijian">
+							<div class="pull-left echarts-left" id='event'></div>
+							<div class="pull-left">事件感知：{{perceptionValue.event.value}}</div>
+						</li>
+						<li class="clearfix mac">
+							<div class="pull-left echarts-left" id='mac'></div>
+							<div class="pull-left">MAC感知：{{perceptionValue.mac.value}}</div>
+						</li>
+					</ul>
+				</div>
+				<div class="face-statistics">
+					<!--<div class="face-statistics-head">人脸抓拍实时统计</div>-->
+					<div id="faceECharts"></div>
+				</div>
+			</div>
+		</div>
+				
+	</div>
+	<!-- 提示下载ocx -->
+	<div class="ocx_model" ng-hide="Browser_hide">
+		<div class="ocx_title">
+			<span class="span_model title_name">提示</span>
+			<span class="span_model close_but" ng-click="closeBox()">关闭</span>
+		</div>
+		<div class="ocx_content">
+			<p class="ocx_tips">未安装视频播放插件，请点击下载按钮！</p>
+			<p class="downlod_ocx" ng-click="downlodButton()">下载</p>
+		</div>
+	</div>
+</div>
+<div ng-include="templateUrl" ng-controller="templateControllerMap" style="height: 100%; width:100%;"></div>
+
+<!--新增地图弹框内容-->
+<!--<div class="map-layerCon-new clearfix">
+	<span class="close-btn"></span>
+	<div class="housing-layer-left pull-left">
+		<div class="img-box">
+			<img src="/template/img/timg.jpeg" />
+		</div>
+		<button class="map-btn">一标六实</button>
+		<button class="map-btn">三维地图</button>
+	</div>
+	<div class="housing-layer-right pull-left">
+		<div class="title">田林十二村</div>
+		<ul class="housing-message-ul">
+			<li class="housing-message-li">
+				<label>地点：</label>
+				<span class="span-text">上海市徐汇区钦州路528号</span>
+			</li>
+			<li class="housing-message-li">
+				<label>居民楼：</label>
+				<span class="span-text"><strong>9</strong>栋</span>
+			</li>
+			<li class="housing-message-li">
+				<label>居民：</label>
+				<span class="span-text"><strong>216</strong>户</span>
+			</li>
+		</ul>
+	</div>
+</div>-->

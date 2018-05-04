@@ -1,0 +1,85 @@
+<!--快递人员-->
+<div class="secondLevel morelayer">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">快递</span></div>
+		<div class="pull-right secondLevel-head-right">
+			<i class="icon-house"></i>
+			<span class="title">{{villageName}}</span>
+		</div>
+	</div>
+	<div class="expressPeople">
+		<div class="list-title clearfix">
+			<span class="pull-left line-bg"></span>
+			<span class="text">快递人员</span>
+			<span class="pull-right line-bg"></span>
+		</div>
+		<ul class="express-list-ul clearfix">
+			<li class="express-list-li" ng-repeat="item in expressPeopleData">
+				<div class="img-box">
+					<img src="{{item.idCardPic | transferPic}}"/>
+				</div>
+				<div class="right-details">
+					<div class="details-group clearfix">
+						<label class="control-label pull-left">姓名：</label>
+						<span class="span-text pull-left">{{item.certificatesName}}</span>
+					</div>
+					<div class="details-group clearfix">
+						<label class="control-label pull-left">证件号码：</label>
+						<span class="span-text pull-left">{{item.credentialNo}}</span>
+					</div>
+					<div class="details-group clearfix">
+						<label class="control-label pull-left">电话：</label>
+						<span class="span-text pull-left">{{item.phonenumber}}</span>
+					</div>
+					<div class="details-group clearfix">
+						<label class="control-label pull-left">居住地址：</label>
+						<span class="span-text pull-left">{{item.residentialAddress}}</span>
+					</div>
+					<div class="details-group clearfix">
+						<label class="control-label pull-left">出现次数：</label>
+						<span class="span-text pull-left" ng-click = "viewPicFun(item)"><a href="">{{item.times}}次</a></span>
+					</div>
+				</div>
+				<span class="company-name">{{item.companyName}}</span>
+		</ul>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="expressPeoplePage.totalRow > 0">
+	        <pagination total-items="expressPeoplePage.totalRow"
+	                    ng-model="initParams.pageNumber"
+	                    max-size="3"
+	                    items-per-page="initParams.pageSize"
+	                    class="pagination-sm pull-right"
+	                    previous-text="上一页"
+	                    next-text="下一页"
+	                    first-text="首页"
+	                    last-text="末页"
+	                    ng-click="expressPeople()">
+	        </pagination>
+	    </div>
+	</div>
+	<div id="communityPower">
+		<div class="contrast-con clearfix" style="height:100%;padding: 20px 10px 20px;display:none;width:100%" id="realPowerPhoto">
+			<div class="left-photo" style="width:100%;height:100%">
+				<div class="swiper-container">
+				    <div class="swiper-wrapper">
+				      <div class="swiper-slide img-box" ng-repeat="item in captureFacePic">
+					      <div style="width:inherit;height:inherit;text-align:center;">
+					      	<img ng-src="{{item.faceUrl}}" style="display: block !important;">
+							<div class="span-text">
+								<span style="display:block;color:#fff">时间:{{item.captureTime}}</span>
+								<span ng-show="item.name" style="display:block;color:#fff">地点:{{item.name}}</span>
+								<!--panoramaImage-->
+							</div>
+					      </div>
+				      </div>
+				    </div>
+				    <!-- Add Pagination -->
+				    <div class="swiper-pagination"></div>
+				    <!-- Add Arrows -->
+				    <div class="swiper-button-next"></div>
+				    <div class="swiper-button-prev"></div>
+			  	</div>
+				<!-- <span class="span-text">抓拍人脸</span> -->
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,154 @@
+<div class="morelayer secondLevel">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">实有人口</span></div>
+		<ul class="head-menu clearfix">
+			<li class="head-menu-li" ng-click="changeTab('statistics',true)" ng-class="{'active':showTab.statistics}">数据统计</li>
+			<li class="head-menu-li" ng-click="changeTab('people',true)" ng-class="{'active':showTab.people}">人口信息</li>
+		</ul>
+		<div class="pull-right secondLevel-head-right">
+			<i class="icon-house"></i>
+			<span class="title">{{villageName}}</span>
+		</div>
+	</div>
+	<!-- 数据统计 -->
+	<div ng-show="showTab.statistics">
+		<div id="main4" style="width: 21%; height: 250px; float:left;margin-left:3%"></div>
+		<div id="main" style="width: 21%; height: 250px; float:left;margin-left:3%"></div>
+		<div id="main1" style="width: 21%; height: 250px; float:left;margin-left:3%"></div>
+		<div id="main2" style="width: 24%; height: 250px; float:left;margin-left:3%"></div>
+		<div style="clear:both"></div>
+		<div style="position:absolute;top:350px;left:80px;color:#c4c4c4">
+			<!-- <span>今日需核实:{{allNum}}</span><br> -->
+			<!-- <span>实有人口 = 实际登记人口<span style="color:red">+</span>感知发现<span style="color:red">-</span>感知离开</span> -->
+		</div>
+		<div id="main3" style="width: 100%; height: 400px;"></div>
+	</div>
+
+	<!-- 人口信息 -->
+	<div ng-show="showTab.people">
+		<div class="">
+		<div class="form-group-level clearfix">
+			<label class="control-label pull-left">姓名</label>
+			<input type="text" class="form-control pull-left" ng-model="initParams.peopleName" placeholder="请输入姓名">
+		</div>
+		<div class="form-group-level clearfix">
+			<label class="control-label pull-left">性别</label>
+			<select class="pull-left" ng-model="initParams.gender">
+				<option value="">请选择</option>}
+				<option ng-repeat="x in sex" value="{{x.code}}">{{x.name}}</option>
+			</select>
+		</div>
+		<div class="form-group-level clearfix">
+			<label class="control-label pull-left">民族</label>
+			<input type="text" class="form-control pull-left" ng-model="initParams.nation" placeholder="请输入民族">
+		</div>
+		<div class="form-group-level clearfix">
+			<label class="control-label pull-left">证件号</label>
+			<input type="text" class="form-control pull-left" ng-model="initParams.credentialNo" placeholder="请输入证件号">
+		</div>
+		<div class="form-group-level clearfix">
+			<label class="control-label pull-left">电话</label>
+			<input type="text" class="form-control pull-left" ng-model="initParams.phoneNo" placeholder="请输入电话">
+		</div>
+		<div class="form-group-level clearfix">
+			<label class="control-label pull-left">居住地址</label>
+			<input type="text" class="form-control pull-left" ng-model="initParams.residenceAddress" placeholder="请输入居住地址">
+		</div><!--</br>-->
+		<div class="form-group-level clearfix">
+			<label class="control-label pull-left">人员类别</label>
+			<select class="pull-left" ng-model="initParams.peopleType">
+				<option value="">请选择</option>}
+				<option ng-repeat="x in peopleTypeArr" value="{{x.code}}">{{x.name}}</option>
+			</select>
+			<!-- <select class="pull-left" ng-model="initParams.peopleType" ng-options="x.code as x.name for x in peopleTypeArr">
+			</select> -->
+		</div>
+		<div class="form-group-level clearfix">
+			<label class="control-label pull-left">年龄段</label>
+			<input type="text" class="form-control pull-left" ng-model="initParams.ageStart" placeholder="请输入开始年龄">
+			<span class="pull-left">--</span>
+			<input type="text" class="form-control pull-left" ng-model="initParams.ageEnd" placeholder="请输入结束年龄">
+		</div>
+		
+		<div class="clearfix form-box-label">
+			<div id="factpeople" class="bgcolor form-group-level clearfix form-group-label pull-left">
+				<label class="control-label pull-left">人物标签</label>
+				<div class="pull-left" style="margin-left:20px;">
+					<span ng-repeat="item in peopleArrMap" class="label-bg" ng-class="{active:item.active}" ng-click="selectLabel(item)" ng-model="initParams.label">
+						<span id="{{$index}}" class="label-bg" ng-class="item.bg">{{item.name}}</span>
+					</span>
+				</div>
+				<!-- <label class="control-label pull-left">实有力量</label>
+				<div class="pull-left" style="margin-left:20px;">
+					<span class="label-bg louzuzhang-label">楼组长</span>
+					<span class="label-bg zhiyuanzhe-label">志愿者</span>
+				</div> -->
+			</div>
+			<button class="btn search-btn btn-blue pull-left" ng-click="factPeople1(1)">查询</button>
+		</div>
+		</div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>性别</th>
+						<th>民族</th>
+						<th>年龄</th>
+						<th>户籍类型</th>
+						<th>证件号</th>
+						<th>电话</th>
+						<th>人物标签</th>
+						<th>居住地址</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in factPeople">
+						<td>{{item.peopleName}}</td>
+						<td>{{item.gender}}</td>
+						<td>{{item.nation}}</td>
+						<td>{{item.age}}</td>
+						<td>{{getPeopleType(item.peopleType)}}</td>
+						<td ng-click="lalerPeopleFile(item.credentialNo)"><a>{{item.credentialNo}}</a></td>
+						<td>{{item.phoneNo}}</td>
+						<td>
+							<span class="label-bg" ng-class="items.bg" ng-repeat="items in item.labelArr">{{items.name}}</span>
+						</td>
+						<td>{{item.residenceAddress}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+	            <i class="icon-base icon-32 icon-table-empty"></i>
+	            <span class="empty-text">没有查询到符合条件的记录</span>
+	        </div>
+	        <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>   						
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+	        <pagination total-items="page1.totalRow"
+	                    ng-model="initParams.pageNumber"
+	                    max-size="3"
+	                    items-per-page="initParams.pageSize"
+	                    class="pagination-sm pull-right"
+	                    previous-text="上一页"
+	                    next-text="下一页"
+	                    first-text="首页"
+	                    last-text="末页"
+	                    ng-click="factPeople1()">
+	        </pagination>
+	    </div>
+	</div>
+
+
+	
+
+
+
+
+
+</div>
+
+
+

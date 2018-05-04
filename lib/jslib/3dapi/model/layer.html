@@ -1,0 +1,57 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>图层管理</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+    <script type='text/javascript' src='../jquery-1.9.1.min.js'></script>
+    <script type="text/javascript" src="../UnityObject2.js"></script>
+    <script type="text/javascript" src="../uzft.js"></script>
+    <script>
+        var swObj;
+        jQuery(function () {
+            var ls_width = $("html").width();
+            var ls_height = $("html").height();
+            //var unityUrl = "http://47.93.174.30/diting/diting.unity3d";
+            var unityUrl = "http://47.93.174.30/diting/diting.unity3d";
+            swObj = new uzft("unityPlayer", unityUrl, ls_width - 30, ls_height -40);
+            swObj.init();
+        });
+        //场景加载完成事件
+        function u_onInitFinish() {
+            var data = '[' +
+                '{"IP":"47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "building"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "dixing"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "daolu"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "lvhua"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "tree"},' +
+                '{"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "xiaopin"}' +
+                ']';
+            swObj.layer.addLayer(data);
+        }
+
+        //左键
+        function u_onLeftBtd(pVal) {
+        }
+        //右键
+        function u_onRightBtd(pVal) {
+        }
+        //控制图层
+        function controlLayerTest(paName,paState){
+
+            swObj.layer.controlLayer(paName,paState);
+        }
+    </script>
+<body>
+    <div >
+        影像<input type="checkbox" checked="checked" id="DEM-top" onclick="controlLayerTest(this.id,this.checked)"/>
+        建筑<input type="checkbox" checked="checked" id="building-top" onclick="controlLayerTest(this.id,this.checked)"/>
+        绿化<input type="checkbox" checked="checked" id="green-top" onclick="controlLayerTest(this.id,this.checked)"/>
+        道路<input type="checkbox" checked="checked" id="road-top" onclick="controlLayerTest(this.id,this.checked)"/>
+        其它<input type="checkbox" checked="checked" id="other-top" onclick="controlLayerTest(this.id,this.checked)"/>
+    </div>
+    <div id="unityPlayer">
+
+    </div>
+</body>
+</html>

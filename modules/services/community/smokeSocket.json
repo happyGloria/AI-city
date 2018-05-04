@@ -1,0 +1,28 @@
+{
+  "data": {
+    "lastPage": false,
+    "pageSize": 10,
+    "pageNumber": 1,
+    "list": [
+      {
+        "DeviceId": "388b4a67c82a69ee374699765d78de41_134709",
+        "deviceName": 1,
+        "pName": "无名氏",
+        "OpenedTime": "04: 30: 52",
+        "buildingName": "田林十二村30号",
+        "Mac": "",
+        "pAge": null,
+        "OpenType": 100201,
+        "VillageId": "b563329ea6924b0ab639a6405b73635d",
+        "pIdentityCard": "310230198401212919",
+        "pType": 0,
+        "villageName": "沁春园"
+      }
+    ],
+    "firstPage": true,
+    "totalRow": 53,
+    "totalPage": 6
+  },
+  "resultCode": "200",
+  "resultMessage": "请求成功"
+}

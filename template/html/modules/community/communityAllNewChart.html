@@ -1,0 +1,35 @@
+<style>
+	html{
+		min-width: 1366px;
+	}
+</style>
+<div class="morelayer secondLevel">
+	<div class="secondLevel-head" >
+		<div class="pull-left secondLevel-head-left"><span class="title">{{titleName}}</span></div>
+		<ul class="head-menu clearfix" ng-if="type === '5' || type === '7'">
+			<li class="head-menu-li" ng-class="{active: initType === '5'}" ng-click="switchMenu('5')">实有力量</li>
+			<li class="head-menu-li" ng-class="{active: initType === '7'}" ng-click="switchMenu('7')">实有装备</li>
+		</ul>
+		<div class="pull-right secondLevel-head-right" ng-if="type !==  '8'">
+			<i class="icon-house"></i>
+			<span class="title">{{villageName}}</span>
+		</div>
+	</div>
+	<!--实有力量-->
+	<div class="actuaStrong">
+		<div class="fact-company">
+			<div class="head-title">{{getTitle(type)}}统计</div>
+			<span class="unit-title">单位：{{YName}}</span>
+			<div class="statistics-content" ng-if="type !== '8'">
+				<div class="statistics-item" ng-repeat="item in chartdData"  ng-if="type !== '8'">
+					<span style="cursor: pointer;" class="item-num" ng-click="toNextPage(item)" ng-style="{'bottom':item.height+85+'px'}" title="{{item.num}}">{{item.num}}</span>
+					<div class="item-box" style="cursor: pointer;" ng-click="toNextPage(item)" ng-style="{'height':item.style*100+'%'}"></div>
+					<span class="item-name" title="{{item.name}}">{{item.name}}</span>
+				</div>
+			</div>
+			<div class="statistics-content" id="getTodayEventStatie" ng-if="type === '8'"></div>			
+		</div>
+		
+	</div>
+	
+</div>

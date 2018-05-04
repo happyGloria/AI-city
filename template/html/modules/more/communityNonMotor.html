@@ -1,0 +1,133 @@
+<div class="morelayer secondLevel">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">非机动车过车</span></div>
+		<div class="pull-right secondLevel-head-right">
+			<i class="icon-house"></i>
+			<span class="title ng-binding">{{villageName}}</span>
+		</div>
+		<!-- <ul class="head-menu clearfix">
+			<li class="head-menu-li active" ng-click="changeTab('openDoorRecord',true)" ng-class="{'active':showTab.openDoorRecord}">开门记录</li>
+			<li class="head-menu-li" ng-click="changeTab('deviceRecord')" ng-class="{'active':showTab.deviceRecord}">设备记录</li>
+		</ul> -->
+	</div>
+	<div class="population-per">
+		<div class="" style="margin-bottom:14px;">
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">身份证</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.credentialNo" placeholder="请输入身份证">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">名字</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.peopleName" placeholder="请输入名字">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">车牌号</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.plateNumber" placeholder="请输入车牌号">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">进出</label>
+				<select class="pull-left" ng-model="initParams.inOutType">
+					<option value="">请选择</option>
+					<option ng-repeat="x in inOutArr" value="{{x.code}}">{{x.name}}</option>
+				</select>
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">时间</label>
+		        <div class="datetimepicker pull-left">
+		        	<input type="text" id="startTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.startTime" placeholder="开始时间">
+		        </div>
+		        <div class="pull-left">--</div>
+			    <div class="datetimepicker pull-left">
+		        	<input type="text" id="endTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.endTime" placeholder="结束时间">
+		        </div>
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">关卡</label>
+				<select class="pull-left" ng-model="initParams.tollgateName">
+				`	<option value="">请选择</option>
+					<option ng-repeat="x in ChannelInOutTypeArr" value="{{x.tollgateID}}">{{x.name}}</option>
+				</select>
+			</div>			
+			<button class="btn search-btn btn-blue margin-left-10" ng-click="captrueCarList(1)">查询</button>
+		</div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="10%" />
+					<col width="15%" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="15%" />
+					<col width="10%" />
+					<!-- <col width="10%" /> -->
+					<col width="15%" />
+					<col width="15%" />
+				</colgroup>
+				<thead>
+					<tr>
+					    <th>名字</th>
+						<th>身份证</th>
+						<th>车牌号</th>
+						<th>进出</th>
+						<th>时间</th>
+						<th>关卡</th>
+						<!-- <th>车辆地址</th> -->
+						<th>通行抓拍</th>
+						<th>车辆照片</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in nonmotorListData track by $index">
+						<td>{{item.name}}</td>
+						<td>{{item.personId}}</td>
+						<td>{{item.plateNumber}}</td>
+						<td ng-if="item.inOutType == 1">进</td>
+						<td ng-if="item.inOutType == 2">出</td>
+						<td>{{item.inOutTime}}</td>
+						<td>{{item.tollgateName}}</td>
+						<!-- <div class="img-box" style="width:90px;height: 120px;position:relative;overflow: hidden;">
+                           <img src="{{item.platePic | transferPic}}" style="width: auto;height: 100%;position: absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform: translate(-50%,-50%);"/>
+						</div> -->
+<!-- 						<td><img src="{{item.platePic | transferPic}}" style="width: 100%"></td>
+ -->						<!-- <td>{{item.address}}</td> -->
+                        <td>   
+                        	<div class="img-box" style="width: 50%;margin:0 auto	 ">
+	                           <img src="{{item.platePic | transferPic}}" style="width: 100%" />
+							</div>
+					    </td>                     
+						<td>
+							<!-- <span class="span-icon">
+								<i class="base-icon icon-photo" ng-show="item.vehiclePic != ''" ng-click="doorImgClick(item.vehiclePic)"></i>
+							</span> -->
+							<div class="img-box" style="width: 38%;margin:0 auto	 ">
+	                           <img src="{{item.vehiclePic | transferPic}}" style="width: 100%" />
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>
+            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+            <pagination total-items="page1.totalRow"
+                        ng-model="initParams.pageNumber"
+                        max-size="3"
+                        items-per-page="initParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="captrueCarList()">
+            </pagination>
+        </div>
+	</div>
+</div>
+
+

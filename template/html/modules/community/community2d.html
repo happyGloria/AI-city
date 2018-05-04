@@ -1,0 +1,110 @@
+<div class="index-container">
+	<div class="header"> 
+		<div class="header-top">
+			<div class="blue-bg"></div>
+			<div class="line-bg"></div>
+		</div>
+		<div class="header-center clearfix">
+			<div class="big-name pull-left">奉贤智能安防系统</div>
+			<div class="housing-name pull-left">{{communityName}}</div>
+			<span class="line-bg"></span>
+		</div>
+	</div>
+	<div class="main-content">
+		<div class="left-bg"></div>
+		<div class="left-con layui-anim layui-anim-upbit">
+			<h4 class="title">一标六实</h4>
+			<div class="tag-list">
+				<div class="tag-list-box population-con">
+					<div class="title-bg"></div>
+					<div class="tag-list-con">
+						<div class="top clearfix" ng-click="openList('/#/index/factpeople/'+villageCode)">
+							<span class="name pull-left">实有人口</span>
+							<span class="num pull-right">{{sixEntityCountData.peopleCount}}</span>
+						</div>
+ 					</div>							
+				</div>
+				<div class="tag-list-box house-con">
+					<div class="title-bg"></div>
+					<div class="tag-list-con">
+						<div class="top clearfix" ng-click="openList('/#/index/factHouse/'+villageCode)">
+							<span class="name pull-left">实有房屋</span>
+							<span class="num pull-right">{{sixEntityCountData.buildingCount}}</span>
+						</div>
+					</div>							
+				</div>
+				<div class="tag-list-box unit-con">
+					<div class="title-bg"></div>
+					<div class="tag-list-con">
+						<div class="top clearfix" ng-click="openList('/#/index/factCompany/'+villageCode)">
+							<span class="name pull-left">实有单位</span>
+							<span class="num pull-right">{{ sixEntityCountData.realCompany }}</span>
+						</div>
+					</div>							
+				</div>
+				<div class="tag-list-box facility-con">
+					<div class="title-bg"></div>
+					<div class="tag-list-con">
+						<div class="top clearfix" ng-click="openList('/#/index/securityPower/1/'+villageCode)">
+							<span class="name pull-left">实有安防设施</span>
+							<span class="num pull-right">{{ sixEntityCountData.securityEquipmentCount }}</span>
+						</div>
+					</div>							
+				</div>
+				<div class="tag-list-box security-con">
+					<div class="title-bg"></div>
+					<div class="tag-list-con">
+						<div class="top clearfix" ng-click="openList('/#/index/securityPower/0/'+villageCode)">
+							<span class="name pull-left">实有力量与装备</span>
+							<span class="num pull-right">{{ sixEntityCountData.realPowerEquipmentCount }}</span>
+						</div>
+					</div>							
+				</div>
+				<div class="tag-list-box incident-con">
+					<div class="title-bg"></div>
+					<div class="tag-list-con">
+						<div class="top clearfix" ng-click="openList('/#/index/factEvent/'+villageCode)">
+							<span class="name pull-left">实有警情事件</span>
+							<span class="num pull-right">{{ sixEntityCountData.policeEventCount }}</span>
+						</div>
+					</div>							
+				</div>
+			</div>
+		</div>
+		<!--右侧内容 start-->
+		<div ng-include="'/template/html/modules/community/communityRightModule.html'" ng-controller="templateController"></div>
+		<!--右侧内容 end-->
+	</div>
+	<div class="footer"></div>
+	<div class="layerSelect1">
+	    <div class="layerSelect-title">图层</div>
+	    <ul class="layerSelect-list clearfix">
+	    	<li class="layerSelect-li" ng-repeat="layer in layerList" ng-class="{active: layer.isChecked == 'true'}" ng-mouseenter="layerMouse(layer,'enter')"  ng-mouseleave="layerMouse(layer,'leave')"   style="cursor: pointer;position: relative;">
+	    		<div class="layerSelect-li-box">
+	    			<span class="checkbox" ng-click="selectLayer(layer)" ng-class="layer.isChecked==0?'':layer.isChecked==1?'checkPart':'checkAll'"></span>
+	    			<span class="text" ng-click="selectLayer(layer)">{{layer.name}}</span>
+	    		</div>		    		    		
+	    		<ul class="layerSelect-li-list" ng-show="layer.isMouseOn=='true' && layer.hasChild=='true'" style="bottom: 0.4rem;">
+	            	<li class="layerSelect-li-list-li"  ng-repeat="layerChild in layer.child" ng-class="{active: layer.isChecked == 'true'}" ng-mouseenter="layerMouse(layerChild,'enter')"  ng-mouseleave="layerMouse(layerChild,'leave')"   style="cursor: pointer;">
+	            		<div class="layerSelect-li-list-li-box">
+	            			<!--checkPart-->
+	            			<span class="checkbox" ng-class="layerChild.isChecked==0?'':layerChild.isChecked==1?'checkPart':'checkAll'" ng-click="selectLayer(layerChild)"></span>
+		            		<span class="text" ng-click="selectLayer(layerChild)">{{layerChild.name}}</span>
+		            		<i class="arrow-icon" ng-if="layerChild.hasChild=='true'"></i>
+	            		</div>	
+						<ul class="layerSelect-li-list-last" ng-show="layerChild.isMouseOn=='true' && layerChild.hasChild=='true'" style="margin-left: -0.1rem;">
+	            			<li class="layerSelect-li-list-li-last" ng-repeat="layerChildChild in layerChild.child"   style="cursor: pointer;">
+								<span class="checkbox" ng-class="layerChildChild.isChecked==0?'':layerChildChild.isChecked==1?'checkPart':'checkAll'" ng-click="selectLayer(layerChildChild)"></span>
+			            		<span class="text" ng-click="selectLayer(layerChildChild)">{{layerChildChild.name}}</span>
+			            	</li>
+	            		</ul>			
+	            	</li>
+	            </ul>
+	    	</li>
+	    </ul>
+	</div>
+</div>
+
+<div id="2dMap" style="width: 100%; height: 100%"></div>
+
+

@@ -1,0 +1,124 @@
+<div class="form-top">
+	<label class="control-label">角色名称：</label>
+	<input type="text" class="form-control" ng-model="roleListReq2.roleSearchName" placeholder="请输入角色名称">
+	<span v-if="">{{roleSearchName=roleSearchName2}}</span>
+	<div class="form-group" ng-click="queryRoleName()">
+		<button type="button" class="btn btn-icon-blue">
+			            <i class="icon-base icon-24 icon-btn-query"></i>
+			            <span class="btn-icon-text">查询</span>
+		</button>
+	</div>
+</div>
+<div class="form-bottom">
+	<div class="table-top btn-box">
+		<button type="button" class="btn btn-icon-blue" ng-click="createRole()">
+            <i class="icon-base icon-24 icon-btn-add"></i>
+            <span class="btn-icon-text">新增角色</span>
+        </button>
+	</div>
+	<table class="table table-base waterprint">
+		<colgroup>
+			<col width="25%" />
+			<col width="25%" />
+			<col width="25%" />
+			<col width="25%" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>角色名称</th>
+				<th>备注</th>
+				<th>删除标识</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in roleList">
+				<td>{{item.name}}</td>
+				<td>{{item.remark}}</td>
+				<td>{{item.deleteFlag==0?'未删除':'删除'}}</td>
+				<td class="operatePer">
+                       <span class="result-findBtn table-icon icon-editor" ng-click="updateRole(item)" title="修改"></span>
+                       <span class="result-findBtn table-icon icon-jurin-seting" ng-click="settingRole(item.id)" title="权限"></span>
+                       <span class="result-findBtn table-icon icon-delect" ng-click="delRole(item.id)" title="删除 "></span>
+                 </td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="table-empty" ng-if="roleListReq.totalNum==0 && !loader">
+		<i class="icon-base icon-32 icon-table-empty"></i>
+		<span class="empty-text">没有查询到符合条件的记录</span>
+	</div>
+	<div ng-if="loader" style="position: absolute;top:30%;left:50%">
+		<div class="ball-clip-rotate"></div>
+	</div>
+</div>
+<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="roleListReq.totalNum > 0">
+	<pagination total-items="roleListReq.totalNum" ng-model="roleListReq.currentPage" max-size="3" items-per-page="roleListReq.pageSize" class="pagination-sm pull-right" previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页" ng-click="querylistRole()">
+	</pagination>
+</div>
+
+<!--新增弹出窗-->
+<script id="layer-role-create" type="ng/template">
+	<form class="layer" style="display: block">
+		<div class="layer-form-group">
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">角色名称：</label>
+				<input type="text" id="addRoleCode" class="form-control " placeholder="请输入角色名称" ng-model="newRole.name">
+			</div>
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">备注：</label>
+				<textarea ng-model="newRole.remark"></textarea>
+			</div>
+		</div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="createRoleTrue()">
+                <span class="btn-icon-text" >确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="createRoleCancel()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+</script>
+
+<!--修改弹出窗-->
+<script id="layer-role-upt" type="ng/template">
+	<form class="layer" style="display: block">
+		<div class="layer-form-group">
+			<div class="form-group">
+				<label class="control-label">角色名称：</label>
+				<input type="text" id="uptRoleName" class="form-control" placeholder="" ng-model="oldRole.name">
+			</div>
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">备注：</label>
+				<textarea ng-model="oldRole.remark"></textarea>
+			</div>
+		</div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="updateRoleTrue()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="updateRoleCancel()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+</script>
+
+<!--权限设置弹出框-->
+<script id="layer-role-setting" type="ng/template">
+	<form class="layer" style="display: block">
+		<div id="settingTree" class="ztree"></div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="settingRoleTrue()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="settingRoleCancel()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+</script>

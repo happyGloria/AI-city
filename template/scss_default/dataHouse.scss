@@ -1,0 +1,396 @@
+.commonStyle {
+  background-color: #ff8533;
+  color: whitesmoke;
+}
+
+
+.heathStyle {
+  color: #0baafc;
+}
+
+.trStyle {
+  background-color: rgba(244,244,244,.5);
+}
+
+.x.axis path {
+  display: none;
+}
+svg {
+  g {
+    font-size: 14px;
+    font-family: "Microsoft Yahei";
+    .piePath0 {
+      fill: #448aca;
+    }
+    .piePath1 {
+      fill: #ff8533;
+    }
+    .piePath2 {
+      fill: #98ba29;
+    }
+    .piePath3 {
+      fill: #07b6ff;
+    }
+
+    .x.axis {
+      g {
+        fill: #666666;
+      }
+    }
+    .bar {
+      text {
+        &:last-child {
+          fill: #999999;
+        }
+      }
+    }
+  }
+}
+
+.barStart { stop-color: #2dc1ff; }
+.barEnd { stop-color: #07b6ff; }
+
+.dataNumAreaBg {
+  background-color: #eb6100;
+}
+
+.dataNumAreaDefaultBg {
+  background-color: #dcdcdc;
+}
+
+.realCountColor {
+  color: #eb6100;
+}
+
+.dataTipsName {
+  color: #666666;
+  font-size: 14px;
+}
+
+.dataTipsValue {
+  color: #ff6900;
+  font-size: 14px;
+}
+
+.resourceTable {
+  width: 98%;
+  tr{
+    background-color: rgba(233,233,233,.5);
+    &.trStyle{
+      background-color: rgba(244,244,244,.5);
+      &:first-child{
+        background-color: #f4f4f4;
+      }
+    }
+    &.active{
+      background-color: rgba(147, 213, 247, 0.5);
+    }
+    //&:hover{
+    //  background-color: rgba(147, 213, 247, 0.5);
+    //}
+  }
+  tr:first-child {
+    font-weight: bolder;
+    td {
+      font-size: 14px;
+      color: #707070;
+    }
+  }
+  td {
+    padding-left: 20px;
+    height: 35px;
+    font-size: 12px;
+    *color: #66708b;
+    border: 1px solid #C9C5C5;
+    border-left: 0px;
+    border-right: 0px;
+    &:first-child {
+      border-left: 1px solid #C9C5C5;
+      width: 45%;
+    }
+    &:last-child {
+      width: 25%;
+      padding-left: 0px;
+      text-align: center;
+      border-right: 1px solid #C9C5C5;
+      &:hover {
+        cursor: pointer;
+        color: #0baafc;
+      }
+    }
+  }
+}
+
+.healthTips {
+  padding-left: 10px;
+  label {
+    .levelTitle {
+      text-align:center;
+      font-size: 14px;
+      width: 65px;
+    }
+    .levelArea {
+      margin: 3px 0 0 15px;
+      width: 35px;
+      height: 3px;
+    }
+    .healthValue {
+      width: 75px;
+      font-size: 18px;
+      padding-left: 15px;
+    }
+  }
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border: 8px solid;
+    border-color: transparent transparent #f2f2f2 transparent;
+    position: absolute;
+    top: -15px;
+    left: 150px;
+  }
+}
+
+.healthMsgTips {
+  padding-left: 10px;
+  label {
+    .healthContent {
+      font-size: 12px;
+      width: 75px;
+      text-align: center;
+      color: #60768f;
+    }
+    .levelRange {
+      text-align:center;
+      font-size: 12px;
+      width: 65px;
+      color: #51647a;
+    }
+  }
+}
+
+.dataHouse {
+  font-family: "Microsoft Yahei";
+  width: 100%;
+  background: #fff;
+  height: 945px;
+  .odometer-auto-theme {
+    font-size: 60px;
+    color: #00b4ff;
+    font-weight: bold;
+    font-family: Arial;
+  }
+  .dataHealth {
+    padding-top: 40px;
+    width: 100%;
+    .resourceHouse {
+      padding-top: 0.5%;
+      font-size: 25px;
+      text-align: center;
+      color: #666666;
+    }
+    .showType {
+      padding-top: 0.5%;
+      text-align: center;
+      div {
+        color: #fff1eb;
+        font-size: 14px;
+        text-align: center;
+        width: 100px;
+        height: 30px;
+        line-height: 28px;
+        display: inline-block;
+        &:hover {
+          cursor: pointer;
+        }
+        &:first-child {
+          border-radius: 15px 0 0 15px;
+        }
+        &:last-child {
+          margin: 0 0 0 -4px;
+          border-radius: 0 15px 15px 0;
+        }
+      }
+    }
+    .topMainArea {
+      width: 70%;
+      margin: 0 auto;
+      .pieMainArea {
+        width: 65%;
+        display: inline-block;
+        padding: 35px 0 0 20px;
+        color: #86a4c6;
+        .dataTitleArea {
+          width: 53%;
+          height: 25px;
+          border-bottom: 1px solid #bfbfbf;
+          color: #00b4ff;
+          label {
+            &:first-child {
+              float: left;
+            }
+            &:last-child {
+              float: right;
+            }
+          }
+        }
+        .totalResources {
+          height: 80px;
+          margin-left: -10px;
+          margin-top: -20px;
+          font-size: 14px;
+        }
+        .pieTitle {
+          margin-top: 30px;
+          width: 100%;
+          color: #dcdcdc;
+          li {
+            margin-bottom: 0;
+            margin-right: 17px;
+            font-size: 14px;
+            font-weight: bold;
+            &.dataA {
+              color: #448aca;
+            }
+            &.dataC {
+              color: #ff8533;
+            }
+            &.dataD {
+              color: #98ba29;
+            }
+            &.dataE {
+              color: #07b6ff;
+            }
+          }
+          .realDataCount {
+            padding-left: 10px;
+          }
+          .dataNumArea{
+            height: 15px;
+            *background-color: #0f4362;
+          }
+        }
+      }
+      .pieStyle {
+        display: inline-block;
+        width: 30%;
+        div {
+          margin: 0 auto;
+        }
+        #dataPieArea {
+          div {
+            width: 100%;
+            text-align: center;
+          }
+          .categoryName {
+            width: 30%;
+            margin-top: 15px;
+            color: #7590af;
+          }
+          .categoryValue {
+            color: #ff8533;
+            font-size: 16px;
+            font-weight: bolder;
+          }
+          .cycleArea {
+            margin-top: -40px;
+            label {
+              width: 25%;
+              cursor: pointer;
+              .leftButton {
+                float: left;
+                width: 27px;
+                height: 29px;
+                background: url('../../template/img/dataHouse/pic.png') no-repeat;
+                background-position: -270px -413px;
+                &:hover {
+                  background-position: -235px -413px;
+                }
+              }
+              .rightButton {
+                float: right;
+                width: 27px;
+                height: 29px;
+                background: url('../../template/img/dataHouse/pic.png') no-repeat;
+                background-position: -161px -413px;
+                &:hover {
+                  background-position: -196px -413px;
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+    .bottomMainArea {
+      width: 70%;
+      margin: 75px auto;
+      .barLeftPage {
+        position: absolute;
+        left: 13%;
+        top: 675px;
+        cursor: pointer;
+        width: 27px;
+        height: 29px;
+        background: url('../../template/img/dataHouse/pic.png') no-repeat;
+        background-position: -270px -413px;
+        &:hover {
+          background-position: -235px -413px;
+        }
+      }
+
+      .barRightPage {
+        position: absolute;
+        left: 86%;
+        top: 675px;
+        cursor: pointer;
+        width: 27px;
+        height: 29px;
+        background: url('../../template/img/dataHouse/pic.png') no-repeat;
+        background-position: -161px -413px;
+        &:hover {
+          background-position: -196px -413px;
+        }
+      }
+    }
+    .tableStyle {
+      width: 91%;
+      padding: 1% 0 0 5%;
+      height: 630px;
+      label:first-child {
+        float: left;
+        width: 60%;
+        .resourceListArea {
+          min-height: 420px;
+        }
+      }
+      label:last-child {
+        width: 35%;
+        float: right;
+        div {
+          overflow-y: auto;
+          height: 385px;
+        }
+      }
+      .resourcePageArea {
+        width: 59%;
+      }
+    }
+    .pieTabEmpty {
+      color: #999;
+      width: 500px;
+      background-color: #F4F4F4;
+      border: 1px solid #EEE0D3;
+      border-radius: 15px;
+      height: 80px;
+      line-height: 80px;
+      position: absolute;
+      top: 180px;
+      left: 50%;
+      margin-left: -250px;
+      text-align: center;
+    }
+  }
+}

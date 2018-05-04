@@ -1,0 +1,1468 @@
+<div class="morelayer secondLevel warning-incident" id="communityPower">
+	<div class="contrast-con clearfix" style="height:100%;padding: 20px 10px 20px;display:none;width:100%" id="realPowerPhoto">
+		<div class="left-photo" style="width:100%;height:100%">
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			      <div class="swiper-slide img-box" ng-repeat="item in captureFacePic">
+				      <div style="width:inherit;height:inherit;text-align:center;">
+				      	<img ng-src="{{item.platePic | transferPic}}" style="display: block !important;">
+						<div class="span-text">
+							<span style="display:block;color:#fff">时间:{{item.inOutTime}}</span>
+							<span ng-show="item.cameraName" style="display:block;color:#fff">地点:{{item.cameraName}}</span>
+							<!--panoramaImage-->
+						</div>
+				      </div>
+			      </div>
+			    </div>
+			    <!-- Add Pagination -->
+			    <div class="swiper-pagination"></div>
+			    <!-- Add Arrows -->
+			    <div class="swiper-button-next"></div>
+			    <div class="swiper-button-prev"></div>
+		  	</div>
+			<!-- <span class="span-text">抓拍人脸</span> -->
+		</div>
+	</div>
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">实有警情事件</span></div>
+		<ul class="head-menu clearfix">
+			<li class="head-menu-li" ng-click="changeTab('monitor')" ng-class="{'active':showTab.monitor}">布控告警</li>
+			<li class="head-menu-li" ng-click="changeTab('case')" ng-class="{'active':showTab.case}">接报事件</li>
+			<li class="head-menu-li" ng-click="changeTab('people')" ng-class="{'active':showTab.people}">人口感知</li>
+			<li class="head-menu-li" ng-click="changeTab('car')" ng-class="{'active':showTab.car}">车辆感知</li>
+			<li class="head-menu-li" ng-click="changeTab('notice')" ng-class="{'active':showTab.notice}">告警感知</li>
+		</ul>
+		<div class="pull-right secondLevel-head-right">
+			<i class="icon-house"></i>
+			<span class="title">{{villageName}}</span>
+		</div>
+	</div>
+	<!-- monitor布控告警 -->
+	<div ng-show="showTab.monitor">
+		<div class="car-find">			
+			<div class="find-list-box">	
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">处理状态</label>
+					<select ng-model="monitorParams.eventDealState" class="pull-left" id="findCarSelectVillage">
+						<option value="" selected>请选择</option>
+						<option ng-repeat="x in processState" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>				
+				<button class="btn btn-blue margin-left-10" ng-click="queryMonitorList(1)">查询</button>			
+			</div>
+			<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="8%" />
+					<col width="8%" />
+					<col width="8%" />
+					<col width="12%" />
+					<col width="10%" />
+					<col width="12%" />
+					<col width="6%" />
+					<col width="12%" />
+					<col width="10%" />
+					<col width="14%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>抓拍人脸</th>
+						<th>相似度</th>
+						<th>比中人脸</th>
+						<th>抓拍时间</th>
+						<th>小区</th>
+						<th>抓拍地点</th>
+						<th>姓名</th>
+						<th>身份证号</th>
+						<th>标签</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in monitorData track by $index">
+						<td><img style="width: 100%" src="{{item.faceImageBase64}}"></td>						
+						<td>{{item.similarity}}%</td>						
+						<td><img style="width: 100%" src="{{item.targetFaceImageBase64}}"</td>						
+						<td>{{item.captureTime}}</td>						
+						<td>{{item.villageName}}</td>						
+						<td>{{item.lastPlace}}</td>						
+						<td>{{item.name}}</td>						
+						<td>{{item.personId}}</td>						
+						<td>{{item.labels}}</td>						
+						<td class="state-td">
+							<div ng-if="item.dealState == '0'">
+								<span class="colorRed">待分配</span>
+								<span class="td-dispose-btn" ng-click="policeDeal(item,$index)">派单</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '61'">
+								<span class="colorRed">待接警</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '62'">
+								<span class="colorRed">已接警</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '63'">
+								<span class="colorRed">到场</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '64'">
+								<span class="colorRed">处理中</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '65'">
+								<span class="colorGreen">已完成</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index,'monitor')">查看</span>
+							</div>
+						</td>						
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="monitorParamsPage.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>
+            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="monitorParamsPage.totalRow > 0">
+            <pagination total-items="monitorParamsPage.totalRow"
+                        ng-model="monitorParams.pageNumber"
+                        max-size="3"
+                        items-per-page="monitorParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="queryMonitorList()">
+            </pagination>
+        </div>
+		</div>
+	</div>
+	<!--start人口感知-->
+	<div ng-show="showTab.people" class="population-per" style="height:inherit">
+		<iframe frameborder="0" width=100% scrolling="yes" height=100% id="yituIframe"></iframe>
+	</div>
+	<!--end人口感知-->
+
+	<!--start接报事件-->
+	<div ng-show="showTab.case">
+		<ul class="menu-child clearfix">
+			<li class="menu-li-child" ng-click="changeChildTab('warning')" ng-class="{'active':showChildTab.warning}">110警情</li>
+			<li class="menu-li-child" ng-click="changeChildTab('receivedCase')" ng-class="{'active':showChildTab.receivedCase}">案件接报</li>
+		</ul>
+		<!--start110警情-->
+		<div ng-show="showChildTab.warning">
+			<div class="" style="margin-bottom:14px;">
+					<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+						<label class="control-label pull-left">小区</label>
+						<select ng-model="warningParams.addressName" class="pull-left" ng-change="changeCode(warningParams.addressName)">
+							<option value="">请选择</option>
+							<option ng-repeat="x in villageNameMap" value="{{x.addressName}}">{{x.name}}</option>
+						</select>
+					</div>
+					<div class="form-group-level clearfix">
+						<label class="control-label pull-left">案件编号</label>
+						<input type="text" class="form-control pull-left" ng-model="warningParams.caseId" placeholder="请输入案件编号">
+					</div>
+					<div class="form-group-level clearfix">
+						<label class="control-label pull-left">报警时间</label>
+				        <div class="datetimepicker pull-left">
+				        	<input type="text" id="warningStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="warningParams.inboundTimeStart" placeholder="开始时间">
+				        </div>
+				        <div class="pull-left">--</div>
+				        <div class="datetimepicker">
+				        	<input type="text" id="warningEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="warningParams.inboundTimeEnd" placeholder="结束时间">
+				        </div>
+					</div>
+					<div class="form-group-level clearfix">
+						<label class="control-label pull-left">报警手机号码</label>
+						<input type="text" class="form-control pull-left" ng-model="warningParams.calleeNo" placeholder="请输入报警手机号码">
+					</div>
+					<div class="form-group-level clearfix">
+						<label class="control-label pull-left">报警人姓名</label>
+						<input type="text" class="form-control pull-left" name="" ng-model="warningParams.callerName" placeholder="请输入报警人姓名">
+					</div>
+					<div class="form-group-level clearfix">
+						<label class="control-label pull-left">案发地址</label>
+						<input type="text" class="form-control pull-left" name="" ng-model="warningParams.caseAddress" placeholder="请输入案发地址">
+					</div>
+					<div class="form-group-level clearfix">
+						<label class="control-label pull-left">案件描述</label>
+						<input type="text" class="form-control pull-left" name="" ng-model="warningParams.caseDesc" placeholder="请输入案件描述">
+					</div>
+					<div class="form-group-level clearfix">
+						<label class="control-label pull-left">状态</label>
+						<select ng-model="warningParams.eventDealState" class="pull-left">
+							<option value="">请选择</option>
+							<option ng-repeat="x in stateMap" value="{{x.code}}">{{x.name}}</option>
+						</select>
+					</div>
+					<button type="button" class="btn btn-blue margin-left-10" ng-click="queryWarnList(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="15%" />
+						<col width="10%" />
+						<col width="10%" />
+						<col width="10%" />
+						<col width="15%" />
+						<col width="20%" />
+						<col width="20%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>案件编号</th>
+							<th>报警时间</th>
+							<th>报警手机号码</th>
+							<th>报警人姓名</th>
+							<th>案发地址</th>
+							<th>案件描述</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in warningListData track by $index" ng-class="{'error':item.dealState == '0'}">
+							<td>{{item.caseId}}</td>
+							<td>{{item.inboundTime}}</td>
+							<td>{{item.calleeNo}}</td>
+							<td title="{{item.callerName}}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{item.callerName}}</td>
+							<td title="{{item.caseAddress}}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{item.caseAddress}}</td>
+							<td title="{{item.caseDesc}}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{item.caseDesc}}</td>
+							<td class="state-td">
+								<div ng-if="item.dealState == '0'">
+									<span class="colorRed">待分配</span>
+									<span class="td-dispose-btn" ng-click="policeDeal(item,$index)">派单</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div>
+								<div ng-if="item.dealState == '61'">
+									<span class="colorRed">待接警</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div>
+								<div ng-if="item.dealState == '62'">
+									<span class="colorRed">已接警</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div>
+								<!-- <div ng-if="item.dealState == '63'">
+									<span class="colorRed">到场</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div> -->
+								<div ng-if="item.dealState == '64' || item.dealState == '63'">
+									<span class="colorRed">处理中</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div>
+								<div ng-if="item.dealState == '65'">
+									<span class="colorGreen">已完成</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="warningPage.totalRow==0 && !loader">
+                    <i class="icon-base icon-32 icon-table-empty"></i>
+                    <span class="empty-text">没有查询到符合条件的记录</span>
+                </div>
+                <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>   						
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="warningPage.totalRow > 0">
+                <pagination total-items="warningPage.totalRow"
+                            ng-model="warningParams.pageNumber"
+                            max-size="3"
+                            items-per-page="warningParams.pageSize"
+                            class="pagination-sm pull-right"
+                            previous-text="上一页"
+                            next-text="下一页"
+                            first-text="首页"
+                            last-text="末页"
+                            ng-click="queryWarnList()">
+                </pagination>
+            </div>
+		</div>
+		<!--end110警情-->
+
+		<!--start案件接报-->
+		
+		<div ng-show="showChildTab.receivedCase">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+					<label class="control-label pull-left">小区</label>
+					<select ng-model="receivedCaseParams.villageCode" class="pull-left">
+						<option value="">请选择</option>
+						<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警时间</label>
+					<div class="datetimepicker pull-left">
+			        	<input type="text" id="receivedCaseStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="receivedCaseParams.startTime">
+			        </div>
+			        <div class="pull-left">--</div>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="receivedCaseEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="receivedCaseParams.endTime">
+			        </div>
+				</div>
+			    <div class="form-group-level clearfix">
+			    	<label class="control-label pull-left">报警事由</label>
+			    	<input type="text" class="form-control pull-left" ng-model="receivedCaseParams.bjsymc" placeholder="请输入报警事由">
+			    </div>   
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">发生区域</label>
+					<input type="text" class="form-control pull-left" ng-model="receivedCaseParams.fsddqc" placeholder="请输入发生区域">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警形式</label>
+					<input type="text" class="form-control pull-left" ng-model="receivedCaseParams.bjxsmc" placeholder="请输入报警形式">
+				</div>	
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警分类</label>
+					<input type="text" class="form-control pull-left" ng-model="receivedCaseParams.bjflmc" placeholder="请输入报警分类">
+				</div>
+				<button type="button" class="btn btn-blue margin-left-10" ng-click="receivedCaseList(1)">查询</button>			
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="20%" />
+						<col width="10%" />
+						<col width="10%" />
+						<col width="10%" />
+						<col width="20%" />
+						<col width="15%" />
+						<col width="15%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>报警时间</th>
+							<th>报警事由</th>
+							<th>发生区域</th>
+							<th>报警形式</th>
+							<th>报警分类</th>
+							<th>案件描述</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in receivedCaseData track by $index">
+							<td>{{item.jbfxsj}}</td>
+							<td>{{item.bjsymc}}</td>
+							<td>{{item.fsddqc}}</td>
+							<td>{{item.bjxsmc}}</td>
+							<td>{{item.bjflmc}}</td>
+							<td title="{{item.jyqkms}}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{item.jyqkms}}</td>
+							<td class="state-td">
+								<div ng-if="item.dealState == '0'">
+									<span class="colorRed">未处理</span>
+									<span class="td-dispose-btn" ng-click="clickUntreated(item,$index)">处理</span>
+								</div>
+								<div ng-if="item.dealState != '0'">
+									<span class="colorGreen" ng-if="item.dealState == '1'">有效</span>
+									<span class="colorGray" ng-if="item.dealState == '2'">无效</span>
+									<span class="td-look-btn" ng-click="clickUntreated(item,$index)">查看</span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="receivedCasePage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div>
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>   						
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="receivedCasePage.totalRow > 0">
+                <pagination total-items="receivedCasePage.totalRow"
+                            ng-model="receivedCaseParams.pageNumber"
+                            max-size="3"
+                            items-per-page="receivedCaseParams.pageSize"
+                            class="pagination-sm pull-right"
+                            previous-text="上一页"
+                            next-text="下一页"
+                            first-text="首页"
+                            last-text="末页"
+                            ng-click="receivedCaseList()">
+                </pagination>
+            </div>
+		</div>
+
+		<!--end案件接报-->
+	</div>
+	<!--end接报事件-->
+	
+	<!--start车辆感知-->
+	<div ng-show="showTab.car">
+		<ul class="menu-child clearfix">
+			<li class="menu-li-child" ng-click="changeChildTab('outCarStay')" ng-class="{'active':showChildTab.outCarStay}">外来车辆滞留</li>
+			<li class="menu-li-child" ng-click="changeChildTab('carSenseFind')" ng-class="{'active':showChildTab.carSenseFind}">车辆感知发现</li>
+			<li class="menu-li-child" ng-click="changeChildTab('carSenseLeave')" ng-class="{'active':showChildTab.carSenseLeave}">车辆感知离开</li>		
+		</ul>
+		<!--start外来车辆滞留-->		
+		<div ng-show="showChildTab.outCarStay">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+					<label class="control-label pull-left">小区</label>
+					<select ng-model="initParams.villageCode" class="pull-left">
+						<option value="">请选择</option>
+						<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">车牌号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="initParams.plateNumber" placeholder="请输入车牌号">
+				</div>
+			    <div class="form-group-level clearfix">
+			    	<label class="control-label pull-left">时间</label>
+			        <!-- <div class="datetimepicker pull-left">
+			        	<input type="text" id="startTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.startTime" placeholder="开始时间">
+			        </div>
+			        <div class="pull-left">--</div> -->
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="endTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.endTime" placeholder="结束时间">
+			        </div>
+			    </div>   					
+				<button class="btn btn-blue margin-left-10" ng-click="captrueCarList(1)">查询</button>
+				</div>
+				<div class="form-bottom">				
+					<table class="table table-base waterprint">
+						<colgroup>
+							<col width="20%" />
+							<col width="20%" />
+							<col width="20%" />
+							<col width="20%" />
+							<col width="20%" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>车牌号码</th>
+								<th>进出</th>
+								<th>最新过车时间</th>
+								<th>车辆照片</th>
+								<th>状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat = "item in listData track by $index">
+								<td>{{item.plateNumber}}</td>
+								<td ng-if="item.inOutType == 1">进</td>
+								<td ng-if="item.inOutType == 2">出</td>
+								<td>{{item.inOutTime}}</td>
+								<!-- <td class="td-photo">
+									<div class="img-box">
+										<img src="{{item.platePic | transferPic}}" />
+									</div>
+									<div class="big-img">
+										<div class="big-img-box">
+											<img src="{{item.platePic | transferPic}}" />
+										</div>
+									</div>
+								</td> -->
+								<td>
+									<span class="span-icon">
+										<i class="base-icon icon-photo" ng-show="item.platePic != ''" ng-click="doorImgClick(item.platePic)"></i>
+									</span>
+								</td>
+								<td class="state-td">
+									<div ng-if="item.dealState == '0'">
+										<span class="colorRed">未处理</span>
+										<span class="td-dispose-btn" ng-click="clickUntreated(item,$index)">处理</span>
+									</div>
+									<div ng-if="item.dealState != '0'">
+										<span class="colorGreen" ng-if="item.dealState == '1'">有效</span>
+										<span class="colorGray" ng-if="item.dealState == '2'">无效</span>
+										<span class="td-look-btn" ng-click="clickUntreated(item,$index)">查看</span>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+                        <i class="icon-base icon-32 icon-table-empty"></i>
+                        <span class="empty-text">没有查询到符合条件的记录</span>
+                    </div>   	
+                    <div ng-if="loader" style="position: absolute;top:20%;left:50%">
+						<div class="ball-clip-rotate"></div>
+					</div>					
+				</div>
+				<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow != 0">
+                    <pagination total-items="page1.totalRow"
+                                ng-model="initParams.pageNumber"
+                                max-size="3"
+                                items-per-page="initParams.pageSize"
+                                class="pagination-sm pull-right"
+                                previous-text="上一页"
+                                next-text="下一页"
+                                first-text="首页"
+                                last-text="末页"
+                                ng-click="queryNotLeave()">
+                    </pagination>
+                </div>
+		</div>
+		<!--end外来车辆滞留-->
+
+		<!--start车辆感知发现-->
+		
+		<div ng-show="showChildTab.carSenseFind" class="car-find">			
+			<div class="find-list-box">	
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+					<label class="control-label pull-left">小区</label>
+					<select ng-model="carSenseFindParams.villageCode" class="pull-left" id="findCarSelectVillage">
+						<option value="" selected>请选择</option>
+						<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">处理状态</label>
+					<select ng-model="carSenseFindParams.eventDealState" class="pull-left" id="findCarSelectVillage">
+						<option value="" selected>请选择</option>
+						<option ng-repeat="x in processState" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+		        	<label class="control-label pull-left">时间：</label>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="carSenseFindStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="carSenseFindParams.startTime">
+			        </div>
+			        <div class="pull-left">--</div>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="carSenseFindEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="carSenseFindParams.endTime">
+			        </div>
+		        </div>
+				<button class="btn btn-blue margin-left-10" ng-click="querycarSenseFind(1)">查询</button>			
+				<ul class="find-list-ul clearfix">
+					<li class="find-list-li" ng-repeat = "item in carSenseFindData track by $index">
+						<div class="img-box">
+							<img src="{{item.vehicleInOutPic[0].platePic | transferPic}}">
+						</div>
+						<div class="text-box">
+							<div>车牌号：{{item.plateNumber}}</div>
+							<div>抓拍时间：{{item.endInOutTime}}</div>
+							<div class="clearfix">
+								<span class="pull-left" style="cursor: pointer;" ng-click="viewPicFun(item)">最近一周出现：<a>{{item.appearDays}}天</a></span>
+								<span class="pull-right colorGreen" ng-if="item.dealState == '1'">有效</span>
+								<span class="pull-right colorGray" ng-if="item.dealState == '2'">无效</span>
+							</div>
+						</div>
+						<div class="oper-btn dispose-btn" ng-if="item.dealState =='0'">未处理</div>
+						<div class="oper-btn disposeAct-btn" ng-if="item.dealState =='0'" ng-click="clickUntreated(item,$index)">处理</div>
+						<div class="oper-btn look-btn" ng-if="item.dealState != '0'" ng-click="clickUntreated(item,$index)">查看</div>
+					</li>
+				</ul>
+				<div class="table-empty" ng-if="carSenseFindPage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div> 
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>  						
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="carSenseFindPage.totalRow > 0">
+	            <pagination total-items="carSenseFindPage.totalRow"
+	                        ng-model="carSenseFindParams.pageNumber"
+	                        max-size="3"
+	                        items-per-page="carSenseFindParams.pageSize"
+	                        class="pagination-sm pull-right"
+	                        previous-text="上一页"
+	                        next-text="下一页"
+	                        first-text="首页"
+	                        last-text="末页"
+	                        ng-click="querycarSenseFind()">
+	            </pagination>
+	       </div>
+		</div>
+		
+		<!--end车辆感知发现-->
+
+		<!--start车辆感知离开-->		
+		<div ng-show="showChildTab.carSenseLeave">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+					<label class="control-label pull-left">小区</label>
+					<select ng-model="carSenseLeaveParams.villageCode" class="pull-left">
+						<option value="">请选择</option>
+						<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">车牌号：</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="carSenseLeaveParams.plateNumber" placeholder="请输入车牌号">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">处理状态</label>
+					<select ng-model="carSenseLeaveParams.eventDealState" class="pull-left" id="findCarSelectVillage">
+						<option value="" selected>请选择</option>
+						<option ng-repeat="x in processState" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+		        <div class="form-group-level clearfix">
+		        	<label class="control-label pull-left">时间：</label>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="carSenseLeaveStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="carSenseLeaveParams.startTime">
+			        </div>
+			        <div class="pull-left">--</div>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="carSenseLeaveEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="carSenseLeaveParams.endTime">
+			        </div>
+		        </div>
+				<!--<div class="form-group" ng-click="queryCarSenseLeave(1)">
+					<button type="button" class="btn btn-icon-blue">
+		            <i class="icon-base icon-24 icon-btn-query"></i>
+		            <span class="btn-icon-text">查询</span>
+	        		</button>
+				</div>-->
+				<button class="btn btn-blue margin-left-10" ng-click="queryCarSenseLeave(1)">查询</button>
+			</div>
+				<div class="form-bottom">				
+					<table class="table table-base waterprint">
+						<colgroup>
+							<col width="8%" />
+							<col width="14%" />
+							<col width="8%" />
+							<col width="15%" />
+							<col width="15%" />
+							<col width="20%" />
+							<col width="20%" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>车牌号</th>
+								<th>离开时间</th>
+								<th>车主</th>
+								<th>车主身份证</th>
+								<th>居住地址</th>
+								<th>车辆照片</th>
+								<th>状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat = "item in carSenseLeaveData track by $index">
+								<td>{{item.plateNumber}}</td>
+								<td>{{item.endInOutTime}}</td>
+								<td>{{item.plateOwnerName}}</td>
+								<td>{{item.idcardNo}}</td>
+								<td ng-click="toResident(item)"><a href="">{{item.owenerDetailAddress}}</a></td>
+								<td class="td-photo">
+									<div class="img-box">
+										<img src="{{item.platePic | transferPic}}" />
+									</div>
+									<div class="big-img">
+										<div class="big-img-box">
+											<img src="{{item.platePic | transferPic}}" />
+										</div>
+									</div>
+								</td>
+								<!-- <td>
+									<span class="span-icon">
+										<i class="base-icon icon-photo" ng-show="item.vehicleInOutPic != ''" ng-click="doorImgClick(item.vehicleInOutPic)"></i>
+									</span>
+								</td> -->
+								<td class="state-td">
+									<div ng-if="item.dealState == '0'">
+										<span class="colorRed">未处理</span>
+										<span class="td-dispose-btn" ng-click="clickUntreated(item,$index)">处理</span>
+									</div>
+									<div ng-if="item.dealState != '0'">
+										<span class="colorGreen" ng-if="item.dealState == '1'">有效</span>
+										<span class="colorGray" ng-if="item.dealState == '2'">无效</span>
+										<span class="td-look-btn" ng-click="clickUntreated(item,$index)">查看</span>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="table-empty" ng-if="carSenseLeavePage.totalRow==0 && !loader">
+                        <i class="icon-base icon-32 icon-table-empty"></i>
+                        <span class="empty-text">没有查询到符合条件的记录</span>
+                    </div>   	
+                    <div ng-if="loader" style="position: absolute;top:20%;left:50%">
+						<div class="ball-clip-rotate"></div>
+					</div>					
+				</div>
+				<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="carSenseLeavePage.totalRow > 0">
+                    <pagination total-items="carSenseLeavePage.totalRow"
+                                ng-model="carSenseLeaveParams.pageNumber"
+                                max-size="3"
+                                items-per-page="carSenseLeaveParams.pageSize"
+                                class="pagination-sm pull-right"
+                                previous-text="上一页"
+                                next-text="下一页"
+                                first-text="首页"
+                                last-text="末页"
+                                ng-click="queryCarSenseLeave()">
+                    </pagination>
+                </div>
+		</div>
+		
+		<!--end车辆感知离开-->
+
+	</div>
+	<!--end车辆感知-->
+	
+	<!--start告警感知-->
+	<div ng-show="showTab.notice">
+		<ul class="menu-child clearfix">
+			<li class="menu-li-child" ng-click="changeChildTab('doorNotClose')" ng-class="{'active':showChildTab.doorNotClose}">门未关</li>
+			<li class="menu-li-child" ng-click="changeChildTab('abnormalCard')" ng-class="{'active':showChildTab.abnormalCard}">刷卡异常</li>
+			<li class="menu-li-child" ng-click="changeChildTab('fireNotice')" ng-class="{'active':showChildTab.fireNotice}">消防告警</li>
+			<li class="menu-li-child" ng-click="changeChildTab('analysis')" ng-class="{'active':showChildTab.analysis}">智能分析</li>
+		</ul>
+		<!--start门未关-->
+		
+		<div ng-show="showChildTab.doorNotClose">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+					<label class="control-label pull-left">小区</label>
+					<select ng-model="doorNotCloseParams.villageCode" class="pull-left">
+						<option value="">请选择</option>
+						<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">设备名：</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="doorNotCloseParams.deviceName" placeholder="请输入设备名">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警时间：</label>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="doorNotCloseStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="doorNotCloseParams.startTime">
+			        </div>
+			        <div class="pull-left">--</div>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="doorNotCloseEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="doorNotCloseParams.endTime">
+			        </div>
+				</div>
+				<button class="btn btn-blue margin-left-10" ng-click="notCloseDoor(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="25%" />
+						<col width="25%" />
+						<col width="25%" />
+						<!-- <col width="20%" /> -->
+						<col width="25%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>报警时间</th>
+							<th>设备名</th>
+							<th>描述</th>
+							<!-- <th>实时视频</th> -->
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in notCloseData track by $index" ng-class="{'error':item.dealState == '0'}">
+							<td>{{item.createTime}}</td>
+							<td>{{item.deviceName}}</td>
+							<td>门长时间未关报警</td>
+							<!-- <td style="cursor: pointer;margin-left:50%;" ng-click="queryVideoById(item)" class="base-icon icon-video"></td> -->
+							<td class="state-td">
+								<div ng-if="item.dealState == '0'">
+									<span class="colorRed">未处理</span>
+									<span class="td-dispose-btn" ng-click="clickUntreated(item,$index)">处理</span>
+								</div>
+								<div ng-if="item.dealState != '0'">
+									<span class="colorGreen" ng-if="item.dealState == '1'">有效</span>
+									<span class="colorGray" ng-if="item.dealState == '2'">无效</span>
+									<span class="td-look-btn" ng-click="clickUntreated(item,$index)">查看</span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="doorNotClosePage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div>
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>   						
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="doorNotClosePage.totalRow > 0">
+	            <pagination total-items="doorNotClosePage.totalRow"
+	                        ng-model="doorNotCloseParams.pageNumber"
+	                        max-size="3"
+	                        items-per-page="doorNotCloseParams.pageSize"
+	                        class="pagination-sm pull-right"
+	                        previous-text="上一页"
+	                        next-text="下一页"
+	                        first-text="首页"
+	                        last-text="末页"
+	                        ng-click="notCloseDoor()">
+	            </pagination>
+	        </div>
+		</div>
+		<!--end门未关-->
+
+		<!--start刷卡异常-->
+		<div ng-show="showChildTab.abnormalCard">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+					<label class="control-label pull-left">小区</label>
+					<select ng-model="abnormalCardParams.villageCode" class="pull-left">
+						<option value="">请选择</option>
+						<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">姓名</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="abnormalCardParams.peopleName" placeholder="请输入姓名">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">身份证号码</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="abnormalCardParams.credentialNo" placeholder="请输入身份证号码">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警类型</label>
+					<select class="pull-left" ng-model="abnormalCardParams.type">
+							<option value="">请选择</option>
+							<option ng-repeat="x in abnormalCardWarnType" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警时间：</label>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="abnormalCardStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="abnormalCardParams.startTime">
+			        </div>
+			        <div class="pull-left">--</div>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="abnormalCardEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="abnormalCardParams.endTime">
+			        </div>
+				</div>
+				<button class="btn btn-blue margin-left-10" ng-click="doorAlarm(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>姓名</th>
+							<th>身份证号码</th>
+							<th>报警类型</th>
+							<th>报警时间</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in doorAlarmData track by $index" ng-class="{'error':item.dealState == '0'}">
+							<td>{{item.peopleName}}</td>
+							<td><a ng-click="lalerPeopleFile(item.credentialNo)">{{item.credentialNo}}</a></td>
+							<td>{{abnormalCardWarnType[item.type-1].name}}</td>
+							<td>{{item.warningTime}}</td>
+							<td class="state-td">
+								<div ng-if="item.dealState == '0'">
+									<span class="colorRed">未处理</span>
+									<span class="td-dispose-btn" ng-click="clickUntreated(item,$index)">处理</span>
+								</div>
+								<div ng-if="item.dealState != '0'">
+									<span class="colorGreen" ng-if="item.dealState == '1'">有效</span>
+									<span class="colorGray" ng-if="item.dealState == '2'">无效</span>
+									<span class="td-look-btn" ng-click="clickUntreated(item,$index)">查看</span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="abnormalCardPage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div>
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>   						
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="abnormalCardPage.totalRow > 0">
+	            <pagination total-items="abnormalCardPage.totalRow"
+	                        ng-model="abnormalCardParams.pageNumber"
+	                        max-size="3"
+	                        items-per-page="abnormalCardParams.pageSize"
+	                        class="pagination-sm pull-right"
+	                        previous-text="上一页"
+	                        next-text="下一页"
+	                        first-text="首页"
+	                        last-text="末页"
+	                        ng-click="doorAlarm()">
+	            </pagination>
+	        </div>
+		</div>
+		<!--end刷卡异常-->
+
+		<!--start消防告警-->
+		<div ng-show="showChildTab.fireNotice">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+					<label class="control-label pull-left">小区</label>
+					<select ng-model="fireParams.villageCode" class="pull-left">
+						<option value="">请选择</option>
+						<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">地址</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireParams.detailAddress" placeholder="请输入地址">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警时间</label>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="fireStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="fireParams.startTime" placeholder="开始时间">
+			        </div>
+			        <div class="pull-left">--</div>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="fireEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="fireParams.endTime" placeholder="结束时间">
+			        </div>
+				</div>	
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警类型</label>
+					<select class="pull-left" ng-model="fireParams.type">
+						<option value="">请选择</option>
+						<option ng-repeat="x in fireNoticeType" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">设备号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireParams.deviceNo" placeholder="请输入设备号">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">楼栋编号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireParams.buildingNo" placeholder="请输入楼栋编号">
+				</div>	
+				<!-- <div class="form-group-level clearfix">
+					<label class="control-label pull-left">单元编号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireParams.unitNo" placeholder="请输入单元编号"> 
+				</div>-->
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">楼层编号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireParams.floorNo" placeholder="请输入楼层编号">
+				</div>	
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">门牌编号</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="fireParams.houseNo" placeholder="请输入门牌编号">
+				</div>		
+				<button class="btn btn-blue margin-left-10" ng-click="smokeAlarmList(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="20%" />
+						<col width="20%" />
+						<col width="10%" />
+						<col width="10%" />
+						<col width="8%" />
+						<col width="8%" />
+						<col width="8%" />
+						<col width="16%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>地址</th>
+							<th>报警时间</th>
+							<th>报警类型</th>
+							<th>设备号</th>
+							<th>楼栋编号</th>
+							<th>楼层编号</th>
+							<th>门牌编号</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in smokeData track by $index" ng-class="{'error':item.dealState == '0'}">
+							<td>{{item.detailAddress}}</td>
+							<td>{{item.alarmTime}}</td>
+							<td>{{item.alarmMsg}}</td>
+							<td>{{item.deviceNo}}</td>
+							<td>{{item.buildingNo}}</td>
+							<td>{{item.floorNo}}</td>
+							<td>{{item.houseNo}}</td>
+							<td class="state-td">
+								<div ng-if="item.dealState == '0'">
+									<span class="colorRed">待分配</span>
+									<span class="td-dispose-btn" ng-click="policeDeal(item,$index)">派单</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div>
+								<div ng-if="item.dealState == '61'">
+									<span class="colorRed">待接警</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div>
+								<div ng-if="item.dealState == '62'">
+									<span class="colorRed">已接警</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div>
+								<!-- <div ng-if="item.dealState == '63'">
+									<span class="colorRed">到场</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div> -->
+								<div ng-if="item.dealState == '64' || item.dealState == '63'">
+									<span class="colorRed">处理中</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+									<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+								</div>
+								<div ng-if="item.dealState == '65'">
+									<span class="colorGreen">已完成</span>
+									<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="firePage.totalRow==0 && !loader">
+                    <i class="icon-base icon-32 icon-table-empty"></i>
+                    <span class="empty-text">没有查询到符合条件的记录</span>
+                </div>  
+                <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div> 						
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="firePage.totalRow > 0">
+                <pagination total-items="firePage.totalRow"
+                            ng-model="fireParams.pageNumber"
+                            max-size="3"
+                            items-per-page="fireParams.pageSize"
+                            class="pagination-sm pull-right"
+                            previous-text="上一页"
+                            next-text="下一页"
+                            first-text="首页"
+                            last-text="末页"
+                            ng-click="smokeAlarmList()">
+                </pagination>
+            </div>
+		</div>
+		<!--end消防告警-->
+
+		<!--start智能分析-->
+		
+		<div ng-show="showChildTab.analysis">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+					<label class="control-label pull-left">小区</label>
+					<select ng-model="analysisParams.villageCode" class="pull-left">
+						<option value="">请选择</option>
+						<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">时间</label>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="analysisStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="analysisParams.startTime" placeholder="开始时间">
+			        </div>
+			        <div class="pull-left">--</div>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="analysisEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="analysisParams.endTime" placeholder="结束时间">
+			        </div>
+				</div>
+				 <div class="form-group-level clearfix">
+					<label class="control-label pull-left">地点</label>
+					<input type="text" class="form-control pull-left" ng-model="analysisParams.eventAddress" placeholder="请输入地点"> 
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">类型</label>
+					<select ng-model="analysisParams.eventAnalysisType" class="pull-left">
+						<option value="">请选择</option>
+						<option ng-repeat="x in analysisSelect" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<button class="btn btn-blue margin-left-10" ng-click="queryAnalysis(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="20%" />
+						<col width="20%" />
+						<col width="15%" />
+						<col width="25%" />
+						<col width="20%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>时间</th>
+							<th>地点</th>
+							<th>类型</th>
+							<th>照片</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in analysisData track by $index" ng-class="{'error':item.dealState == '0'}">
+							<td>{{item.eventTime}}</td>
+							<td>{{item.eventAddress}}</td>
+							<td>{{filterFun(item.eventAnalysisType)}}</td>
+							<td class="td-photo">
+								<div class="img-box">
+									<img src="/zhsq/file/showPfsImg?path={{item.eventPic}}" />
+								</div>
+								<div class="big-img">
+									<div class="big-img-box">
+										<img src="/zhsq/file/showPfsImg?path={{item.eventPic}}" />
+									</div>
+								</div>
+							</td>
+							<td class="state-td">
+								<div ng-if="item.dealState == '0'">
+									<span class="colorRed">未处理</span>
+									<span class="td-dispose-btn" ng-click="clickUntreated(item,$index)">处理</span>
+								</div>
+								<div ng-if="item.dealState != '0'">
+									<span class="colorGreen" ng-if="item.dealState == '1'">有效</span>
+									<span class="colorGray" ng-if="item.dealState == '2'">无效</span>
+									<span class="td-look-btn" ng-click="clickUntreated(item,$index)">查看</span>
+								</div>
+							</td>
+						</tr>
+						<!-- <tr>
+							<td>11</td>
+							<td>11</td>
+							<td>11</td>
+							<td class="td-photo">
+								<div class="img-box">
+									<img src="/template/img/secondLevel/3.png" />
+								</div>
+								<div class="big-img">
+									<div class="big-img-box">
+										<img src="/template/img/secondLevel/3.png" />
+									</div>
+								</div>
+							</td>
+							<td>11</td>
+						</tr>
+						<tr>
+							<td>11</td>
+							<td>11</td>
+							<td>11</td>
+							<td class="td-photo">
+								<div class="img-box">
+									<img src="/template/img/secondLevel/3.png" />
+								</div>
+								<div class="big-img">
+									<div class="big-img-box">
+										<img src="/template/img/secondLevel/3.png" />
+									</div>
+								</div>
+							</td>
+							<td>11</td>
+						</tr> -->
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="analysisPage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div>
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="analysisPage.totalRow > 0">
+	            <pagination total-items="analysisPage.totalRow"
+	                        ng-model="analysisParams.pageNumber"
+	                        max-size="3"
+	                        items-per-page="analysisParams.pageSize"
+	                        class="pagination-sm pull-right"
+	                        previous-text="上一页"
+	                        next-text="下一页"
+	                        first-text="首页"
+	                        last-text="末页"
+	                        ng-click="queryAnalysis()">
+	            </pagination>
+	        </div>
+		</div>
+		<!--end智能分析-->
+	</div>
+	<!--end告警感知-->
+</div>
+
+<!--处理事件弹框-->
+<div id="untreatedLayer" class="clearfix" style="width:800px;height:300px;display:none;">
+    <div class="untreate-left pull-left">
+    	<h6 class="title">备注照片</h6>
+    	<ul class="untreate-photo-ul clearfix" id="ulId">
+    		<!-- <li class="untreate-photo-li img-box-li">
+    			<div class="img-box">
+    				<img src="/template/img/secondLevel/3.png" />
+    			</div>
+    			<span class="delect-span"><i class="delect-icon-new"></i>删除</span>
+    			<div class="delect-oper clearfix">
+    				<span class="pull-left">确认</span>
+    				<span class="pull-left">取消</span>
+    			</div>
+    		</li> -->
+    		<li class="untreate-photo-li add-li" id="lastLi">
+    			<!-- <i class="add-btn"></i> -->
+    			<input class="add-btn" type="button" name="">
+    			<input type="file" style="z-index: 9999" id="imageFile" class="upload" name="mpFile" ng-click="uploadImg()">
+    		</li>
+    	</ul>
+    </div>
+    <div class="untreate-right pull-left">
+    	<h6 class="title">备注信息</h6>
+    	<textarea class="form-control" placeholder="请输入备注信息" ng-model="textRemark"></textarea>
+    </div>
+</div>
+
+<!-- 查看弹窗 -->
+<div id="treatedLayer" class="clearfix" style="display:none;">
+	<div class="treated-left pull-left">
+		<h6 class="title">备注照片</h6>
+		<ul class="photo-list clearfix">
+			<li class="photo-list-li" ng-repeat="item in dealResultData.picArr">
+				<img ng-show="dealResultData.picArr[0] != ''" src="{{item | transferPic}}" />
+			</li>
+		</ul>
+	</div>
+	<div class="treated-right pull-left">
+		<div class="text-box">
+			<label class="control-label">处理人：</label>
+			<span class="span-text">{{dealResultData.dealUserName}}</span>
+		</div>
+		<div class="text-box">
+			<label class="control-label">处理时间：</label>
+			<span class="span-text">{{dealResultData.dealTime}}</span>
+		</div>
+		<div class="text-box">
+			<label class="control-label">处理状态：</label>
+			<span class="span-text colorGreen" ng-if="dealResultData.dealState == 1">有效</span>
+			<span class="span-text colorGreen" ng-if="dealResultData.dealState == 2">无效</span>
+		</div>
+		<div class="text-box">
+			<label class="control-label">备注信息：</label>
+			<span class="span-text">{{dealResultData.dealContent}}</span>
+		</div>
+	</div>
+</div>
+
+<!-- 警务流程弹窗 -->
+<div id="policeLayer" class="secondLevel sendOrders clearfix" style="width:1060px;height:500px;display:none;">
+	<div class="pull-left sendOrders-left">
+		<div class="sendOrders-top">
+			<div class="bgcolor clearfix form-group-label">
+				<label class="label-text pull-left">警员状态：</label>
+				<div class="pull-left" style="margin-left:20px;">
+					<span class="label-bg" ng-repeat="item in workStatusMap" ng-class="{'active':item.active}" ng-model="policeGpsParams.serviceMode" ng-click="selectLabel(item)">
+						<span class="label-bg" ng-class="item.bg">{{item.name}}</span>
+					</span>
+				</div>
+			</div>
+			<div class="bgcolor clearfix form-group-label">
+				<label class="label-text pull-left">勤务模式：</label>
+				<div class="pull-left" style="margin-left:20px;">
+					<span class="label-bg" ng-repeat="item in serviceModeMap" ng-class="{'active':item.active}" ng-click="selectLabel(item)">
+						<span class="label-bg" ng-class="item.bg">{{item.name}}</span>
+					</span>
+				</div>
+			</div>
+			<div class="clearfix">
+				<label class="label-text pull-left" style="margin-top:15px;">更多条件：</label>
+				<div class="form-group-level clearfix pull-left">
+					<label class="control-label pull-left">所属区块</label>
+					<select class="pull-left" ng-model="policeGpsParams.regionCode">
+						<option value="">请选择</option>
+						<option ng-repeat="x in dutyMap" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix pull-left">
+					<label class="control-label pull-left"><i class="search-icon"></i></label>
+					<input type="text" class="form-control pull-left" placeholder="请输入姓名搜素" ng-model="policeGpsParams.peopleName">
+				</div>
+				<button class="btn btn-blue margin-left-10" style="margin-top:10px;" ng-click="policeGps(1)">查询</button>
+			</div>
+		</div>
+		<div style="height: 270px;overflow-y: scroll;overflow-x:hidden;">
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="5%"/>
+					<col width="6%"/>
+					<col width="10%"/>
+					<col width="10%"/>
+					<col width="10%"/>
+					<col width="20%"/>
+					<col width="20%"/>
+					<col width="19%"/>
+				</colgroup>
+				<thead>
+					<tr>
+						<th><a class="checkbox checkall" ng-click="checkAll()" ng-class="{check:selectAll}"></a></th>
+						<th>序号</th>
+						<th>区块</th>
+						<th>姓名</th>
+						<th>警号</th>
+						<th>手机号</th>
+						<th>警员状态</th>
+						<th>勤务模式</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in policeGpsData">
+						<td>
+							<a class="checkbox" ng-click="checkRow(item)" ng-class="{check:item.checked}"></a>
+						</td>
+						<td>{{policeGpsParams.pageSize*(policeGpsParams.pageNumber-1) + $index+1}}</td>
+						<td>{{item.regionName}}</td>
+						<td>{{item.peopleName}}</td>
+						<td>{{item.policeNumber}}</td>
+						<td>{{item.telephone}}</td>
+						<td><i class="state-icon" ng-class="{'state-gongzuo':item.workStatus==1,'state-daiming':item.workStatus==2,'state-xiuxi':item.workStatus==3}"></i>{{item.statusName}}</td>
+						<td>{{item.serviceName}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+	<!--右侧新增-->
+	<div class="selected-polices pull-left">
+		<div class="polices-title">已选警员</div>
+		<ul class="polices-list">
+			<li class="polices-list-li clearfix" ng-repeat="item in currentSelected track by $index">
+				<span class="name pull-left">{{item.name}}</span>
+				<i class="delect-name pull-right" ng-click="removeCurrent(item)"></i>
+			</li>
+		</ul>
+		<div class="polices-footer-btn">
+			<button ng-click="submit()">确认</button>
+			<button ng-click="cancel()">取消</button>
+		</div>
+	</div>
+</div>
+
+<div id="policeLayerDetail" class="lookFlow" style="width:800px;height:450px;display:none;">
+	<!-- 消防告警 -->
+	<div class="caseDetails" ng-if="detailType == 9">
+		<div class="title-text"><span>案件信息</span></div>
+		<div ng-if="currentTabName !== 'monitor'" class="details-content">
+			<div class="details-group">
+				<label class="control-label">地址：</label>
+				<span class="span-text">{{detailItem.detailAddress || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">报警时间：</label>
+				<span class="span-text">{{detailItem.alarmTime || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">报警类型：</label>
+				<span class="span-text">{{detailItem.alarmMsg || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">设备号：</label>
+				<span class="span-text">{{detailItem.deviceNo || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">楼栋号：</label>
+				<span class="span-text">{{detailItem.buildingNo || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">楼层号：</label>
+				<span class="span-text">{{detailItem.floorNo || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">房间号：</label>
+				<span class="span-text">{{detailItem.houseNo || '--'}}</span>
+			</div>
+		</div>
+	</div>
+	<!-- 110警情 -->
+	<div class="caseDetails" ng-if="detailType == 6">
+		<div class="title-text"><span>告警信息</span></div>
+		<div class="details-content">
+			<div class="details-group">
+				<label class="control-label">案件编号：</label>
+				<span class="span-text">{{detailItem.caseId || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">报案时间：</label>
+				<span class="span-text">{{detailItem.inboundTime || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">报警人：</label>
+				<span class="span-text">{{detailItem.callerName || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">报警人手机号码：</label>
+				<span class="span-text">{{detailItem.calleeNo || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">案发地址：</label>
+				<span class="span-text">{{detailItem.caseAddress || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">案件描述：</label>
+				<span class="span-text">{{detailItem.caseDesc || '--'}}</span>
+			</div>
+		</div>		
+	</div>
+	<div class="caseDetails" ng-if="detailType == 13">
+		<div class="title-text"><span>告警信息</span></div>	
+		<div class="details-content">
+			<div class="details-group">
+				<label class="control-label">姓名：</label>
+				<span class="span-text">{{detailItem.name || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">身份证号：</label>
+				<span class="span-text">{{detailItem.personId || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">标签：</label>
+				<span class="span-text">{{detailItem.labels || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">抓拍时间：</label>
+				<span class="span-text">{{detailItem.captureTime || '--'}}</span>
+			</div>
+			<div class="details-group">
+				<label class="control-label">抓拍地点：</label>
+				<span class="span-text">{{detailItem.lastPlace || '--'}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="flowBox">
+		<div class="title-text"><span>处置流程</span></div>
+		<ul class="flow-body clearfix">
+			<li class="flow-state" ng-click="switchProcess(item,$index)" ng-repeat="item in processArr track by $index" ng-class="{'on':item.isOn}">
+				<span class="state-text">{{item.processName}}</span>
+				<div class="flow-state-details" ng-if="item.processState != '64' && item.isOn">
+					<div class="details-group" style="width: 148px;">
+						<span class="span-text" style="display: block;text-align: left;">时间：{{item.dealTime}}</span>
+						<span class="span-text" style="display: block;text-align: left;">责任人：{{item.operatorName}}</span>
+					</div>
+				</div>
+				<div class="flow-state-details" ng-if="item.processState == '64' && item.isOn">
+					<div class="details-group" style="width: 148px;">
+						<span class="span-text" style="display: block;text-align: left;">到场时间：{{item.dealTime2}}</span>
+						<span class="span-text" style="display: block;text-align: left;">责任人：{{item.operatorName2}}</span>
+					</div>
+					<div class="details-group" style="width: 148px;">
+						<span class="span-text" style="display: block;text-align: left;">反馈时间：{{item.dealTime}}</span>
+						<span class="span-text" style="display: block;text-align: left;">责任人：{{item.operatorName}}</span>
+						<span class="span-text" style="display: block;text-align: left;">反馈内容：{{item.dealContent}}</span>
+						<div ng-if="item.pic">
+							<span class="span-text">照片：</span>
+							<img src="{{item.pic | transferPic}}" style="width: 100px;height: 100px;"/>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

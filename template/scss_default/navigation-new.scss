@@ -1,0 +1,177 @@
+.navigation-up .navigation-v3 .nav-up-selected, .navigation-up .navigation-v3 li.active {
+  background: #00a1f2;
+}
+
+.navigation-up .navigation-head .head-img .viewData {
+  float: right;
+  line-height: 50px;
+  padding: 0 10px;
+}
+
+.navigation-down-new {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  display: none;
+  .menuMain {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 10px;
+    height: 100px;
+    background-color: rgba(3, 137, 199, .95);
+    position: relative;
+    .menu-1 {
+      width: auto;
+      height: 80px;
+      overflow: hidden;
+      float: left;
+      margin-right: 4px;
+      background: url(../img/navigation/menu-seprate.png) 4px 0 no-repeat;
+      margin-top: -2px;
+      &:last-child {
+        margin-right: 0;
+        background: url(../img/navigation/menu-seprate.png) 4px 0 no-repeat;
+      }
+      i.ico {
+        width: auto;
+        height: 29px;
+        display: block;
+        background-image: url(../img/navigation/menu-ico.png);
+        max-width: 50px;
+      }
+      .menu-childlists {
+        overflow: hidden;
+        padding-top: 15px;
+        background: url(../img/navigation/menu-line.png) 0 5px no-repeat;
+        font-family: "Microsoft Yahei";
+        a {
+          text-align: left;
+          color: #6bd1ff;
+          padding: 0 8px 0 16px;
+          font-weight: normal;
+        }
+        ul {
+          li {
+            border-right: 1px dashed #3f9dd0;
+            min-height: 230px;
+            &:last-child {
+              border-right: 0;
+            }
+            &:hover {
+              background: none;
+              height: auto;
+            }
+            h3 {
+              font-size: 14px;
+              font-weight: bold;
+              background: url(../img/navigation/dot.png) 9px center no-repeat;
+              padding: 10px 0;
+              margin:0;
+              a {
+                font-weight: normal;
+                color: #fff;
+                font-size: 14px;
+                font-family: 'Microsoft Yahei';
+                &.hasThird {
+                  cursor: text;
+                  &:hover{
+                    color: #fff;
+                    cursor: default;
+                    text-decoration: none;
+                  }
+                }
+                &:hover {
+                  color: #ffffff;
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.active {
+      }
+      .menu-block {
+        float: left;
+        width: auto;
+        &:first-child {
+          border-left: 0;
+        }
+        a {
+          display: block;
+          font-size: 12px;
+          line-height: 28px;
+          text-align: left;
+          color: #c0e3ff;
+          font-weight: normal;
+          font-family: "Microsoft Yahei";
+          &.second {
+            font-size: 14px;
+            background: url(../img/navigation/dot.png) 13px center no-repeat;
+            cursor: pointer;
+
+          }
+          &.hasThird {
+            cursor: text;
+            font-weight: bold;
+          }
+          &:hover {
+            color: #c0e3ff;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .menu-line {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      top: 45px;
+      background-color: #63caf9;
+    }
+  }
+}
+
+#search {
+  //margin-left: 290px;
+  i.ico {
+    background-position: 51px -11px;
+  }
+}
+
+#map {
+  //margin-left: 391px;
+  i.ico {
+    background-position: 98px -11px;
+  }
+}
+
+#eye {
+  //margin-left: 492px;
+  i.ico {
+    background-position: 143px -11px;
+  }
+}
+
+#cloud {
+  //margin-left: 593px;
+  i.ico {
+    background-position: 191px -11px;
+  }
+}
+
+#judge {
+  //margin-left: 694px;
+  i.ico {
+    background-position: 232px -11px;
+  }
+}
+
+#platform {
+  //margin-left: 896px;
+  i.ico {
+    background-position: 279px -11px;
+  }
+}

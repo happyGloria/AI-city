@@ -1,0 +1,93 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>自定义对象</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+    <script type='text/javascript' src='../jquery-1.9.1.min.js'></script>
+    <script type="text/javascript" src="../UnityObject2.js"></script>
+    <script type="text/javascript" src="../uzft.js"></script>
+    <script>
+        var swObj;
+        jQuery(function () {
+            var ls_width = $("html").width();
+            var ls_height = $("html").height();
+            var unityUrl = "http://47.93.174.30/diting/diting.unity3d";
+            swObj = new uzft("unityPlayer",unityUrl,ls_width-30,ls_height-80);
+            swObj.init();
+        });
+        function u_onLeftBtd(pVal){
+            var obj = jQuery.parseJSON(pVal);
+            var x = obj.x;
+            var y = obj.y;
+            var z = obj.z;
+            //如果gi_LeftState等于1，表示添加ICON
+            if(gi_LeftState==1){
+                var str = '{"x":"'+x +'","y":"'+y+'","z":"'+z +'","name":"001","modelname":"PointIcon","rx":"0","ry":"0","rz":"0","rw":"0","text":"第2个测试:50.3度"}';
+
+                swObj.userData.model.init(str);
+            }else if(gi_LeftState == 2){
+                var str = '{"text":"19号楼","id":"123","window":{"width":"150","height":"150"'+',"x":"'+x+'","y":"'+y+'","z":"'+z+'"'+',"fontsize":"20","fontleft":"40","fontcolor":{"r":"1","g":"1","b":"1","a":"1"},"style":"1"}}';
+                //var str ='{"text":"加载全部","id":"123","window":{"width":"150","height":"150","x":"'+x+'","y":"'+y+'","z":"'+z+'"}}';
+                //alert(str);
+                swObj.userData.bubbleBox.init(str);
+            }else if(gi_LeftState == 3){
+                var str = '{"text":"19号楼","id":"123","window":{"width":"150","height":"150"'+',"x":"'+x+'","y":"'+y+'","z":"'+z+'"'+',"fontsize":"20","fontleft":"40","fontcolor":{"r":"111","g":"111","b":"111","a":"0.2"},"style":"2"}}';
+                //var str ='{"text":"加载全部","id":"123","window":{"width":"150","height":"150","x":"'+x+'","y":"'+y+'","z":"'+z+'"}}';
+                //alert(str);
+                swObj.userData.bubbleBox.init(str);
+            }else if(gi_LeftState ==4){
+                var str = '{"text":"19号楼","id":"123","window":{"width":"150","height":"150"'+',"x":"'+x+'","y":"'+y+'","z":"'+z+'"'+',"fontsize":"20","fontleft":"40","fontcolor":{"r":"211","g":"12","b":"1","a":"1"},"style":"3"}}';
+                //var str ='{"text":"加载全部","id":"123","window":{"width":"150","height":"150","x":"'+x+'","y":"'+y+'","z":"'+z+'"}}';
+                //alert(str);
+                swObj.userData.bubbleBox.init(str);
+            }else if(gi_LeftState == 5){
+                var str = '{"text":"19号楼","id":"123","window":{"width":"150","height":"150"'+',"x":"'+x+'","y":"'+y+'","z":"'+z+'"'+',"fontsize":"20","fontleft":"40","fontcolor":{"r":"111","g":"1","b":"111","a":"1"},"style":"4"}}';
+                //var str ='{"text":"加载全部","id":"123","window":{"width":"150","height":"150","x":"'+x+'","y":"'+y+'","z":"'+z+'"}}';
+                //alert(str);
+                swObj.userData.bubbleBox.init(str);
+            }
+            gi_LeftState = 0;
+        }
+        function u_onRightBtd(pVal){
+        }
+        function u_onInitFinish(){
+            //alert("场景初始化完成！");
+        }
+        var gi_LeftState = 0;
+        function addIcon() {
+            gi_LeftState = 1;
+        }
+        function addbubblebox1() {
+            gi_LeftState = 2;
+        }
+        function addbubblebox2() {
+            gi_LeftState = 3;
+        }
+        function addbubblebox3() {
+            gi_LeftState = 4;
+        }
+        function addbubblebox4() {
+            gi_LeftState = 5;
+        }
+        function destroyAll() {
+            swObj.userData.bubbleBox.destroyAll();
+        }
+
+    </script>
+<body style="text-align: left">
+<div>
+    <br>
+    <input type="button" onclick="addIcon()" value="点击添加ICON"/>
+    <input type="button" onclick="addbubblebox1()" value="点击添加bubblebox1"/>
+    <input type="button" onclick="addbubblebox2()" value="点击添加bubblebox2"/>
+    <input type="button" onclick="addbubblebox3()" value="点击添加bubblebox3"/>
+    <input type="button" onclick="addbubblebox4()" value="点击添加bubblebox4"/>
+    <input type="button" onclick="destroyAll()" value="删除所有bubble"/>
+    关于ICON的显示隐藏及或取名称，是通过平台方法统一API决定：pick到名称，名称是数据传入的ID
+
+</div>
+<br>
+<div id="unityPlayer" ></div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!--住户信息-->
+<div class="modal-dialog modal-inhabitant" style="width:8.8rem">
+	<div class="modal-content">
+  	<!-- <div class="modal-header">		        
+    	<h4 class="modal-title">田林十二村{{resident.buildNum}}号{{houseData.houseInfo.houseNum}}室</h4>
+    	<span class="base-icon icon-close" ng-click="closeBtn()"></span>
+  	</div> -->
+  	<div class="modal-body">
+  		<div class="left-content">
+  			<div class="head-title"><i class="base-icon icon-people"></i>人员信息</div>
+  			<div class="left-body">
+      			<div class="left-body-list" ng-repeat="item in houseData.peopleList">
+      				<div class="sex-label man-label" ng-show="item.gender == '男'"></div>
+      				<div class="sex-label woman-label" ng-show="item.gender == '女'"></div>
+      				<div class="sex-label" ng-show="item.gender == ''">未知</div>
+      				<div class="left-photo">
+						<div class="img-box">
+							<img ng-click="viewPeoplefile(item.credentialNo)" src="{{item.idCardPic | transferPic}}"/>
+							<span class="name">{{item.peopleName}}</span>
+						</div>
+            <span class="people-label" ng-if="item.peopleType==1">户籍人员</span>
+            <span class="people-label" ng-if="item.peopleType==2">来沪人员</span>
+            <span class="people-label" ng-if="item.peopleType==3">境外人员</span>
+            <span class="span-text" ng-show="item.peopleType == 4">临时人员</span>
+            <span class="span-text" ng-show="item.peopleType == 99">其他</span>
+      				</div>
+      				<div class="people-list">
+      					<ul class="ul-list">
+	      					<li>
+	      						<label class="label-text">身份证：</label>
+	      						<a ng-click="viewPeoplefile(item.credentialNo)">
+	      							<span style="color: #339aff;" class="span-text">{{item.credentialNo}}</span>
+	      						</a>
+	      					</li>
+	      					<li>
+	      						<label class="label-text">年龄：</label>
+	      						<span class="span-text">{{item.age}}</span>
+	      					</li>
+                  <li>
+                    <label class="label-text">民族：</label>
+                    <span class="span-text">{{item.nation}}</span>
+                  </li>
+	      					<li>
+	      						<label class="label-text">与户主关系：</label>
+	      						<span class="span-text">{{item.householderRelation}}</span>
+	      						<!-- <span class="span-text" ng-show="item.type == 1">业主</span> -->
+	      					</li>
+	      					<li>
+	      						<label class="label-text">住户来源：</label>
+	      						<span class="span-text" ng-show="item.peopleType == 1">户籍人员</span>
+	      						<span class="span-text" ng-show="item.peopleType == 2">外来人员</span>
+	      						<span class="span-text" ng-show="item.peopleType == 3">境外人员</span>
+	      						<span class="span-text" ng-show="item.peopleType == 4">临时人员</span>
+	      						<span class="span-text" ng-show="item.peopleType == 99">其他</span>
+	      					</li>
+	      					<li>
+	      						<label class="label-text">电话号码：</label>
+	      						<span class="span-text">{{item.phoneNo}}</span>
+	      					</li>
+	      					<li>
+	      						<label class="label-text">人口标签：</label>
+	      						<span style="margin-right: 5px;color: #fff;" class="span-text" ng-repeat="items in item.lableArr" ng-class="items.bg">{{items.name}}</span>
+	      					</li>
+	      					
+	      				</ul>
+      				</div>     				
+      			</div>
+
+  			</div>
+  		</div>
+  		<div class="right-content">
+  			<div class="house-detail" style="margin-bottom:0.4rem;">
+  				<div class="head-title"><i class="base-icon icon-house"></i>水电煤用量</div>
+      				<div id="water01" class="filters">
+						<!-- <span class="label">2017年</span> -->
+            <select id="selectYear" style="color: #fff;">
+              <option value="2017" selected>2017年</option>
+              <option value="2018">2018年</option>
+            </select>
+						<select id="selectMonth">
+              <option value="12" selected>12月</option>
+							<option value="11">11月</option>
+							<option value="10">10月</option>
+							<option value="9">9月</option>
+							<option value="8">8月</option>
+							<option value="7">7月</option>
+							<option value="6">6月</option>
+							<option value="5">5月</option>
+							<option value="4">4月</option>
+							<option value="3">3月</option>
+							<option value="2">2月</option>
+							<option value="1">1月</option>
+						</select>
+					</div>
+      				<ul class="ul-list" style="margin-top:46px">
+      					<li style="margin-left:30px;">
+      						<i class="water-photo"></i>
+      						<label class="label-text" style="min-width:0.1rem;margin-right:30px">水</label>
+      						<span style="color: #339aff;font-size:16px;" class="span-text hand-right" ng-click ="queryWaterElectric()">{{waterModel}}</span>
+      					</li>
+      					<li style="margin-left:30px;">
+      						<i class="electric-photo"></i>
+      						<label class="label-text" style="min-width:0.1rem;margin-right:30px">电</label>
+      						<span style="color: #339aff;font-size:16px;" class="span-text hand-right" ng-click ="queryWaterElectric()">{{electricModel}}</span>
+      					</li>
+      					<li style="margin-left:30px;">
+      						<i class="gas-photo"></i>
+      						<label class="label-text" style="min-width:0.1rem;margin-right:30px">煤</label>
+      						<span style="color: #339aff;font-size:16px;" class="span-text hand-right" ng-click ="queryWaterElectric()">{{gasModel}}</span>
+      					</li>
+      					
+      				</ul>
+
+  			</div>
+  			<div class="owner-detail">
+  				<div class="head-title"><i class="base-icon icon-owner"></i>车辆信息</div>
+            <div style="height: 230px;overflow: auto;">
+              <ul class="ul-list" ng-repeat="item in houseData.vehicleList" style="margin-bottom: 5px;border-bottom: 1px solid #fff;">
+                <li>
+                  <label class="label-text">车牌号</label>
+                  <span class="span-text">{{item.plateNo}}</span>
+                </li>
+                <li>
+                  <label class="label-text">车辆状态</label>
+                  <span class="span-text" ng-show="item.inOutType=='进'">在小区</span>
+                  <span class="span-text" ng-show="item.inOutType=='出'">不在小区</span>
+                </li>
+                <li>
+                  <label class="label-text">进出时间</label>
+                  <span class="span-text">{{item.inOutTime}}</span>
+                </li>
+              </ul>
+            </div>
+      			
+  			</div>
+  		</div>
+  		
+    </div>
+	</div>
+  <div ng-if="loader" style="position: absolute;top:50%;left:50%">
+      <div class="ball-clip-rotate"></div>
+  </div>
+</div>

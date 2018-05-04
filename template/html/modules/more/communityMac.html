@@ -1,0 +1,178 @@
+<div class="morelayer secondLevel">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left"><span class="title">WIFI</span></div>
+		<ul class="head-menu clearfix">
+			<li class="head-menu-li active" ng-click="changeTab('macRecord',true)" ng-class="{'active':showTab.macRecord}">Mac记录</li>
+			<li class="head-menu-li" ng-click="changeTab('macDevice')" ng-class="{'active':showTab.macDevice}">WiFi探针</li>
+		</ul>
+		<div class="pull-right secondLevel-head-right">
+			<i class="icon-house"></i>
+			<span class="title ng-binding">{{villageName}}</span>
+		</div>
+	</div>
+	<div class="population-per">
+		<div ng-show="showTab.macRecord" class="tab-find clearfix">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">姓名</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macRecordParams.peopleName" placeholder="请输入姓名">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">身份证</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macRecordParams.credentialNo" placeholder="请输入身份证号码">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">手机号码</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macRecordParams.phoneNo" placeholder="请输入手机号码">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">时间</label>
+			        <div class="datetimepicker pull-left">
+			        	<input type="text" id="startTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="macRecordParams.startTime" placeholder="开始时间">
+			        </div>
+			        <div class="pull-left">--</div>
+				    <div class="datetimepicker pull-left">
+			        	<input type="text" id="endTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="macRecordParams.endTime" placeholder="结束时间">
+			        </div>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">位置</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macRecordParams.deviceName" placeholder="请输入位置名称">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">用户Mac</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macRecordParams.userMac" placeholder="请输入用户Mac">
+				</div>
+				<button class="btn search-btn btn-blue margin-left-10" ng-click="captrueMacList(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="10%" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="15%" />
+						<col width="15%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>姓名</th>
+							<th>身份证</th>
+							<th>时间</th>
+							<th>位置</th>
+							<th>基站Mac</th>
+							<th>用户Mac</th>
+							<th>手机号码</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in macData track by $index">
+							<td>{{item.peopleName}}</td>
+							<td ng-click="toPeopleFile(item)" style="cursor: pointer;">{{item.credentialNo}}</a></td>
+							<td>{{item.collectTime}}</td>
+							<td>{{item.deviceName}}</td>
+							<td>{{item.deviceId}}</td>
+							<td>{{item.userMac}}</td>
+							<td>{{item.phoneNo}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="macRecordPage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div>
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="macRecordPage.totalRow > 0">
+	            <pagination total-items="macRecordPage.totalRow"
+	                        ng-model="macRecordParams.pageNumber"
+	                        max-size="3"
+	                        items-per-page="macRecordParams.pageSize"
+	                        class="pagination-sm pull-right"
+	                        previous-text="上一页"
+	                        next-text="下一页"
+	                        first-text="首页"
+	                        last-text="末页"
+	                        ng-click="captrueMacList()">
+	            </pagination>
+	        </div>
+		</div>
+		
+		<div ng-show="showTab.macDevice">
+			<div class="" style="margin-bottom:14px;">
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">名称</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macDeviceParams.name" placeholder="请输入名称">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">地址</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macDeviceParams.detailAddress" placeholder="请输入地址">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">探针mac</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macDeviceParams.deviceId" placeholder="请输入探针mac">
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">网络名称</label>
+					<input type="text" class="form-control pull-left" name="" ng-model="macDeviceParams.apName" placeholder="请输入网络名称">
+				</div>
+				<button class="btn search-btn btn-blue margin-left-10" ng-click="wifiList(1)">查询</button>
+			</div>
+			<div class="form-bottom">				
+				<table class="table table-base waterprint">
+					<colgroup>
+						<col width="25%" />
+						<col width="25%" />
+						<col width="25%" />
+						<col width="25%" />
+					</colgroup>
+					<thead>
+						<tr>
+							<th>名称</th>
+							<th>地址</th>
+							<th>探针mac</th>
+							<th>网络名称</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat = "item in wifiListData">
+							<td>{{item.name}}</td>
+							<td>{{item.detailAddress}}</td>
+							<td>{{item.deviceId}}</td>
+							<td>{{item.apName}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="table-empty" ng-if="macDevicePage.totalRow==0 && !loader">
+	                <i class="icon-base icon-32 icon-table-empty"></i>
+	                <span class="empty-text">没有查询到符合条件的记录</span>
+	            </div>
+	            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+					<div class="ball-clip-rotate"></div>
+				</div>
+			</div>
+			<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="macDevicePage.totalRow > 0">
+	            <pagination total-items="macDevicePage.totalRow"
+	                        ng-model="macDeviceParams.pageNumber"
+	                        max-size="3"
+	                        items-per-page="macDeviceParams.pageSize"
+	                        class="pagination-sm pull-right"
+	                        previous-text="上一页"
+	                        next-text="下一页"
+	                        first-text="首页"
+	                        last-text="末页"
+	                        ng-click="wifiList()">
+	            </pagination>
+	        </div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+

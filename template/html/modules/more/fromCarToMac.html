@@ -1,0 +1,54 @@
+<div class="morelayer" style="padding:20px;height: 100%;">
+<!--	<div style="color: white;text-align: center;margin-bottom: 10px;font-size: .15rem;"><span style="margin-right: 30px;">车牌号：{{toMacParams.PlateNumber || '无'}}</span><span>时间：{{toMacParams.InOutTime || '无'}}</span></div>
+-->
+       <div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<!--<colgroup>
+					<col width="33%" />
+					<col width="33%" />
+					<col width="33%" />
+				</colgroup>-->
+				<thead>
+					<tr>
+						<th>车牌号</th>
+						<th>时间</th>
+						<th>卡口位置</th>
+						<th>Mac地址</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in MacData">
+						<td>{{toMacParams.PlateNumber || ''}}</td>
+						<td>{{toMacParams.InOutTime || ''}}</td>
+						<td>{{toMacParams.Door}}</td>
+						<td>{{item.mac || ''}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>   
+            <div ng-if="loader" style="position: absolute;top:20%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>	
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+            <pagination total-items="page1.totalRow"
+                        ng-model="initParams.pageNumber"
+                        max-size="3"
+                        items-per-page="initParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="searchMac()">
+            </pagination>
+        </div>
+	</div>
+</div>
+
+
+

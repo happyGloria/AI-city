@@ -1,0 +1,167 @@
+<div class="morelayer secondLevel">
+	<div class="secondLevel-head">
+		<div class="pull-left secondLevel-head-left" ng-show="showTab.RV"><span class="title">车辆登记数</span></div>
+		<div class="pull-left secondLevel-head-left" ng-show="showTab.IV"><span class="title">今日进入</span></div>
+		<div class="pull-left secondLevel-head-left" ng-show="showTab.OV"><span class="title">今日外出</span></div>
+		<div class="pull-left secondLevel-head-left" ng-show="showTab.RNV"><span class="title">今日外来车辆</span></div>
+		<div class="pull-left secondLevel-head-left" ng-show="showTab.RNVNL"><span class="title">滞留数</span></div>
+	</div>
+	<!-- 非滞留车辆 -->
+	<div class="population-per" ng-if="!showTab.RNVNL">
+		<div class="" style="margin-bottom:14px;">
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">车牌号</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.plateNumber" placeholder="请输入车牌号">
+			</div>
+			<div class="form-group-level clearfix" ng-if="showTab.RV">
+				<label class="control-label pull-left">进出</label>
+				<select class="pull-left" ng-model="initParams.inOutType">
+					<option value="">请选择</option>
+					<option ng-repeat="x in inOutArr" value="{{x.code}}">{{x.name}}</option>
+				</select>
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">时间</label>
+		        <div class="datetimepicker pull-left">
+		        	<input type="text" id="startTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.startTime" placeholder="开始时间">
+		        </div>
+		        <div class="pull-left">--</div>
+			    <div class="datetimepicker pull-left">
+		        	<input type="text" id="endTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.endTime" placeholder="结束时间">
+		        </div>
+			</div>
+			<button class="btn search-btn btn-blue margin-left-10" ng-click="captrueCarList(1)">查询</button>
+		</div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>车牌号码</th>
+						<th>进出</th>
+						<th>最新过车时间</th>
+						<th>居住地址</th>
+						<th>车辆照片</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in carListData track by $index">
+						<td>{{item.plateNumber}}</td>
+						<td ng-if="item.inOutType == 1">进</td>
+						<td ng-if="item.inOutType == 2">出</td>
+						<td>{{item.inOutTime}}</td>
+						<td ng-click="toResident(item)"><a href="">{{item.address}}</a></td>
+						<td>
+							<span class="span-icon">
+								<i class="base-icon icon-photo" ng-show="item.platePic != ''" ng-click="doorImgClick(item.platePic)"></i>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>
+            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+            <pagination total-items="page1.totalRow"
+                        ng-model="initParams.pageNumber"
+                        max-size="3"
+                        items-per-page="initParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="captrueCarList()">
+            </pagination>
+        </div>
+	</div>
+
+	<!-- 滞留车辆 -->
+	<div class="population-per" ng-if="showTab.RNVNL">
+		<div class="" style="margin-bottom:14px;">
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">车牌号</label>
+				<input type="text" class="form-control pull-left" name="" ng-model="initParams.plateNumber" placeholder="请输入车牌号">
+			</div>
+			<div class="form-group-level clearfix">
+				<label class="control-label pull-left">时间</label>
+		        <div class="datetimepicker pull-left">
+		        	<input type="text" id="startTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.startTime" placeholder="开始时间">
+		        </div>
+		        <div class="pull-left">--</div>
+			    <div class="datetimepicker pull-left">
+		        	<input type="text" id="endTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.endTime" placeholder="结束时间">
+		        </div>
+			</div>
+			<button class="btn search-btn btn-blue margin-left-10" ng-click="captrueCarList(1)">查询</button>
+		</div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+						<col width="20%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>车牌号码</th>
+						<th>进出</th>
+						<th>最新过车时间</th>
+						<th>居住地址</th>
+						<th>车辆照片</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in listData track by $index">
+						<td>{{item.plateNumber}}</td>
+						<td ng-if="item.inOutType == 1">进</td>
+						<td ng-if="item.inOutType == 2">出</td>
+						<td>{{item.inOutTime}}</td>
+						<td ng-click="toResident(item.address)"><a href="">{{item.address}}</a></td>
+						<td>
+							<span class="span-icon">
+								<i class="base-icon icon-photo" ng-show="item.platePic != ''" ng-click="doorImgClick(item.platePic)"></i>
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>
+            <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+            <pagination total-items="page1.totalRow"
+                        ng-model="initParams.pageNumber"
+                        max-size="3"
+                        items-per-page="initParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="queryNotLeave()">
+            </pagination>
+        </div>
+	</div>
+</div>
+
+

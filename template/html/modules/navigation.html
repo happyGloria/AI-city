@@ -1,0 +1,107 @@
+<div class="head-v3">
+    <div class="navigation-up">
+        <div class="navigation-inner">
+            <div class="navigation-v2">
+                <span class="police"></span>
+                <span class="policeText">奉贤智能安防系统</span>
+            </div>
+            <div class="navigation-v3">
+                <ul>
+                    <li class="{{ navigation.menuCode }}" ng-class="{navUpSelectedInPage: $index == initMenuIndex}"
+                        _t_nav="{{ navigation.menuCode }}" ng-repeat="navigation in navigationList"
+                        ng-click="changePage($index)" ng-mouseover="showSecondMenus(navigation)">
+                        <h2>
+                            <a>{{ navigation.menuName }}</a>
+                        </h2>
+                    </li>
+                </ul>
+                <div class="navigation-down-new" _t_nav="menuAll">
+                    <div class="menuMain">
+                        <div class="menu-1 ng-scope" _t_nav="{{secondLists.id}}" id="{{secondLists.id}}">
+                            <i class="ico"></i>
+
+                            <div class="menu-childlists">
+                                <ul>
+                                    <li ng-repeat="second in secondLists">
+                                        <!--ng-class="{hasThird:second.hasThirdMenu}"-->
+                                        <h3><a class="link ng-binding ng-scope second"
+                                               ng-click="gotoSecondMenu(second)">{{second.menuName}}</a>
+                                               <!--ng-click="setMenuBg(second.hasThird,second.href)">{{second.name}}</a>-->
+                                        </h3>
+                                      <!-- ng-show="second.hasThird"-->
+                                       <div class="third-menu-lists" >
+                                            <div class="menu-block" ng-repeat="menuBlock in second.children">
+                                                <a class="link" ng-click="setMenuBg(child.hasThird,child.href)">{{menuBlock.menuName}}</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="menu-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation-right">
+            <span class="username">用户名:{{currentSaveUsr || '管理员'}}</span>
+            <span title="退出登录" class="layout" ng-click='openLog()'>
+                <img src="template/img/login/logout.png"/>
+            </span>
+        </div>
+    </div>
+</div>
+<!--修改密码弹出窗-->
+<script type="text/ng-template" id="layer-pwd-update">
+    <form class="layer" style="display: block">
+        <div class="layer-form-group">
+            <div class="form-group">
+                <label class="control-label">原密码：</label>
+                <input type="password" class="form-control" placeholder="" ng-model="oldpwd" ng-change="checkValueIsNull(0)">
+                <span id="tishi" ng-bind="tishi" style="font-size: 12px;color: red"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">新密码：</label>
+                <input type="password" class="form-control" placeholder="" ng-model="newpwd" ng-change="checkValueIsNull(1)">
+                <span id="tishi1" ng-bind="tishi1" style="font-size:  12px;color: red"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">确认密码：</label>
+                <input type="password" class="form-control" placeholder="" ng-model="newpwd2" ng-change="checkValueIsNull(2)">
+                <span id="tishi2" ng-bind="tishi2" style="font-size:  12px;color: red"></span>
+            </div>
+        </div>
+        <div class="btn-box">
+            <button class="btn btn-icon-blue " ng-click="gochangePwd()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+            <button class="btn btn-icon-default" ng-click="cancelPwd()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+        </div>
+    </form>
+</script>
+
+<!--退出登录弹出窗-->
+<script type="text/ng-template" id="layer-login-out">
+    <form class="layer logout" style="display: block" id="outform">
+        <div class="logoutCon">
+            <div class="" style="margin-left: -25px;margin-bottom: 10px;">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="text-uppercase control-label">退出登录</span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" ng-bind="msg"></label>
+            </div>
+        </div>
+
+        <div class="btn-box">
+            <button class="btn btn-icon-blue" ng-click="goLogOut()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+            <button class="btn btn-icon-default" ng-click="closeOut()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+        </div>
+    </form>
+</script>

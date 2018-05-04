@@ -1,0 +1,184 @@
+/* line 1, ../scss_default/navigation-new.scss */
+.navigation-up .navigation-v3 .nav-up-selected, .navigation-up .navigation-v3 li.active {
+  background: #00a1f2;
+}
+
+/* line 5, ../scss_default/navigation-new.scss */
+.navigation-up .navigation-head .head-img .viewData {
+  float: right;
+  line-height: 50px;
+  padding: 0 10px;
+}
+
+/* line 11, ../scss_default/navigation-new.scss */
+.navigation-down-new {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  display: none;
+}
+/* line 17, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain {
+  width: 100%;
+  padding-left: 0;
+  padding-top: 10px;
+  height: 100px;
+  background-color: rgba(3, 137, 199, 0.95);
+  position: relative;
+}
+/* line 24, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 {
+  width: auto;
+  height: 80px;
+  overflow: hidden;
+  float: left;
+  margin-right: 4px;
+  background: url(../img/navigation/menu-seprate.png) 4px 0 no-repeat;
+  margin-top: -2px;
+}
+/* line 32, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1:last-child {
+  margin-right: 0;
+  background: url(../img/navigation/menu-seprate.png) 4px 0 no-repeat;
+}
+/* line 36, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 i.ico {
+  width: auto;
+  height: 29px;
+  display: block;
+  background-image: url(../img/navigation/menu-ico.png);
+  max-width: 50px;
+}
+/* line 43, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists {
+  overflow: hidden;
+  padding-top: 15px;
+  background: url(../img/navigation/menu-line.png) 0 5px no-repeat;
+  font-family: "Microsoft Yahei";
+}
+/* line 48, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists a {
+  text-align: left;
+  color: #6bd1ff;
+  padding: 0 8px 0 16px;
+  font-weight: normal;
+}
+/* line 55, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists ul li {
+  border-right: 1px dashed #3f9dd0;
+  min-height: 230px;
+}
+/* line 58, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists ul li:last-child {
+  border-right: 0;
+}
+/* line 61, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists ul li:hover {
+  background: none;
+  height: auto;
+}
+/* line 65, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists ul li h3 {
+  font-size: 14px;
+  font-weight: bold;
+  background: url(../img/navigation/dot.png) 9px center no-repeat;
+  padding: 10px 0;
+  margin: 0;
+}
+/* line 71, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists ul li h3 a {
+  font-weight: normal;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'Microsoft Yahei';
+}
+/* line 76, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists ul li h3 a.hasThird {
+  cursor: text;
+}
+/* line 78, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists ul li h3 a.hasThird:hover {
+  color: #fff;
+  cursor: default;
+  text-decoration: none;
+}
+/* line 84, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-childlists ul li h3 a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+/* line 95, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-block {
+  float: left;
+  width: auto;
+}
+/* line 98, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-block:first-child {
+  border-left: 0;
+}
+/* line 101, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-block a {
+  display: block;
+  font-size: 12px;
+  line-height: 28px;
+  text-align: left;
+  color: #c0e3ff;
+  font-weight: normal;
+  font-family: "Microsoft Yahei";
+}
+/* line 109, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-block a.second {
+  font-size: 14px;
+  background: url(../img/navigation/dot.png) 13px center no-repeat;
+  cursor: pointer;
+}
+/* line 115, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-block a.hasThird {
+  cursor: text;
+  font-weight: bold;
+}
+/* line 119, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-1 .menu-block a:hover {
+  color: #c0e3ff;
+  text-decoration: underline;
+}
+/* line 126, ../scss_default/navigation-new.scss */
+.navigation-down-new .menuMain .menu-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  left: 0;
+  top: 45px;
+  background-color: #63caf9;
+}
+
+/* line 139, ../scss_default/navigation-new.scss */
+#search i.ico {
+  background-position: 51px -11px;
+}
+
+/* line 146, ../scss_default/navigation-new.scss */
+#map i.ico {
+  background-position: 98px -11px;
+}
+
+/* line 153, ../scss_default/navigation-new.scss */
+#eye i.ico {
+  background-position: 143px -11px;
+}
+
+/* line 160, ../scss_default/navigation-new.scss */
+#cloud i.ico {
+  background-position: 191px -11px;
+}
+
+/* line 167, ../scss_default/navigation-new.scss */
+#judge i.ico {
+  background-position: 232px -11px;
+}
+
+/* line 174, ../scss_default/navigation-new.scss */
+#platform i.ico {
+  background-position: 279px -11px;
+}

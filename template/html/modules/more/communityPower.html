@@ -1,0 +1,104 @@
+<div class="morelayer" style="padding:20px;" id="communityPower">
+	<div style="height:100%;overflow-y: scroll;">
+		<!-- <div class="form-top">
+			<label class="control-label">姓名：</label>
+			<input type="text" class="form-control" ng-model="initParams.pName" placeholder="请输入姓名">
+			<label class="control-label">身份证号码：</label>
+			<input type="text" class="form-control" name="" ng-model="initParams.IdentityCard" placeholder="请输入身份证号码">
+			<label class="control-label">访问时间：</label>
+	        <div class="datetimepicker">
+	        	<input type="text" id="startTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.startTime">
+	        </div>
+	        <div class="split"></div>
+	        <div class="datetimepicker">
+	        	<input type="text" id="endTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="initParams.endTime">
+	        </div>
+			<div class="form-group" ng-click="queryOpenRecord(1)">
+				<button type="button" class="btn btn-icon-blue">
+	            <i class="icon-base icon-24 icon-btn-query"></i>
+	            <span class="btn-icon-text">查询</span>
+	    		</button>
+			</div>
+		</div> -->
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<!-- <colgroup>
+					<col width="10%" />
+					<col width="15%" />
+					<col width="15%" />
+					<col width="20%" />
+					<col width="20%" />
+					<col width="20%" />
+				</colgroup> -->
+				<thead>
+					<tr>
+						<th>照片</th>
+						<th>姓名</th>
+						<th>标签</th>
+						<th>身份证</th>
+						<th>联系电话</th>
+						<th>居住地</th>
+						<th>人脸抓拍</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in powerRecords">
+						<td><img ng-src="{{item.photoStr}}" style="width:90px;height:120"></td>
+						<!-- <td><img src="/template/html/modules/community/123.png"></td> -->
+						<td>{{item.xm}}</td>
+						<td>{{item.bq}}</td>
+						<td><a ng-click="lalerPeopleFile(item.zjhm)">{{item.zjhm}}</a></td>
+						<td>{{item.phone}}</td>
+						<td>{{item.jzdz}}</td>
+						<td ng-click="viewPicFun(item)" style="cursor:pointer;">
+							<span>详细</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="page1.totalRow==0  && !loader">
+	            <i class="icon-base icon-32 icon-table-empty"></i>
+	            <span class="empty-text">没有查询到符合条件的记录</span>
+	        </div> 
+	        <div ng-if="loader" style="position: absolute;top:10%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>  						
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+	        <pagination total-items="page1.totalRow"
+	                    ng-model="initParams.pageNumber"
+	                    max-size="3"
+	                    items-per-page="initParams.pageSize"
+	                    class="pagination-sm pull-right"
+	                    previous-text="上一页"
+	                    next-text="下一页"
+	                    first-text="首页"
+	                    last-text="末页"
+	                    ng-click="queryRealPowerList()">
+	        </pagination>
+	    </div>
+	</div>
+	<div class="contrast-con clearfix" style="height:100%;padding: 20px 10px 20px;display:none;width:100%" id="realPowerPhoto">
+		<div class="left-photo" style="width:100%;height:100%">
+			<div class="swiper-container">
+			    <div class="swiper-wrapper">
+			      <div class="swiper-slide img-box" ng-repeat="item in communityPowerPic">
+				      <div style="width:inherit;height:inherit;text-align:center;">
+				      	<img ng-src="{{item.picUrl}}">
+						<div class="span-text">
+							<span style="display:block;">时间:{{item.alarmTime.split(" ")[1]}}</span>
+							<span>地点:{{item.alarmPlace}}</span>
+						</div>
+				      </div>
+			      </div>
+			    </div>
+			    <!-- Add Pagination -->
+			    <div class="swiper-pagination"></div>
+			    <!-- Add Arrows -->
+			    <div class="swiper-button-next"></div>
+			    <div class="swiper-button-prev"></div>
+		  	</div>
+			<!-- <span class="span-text">抓拍人脸</span> -->
+		</div>
+	</div>
+</div>

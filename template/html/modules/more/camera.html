@@ -1,0 +1,75 @@
+<div class="morelayer" style="padding:20px;">
+	<div>
+		<div class="form-top">
+			<label class="control-label">摄像机类型：</label>
+        	<select style="background-color: #062c52;color: #B4BBCF;border: 1px solid #395572;padding: 4px;border-radius: 4px;margin-right: 20px;" ng-init="initParams.cameraType = cameraTypeArr[0].code" ng-model="initParams.cameraType" ng-options="x.code as x.name for x in cameraTypeArr">
+			</select>
+			<label class="control-label">设备号：</label>
+			<input type="text" class="form-control" ng-model="initParams.name" placeholder="请输入设备号">
+	        <label class="control-label">状态：</label>
+        	<select style="background-color: #062c52;color: #B4BBCF;border: 1px solid #395572;padding: 4px;border-radius: 4px;margin-right: 20px;" ng-init="initParams.isOnline = IsOnlineArr[0].code" ng-model="initParams.isOnline" ng-options="x.code as x.name for x in IsOnlineArr">
+			</select>
+			<label class="control-label">摄像机端口：</label>
+			<input type="text" class="form-control" ng-model="initParams.cameraPort" placeholder="请输入摄像机端口">
+
+			<div class="form-group" ng-click="cameraList(1)">
+				<button type="button" class="btn btn-icon-blue">
+	            <i class="icon-base icon-24 icon-btn-query"></i>
+	            <span class="btn-icon-text">查询</span>
+        		</button>
+			</div>
+		</div>
+		<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="25%" />
+					<col width="25%" />
+					<col width="25%" />
+					<col width="25%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>摄像机类型</th>
+						<th>设备号</th>
+						<th>状态</th>
+						<th>摄像机端口</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in cameraData track by $index" ng-class="{'error':item.isOnline == 0}">
+						<td>{{cameraTypeArr[item.cameraType-1].name}}</td>
+						<td>{{item.name}}</td>
+						<td ng-show="item.isOnline == 1">正常</td>
+						<td ng-show="item.isOnline == 0">异常</td>
+						<!-- <td ng-if="item.isOnline == '0'" ng-click="clickUntreated(item,$index)">未处理</td>
+						<td ng-if="item.isOnline == '1'">已处理</td> -->
+						<td>{{item.cameraPort}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="page1.totalRow==0 && !loader">
+                <i class="icon-base icon-32 icon-table-empty"></i>
+                <span class="empty-text">没有查询到符合条件的记录</span>
+            </div>   
+            <div ng-if="loader" style="position: absolute;top:20%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>						
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="page1.totalRow > 0">
+            <pagination total-items="page1.totalRow"
+                        ng-model="initParams.pageNumber"
+                        max-size="3"
+                        items-per-page="initParams.pageSize"
+                        class="pagination-sm pull-right"
+                        previous-text="上一页"
+                        next-text="下一页"
+                        first-text="首页"
+                        last-text="末页"
+                        ng-click="cameraList()">
+            </pagination>
+        </div>
+	</div>
+</div>
+
+
+

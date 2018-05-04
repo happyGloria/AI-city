@@ -1,0 +1,331 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>三维API</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8"/>
+    <script type='text/javascript' src='jquery-1.9.1.min.js'></script>
+    <script type="text/javascript" src="UnityObject2.js"></script>
+    <script type="text/javascript" src="uzft.js"></script>
+    <script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script type="text/javascript">
+        //初始化
+        function init() {
+            var unityUrl = "http://47.93.174.30/diting/diting.unity3d";
+            var swObj = new uzft("unity3dinit", unityUrl);
+            swObj.init();
+        }
+
+        //添加图层
+        function addlayer() {
+            init();
+
+        }
+    </script>
+    <style type="text/css">
+        .nav li {
+            padding-left: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default" style="text-align: center;line-height:300%;"> 三维API</nav>
+</div>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3" style="background:#f5f5f5;">
+            <ul class="nav bs-docs-sidenav">
+                <li>
+                    <a href="#callout-navbar-overview">入门指南</a>
+                    <ul class="nav">
+                        <li><a href="#callout-navbar-overview-dep">引用相关依赖</a></li>
+                        <li><a href="#callout-navbar-overview-init">初始化代码</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#callout-navbar-layer">平台图层</a>
+                    <ul class="nav">
+                        <li><a href="#callout-navbar-layer-add">添加图层</a></li>
+                        <li><a href="#callout-navbar-layer-control">控制图层</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#callout-navbar-event">平台事件</a>
+                    <ul class="nav">
+                        <li><a href="#callout-navbar-event-leftbutton">左键事件</a></li>
+                        <li><a href="#callout-navbar-event-rightbutton">右键事件</a></li>
+                        <li><a href="#callout-navbar-event-initfinish">场景初始化完成事件</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#callout-navbar-method">平台方法</a>
+                    <ul class="nav">
+                        <li><a href="#callout-navbar-method-getobjname">左键获取对象名称</a></li>
+                        <li><a href="#callout-navbar-method-getpos">获取场景位置</a></li>
+                        <li><a href="#callout-navbar-method-flytopos">定位到坐标</a></li>
+                        <li><a href="#callout-navbar-method-flytoobj">定位到对象</a></li>
+                        <li><a href="#callout-navbar-method-highlight">高亮、闪烁及取消高亮对象</a></li>
+                        <li><a href="#callout-navbar-method-hideobj">显示/隐藏对象</a></li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#callout-navbar-customobj">自定义对象</a>
+                    <ul class="nav">
+                        <li><a href="#callout-navbar-customobj-icon">标注ICON</a></li>
+                        <li><a href="#callout-navbar-customobj-bubblebox">气泡框BubbleBox</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--     style="max-height: 900px;overflow-y:auto "-->
+        <div class="col-md-9" style="overflow-y: auto;max-height: 900px;">
+            <div class="bs-callout bs-callout-warning" id="callout-navbar-overview">
+                <h4>入门指南</h4>
+                <p id="callout-navbar-overview-dep">
+                    <b> 依赖库文件：</b>
+                    <code>jquery.min.js</code>
+                    <code>unityobject.js</code>
+                </p>
+                <p>
+                    <b> 核心API：</b> <code>3dapi.js</code>
+                </p>
+                <p>
+                    <b> 编码：</b> <code>utf-8</code>
+                </p>
+                <p>
+                    <b> IE版本：</b> <code>IE9</code>
+                    <mark>仅限当前版本，以后会支持更多</mark>
+                </p>
+                <p>
+                    <b> 当前API版本：</b> <code>v1.0</code>
+                </p>
+                <p>
+                    <b> 下载：</b> <code><a href="./3dapi.rar" target="_blank">3dapi</a></code>
+                </p>
+                <p>
+                    <b>添加html容器
+                        <mark>注意引入的顺序</mark>
+                    </b>
+                <pre>
+    &lt;script type='text/javascript' src='jquery-1.9.1.min.js'&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="UnityObject2.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="uzft.js"&gt;&lt;/script&gt;
+
+    &lt;div id="unityPlayer" &gt;&lt;/div&gt;
+                    </pre>
+                </p>
+                <p id="callout-navbar-overview-init">
+                    <b>初始化代码</b></br>
+                    代码需要放在
+                    <code>
+                        jQuery(function(){});
+                    </code>
+                    中执行
+                    <code>new uzft(divId,paUrl);</code></br>
+                    <b>参数说明</b></br><code>divId</code>需要把三维置放到的html容器</br><code>paUrl</code>需要加载的三维文件地址
+                    <mark>diting.unity3d</mark>
+                <pre>
+    var unityUrl = "http://47.93.174.30/diting/diting.unity3d";
+    jQuery(function () {
+        var swObj = new uzft(paDivId,paUrl);
+        swObj.init();
+    });
+                </pre>
+                <a class="btn btn-default" href="./model/init.html" target="_blank">运行试例</a>
+                </p>
+            </div>
+            <div class="bs-callout bs-callout-warning" id="callout-navbar-layer">
+                <h4>平台图层</h4>
+                <p>
+                    目前图层类型分为：
+                    <mark>影像(DEM-top)、建筑(building-top)、绿化(green-top)、道路(road-top)、其它(other-top)</mark>
+                    <br>
+                    添加图层需架设图层资源服务器,将图层模型发布到web服务器中。例如：<code>http://47.93.174.30/diting/build.prefab</code> <br>
+                    <b>图层数据格式</b><br>
+                <pre>
+    IP:图层资源文件所在的服务器地址
+    WEBCONFIG:配制的WEB虚拟目录名称
+    PREFABNAME:资源文件名称
+    [{"IP":"47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "building"},
+    {"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "dixing"},
+    {"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "daolu"},
+    {"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "lvhua"},
+    {"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "tree"},
+    {"IP": "47.93.174.30", "WEBCONFIG": "diting", "PREFABNAME": "xiaopin"}]
+                </pre>
+                </p>
+                <p id="callout-navbar-layer-add">
+                    <b>添加图层</b>
+
+                <pre>
+    //按以上提供的格式传入图层数据
+    var layerDatas = [];
+    swObj.layer.addLayer(layerDatas);
+                </pre>
+                <p id="callout-navbar-layer-control">
+                    <b>控制图层</b>
+                    <br>
+                    <mark>影像(DEM-top)、建筑(building-top)、绿化(green-top)、道路(road-top)、其它(other-top)</mark>
+                <pre>
+    //layerDatas为要控制的图层类型，如建筑：building-top
+    swObj.layer.controlLayer("building-top");
+                </pre>
+                </p>
+                <a class="btn btn-default" href="./model/layer.html" target="_blank">运行试例</a>
+            </div>
+
+            <div class="bs-callout bs-callout-warning" id="callout-navbar-event">
+                <h4>平台事件</h4>
+                <p id="callout-navbar-event-leftbutton">
+                    <b> 左键事件</b>
+                </p>
+                <pre>
+    //请在您引入的api页面编写以下JS代码，当三维对象接收到左键点击时，会自动回调到此方法，并返回点击的坐标
+    function u_onLeftBtd(pVal){
+        var obj = jQuery.parseJSON(pVal);
+        var x = obj.x;
+        var y = obj.y;
+        var z = obj.z;
+    }
+                </pre>
+                </p>
+                <p id="callout-navbar-event-rightbutton">
+                    <b> 右键事件</b>
+
+                </p>
+                <pre>
+    //请在您引入的api页面编写以下JS代码，当三维对象接收到右键点击时，会自动回调到此方法，并返回点击的坐标
+    function u_onRightBtd(pVal){
+        var obj = jQuery.parseJSON(pVal);
+        var x = obj.x;
+        var y = obj.y;
+        var z = obj.z;
+    }
+                </pre>
+                <p id="callout-navbar-event-initfinish">
+                    <b> 场景初始化完成事件</b>
+                </p>
+                <pre>
+    //场景初始化完成调用此方法
+    function u_onInitFinish(){
+
+    }
+                </pre>
+                <a class="btn btn-default" href="./model/event.html" target="_blank">运行试例</a>
+            </div>
+            <div class="bs-callout bs-callout-warning" id="callout-navbar-method">
+                <h4>平台方法</h4>
+                <p id="callout-navbar-method-getobjname">
+                    <b> 左键点击获取对象名称</b>
+
+                </p>
+                <pre>
+    swObj.pick("pick_finish");
+    function pick_finish(paObjName){
+        //paObjName为返回对象名称
+    }
+                </pre>
+                <p id="callout-navbar-method-getpos">
+                    <b> 获取场景位置</b>
+
+                </p>
+                <pre>
+    swObj.getViewPosition("getViewPos_finish");
+    function getViewPos_finish(paPos){
+        //paPos为位置信息
+    }
+                </pre>
+                <p id="callout-navbar-method-flytopos">
+                    <b> 定位到坐标</b>
+                    <br/>
+                    <b>参数说明</b></br><code>paPX, paPY, paPZ, paRX, paRY, paRZ, paRW, paDis</code>
+                    <mark>x坐标,y坐标,z坐标,旋转x,旋转y,旋转z,定位高度</mark>
+                </p>
+                <pre>
+    swObj.flyToPos(paPX, paPY, paPZ, paRX, paRY, paRZ, paRW, paDis);
+                </pre>
+                </p>
+                <p id="callout-navbar-method-flytoobj">
+                    <b> 定位到对象</b>
+                    <br/>
+                    <b>参数说明</b></br><code>paObjName,paDis</code>
+                    <mark>定位的对象名称,定位的高度</mark>
+                </p>
+                <pre>
+   swObj.flyToObj(paObjName,paDis);
+                </pre>
+                <p id="callout-navbar-method-highlight">
+                    <b> 高亮、闪烁及取消高亮对象</b>
+                    <br/>
+                    <b>参数说明</b></br><code>paObjName</code>
+                    <mark>高亮的对象名称</mark>
+                </p>
+                <pre>
+    //高亮对象
+    swObj.highObj(paObjName);
+    //取消高亮，可以传空,传空为清除高亮
+    swObj.hideLight(paObjName);
+    //闪烁高亮
+    swObj.flashLightObj(paObjName);
+                </pre>
+                <p id="callout-navbar-method-hideobj">
+                    <b>显示/隐藏对象</b>
+                    <br/>
+                    <b>参数说明</b></br><code>paObjName,paState</code>
+                    <mark>要隐藏对象的名称,要显示还是隐藏（"true or false"）</mark>
+                </p>
+                <pre>
+    swObj.controlObjMesh(paObjName,paState);
+                </pre>
+                <a class="btn btn-default" href="./model/method.html" target="_blank">运行试例</a>
+            </div>
+            <div class="bs-callout bs-callout-warning" id="callout-navbar-customobj">
+                <h4>自定义对象</h4>
+                <p id="callout-navbar-customobj-icon">
+                    <b> 地标ICON</b>
+                    <br/>
+                    <b>参数说明</b></br><code>paStr</code>
+                    <mark>添加地标的数据格式</mark>
+                </p>
+                <pre>
+    //数据格式
+    var str = '{"x":"0","y":"0","z":"0","name":"001","modelname":"PointIcon","rx":"0","ry":"0","rz":"0","rw":"0","text":"第2个测试:50.3度"}';
+    //添加地标
+    swObj.userData.model.init(str);
+                </pre>
+                </p>
+                <p id="callout-navbar-customobj-bubblebox">
+                    <b> 汽泡框BubbleBox</b>
+                    <br/>
+                    <b>参数说明</b></br><code>paStr</code>
+                    <mark>添加地标的数据格式:其中xyz为添加点的坐标，坐标可通过左键或右键事件或取，width为所泡框的宽、height为高；text为显示的字；id为唯一标识，可以通过id删除指定的气泡,
+                        fontcolor中 rgb值为1-255之间，a为透明度：0到1之间，style为汽泡框的样式，1到4之间,fontleft为距离左边宽度，方便调整
+                    </mark>
+                </p>
+                <pre>
+    var str = '{"text":"加载全部","id":"123","window":{"width":"100","height":"100","x":"0","y":"0","z":"0","fontsize":"20","fontleft":"30","fontcolor":{"r":"1","g":"1","b":"1","a":"1"},"style":"2"}}';
+    swObj.userData.bubbleBox.init(str);
+                </pre>
+                <p>
+                    <b> 删除单个及全部汽泡框</b>
+                    <br/>
+                    <b>参数说明</b></br><code>id</code>
+                    <mark>id为唯一标识，可以通过id删除指定的气泡</mark>
+                </p>
+                <pre>
+    swObj.userData.bubbleBox.destroy(id);
+    swObj.userData.bubbleBox.destroyAll();
+                </pre>
+                <a class="btn btn-default" href="./model/userdata.html" target="_blank">运行试例</a>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+</body>
+</html>

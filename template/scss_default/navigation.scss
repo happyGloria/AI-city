@@ -1,0 +1,349 @@
+ h1, h2, h3, h4, h5, h6,a {
+  font-size: 100%;
+  font-family: "Microsoft Yahei";
+}
+
+li {
+  list-style: none;
+}
+
+a{
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.head-v3 {
+  position: relative;
+  z-index: 9999;
+  min-width: 1366px;
+  .navigation-inner{
+    margin: 0 auto;
+    /*width: 980px;*/
+    position: relative;
+    .navigation-v2{
+      float: left;
+      margin-left: 0.2rem;
+      height: 0.5rem;
+      .police{
+        display: inline-block;
+        width: 0.37rem;
+        height: 0.37rem;
+        margin-right: 0.08rem;
+        position: absolute;
+        top: 0.07rem;
+        vertical-align: middle;
+        background: url("../../template/img/police.png") no-repeat;
+        background-size:cover;
+      }
+      .policeText{
+        //font: bold 0.22rem/0.5rem "Microsoft Yahei";
+        font-weight: bold;
+        font-size: 0.22rem;
+        line-height: 0.5rem;
+        font-family: 'Microsoft Yahei';
+        color: #fff;
+        margin-left: 0.47rem;
+      }
+
+    }
+  }
+}
+
+.navigation-up {
+  height: 0.5rem;
+  background: #007ee9;
+  min-width: 1366px;
+  .navigation-v3{
+    margin-left: 0.3rem;
+    float: left;
+    _margin-left: 0.1rem;
+    ul{
+      float: left;
+    }
+
+    li{
+      float: left;
+      font: normal 0.14rem/0.49rem "Microsoft Yahei";
+      color: #fff;
+      h2{
+        font-weight: normal;
+        padding: 0;
+        margin: 0;
+        a{
+          padding: 0 0.13rem;
+          color: #fff;
+          display: inline-block;
+          font: normal 0.14rem/0.49rem "Microsoft Yahei";
+          line-height: 50px;
+        }
+      }
+      &:hover {
+        @extend .nav-up-selected;
+      }
+    }
+    .nav-up-selected{
+      background: #00a1f2;
+      *border-bottom: 0.05rem solid #5bc5ff;
+      height: 0.5rem;
+    }
+
+    .navUpSelectedInPage{
+      background: #0776ae;
+      height: 0.5rem;
+      //line-height: 0.5rem;
+      *border-bottom: 0.05rem solid #5bc5ff;
+    }
+
+  }
+  .navigation-head{
+    max-height: 0.5rem;
+    float: right;
+    color: #fff;
+    font-size: 0.12rem;
+    font-family: Simsun;
+    .time{
+      float: left;
+      margin-right: 0.2rem;
+      //font: 0.22rem/0.5rem 'Microsoft Yahei';
+      font-size: 0.22rem;
+      line-height: 0.5rem;
+      font-family: 'Microsoft Yahei';
+    }
+    .showTime{
+      float: left;
+      margin: 0.08rem 0;
+      font-size: 0.12rem;
+      font-family: 'Microsoft Yahei';
+      .showDate{
+
+      }
+    }
+    .head-img {
+      float: left;
+      color: #ffffff;
+      font-size: 0.12rem;
+      margin-left: 0.2rem;
+      margin-right: 0.14rem;
+      .touxiang {
+        float: left;
+        width: 0.2rem;
+        height: 0.2rem;
+        display: block;
+        margin: 0.15rem 0.1rem 0.15rem 0;
+        padding-left: 0.1rem;
+        border-left: 0.01rem solid #4da5f0;
+        text-align: center;
+        img{
+          width: 0.2rem;
+          height: 0.2rem;
+        }
+      }
+
+      .isWoman{
+        background: url(../img/user-woman.png) no-repeat;
+        background-size: 100%;
+      }
+
+      .userText{
+        float: right;
+        margin: 0.15rem 0 0.15rem 0.1rem;
+        line-height: 0.2rem;
+        padding-right: 0.1rem;
+        border-right: 0.01rem solid #4da5f0;
+      }
+      .ng-binging {
+        vertical-align: middle;
+      }
+    }
+    .alarming{
+      padding: 0.16rem 0.1rem;
+      float: left;
+      .alarm-tip{
+        border-radius: 0.45rem;
+        background: red;
+        border: 0.01rem solid red;
+        width: 0.2rem;
+        height: 0.15rem;
+        color: #fff;
+        text-align: center;
+        line-height: 0.13rem;
+        font-size: 0.12rem;
+        margin: -0.25rem 0 0 0.08rem;
+      }
+    }
+
+    .resurfacing {
+      padding: 0.1rem 0;
+      float: left;
+
+      > a {
+        width: 0.3rem;
+        height: 0.3rem;
+        display: block;
+        background: url('../img/login/resurfacing.png') center no-repeat;
+        border-radius:0.02rem;
+        background-size:0.18rem 0.14rem;
+        cursor: pointer;
+      }
+
+      > a:hover, &.open > a {
+        background-color: #0389c7;
+      }
+
+      .dropdown-menu {
+        width: 2rem;
+        height: 0.9rem;
+        margin: 0;
+        padding: 0.15rem;
+        border: 0;
+        border-radius: 0 0 0.02rem 0.02rem;
+        box-shadow: 0 0.01rem 0.04rem 0 rgba(188, 188, 188, 0.75);
+        &:before {
+          content: '';
+          width: 0;
+          height: 0;
+          border: 0.08rem solid;
+          border-color: transparent transparent #fff transparent;
+          position: absolute;
+          top: -0.16rem;
+          right: 0.08rem;
+        }
+        p {
+          margin-bottom: 0.08rem;
+          color: #666;
+        }
+        > a {
+          width: 0.32rem;
+          height: 0.32rem;
+          float: left;
+          margin-right: 0.02rem;
+          &.default {
+            background-color: #0baafc;
+          }
+          &.dark {
+            background-color: #23537a;
+          }
+          &.active {
+            background-image: url('../img/login/resurfacing-ico.png');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:0.15rem 0.15rem;
+            cursor: default;
+          }
+        }
+      }
+    }
+    .navigation-logout{
+      display:inline-block;
+      padding: 0.16rem 0.15rem;
+      cursor:pointer;
+      img{
+        vertical-align: middle;
+        width:0.14rem;
+        height:0.14rem;
+      }
+
+    }
+    .navigation-logout:active {
+      background: #0389c7;
+      border-radius: 0.02rem;
+      outline: none;
+    }
+  }
+}
+.class1{
+  color: #fff;
+  font: normal 0.16rem "Microsoft Yahei";
+}
+.navigation-down {
+  position: absolute;
+  top: 0.6rem;
+  left: 0;
+  width: 100%;
+  .nav-down-menu{
+    width: 100%;
+    margin: 0;
+    padding: 0 0 0 2.75rem;
+    background: #0776ae;
+    position: absolute;
+    top: 0;
+    .navigation-down-inner{
+      margin: auto;
+      width: 100%;
+      position: relative;
+    }
+
+    dl{
+      float: left;
+      margin: 0.18rem 0.8rem 0.18rem 0;
+    }
+  }
+
+  .menu-1{
+    dl{
+      margin: 0.1rem 0.4rem 0.1rem 0;
+    }
+    dt{
+      font: normal 0.16rem "Microsoft Yahei";
+      color: #61789e;
+      padding-bottom: 0.1rem;
+      border-bottom: 0.01rem solid #61789e;
+      margin-bottom: 0.1rem;
+    }
+
+    dd{
+      a{
+        color: #fff;
+        font: normal 0.14rem/0.3rem "Microsoft Yahei";
+        &:hover{
+          color: #5bc5ff;
+          border-bottom: 0.02rem solid #5bc5ff;
+        }
+      }
+      .secondNavUpSelected{
+        color: #60aff6;
+        height: 0.6rem;
+        border-bottom: 0.02rem solid #5bc5ff;
+      }
+    }
+  }
+
+  .menu-2{
+    dd{
+      a{
+        @extend .class1;
+      }
+    }
+  }
+
+  .menu-3{
+    dd{
+      a{
+        @extend .class1;
+      }
+    }
+  }
+}
+.navigation-pwd{
+  color:#d2d9a9;
+}
+.form-control{
+  display:inline;
+  width: 20em;
+  color:#d2d9a9;
+
+}
+
+ @media screen and (max-width : 1100px) {
+   .navigation-up .navigation-head{
+     display: none;
+   }
+ }
+
+ .logout{
+   text-align: center;
+   .logoutCon{
+     padding-top: 0.5rem;
+   }
+ }

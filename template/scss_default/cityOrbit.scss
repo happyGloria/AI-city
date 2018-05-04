@@ -1,0 +1,719 @@
+.cityOrbitContainer.slider {
+    .left {
+        margin-left: -280px;
+        box-shadow: none;
+        .change {
+            transform: rotateY(180deg);
+            -ms-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -webkit-transform: rotateY(180deg);
+        }
+    }
+    .maphold {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+}
+
+.cityOrbitContainer {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    overflow: hidden;
+    .transiti {
+        transition: top .5s;
+        -moz-transition: top .5s;
+        -webkit-transition: top .5s;
+        -o-transition: top .5s;
+        transition-timing-function: ease;
+        -moz-transition-timing-function: ease;
+        -webkit-transition-timing-function: ease;
+    }
+    .spirit {
+        background: url(../img/map/sprite.png) no-repeat;
+    }
+    .guodu {
+        -o-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+    }
+    //左边菜单样式
+    .left {
+        width: 280px;
+        height: 100%;
+        box-shadow: 3px 0px 3px 0px rgba(0, 0, 0, .1);
+        float: left;
+        background-color: #fff;
+        position: relative;
+        z-index: 1;
+        @extend .guodu;
+        .leftContent {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            color: #959595;
+            .head {
+                font-size: 12px;
+                .guijikehua {
+                    height: 40px;
+                    line-height: 40px;
+                    .headText {
+                        vertical-align: middle;
+                    }
+                    .touxiang {
+                        width: 18px;
+                        height: 16px;
+                        vertical-align: middle;
+                        display: inline-block;
+                        background: url(../img/map/guiji.png);
+                        margin-left: 10px;
+                    }
+                }
+                .tiaojian {
+                    height: 40px;
+                    line-height: 40px;
+                    border-top: 1px solid #e1e1e1;
+                    border-bottom: 1px solid #e1e1e1;
+                    .tiaojianText {
+                        margin-left: 10px;
+                    }
+                    .menuUp {
+                        transform: rotateX(180deg);
+                        -moz-transform: rotateX(180deg);
+                        -ms-transform: rotateX(180deg);
+                        -webkit-transform: rotateX(180deg);
+                    }
+                    .menuDown {
+                        width: 22px;
+                        height: 22px;
+                        cursor: pointer;
+                        float: right;
+                        margin-top: 9px;
+                        margin-right: 5%;
+                        background: url(../img/map/menu_down.png) no-repeat;
+                    }
+                }
+            }
+            //案件名称和框选工具
+            .leftMiddle {
+                padding-top: 4px;
+                padding-bottom: 10px;
+                background-color: #f8f8f8;
+                .conten {
+                    margin-top: 6px;
+                    font-size: 12px;
+                    .startTime {
+                        height: 34px;
+                        width: 260px;
+                        margin-left: 10px;
+                        line-height: 32px;
+                        background-color: #fff;
+                        .input-group{
+                            div#condition{
+                                padding-left: 0;
+                                border: 0;
+                                .dropdown-select{
+                                    border-radius: 0;
+                                    border-right: 0;
+                                    height: 34px;
+                                }
+                            }
+                        }
+                        .conditionText {
+                            display: inline-block;
+                            color: #959595;
+                            display: inline-block;
+                            color: #959595;
+                            float: left;
+                            width: 30%;
+                            padding-left: 5%;
+                            border: 1px solid #dbdbdb;
+                            border-right: none;
+                            .down {
+                                width: 22px;
+                                height: 22px;
+                                cursor: pointer;
+                                position: absolute;
+                                top: 7px;
+                                background: url(../img/map/menu_down.png) no-repeat;
+                            }
+                        }
+                        .idCard {
+                            background: none;
+                        }
+                        .conditionInput {
+                            display: inline-block;
+                            width: 70%;
+                            height: 34px;
+                            border-radius: 0;
+                        }
+                        i {
+                            display: inline-block;
+                            position: absolute;
+                            //width: 20px;
+                            //height: 20px;
+                            width: 15px;
+                            height: 16px;
+                            right: 10px;
+                            //margin-top: 7px;
+                            margin-top: 9px;
+                            z-index: 2;
+                            background: url('../img/canlendar.png') no-repeat;
+                            //background: url(../img/map/mapLeftContent.png) no-repeat;
+                            //background-position: 0 -20px;
+                        }
+                        //选择条件样式
+                        .conditionList {
+                            //display: none;
+                            z-index: 3;
+                            position: absolute;
+                            width: 88px;
+                            border: 1px solid #ccc;
+                            box-shadow: 3px 3px 5px #ccc;
+                            margin-top: 37px;
+                            background-color: #fff;
+                            ul {
+                                .isCurrent {
+                                    background-color: #00a0e9;
+                                    color: #fff;
+                                }
+                                li {
+                                    padding-left: 10px;
+                                    cursor: pointer;
+                                    //border-bottom: 1px dashed #0baafc;
+                                    &:hover {
+                                        color: #666;
+                                        background-color: #eee;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .query {
+                    width: 260px;
+                    margin-left: 10px;
+                    cursor: pointer;
+                    text-align: center;
+                    height: 36px;
+                    margin-top: 10px;
+                    line-height: 36px;
+                    background-color: #00a0e9;
+                    border-radius: 3px;
+                    color: #fff;
+                    &:hover {
+                        background-color: #0D89C9;
+                    }
+                }
+            }
+            .content {
+                .searchResult {
+                    line-height: 40px;
+                    margin-left: 10px;
+                    span {
+                        color: #00a0e9;
+                    }
+                }
+                .comm {
+                    width: 20px;
+                    height: 33px;
+                    display: inline-block;
+                    background: url(../img/map/point.png) no-repeat;
+                }
+                .recodeList {
+                    font-size: 12px;
+                    overflow-y: auto;
+                    position: absolute;
+                    top: 320px;
+                    bottom: 51px;
+                    width: 100%;
+                    @extend .transiti;
+                    .liHover{
+                        background-color: #f8f8f8;
+                        .num {
+                            span {
+                                background-position: -20px 0;
+                            }
+                        }
+                    }
+                    li {
+                        border: 1px dashed #dbdbdb;
+                        border-right: 1px solid #dedede;
+                        border-bottom: none;
+                        border-left: none;
+                        color: #666;
+                        padding: 10px 0;
+                        line-height: 20px;
+                        cursor: pointer;
+                        .num {
+                            width: 50px;
+                            display: inline-block;
+                            color: #fff;
+                            font-weight: bold;
+                            margin-left: 10px;
+                            float: left;
+                            span {
+                                @extend .comm;
+                                background-position: 0 0;
+                                text-align: center;
+                            }
+                        }
+                        .recordDetail {
+                            width: 200px;
+                            display: inline-block;
+                            .name {
+                                color: #00a0e9;
+                            }
+                            .time {
+                                color: #999;
+                            }
+                        }
+                        &:last-child {
+                            border-bottom: 1px dashed #dbdbdb;
+                        }
+                        &:hover {
+                            @extend .liHover;
+                        }
+                    }
+                }
+                .pagination-wrap {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    li{
+                        a{
+                            padding: 6px 6px;
+                        }
+                    }
+                }
+            }
+        }
+        .change {
+            width: 10px;
+            height: 40px;
+            z-index: 1000;
+            top: 45%;
+            left: 280px;
+            background: url(../img/map/slider.png) no-repeat;
+            position: absolute;
+            cursor: pointer;
+            box-shadow: 2px 0 6px #cbc8c8;
+        }
+    }
+    //地图部分样式
+    .maphold {
+        height: 100%;
+        margin-left: 280px;
+        position: relative;
+        @extend .guodu;
+        .header {
+            z-index: 2;
+            width: 100%;
+            position: absolute;
+            background: rgba(255, 255, 255, .85);
+            border-bottom: 1px solid #e1e1e1;
+            padding: 5px;
+            .cityParter {
+                margin-left: 8px;
+                padding: 5px;
+                position: absolute;
+                i {
+                    display: inline-block;
+                    vertical-align: -3px;
+                    margin-right: 10px;
+                    width: 16px;
+                    height: 16px;
+                    @extend .common;
+                    background-position: -88px -26px;
+                }
+            }
+            .searchTool {
+                width: 500px;
+                margin: auto;
+                input {
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                    //width: 526px;
+                }
+                .searchButton {
+                    background-color: #00a0e9;
+                    position: relative;
+                    &:hover {
+                        background-color: #00afff;
+                    }
+                }
+            }
+            .right {
+                position: absolute;
+                right: 0;
+                top: 7px;
+                .toolLeft {
+                    float: left;
+                }
+                .selectTool,
+                .commonTool {
+                    &:hover {
+                        .downMenu {
+                            display: block;
+                        }
+                    }
+                }
+                .toolItem {
+                    a {
+                        display: inline-block;
+                        padding: 0 15px;
+                        color: #000;
+                        cursor: pointer;
+                        border: 1px solid transparent;
+                        border-top: 0;
+                        margin-top: 3px;
+                        padding-bottom: 3px;
+                        .maptools-icon-select {
+                            width: 13px;
+                            height: 13px;
+                            vertical-align: middle;
+                            display: inline-block;
+                            @extend .spirit;
+                            background-position: 0 -88px;
+                        }
+                        .maptools-icon-package {
+                            display: inline-block;
+                            @extend .spirit;
+                            background-position: 0 -43px;
+                            width: 13px;
+                            height: 13px;
+                            vertical-align: middle;
+                        }
+                        span {
+                            &:last-child {
+                                margin-left: 3px;
+                                vertical-align: middle;
+                            }
+                        }
+                        .maptools-icon-fullscreen {
+                            height: 13px;
+                            width: 13px;
+                            vertical-align: middle;
+                            display: inline-block;
+                            @extend .spirit;
+                            background-position: 0 -28px;
+                        }
+                        .exit-Fullscreen {
+                            background-position: 0 -13px;
+                        }
+                    }
+                    .downMenu {
+                        display: none;
+                        position: absolute;
+                        margin-left: 15px;
+                        z-index: 100;
+                        cursor: pointer;
+                        //padding-top: 10px;
+                        ul {
+                            border: 1px solid #CCCCCC;
+                            background: rgba(255, 255, 255, 0.9);
+                            li {
+                                text-align: center;
+                                padding: 3px 5px;
+                                &:hover {
+                                    background: #f1f1f1;
+                                }
+                                .maptools-icon-region {
+                                    width: 13px;
+                                    height: 13px;
+                                    vertical-align: middle;
+                                    display: inline-block;
+                                    @extend .spirit;
+                                    background-position: 0 -73px;
+                                }
+                                span {
+                                    &:last-child {
+                                        margin-left: 3px;
+                                    }
+                                }
+                                .maptools-icon-lasso {
+                                    display: inline-block;
+                                    background-position: 0 0;
+                                    width: 13px;
+                                    height: 11px;
+                                    vertical-align: middle;
+                                    @extend .spirit;
+                                }
+                                .maptools-icon-rang {
+                                    display: inline-block;
+                                    @extend .spirit;
+                                    background-position: 0 -58px;
+                                    width: 8px;
+                                    height: 13px;
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #cityId {
+            width: 100%;
+            height: 100%;
+            .olMapViewport {
+                z-index: 0;
+            }
+            //图层选择   end
+            //地图切换主题的按钮
+            .changeTheme {
+                height: 40px;
+                background-color: #fff;
+                //box-shadow: 0 5px 5px #ccc;
+                position: absolute;
+                right: 5px;
+                z-index: 500;
+                margin-top: 10px;
+                opacity: 0.8;
+                filter: alpha(opacity=80);
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                div {
+                    display: inline-block;
+                    margin-top: 10px;
+                    margin-right: 10px;
+                    &:first-child {
+                        margin-left: 10px;
+                    }
+                    span {
+                        float: left;
+                        cursor: pointer;
+                    }
+                    .active {
+                        background-image: url(../img/login/resurfacing-ico.png);
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        cursor: default;
+                    }
+                    .color {
+                        display: inline-block;
+                        width: 21px;
+                        height: 21px;
+                        margin-right: 3px;
+                    }
+                }
+                .original {
+                    .color {
+                        background-color: #ffb35b;
+                    }
+                }
+                .classic {
+                    .color {
+                        background-color: #03060d;
+                    }
+                }
+            }
+
+            .showCarFollow-control{
+                z-index: 2 !important;
+            }
+            //轨迹控制条样式
+            .carfollow-control {
+                position: absolute;
+                z-index: -1;
+                right: 95px;
+                bottom: 5px;
+                left: 95px;
+                min-width: 400px;
+                overflow: visible;
+                border-radius: 3px;
+                font-size: 12px;
+                .map-panel {
+                    position: relative;
+                    height: 54px;
+                    margin: 0 auto;
+                    background: rgba(0, 0, 0, .8);
+                    border-radius: 3px;
+                    -moz-user-select: none;
+                    -webkit-user-select: none;
+                    -ms-user-select: none;
+                    -khtml-user-select: none;
+                    user-select: none;
+                    .right {
+                        float: right;
+                    }
+                    //左边控制按钮样式
+                    .map-control-left {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 20px;
+                        width: 75px;
+                        .play-prev {
+                            position: absolute;
+                            top: 17px;
+                            left: 0;
+                            display: inline-block;
+                            width: 16px;
+                            height: 21px;
+                            background: url(../img/map/controlPanel.png) 0 -277px no-repeat;
+                            &:hover {
+                                background: url(../img/map/controlPanel.png) 0 -254px no-repeat;
+                            }
+                        }
+                        .controlpanel-play-icon {
+                            position: absolute;
+                            top: 15px;
+                            left: 31px;
+                            display: inline-block;
+                            width: 12px;
+                            height: 24px;
+                            background: url(../img/map/controlPanel.png) 0 -228px no-repeat !important;
+                            &:hover {
+                                background: url(../img/map/controlPanel.png) 0 -202px no-repeat !important;
+                            }
+                        }
+                        .controlpanel-pause-icon {
+                            position: absolute;
+                            top: 15px;
+                            left: 31px;
+                            display: inline-block;
+                            width: 18px;
+                            height: 24px;
+                            background: url(../img/map/controlPanel.png) 0 -176px no-repeat;
+                            &:hover {
+                                background: url(../img/map/controlPanel.png) 0 -150px no-repeat;
+                            }
+                        }
+                        .play-next {
+                            position: absolute;
+                            top: 17px;
+                            right: 0;
+                            display: inline-block;
+                            width: 16px;
+                            height: 21px;
+                            background: url(../img/map/controlPanel.png) 0 -95px no-repeat;
+                            &:hover {
+                                background: url(../img/map/controlPanel.png) 0 -72px no-repeat;
+                            }
+                        }
+                    }
+                    //中间主体部分也是
+                    .map-slider {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        right: 200px;
+                        left: 115px;
+                        #citySlider {
+                            height: 32px;
+                            cursor: pointer;
+                            vertical-align: middle;
+                            background: rgba(49, 141, 169, .4);
+                            border: none;
+                            margin-top: 11px;
+                            border-radius: 0;
+                            .ui-slider-range {
+                                background-color: rgba(0, 183, 238, .4);
+                                border-radius: 0;
+                            }
+                            a {
+                                margin-left: 0px;
+                                margin-top: 4px;
+                                width: 2px;
+                                height: 100%;
+                                background-color: #00ffff;
+                                display: inline-block;
+                            }
+                            &:after {
+                                content: '';
+                                width: 100%;
+                                height: 1px;
+                                background-color: #aeaead;
+                                position: absolute;
+                                top: 16px;
+                            }
+                        }
+
+                        .timer{
+                            font-size: 10px;
+                            line-height: 10px;
+                            color: #cbcbcb;
+                        }
+                    }
+                    //最右边样式
+                    .map-control-right {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        width: 200px;
+                        .controlpanel-nochecked-icon {
+                            display: inline-block;
+                            //width: 14px;
+                            height: 14px;
+                            color: #666;
+                            background: url(../img/map/controlPanel.png) 0 -134px no-repeat;
+                            &:hover {
+                                color: #09a1e4;
+                                background: url(../img/map/controlPanel.png) 0 -118px no-repeat;
+                            }
+                        }
+                        .controlpanel-checked-icon {
+                            display: inline-block;
+                            //width: 14px;
+                            height: 14px;
+                            color: #fff;
+                            background: url(../img/map/controlPanel.png) 0 -18px no-repeat !important;
+                            &:hover {
+                                color: #09a1e4;
+                                //width: 16px;
+                                height: 16px;
+                                background: url(../img/map/controlPanel.png) 0 0 no-repeat !important;
+                            }
+                        }
+                        .map-control-showall {
+                            position: absolute;
+                            top: 20px;
+                            left: 10px;
+                            width: 75px;
+                            padding-left: 20px;
+                            cursor: pointer;
+                        }
+                        .map-control-info {
+                            position: absolute;
+                            top: 20px;
+                            left: 90px;
+                            width: 75px;
+                            padding-left: 20px;
+                            cursor: pointer;
+                        }
+                        .play-helper {
+                            position: absolute;
+                            top: 18px;
+                            right: 15px;
+                            display: inline-block;
+                            width: 17px;
+                            height: 17px;
+                            background: url(../img/map/controlPanel.png) 0 -53px no-repeat;
+                            &:hover {
+                                background: url(../img/map/controlPanel.png) 0 -34px no-repeat;
+                                .play-helper-info {
+                                    right: -14px;
+                                }
+                            }
+                            .play-helper-info {
+                                position: absolute;
+                                right: -9999px;
+                                bottom: 40px;
+                                /* display: none; */
+                                width: 90px;
+                                padding: 5px;
+                                color: #fff;
+                                background: rgba(0, 0, 0, .8);
+                                border-radius: 3px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

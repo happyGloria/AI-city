@@ -1,0 +1,1279 @@
+.homePage.slider {
+  .contain-left {
+    margin-left: -2.80rem;
+    box-shadow: none;
+    .change {
+      transform: rotateY(180deg);
+      -ms-transform: rotateY(180deg);
+      -moz-transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+  }  
+}
+
+.homePage{
+  width: 100%;
+  height: 100%;
+  .fn-ic {
+    display: inline-block;
+    overflow: hidden;
+    background: url("../img/home/homemap/person-default.png") no-repeat center;
+    img{
+      width: auto;
+      height: 100%;
+      //margin: 0px 0px 0px -8.5px;
+      display: inline;
+      cursor: pointer;
+    }
+    &:hover{
+      img {
+        -ms-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -ms-webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -webkit-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+      }
+    }
+  }
+  .fn-icon {
+    background: url("../img/home/homemap/pic.png") no-repeat;
+  }
+  .more {
+    display: inline-block;
+    width: 0.46rem;
+    height: 0.34rem;
+    line-height: 0.34rem;
+    margin-left: 0.05rem;
+    margin-right: 0.05rem;
+    float: right;
+    //border-left: solid 1px #C5C5C5;
+    text-align: right;
+    color: #999999;
+    cursor: pointer;
+    .more-arrow-icon {
+      display: inline-block;
+      width: 0.05rem;
+      height: 0.08rem;
+      margin-left: 0.06rem;
+      background-position: -1.37rem -1.34rem;
+    }
+  }
+  .fn-text-overflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  h1,h2,h3,h4,h5,h6,p{
+      margin:0;
+  }
+  .cameraTemplate,.wifiTemplate,.kakouTemplate{
+    color: #fff;
+    background-color: rgba(10,112,200,0.8);
+    border-radius: 0.02rem;
+    .npmap-dialog-titlebar{
+      .close{
+        right: 0.05rem;
+        top: 60%;
+        background: url(../img/map/close2.png) no-repeat scroll 0 0;
+      }
+    }
+
+    .npmap-dialog-content{
+      padding: 0 0.02rem;
+      img{
+        width: 0.76rem;
+      }
+    }
+  }
+  .wifiTemplate{
+    line-height: 0.30rem;
+    text-align: center;
+  }
+
+  .kakouTemplate{
+    .npmap-dialog-content{
+      padding: 0 0.02rem;
+      img{
+        width: 1.54rem;
+        height: 0.86rem;
+      }
+    }
+  }
+  #mapId{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  i{
+    display:inline-block;
+    vertical-align:middle;   
+    overflow:hidden;          
+    background:url(../img/home/homemap/base.png) no-repeat;
+  }
+  .jiankong-icon{              
+    width:0.12rem;
+    height:0.14rem;
+    background-position:-0.31rem 0;
+    background-size:3.64rem 0.25rem;    
+  }
+  .wifi-icon{
+    width:0.18rem;
+    height:0.14rem;
+    background-position:-1.98rem 0;
+    background-size:3.64rem 0.25rem;
+  }
+  .kakou-icon{
+    width:0.21rem;
+    height:0.12rem;
+    background-position:-2.56rem 0;
+    background-size:3.64rem 0.25rem;
+  }
+  .datetime{
+    background: url(../img/canlendar.png) 1.35rem no-repeat;
+    background-size:0.15rem 0.16rem;
+    background-color: #fff;    
+  }
+}
+
+//左边内容css
+.contain-left{  
+  position:absolute;
+  left:0;
+  top:0;
+  width:2.8rem;
+  height:100%;
+  z-index:999;
+  background-color:#ffffff;
+  box-shadow:0 0.1rem 0.1rem #888888;
+  .change{
+    width: 0.1rem;
+    height: 0.4rem;
+    z-index: 1000;
+    top: 45%;
+    left:2.8rem;
+    background: url(../img/map/slider.png) no-repeat;
+    background-size:cover;
+    position: absolute;
+    cursor: pointer;
+    box-shadow: 0.02rem 0 0.06rem #cbc8c8;
+  }
+  .head-tab{
+      height:0.46rem;
+      line-height:0.46rem;
+      border-bottom:#ebebeb solid 0.01rem;
+      li{
+          width: 33%;
+          text-align:center;
+          cursor:pointer;
+          i{
+              margin-right:0.05rem;
+              vertical-align:text-bottom;
+          }          
+      }
+      li.active{
+          color:#007ee9;
+          border-bottom:#007ee9 solid 0.03rem;
+          .jiankong-icon{
+              background-position:-0.07rem 0;
+              background-size:3.64rem 0.25rem;
+          }
+          .wifi-icon{
+              background-position:-1.62rem 0;
+              background-size:3.64rem 0.25rem;
+          }
+          .kakou-icon{
+              background-position:-2.35rem 0;
+              background-size:3.64rem 0.25rem;
+          }
+      }
+  }
+  .search-group{
+      padding:0.1rem 0.1rem 0.1rem 0;
+      margin:0;
+      .control-label{
+          text-align:right;
+          min-width:0.84rem;
+      }
+      .form-control{
+          width:1.74rem;
+          min-width:0rem;
+      }
+  }
+  .resource-list{
+      .list-title{
+          height:0.36rem;
+          line-height:0.36rem;
+          background-color:#f7f7f7;
+          font-size:0.14rem;
+          font-weight:bold;
+          color:#007ee9;
+          border-top:#e1e1e1 solid 0.01rem;
+          border-bottom:#e1e1e1 solid 0.01rem;
+      }
+      .ztree-list,.ztree-list-tree{
+          position:absolute;
+          width:100%;
+          top:1.35rem;
+          bottom:0;
+          overflow-y:auto;
+          #cameraTree{
+            height: auto;
+            li{
+              span.button.pIcon02_ico_open, span.button.pIcon02_ico_close{
+                margin-right:0.02rem;
+                width:0.12rem;
+                height:0.14rem;
+                background: url(../img/home/homemap/base.png) -0.07rem 0 no-repeat transparent;
+                vertical-align:middle;
+                background-size:3.64rem 0.25rem;
+              }
+
+              span.button.icon02_ico_docu{
+                margin-right:0.02rem;
+                width:0.12rem;
+                height:0.14rem;
+                background: url(../img/home/homemap/base.png) -0.07rem 0 no-repeat transparent;
+                vertical-align:middle;
+                background-size:3.64rem 0.25rem;
+              }
+            }
+          }
+          #wifiTree{
+            height: auto;
+            li{
+              span.button.pIcon03_ico_open, span.button.pIcon03_ico_close{
+                width:0.18rem;
+                height:0.14rem;
+                margin-right:0.02rem;
+                background: url(../img/home/homemap/base.png) -1.8rem 0 no-repeat transparent;
+                vertical-align:middle;
+                background-size:3.64rem 0.25rem;
+              }
+
+              span.button.icon03_ico_docu{
+                margin-right:0.02rem;
+                background: url(../img/home/homemap/base.png) -1.8rem 0 no-repeat transparent;
+                background-size:3.64rem 0.25rem;
+                vertical-align:middle;
+              }
+            }
+          }
+          .ztree *{
+              font-size:0.12rem;
+          }
+          #tree{
+            height: auto;
+            li{
+              span.button.pIcon01_ico_open, span.button.pIcon01_ico_close{
+                margin-right:0.02rem;
+                width:0.14rem;
+                height:0.16rem;
+                background: url(../img/home/homemap/base.png) -0.7rem 0 no-repeat transparent;
+                vertical-align:middle;
+                background-size:3.64rem 0.25rem;
+              }
+
+              span.button.pIcon01_1_ico_open, span.button.pIcon01_1_ico_close{
+                margin-right: 0.02rem;
+                width: 0.14rem;
+                height:0.12rem;
+                background: url(../img/home/homemap/base.png) -0.56rem 0 no-repeat transparent;
+                vertical-align:middle;
+                background-size:3.64rem 0.25rem;
+              }
+
+              span.button.icon01_ico_docu{
+                margin-right:0.02rem;
+                width:0.21rem;
+                height:0.12rem;
+                background: url(../img/home/homemap/base.png) -2.35rem 0 no-repeat transparent;
+                vertical-align:middle;
+                background-size:3.64rem 0.25rem;
+              }
+              
+            }
+          }
+      }
+      .list-li-group{          
+          .arrow{
+              width:0.07rem;
+              height:0.04rem;
+              margin-left:0.1rem;
+              background-position:0 0;
+              background-size:3.64rem 0.25rem;
+          }
+          .jiankong-icon{
+              background-position:-0.07rem 0;
+              background-size:3.64rem 0.25rem;
+          }
+          .wifi-icon{
+              background-position:-1.8rem 0;
+              background-size:3.64rem 0.25rem;
+          }
+          .number{
+              color:#007ee9;
+          }
+      }
+      .conten {
+        margin-top: 0.06rem;
+        font-size: 0.12rem;
+        &:first-child{
+          margin-top: 0.10rem;
+        }
+        .startTime {
+          height: 0.34rem;
+          width: 2.60rem;
+          margin-left: 0.10rem;
+          line-height: 0.32rem;
+          background-color: #fff;
+          .input-group{
+            width: 100%;
+            div#condition{
+              padding-left: 0;
+              border: 0;
+              .dropdown-select{
+                border-radius: 0;
+                border-right: 0;
+                height: 0.34rem;
+              }
+            }
+          }
+          .conditionText {
+            display: inline-block;
+            float: left;
+            width: 30%;
+            padding-left: 5%;
+            border: 0.01rem solid #dbdbdb;
+            border-right: none;
+            border-radius: 0.03rem 0 0 0.03rem;
+            .down {
+              width: 0.22rem;
+              height: 0.22rem;
+              cursor: pointer;
+              position: absolute;
+              top: 0.07rem;
+              background: url(../img/map/menu_down.png) no-repeat;
+            }
+          }
+          .idCard {
+            background: none;
+          }
+          .conditionInput {
+            display: inline-block;
+            width: 70%;
+            height: 0.34rem;
+            border-radius: 0 0.03rem 0.03rem 0;
+          }
+          i {
+            display: inline-block;
+            position: absolute;
+            width: 0.15rem;
+            height: 0.16rem;
+            right: 0.10rem;
+            margin-top: 0.09rem;
+            z-index: 2;
+            background: url('../img/canlendar.png') no-repeat;
+          }
+        }
+      }
+      .query {
+        width: 2.60rem;
+        margin-left: 0.10rem;
+        cursor: pointer;
+        text-align: center;
+        height: 0.36rem;
+        margin-top: 0.10rem;
+        line-height: 0.36rem;
+        background-color: #00a0e9;
+        border-radius: 0.03rem;
+        color: #fff;
+        &:hover {
+          background-color: #0D89C9;
+        }
+      }
+      .searchResult {
+        line-height: 0.40rem;
+        margin-left: 0.10rem;
+        span {
+          color: #00a0e9;
+        }
+      }
+      .carHistory{
+        bottom: 0;
+        top: 2.96rem;
+        overflow-y: auto;
+        position: absolute;
+        width: 100%;
+        li{
+          border: 0.01rem solid transparent;
+          border-top: 0.01rem solid #e1e1e1;
+          border-right: 0.01rem solid #e1e1e1;
+          &:last-child{
+            border-bottom: 0.01rem solid #e1e1e1;
+          }
+          div{
+            line-height: 0.25rem;
+            margin-left: 0.20rem;
+          }
+          .lookDetail{
+            position: absolute;
+            margin-left: 1.88rem;
+            margin-top: 0.10rem;
+            display: none;
+          }
+          .cross{
+            color: blue;
+          }
+
+          .isRed{
+            color: red;
+          }
+          &:hover{
+            border: 0.01rem solid #198beb;
+            background-color: #cce5fb;
+            .lookDetail{
+              display: inline-block;
+            }
+          }
+        }
+      }
+      .pagination-wrap {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        li{
+          a{
+            padding: 0.06rem 0.06rem;
+          }
+        }
+      }
+  }
+}
+
+//图层选择  start
+.layerSelect {
+  width: 3.20rem;
+  background-color: #fff;
+  position: absolute;
+  font-size: 0.12rem;
+  left: 3.00rem;
+  z-index: 999;
+  margin-top: 0.10rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  ul {
+    vertical-align: middle;
+    .isCurrentLi {
+      opacity: 1;
+      filter: alpha(opacity=100);
+    }
+    li {
+      display: inline-block;
+      height: 0.32rem;
+      line-height: 0.32rem;
+      //margin-top: 8px;
+      width: 1.00rem;
+      opacity: 0.5;
+      filter: alpha(opacity=50);
+      &:first-child {
+        margin-left: 0.12rem;
+      }
+
+      .text {
+        vertical-align: top;
+      }
+
+      .checkbox {
+        display: inline-block;
+        margin: 0;
+        vertical-align: middle;
+      }
+      .checked{
+        background-position: 0 -0.20rem;
+        background-size:0.2rem 0.8rem;
+      }
+      .comm {
+        display: inline-block;
+        vertical-align:middle;
+        background: url(../img/home/homemap/base.png) no-repeat;
+        background-size:3.64rem 0.25rem;
+      }
+
+      .cameraHover {
+        width: 0.12rem;
+        height: 0.14rem;
+        background-position: -0.07rem 0 !important;
+        background-size:3.64rem 0.25rem;
+      }
+
+      .camera {
+        width: 0.12rem;
+        height: 0.14rem;
+        background-position: -0.31rem 0;
+        background-size:3.64rem 0.25rem;
+      }
+
+
+      .wifiHover {
+        width: 0.18rem;
+        height: 0.13rem;
+        background-position: -1.80rem 0 !important;
+        background-size:3.64rem 0.25rem;
+      }
+      .wifi {
+        width: 0.18rem;
+        height: 0.13rem;
+        background-position: -1.98rem 0;
+        background-size:3.64rem 0.25rem;
+      }
+
+      .kakouHover {
+        width: 0.21rem;
+        height: 0.12rem;
+        background-position: -2.77rem 0 !important;
+        background-size:3.64rem 0.25rem;
+      }
+      .kakou {
+        width: 0.21rem;
+        height: 0.12rem;
+        background-position: -2.56rem 0;
+        background-size:3.64rem 0.25rem;
+      }
+    }
+  }
+}
+//.monitor-middle{
+
+  .container-top{
+    z-index: 99999;
+    position: absolute;
+    bottom: 2.30rem;
+    top: 0;
+    left: 2.80rem;
+    right: 3.53rem;
+    background-color: #FFF;
+    border: solid 0.01rem #e1e1e1;
+    #FacePlayer1, #FacePlayer2,#FacePlayer3,#FacePlayer4{
+      position: absolute;
+      z-index: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .xcStopbugDiv{
+      background: rgb(238,239,240);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+    }
+  }
+  .container-bottom{
+    border: solid 0.01rem #e1e1e1;
+    height: 2.30rem;
+    z-index: 99999;
+    position: absolute;
+    left: 2.80rem;
+    bottom: 0;
+    right: 3.53rem;
+    background-color: #FFF;
+    .title{
+      height: 0.34rem;
+      line-height: 0.34rem;
+      padding: 0 0.10rem;
+      font-size: 0.14rem;
+      color: #444444;
+      border-bottom: solid 0.01rem #e1e1e1;
+      background-color: #EFEFEF;
+      .shot-title-icon{
+        position: relative;
+        top: 0.02rem;
+        display: inline-block;
+        margin-right: 0.05rem;
+        width: 0.20rem;
+        height: 0.14rem;
+        background: url("../img/home/homemap/pic.png") no-repeat;
+        background-position: -1.29rem -1.08rem;
+      }
+      .time-choose{
+        display: inline;
+        float: right;
+      }
+    }
+    .noResult{
+      height: 1.96rem;
+      background: url(../img/home/homemap/shot-bg.png) no-repeat center #fff;
+    }
+    .m-shotface-list{
+      overflow: hidden;
+      padding: 0.02rem 0.05rem;
+      width: 100%;
+      background-color: #fff;
+      .m-shot-item {
+        float: left;
+        width: 0.73rem;
+        height: 0.73rem;
+        margin: 0.10rem 0.05rem 0 0;
+        list-style: none;
+        span{
+          width: 0.73rem;
+          height: 0.73rem;
+        }
+      }
+    }
+  }
+//}
+
+
+/*.camera-contain-right{
+  position:absolute;
+  right: 0;
+  top:0;
+  bottom: 0;
+  width:3.54rem;
+  z-index:999;
+  background-color:#f9f9f9;
+  //box-shadow:0 0.05rem 0.1rem #888888;
+  overflow: hidden;
+  .contain-right-head{
+    height:0.34rem;
+    line-height:0.34rem;
+    color:#007ee9;
+    font-size:0.14rem;
+    //font-weight:bold;
+    position:relative;
+    overflow:hidden;
+  }
+  ul.m-alarm-list{
+    position: absolute;
+    top: 0.34rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: #F4F4F4;
+    .m-alarm-item{
+      height: 1.75rem;
+      padding: 0 0.10rem;
+      list-style: none;
+      .item-top{
+        height: 0.30rem;
+        line-height: 0.30rem;
+        .alarm-addr{
+          display: inline-block;
+          width: 1.60rem;
+          margin-left: 0.03rem;
+          font-size: 0.14rem;
+          font-weight: bold;
+        }
+        .alarm-time{
+          float: right;
+          color: #999;
+        }
+      }
+
+      .item-content{
+        height: 1.44rem;
+        border-bottom: dashed 0.01rem #CCC;
+        font-size: 0;
+        .s-i{
+          float: left;
+          height: 1.45rem;
+          font-size: 0.12rem;
+        }
+        .m-img-aim,.m-img-src{
+          height: 1.18rem;
+          width: 1.10rem;
+          padding: 0.15rem 0.16rem 0 0.17rem;
+          text-align: center;
+          color: #636363;
+          .fn-73-90 {
+            width: 0.73rem;
+            height: 0.90rem;
+          }
+          .fn-ic {
+            display: inline-block;
+            overflow: hidden;
+            background: url("../img/home/homemap/person-default.png") no-repeat center;
+            img{
+              width: auto;
+              height: 100%;
+              //margin: 0px 0px 0px -8.5px;
+              display: inline;
+              cursor: pointer;
+            }
+            &:hover{
+              img {
+                -ms-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -webkit-transform: scale(1.1);
+                -ms-webkit-transition: all 0.3s ease 0s;
+                -moz-transition: all 0.3s ease 0s;
+                -webkit-transition: all 0.3s ease 0s;
+                transition: all 0.3s ease 0s;
+              }
+            }
+          }
+        }
+
+        .m-res-info{
+          width: 1.12rem;
+          height: 1.45rem;
+          padding: 0 0.05rem 0 0.05rem;
+          .alarm-rate-icon {
+            display: block;
+            width: 0.40rem;
+            height: 0.40rem;
+            line-height: 0.40rem;
+            margin: auto auto 0.08rem auto;
+            color: #fff;
+            text-align: center;
+            background-position: -3.65rem -1.78rem;
+            em{
+              font-size: 0.13rem;
+            }
+          }
+          span{
+            display: block;
+            height: 0.18rem;
+            line-height: 0.18rem;
+          }
+        }
+      }
+      &:hover{
+        background-color: #fff;
+      }
+    }
+  }
+}*/
+
+//右边的css
+.contain-right{
+  position:absolute;
+  right:0.1rem;
+  top:0.1rem;
+  bottom:0.1rem;
+  width:2.6rem;
+  z-index:999;
+  background-color:#f9f9f9;
+  box-shadow:0 0.05rem 0.1rem #888888;
+  overflow: hidden;
+  .contain-right-head{
+      height:0.34rem;
+      line-height:0.34rem;      
+      color:#007ee9;
+      font-size:0.14rem;
+      font-weight:bold;
+      position:relative;
+      //cursor:pointer;
+      overflow:hidden;
+      .arrows-icon{
+          position:absolute;
+          width:0.13rem;
+          height:0.12rem;
+          background:url(../img/home/homemap/base.png) -0.43rem 0 no-repeat;
+          right:0.1rem;
+          top:0.1rem;
+          cursor:pointer;
+          background-size:3.64rem 0.25rem;
+      }
+  }
+  .face-show-head{
+      padding:0.1rem;
+      border-top:#dbdbdb dashed 0.01rem;
+      border-bottom:#dbdbdb solid 0.01rem;
+      .face-show-img{
+          height:1.46rem;
+          border:#3297ec solid 0.02rem;
+          text-align:center;
+          background:url(../img/home/homemap/face-bg.png) center center no-repeat;
+          background-size:cover;
+          img{
+              width:1.43rem;
+              height:1.43rem;
+          }
+          .car-img{
+              width:2.33rem;
+              height:1.43rem;
+          }
+      }
+      .carInfor{
+        height: 1.46rem;
+        p{
+          line-height: 30px;
+        }
+      }
+      .show-tab span{
+          width:1.14rem;
+          height:0.36rem;
+          line-height:0.36rem;
+          border:#DBDBDB solid 0.01rem;
+          background-color:#e5e5e5;
+          margin:0.06rem 0.12rem 0 0;
+          text-align:center;
+          cursor: pointer;
+          .graph-icon{
+              display:inline-block;
+              vertical-align:middle;
+              width:0.19rem;
+              height:0.14rem;
+              margin-right:0.05rem;
+              background:url(../img/home/homemap/base.png) -2.16rem 0 no-repeat;
+              background-size:3.64rem 0.25rem;
+          }
+          .tray-icon{
+              display:inline-block;
+              vertical-align:middle;
+              width:0.16rem;
+              height:0.16rem;
+              margin-right:0.05rem;
+              background:url(../img/home/homemap/base.png) -1.14rem 0 no-repeat;
+              background-size:3.64rem 0.25rem;
+          }
+          .record-icon{
+              display:inline-block;
+              vertical-align:middle;
+              width:0.14rem;
+              height:0.14rem;
+              margin-right:0.05rem;
+              background:url(../img/home/homemap/base.png) -3.5rem 0 no-repeat;
+              background-size:3.64rem 0.25rem;
+          }
+      }
+      .show-tab span.act{
+          background-color:#FFFFFF;
+      }
+      .show-tab .tray{
+          margin-right:0;
+      }      
+  }
+  .event{
+      line-height:0.20rem;
+      padding:0.10rem 0 0 0.26rem;
+      position:relative;
+      .jiankong-icon{
+          background-position:-0.07rem 0;
+          background-size:3.64rem 0.25rem;
+      }
+      .wifi-icon{
+          background-position:-1.8rem 0;
+          background-size:3.64rem 0.25rem;
+      }
+      .kakou-icon{
+          background-position:-2.35rem 0;
+          background-size:3.64rem 0.25rem;
+          top:0.15rem!important;
+      }
+      .event-name{
+          width:100%;
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap;
+      }
+      .event-name i{
+          position:absolute;
+          top:0.13rem;
+          left:0;
+      }
+  }
+  .auto-new{
+      height:0.46rem;
+      line-height:0.46rem;
+      background-color:#f1f1f1;
+      padding:0 0.10rem;
+      .auto-new-icon{
+          cursor:pointer;
+          width:0.39rem;
+          height:0.23rem;
+          margin-top:0.11rem;
+          background:url(../img/home/homemap/on-off.png) 0 -0.25rem no-repeat;
+          background-size:0.39rem 0.48rem;
+      }
+      .auto-new-icon.on{
+          background:url(../img/home/homemap/on-off.png) 0 0 no-repeat;
+          background-size:0.39rem 0.48rem;
+      }
+  }
+  .time-choose{
+      background-color:#f1f1f1;
+      padding:0.1rem 0.1rem 0.2rem 0.1rem;
+      border-top:#DBDBDB solid 0.01rem;
+      border-bottom:#DBDBDB solid 0.01rem;
+      .input-group-addon{
+         padding: 0.06rem 0.12rem;
+          font-size: 0.14rem;
+          border:#DEDEDE solid 0.01rem;
+          border-right:none;
+      }
+      input.form-control{
+          min-width:1.4rem;
+      }
+      .btn-block{
+          background-color:#007ee9;
+          border:none;
+          margin-top:0.1rem;
+      }
+  }
+  .show-list{
+      position: absolute;
+      top: 4.00rem;
+      bottom:0;
+      width:100%;
+      overflow-y:auto;
+      .faceListHover{
+        border:#188aeb solid 0.01rem;
+        background-color:#c7e0f6;
+      }
+      .face-list-li{
+          padding:0 0.1rem;
+          height:0.58rem;
+          margin-bottom:0.1rem;
+          border:#f9f9f9 solid 0.01rem;
+          img{
+            width:0.56rem;
+            height:0.56rem;
+            margin-right:0.1rem;
+          }
+          .face-img{
+            width:0.56rem;
+            height:0.56rem;
+            margin-right:0.1rem;
+            background:url(../img/home/homemap/face-img.png) center center no-repeat;
+            background-size:cover;
+          }
+        .text{
+            margin-top:0.06rem;
+            height:0.2rem;
+            .bold{
+                font-size:0.14rem;
+                font-weight:bold;
+            }
+        }
+        .text.time{
+            color:#999999;
+        }
+        .text span:first-child{
+            float:left;
+            width:0.72rem;
+            overflow:hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+        }
+        .text span:last-child{
+            float:left;
+            width:0.82rem;
+            overflow:hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+        }
+        &:hover{
+          @extend .faceListHover;
+        }
+      }
+
+      
+  }
+}
+
+//wifi右边的css
+.wifi-contain-right{
+    .wifi-show-head{
+      padding:0 0.25rem 0.15rem 0.25rem;
+      border-top:#dbdbdb dashed 0.01rem;
+      border-bottom:#dbdbdb solid 0.01rem;
+      li{
+          line-height:0.3rem;
+          width:100%;
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap;
+      }
+    }
+    .wifi-show-list{
+        top: 3.50rem;
+        .wifi-list-li{
+            padding:0 0.1rem 0 0.4rem;
+            position:relative;
+            border:#f9f9f9 solid 0.01rem;
+            color:#999999;
+            p{
+                line-height:0.2rem;
+                word-break: break-word;
+            }
+            .wifi-icon{
+                position:absolute;
+                top:50%;
+                left:0.1rem;
+                margin-top:-0.07rem;
+                background-position:-1.8rem 0;
+                background-size:3.64rem 0.25rem;
+            }
+            .wifi-list-head{
+                color:#333333;
+            }
+        }
+        .wifi-list-li:hover{
+          border:#188aeb solid 0.01rem;
+          background-color:#c7e0f6;
+        }
+    }
+}
+
+//卡口右边的css
+.car-contain-right{
+    .car-list-li{
+        padding:0.05rem;
+        border:#f9f9f9 solid 0.01rem;
+        border-bottom-color:#DEDEDE;
+        position:relative;
+        .num{
+            position:absolute;
+            width:0.26rem;
+            height:0.25rem;
+            background: url(../img/home/homemap/base.png) no-repeat;
+            background-position: -2.98rem 0;
+            background-size: 3.64rem 0.25rem;
+            top:0.1rem;
+            left:0.1rem;
+            text-align:center;
+            line-height:0.18rem;
+            color:#FFFFFF;
+        }
+        .recode-list{
+            padding-left:0.5rem;
+            position:relative;
+            li{
+                line-height:0.22rem;                
+            }
+            .recode-list-head{
+                color:#00a0e9;
+            }
+            .time{
+                color:#999999;
+            }
+        }        
+    }
+    .car-list-li:hover{
+        border:#188aeb solid 0.01rem;
+        background-color:#c7e0f6;
+        .num{
+            background-position:-3.24rem 0;
+            background-size:3.64rem 0.25rem;
+        }
+    }
+}
+
+.fullscreen-layer{
+  padding: 0.05rem;
+  overflow: hidden;
+  img{
+    width: 100%;
+  }
+}
+
+.people-layer{
+  .alarm-d-content{
+    height: 4.50rem;
+    padding: 0.10rem;
+    .fn-ic {
+      display: block;
+      overflow: hidden;
+      img{
+        width: 100%;
+        //margin-left: -8px;
+        height: 100%;
+        &:hover{
+            -ms-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+            -ms-webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -webkit-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+        }
+      }
+    }
+
+    .detail-rate-icon {
+      position: absolute;
+      margin-top: -0.32rem;
+      margin-left: 1.05rem;
+      display: inline-block;
+      width: 0.56rem;
+      height: 0.56rem;
+      line-height: 0.56rem;
+      text-align: center;
+      color: #fff;
+      font-size: 0.20rem;
+      background: url("../img/home/homemap/pic.png") no-repeat;
+      background-position: -4.36rem -2.44rem;
+    }
+    .top{
+      height: 2.40rem;
+      border-bottom: dashed 0.01rem #CCC;
+      .fn-163-200 {
+        width: 1.63rem;
+        height: 2.00rem;
+      }
+      .label {
+        display: block;
+        height: 0.30rem;
+        line-height: 0.30rem;
+        width: 1.63rem;
+        text-indent: 0.05rem;
+        background-color: #f4f4f4;
+        font-size: 0.12rem;
+        text-align: left;
+        color: #333;
+      }
+      .fn-panorama-ic {
+        background: url("../img/home/homemap/panorama-gray.png") no-repeat center;
+        position: relative;
+        right: -0.60rem;
+        top: -0.25rem;
+        cursor: pointer;
+        display: inline-block;
+        overflow: hidden;
+      }
+      .fn-20-20 {
+        width: 0.20rem;
+        height: 0.20rem;
+      }
+      .fn-163-200 {
+        width: 1.63rem;
+        height: 2.00rem;
+      }
+      .label {
+        display: block;
+        height: 0.30rem;
+        line-height: 0.30rem;
+        width: 163px;
+        text-indent: 5px;
+        background-color: #f4f4f4;
+        font-size: 12px;
+      }
+      div{
+        float: left;
+      }
+      .left,.right{
+        width: 166px;
+      }
+      .middle {
+        margin-left: 6px;
+        width: 320px;
+        span {
+          display: block;
+          width: 100%;
+          height: 30px;
+          line-height: 30px;
+          font-size: 12px;
+          color: #444444;
+          font-weight: bold;
+          i{
+            float: left;
+            font-style: normal;
+          }
+        }
+
+        .info-details{
+          label{
+            font-weight: bold;
+          }
+          span{
+            display: inline;
+          }
+        }
+      }
+    }
+    .candidates-list{
+      height: 200px;
+      padding-top: 10px;
+      .fn-122-150 {
+        width: 122px;
+        height: 150px;
+      }
+      .candidate-item {
+        float: left;
+        height: 196px;
+        width: 126px;
+        background-color: #f4f4f4;
+        margin-left: 11px;
+        padding: 1px;
+        border: solid 1px #f4f4f4;
+        .info-name{
+          display: block;
+          height: 23px;
+          line-height: 23px;
+          font-size: 12px;
+          text-indent: 5px;
+          color: #444444;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .info-lib {
+          display: block;
+          height: 23px;
+          line-height: 23px;
+          font-size: 12px;
+          text-indent: 5px;
+          color: #444444;
+        }
+        .detail-rate-icon{
+          margin-left: 67px;
+        }
+        &:first-child{
+          margin-left: 0;
+          padding: 0;
+          border: solid 2px #ff8d33;
+        }
+      }
+    }
+  }
+}
+
+.wifi-layer{
+  .form-group{
+    display: block;
+    color: #a0a0a0;
+  }
+}
+
+.carDetail-layer{
+  .left,.right{
+    width: 400px;
+    height: 100%;
+    float: left;
+    img{
+      width: 100%;
+      height: 310px;
+      border: 1px solid #eee;
+    }
+    .detail{
+      padding-left: 20px;
+      margin-top: 10px;
+      .control-label{
+        color: #333;
+        min-width: 0.60rem;
+      }
+      .cross{
+        color: blue;
+      }
+
+      .isRed{
+        color: red;
+      }
+    }
+  }
+
+  .line{
+    border-left: 1px dashed #bfbfbf;
+    height: 175px;
+    position: absolute;
+    bottom: 0;
+    //left: 50%;
+  }
+}

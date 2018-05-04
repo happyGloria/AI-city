@@ -1,0 +1,557 @@
+.heatmapContainer.slider{
+  .left{
+    margin-left: -280px;
+    box-shadow: none;
+    .change{
+      transform: rotateY(180deg);
+      -ms-transform: rotateY(180deg);
+      -moz-transform: rotateY(180deg);
+      -webkit-transform: rotateY(180deg);
+    }
+  }
+  .maphold{
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+
+
+.heatmapContainer{
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	//左边菜单样式
+	.left {
+		width: 280px;
+		height: 100%;
+		box-shadow: 3px 0px 3px 0px rgba(0,0,0,.1);
+		float: left;
+		background-color: #fff;
+		position: relative;
+		z-index: 1;
+
+		.leftContent {
+		  width: 100%;
+		  height: 100%;
+		  overflow: hidden;
+		  color: #959595;
+		  .head {
+		    font-size: 12px;
+		    .guijikehua {
+		      height: 40px;
+		      line-height: 40px;
+		      .headText {
+		        vertical-align: middle;
+		      }
+		      .touxiang {
+		        width: 16px;
+		        height: 16px;
+		        vertical-align: middle;
+		        display: inline-block;
+		        background: url(../img/map/reli.png) no-repeat;
+		        margin-left: 10px;
+		      }
+		    }
+
+		    .tiaojian {
+		      height: 40px;
+		      line-height: 40px;
+		      border-top: 1px solid #e1e1e1;
+		      border-bottom: 1px solid #e1e1e1;
+		      .tiaojianText {
+		        margin-left: 10px;
+		      }
+
+		      .menuUp{
+		        transform: rotateX(180deg);
+		        -moz-transform: rotateX(180deg);
+		        -ms-transform: rotateX(180deg);
+		        -webkit-transform: rotateX(180deg);
+		      }
+
+		      .menuDown {
+		        width: 22px;
+		        height: 22px;
+		        cursor: pointer;
+		        float: right;
+		        margin-top: 9px;
+		        margin-right: 5%;
+		        background: url(../img/map/menu_down.png) no-repeat;
+		      }
+		    }
+
+		  }
+
+		  .leftMiddle{
+		    padding-top: 10px;
+		    padding-bottom: 10px;
+		    background-color: #f8f8f8;
+		    .conten {
+			  &:first-child{
+				margin-top: 0;
+			  }
+		      margin-top: 6px;
+		      font-size: 12px;
+		      .startTime {
+		        height: 34px;
+		        width: 260px;
+		        margin-left: 10px;
+		        line-height: 32px;
+		        background-color: #fff;
+		        .conditionText {
+		          display: inline-block;
+		          color: #666;
+		          float: left;
+		          width: 68px;
+                  text-align: center;
+		          border: 1px solid #dbdbdb;
+		          border-right: none;
+		          .down {
+		            width: 22px;
+		            height: 22px;
+		            cursor: pointer;
+		            position: absolute;
+		            top: 7px;
+		            background: url(../img/map/menu_down.png) no-repeat;
+		          }
+		        }
+
+		        .margin-right-12{
+		        	width: 192px;
+		        	float: left;
+		        	.isDiabled{
+		        		background-color: #ccc;
+		        		cursor: default;
+		        		span{
+		        			cursor: default;
+		        		}
+		        	}
+		        	a{
+		        		height: 34px;
+		        		border-radius: 0 !important;
+		        		.dropdown-icon{
+							top: 8px;
+		        		}
+		        	}
+		        }
+
+		        .calendInput{
+		          background: url(../img/canlendar.png) 170px 9px no-repeat;
+		        }
+
+		        .conditionInput {
+		          display: inline-block;
+		          width: 192px;
+		          height: 34px;
+		          border-radius: 0;
+		        }
+		      }
+		    }
+
+		    .query {
+		      width: 260px;
+		      margin-left: 10px;
+		      cursor: pointer;
+		      text-align: center;
+		      height: 36px;
+		      margin-top: 10px;
+		      line-height: 36px;
+		      background-color: #0baafc;
+		      border-radius: 4px;
+		      color: #fff;
+			  &:hover{
+				background-color: #0D89C9;
+			  }
+		      .findImg {
+		        width: 20px;
+		        height: 20px;
+		        vertical-align: middle;
+		        display: inline-block;
+		        background: url(../img/map/mapLeftContent.png) no-repeat;
+		        background-position: 0 -40px;
+		      }
+		    }
+		  }
+		}
+
+		.change {
+		  width: 10px;
+		  height: 40px;
+		  z-index: 1000;
+		  top: 45%;
+		  left: 280px;
+		  background: url(../img/map/slider.png) no-repeat;
+		  position: absolute;
+		  cursor: pointer;
+		  box-shadow: 2px 0 6px #cbc8c8;
+		}
+	}
+
+
+	//地图部分样式
+	.maphold{
+		height: 100%;
+    	margin-left: 280px;
+    	position: relative;
+	    .search{
+		  width: 600px;
+		  margin-left: 50%;
+		  left: -300px;
+		  padding: 12px 0;
+		  z-index: 1;
+		  input{
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+		  }
+		  .searchButton{
+			background-color: #00a0e9;
+			position: relative;
+			&:hover{
+			  background-color: #00afff;
+			}
+		  }
+		}
+		#heatmapId{
+			width: 100%;
+		    height: 100%;
+		    .olMapViewport{
+		        z-index: 0;
+		    }
+			#time-control3{
+				position: absolute;
+			    z-index: 1;
+			    bottom: auto;
+			    right: 5px;
+			    top: 10px;
+			    left: auto;
+			    font-size: 12px;
+			    #time-control-btns{
+			    	display: none;
+			    	overflow: hidden;
+			    	.time-control-btn{
+			    		margin-left: 5px;
+					    padding: 5px 10px;
+					    border: 1px solid #acb2bb;
+					    background: #fff;
+					    color: #000;
+					    text-decoration: none;
+					    float: left;
+					    outline: 0;
+			    	}
+
+			    	.active{
+			    		background: #278df2;
+	    				color: #fff;
+			    	}
+			    }
+
+			    .time-panel{
+				    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF);
+				    border: 1px solid #acb2bb;
+				    margin-top: 5px;
+				    width: 333px;
+				    overflow: hidden;
+				    position: absolute;
+				    right: 0;
+
+				    .time-panel-title{
+					  font-weight: 700;
+					  padding-left: 10px;
+					  line-height: 32px;
+					  border-bottom: 1px dashed #c2c2c2;
+					  background: rgba(255, 255, 255, 0.8);
+	    				.time-panel-time{
+						    font-weight: 400;
+						    margin-left: 10px;
+	    				}
+				    }
+
+				    .time-panel-control{
+				    	overflow: hidden;
+					    background-color: #f0f0f0;
+				    	.time-panel-progress-container{
+						  float: left;
+						  width: 265px;
+						  margin-top: 14px;
+						  margin-left: 14px;
+
+						  //这是新添加的样式start
+						    .time-panel-progress{
+							  #slider{
+								background-color: #c2c2c2;
+								height: 1px;
+								top: 11px;
+								a{
+								  left: 0%;
+								  top: -30px;
+								  width: 14px;
+								  height: 60px;
+								  outline: none;
+								  display: inline-block;
+								  background: url(../img/map/time2.png) no-repeat;
+								}
+							  }
+							  ul{
+								li{
+								  width: 1px;
+								  height: 10px;
+								  display: inline-block;
+								  margin-left: 10px;
+								  vertical-align: middle;
+								  background-color: #c2c2c2;
+								  &:first-child{
+									margin-left: 0;
+								  }
+								}
+							  }
+							}
+						  //这是新添加的样式end
+				    		.time-panel-progress-bar{
+				    			background: url(../img/map/time-progress-bar.png) no-repeat right 0;
+							    width: 252px;
+							    height: 8px;
+							    position: relative;
+							    margin-top: 10px;
+							    .time-panel-progress{
+							    	background: url(../img/map/time-progress.png) no-repeat 0 0;
+								    width: 16px;
+								    height: 16px;
+								    position: absolute;
+								    z-index: 2;
+								    top: -5px;
+								    left: 0;
+							    }
+				    		}
+
+				    		.time-panel-progress-text{
+							    margin-top: -3px;
+							    width: 280px;
+							    position: relative;
+							    left: -3px;
+							    .time-panel-progress-tick {
+								  float: left;
+								  padding-top: 7px;
+								  width: 20px;
+								  margin-left: -6px;
+								  text-align: center;
+								  margin-right: 8px;
+								  &:last-child{
+									margin-right: 0;
+								  }
+								}
+
+				    		}
+				    	}
+				    	
+				    	.time-panel-btn{
+			    		    background: url(../img/map/time-btn-pause.png) no-repeat 0 0;
+						    width: 33px;
+						    height: 33px;
+						    float: right;
+						    margin-top: 11px;
+						    margin-right: 8px;
+						    cursor: pointer;
+				    	}
+
+				    	.play{
+				    		background: url(../img/map/time-btn-play.png) no-repeat 0 0;
+				    	}
+				    }
+			    }
+			}
+		    //地图切换主题的按钮
+		    .changeTheme{
+			  height: 40px;
+			  background-color: #fff;
+			  position: absolute;
+			  right: 5px;
+			  z-index: 500;
+			  margin-top: 110px;
+			  opacity: 0.8;
+			  filter: alpha(opacity=80);
+			  -webkit-user-select: none;
+			  -moz-user-select: none;
+			  -ms-user-select: none;
+			  user-select: none;
+			  div {
+				display: inline-block;
+				margin-top: 10px;
+				margin-right: 10px;
+				&:first-child {
+				  margin-left: 10px;
+				}
+				span{
+				  float: left;
+				  cursor: pointer;
+				}
+
+				.active{
+				  background-image: url(../img/login/resurfacing-ico.png);
+				  background-position: center;
+				  background-repeat: no-repeat;
+				  cursor: default;
+				}
+
+				.color{
+				  display: inline-block;
+				  width: 21px;
+				  height: 21px;
+				  margin-right: 3px;
+				}
+			  }
+
+			  .original{
+				.color{
+				  background-color: #ffb35b;
+				}
+			  }
+
+			  .classic{
+				.color{
+				  background-color: #03060d;
+				}
+			  }
+			}
+			.olMapViewport{
+				z-index: 0 !important;
+			}
+		}
+
+	  //图例样式
+	  .legend{
+		  position: absolute;
+		  z-index: 10;
+		  bottom: 12px;
+		  right: 12px;
+		  top: auto;
+		  left: auto;
+          font-size: 12px;
+		  background-color: #fff;
+		  padding: 7px;
+		  .legend-text{
+			  float: left;
+			  line-height: 21px;
+		  }
+
+		  .legend-item{
+			  float: left;
+			  margin-left: 1px;
+			  padding: 2px 12px 2px 16px;
+              border: 1px solid transparent;
+			  color: #000;
+			  position: relative;
+			  overflow: hidden;
+			  text-decoration: none;
+			  &:hover{
+				  overflow: visible;
+			  }
+			  &:before{
+				content: '';
+				width: 12px;
+				height: 12px;
+                position: absolute;
+                left: 4px;
+                top: 4px;
+                display: inline-block;
+			  }
+			  .legend-item-wrapper{
+				  position: absolute;
+				  height: 45px;
+				  top: -38px;
+				  left: -84px;
+				  .legend-item-tip{
+					  position: relative;
+					  border: 1px solid #acb2bb;
+					  color: #333;
+					  white-space: nowrap;
+					  background-repeat: no-repeat;
+					  background-position: 14px 50%;
+					  padding: 6px 14px 6px 99px;
+					  width: 260px;
+					  font-size: 12px;
+					  text-align: center;
+					  .legend-item-tip-arrow {
+						  background: url(../img/map/tip_arrow.png) no-repeat 0 0;
+						  width: 7px;
+						  height: 5px;
+						  position: absolute;
+						  left: 50%;
+						  margin-left: -3px;
+						  top: 29px;
+					 }
+				  }
+			  }
+            &:hover{
+              border: 1px solid #acb2bb;
+            }
+		  }
+
+		  .legend-1{
+			  &:before{
+				background: rgb(0, 0, 255);
+				border: 2px solid #9898ff;
+			  }
+			  .legend-item-tip{
+				  background: url(../img/map/bg_level_1.png) no-repeat 14px 50% #fff;
+			  }
+		  }
+
+		  .legend-2{
+              &:before{
+                background: rgb(0,255,255);
+                border: 2px solid #98ffff;
+              }
+			  .legend-item-wrapper{
+				  left: -94px;
+				  .legend-item-tip{
+					  background: url(../img/map/bg_level_2.png) no-repeat 14px 50% #fff;
+				  }
+			  }
+		  }
+
+		  .legend-3{
+              &:before{
+                background: rgb(0,255,0);
+                border: 2px solid #95fc95;
+              }
+			  .legend-item-wrapper{
+					left: -94px;
+					.legend-item-tip{
+					  	background: url(../img/map/bg_level_3.png) no-repeat 14px 50% #fff;
+					}
+			  }
+		  }
+
+		  .legend-4{
+              &:before{
+                background: rgb(255,255,0);
+                border: 2px solid #ffff98;
+              }
+			  .legend-item-wrapper{
+					left: -94px;
+					.legend-item-tip{
+					  	background: url(../img/map/bg_level_4.png) no-repeat 14px 50% #fff;
+					}
+			  }
+		  }
+
+		  .legend-5{
+              &:before{
+                background: rgb(255,0,0);
+                border: 2px solid #ff9898;
+              }
+			  .legend-item-wrapper{
+				  left: -173px;
+				  .legend-item-tip{
+					  width: 280px;
+					  background: url(../img/map/bg_level_5.png) no-repeat 14px 50% #fff;
+					  .legend-item-tip-arrow{
+						  margin-left: 82px;
+					  }
+				  }
+			  }
+		  }
+	  }
+
+	}
+}

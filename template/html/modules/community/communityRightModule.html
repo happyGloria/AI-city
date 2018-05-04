@@ -1,0 +1,599 @@
+<!--右侧内容 start-->
+<div class="index-container">
+<div class="right-bg"></div>
+<div class="right-information">
+	<ul class="tab-menu">
+		<li class="tab-menu-li face-tab" ng-click="changeTab('face')" ng-class="{'active':showTabName.face}"><a href="javascript:;">人<br/>脸</a></li>
+		<li class="tab-menu-li opendoor-tab" ng-click="changeTab('door')" ng-class="{'active':showTabName.door}"><a href="javascript:;">开<br/>门</a></li>
+		<li class="tab-menu-li cars-tab" ng-click="changeTab('car')" ng-class="{'active':showTabName.car}"><a href="javascript:;">过<br/>车</a></li>
+		<li class="tab-menu-li wifi-tab" ng-click="changeTab('wifi')" ng-class="{'active':showTabName.wifi}"><a href="javascript:;" class="wifi-text">WIFI</a></li>
+		<li class="tab-menu-li fire-tab" ng-click="changeTab('fire')" ng-class="{'active':showTabName.fire}"><a href="javascript:;">消<br/>防</a></li>
+		<li class="tab-menu-li fire-tab" ng-click="changeTab('move')" ng-class="{'active':showTabName.move}"><a href="javascript:;">位<br/>移</a></li>
+		<li class="tab-menu-li monitoring-tab" ng-click="changeTab('camera')" ng-class="{'active':showTabName.camera}"><a href="javascript:;">监<br/>控</a></li>
+		<li class="tab-menu-li monitoring-tab" ng-click="changeTab('ck')" ng-class="{'active':showTabName.ck}"><a href="javascript:;">C<br/>K</a></li>
+
+<!-- 		<li class="toggle-con"><i class="toggle-icon"></i></li>
+ -->	</ul>
+	<div class="tabs-content" style="height:100%;overflow-y:scroll;position:relative;">
+		<!--人脸-->
+		<div class="tabs-pane faces-con" ng-show="showTabName.face">
+			<div class="header-top"></div>
+			<ul class="face-tab-menu clearfix" style="position:relative;left:0" id="faceModuleUl">
+					<li class="pull-left" style="width:30%;" ng-class="{'active':faceTab.faceAll}" ng-click="queryFaceListFun('',true)">全部</li>
+					<li class="pull-left" style="width:30%;" ng-click="queryCompareFaceFunOut('realPower',true)" ng-class="{'active':faceTab.realPower}">实有力量</li>
+					<li class="pull-left" style="width:30%;background:" ng-click="queryCompareFaceFunOut('importantPeople',true)" ng-class="{'active':faceTab.importantPeople}">关注人员</li>
+			</ul>
+			<span class="monitoring-con">
+				<div class="search-box">
+					<input type="text" placeholder="请输入关键字" ng-model="selectFace.text" ng-focus="selectCameraFocusFun()" />
+					<span class="clearIcon" ng-click="clearSelectFace()"></span>
+					<div style="width:3.2rem;height:3.6rem;background:#1590ee;border-radius:0.1rem;margin:0 auto;opacity: 0.8;position:absolute;z-index:99;left:0.25rem;overflow-y: scroll;" ng-show="selectCameraFocus">
+						<ul>
+							<li class="vidicon-list-li" ng-repeat="item in cameraSelectList | filter : {'F_Name':selectFace.text}" ng-click="checkFaceCamera(item)" style="cursor:pointer;">
+								<i class="vidicon-icon"></i>
+								<span class="text" style="color:#fff">{{item.F_Name}}</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</span>
+			<div class="cars-con" ng-show="faceTab.faceAll">
+				<div class="cars-top" style="min-height:1.44rem;margin-top:0.32rem">
+					<div class="register-num">
+						<div class="all-num" ng-click="toFaceEventFun('senseFindOrLeave')" style="cursor: pointer;">
+							<label class="label-text">今日人脸感知：</label>
+						</div>
+						<div class="all-num-list">
+							<div ng-click="toFaceEventFun('senseFindOrLeave')" style="cursor: pointer;">
+								<label class="label-text">感知发现</label>
+								<span class="span-text"><span class="span-num">{{findAndLeaveObj.findObj.num}}</span>人</span>
+							</div>
+							<div ng-click="toFaceEventFun('senseFindOrLeave')" style="cursor: pointer;">
+								<label class="label-text">感知离开</label>
+								<span class="span-text"><span class="span-num">{{findAndLeaveObj.leaveObj.num}}</span>人</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ul class="faces-list" ng-show="faceTab.faceAll">
+				<li class="faces-list-li" ng-repeat="item in faceList ">
+					<div class="img-box">
+						<img ng-src="{{item.faceUrl}}" />
+					</div>
+					<div class="message-box">
+						<p>{{item.name}}</p>
+						<p>{{item.captureTime}}</p>
+					</div>
+					<div class="oper-btn">
+						<span ng-click="contrastFaceImg(item)"><i class="base-icon icon-bidui"></i></span>
+						<span ng-click="enlargeImg(item)"><i class="base-icon icon-fangda"></i></span>
+						<span ng-click="toMapTrack(1,item)"><i class="base-icon icon-guiji"></i></span>
+					</div>
+				</li>
+			</ul>
+			<ul class="faces-list" ng-show="faceTab.realPower">
+				<li class="faces-list-li" ng-repeat="item in compareFace.realPower">
+					<div class="img-box">
+						<img ng-src="{{item.result1.faceUrl}}" />
+					</div>
+					<div class="message-box">
+						<p>{{item.name}}</p>
+						<p>{{item.label}}</p>
+						<p>{{item.captureTime}}</p>
+						<p>{{item.cameraName}}</p>
+					</div>
+					<div class="oper-btn">
+						<span ng-click="contrastCompareFaceFun(item)"><i class="base-icon icon-bidui"></i></span>
+						<span ng-click="contractEnlargeImgFun(item)"><i class="base-icon icon-fangda"></i></span>
+						<span ng-click="toMapTrack(1,item)"><i class="base-icon icon-guiji"></i></span>
+					</div>
+				</li>
+				<li style="position:relative;">
+					<div ng-if="showInformationLoading" style="position: absolute; top: 0;bottom: 0; left: 0; right: 0;opacity:0.5; text-align: center;padding-top: 100%;">
+				    	<i ng-if="!notShuju" class="ball-clip-rotate"></i>
+				    	<i ng-if="notShuju">暂无数据</i>
+				    </div>
+				</li>
+			</ul>
+			<ul class="faces-list" ng-show="faceTab.importantPeople">
+				<li class="faces-list-li" ng-repeat="item in compareFace.importantPeople">
+					<div class="img-box">
+						<img ng-src="{{item.result1.faceUrl}}" />
+					</div>
+					<div class="message-box">
+						<p>{{item.name}}</p>
+						<p>{{item.captureTime}}</p>
+						<p>{{item.cameraName}}</p>
+					</div>
+					<div class="oper-btn">
+						<span ng-click="contrastCompareFaceFun(item)"><i class="base-icon icon-bidui"></i></span>
+						<span ng-click="contractEnlargeImgFun(item)"><i class="base-icon icon-fangda"></i></span>
+						<span ng-click="toMapTrack(1,item)"><i class="base-icon icon-guiji"></i></span>
+					</div>
+				</li>
+				<li style="position:relative;">
+					<div ng-if="showInformationLoading" style="position: absolute; top: 0;bottom: 0; left: 0; right: 0;opacity:0.5; text-align: center;padding-top: 100%;">
+				    	<i ng-if="!notShuju" class="ball-clip-rotate"></i>
+				    	<i ng-if="notShuju">暂无数据</i>
+				    </div>
+				</li>
+			</ul>
+		</div>
+		<!--人脸end-->
+		<!--开门-->
+		<div class="tabs-pane openDoor-con cars-con" ng-show="showTabName.door">
+			<div class="cars-top" style="min-height:1.44rem;margin-top:0.32rem">
+					<div class="register-num">
+						<div class="all-num" ng-click="toFaceEventFun('abnormalCard')" style="cursor: pointer;">
+							<label class="label-text">今日刷卡异常：</label>
+							<span class="span-text"><span class="span-num">{{warningPeopleCount}}</span></span>
+						</div>
+						<div class="all-num-list">
+							<div style="cursor: pointer;">
+								<label class="label-text" ng-click="toFaceEventFun('abnormalCard')">未处理</label>
+								<span class="span-text"><span class="span-num">{{warningPeopleUnDealCount}}</span>人</span>
+							</div>
+							<div style="cursor: pointer;">
+								<label class="label-text" ng-click="toFaceEventFun('abnormalCard')">已处理</label>
+								<span class="span-text"><span class="span-num">{{warningPeopleCount-warningPeopleUnDealCount}}</span>人</span>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			<div class="header-top" ng-click="clickMore()">更多>></div>
+			<ul class="openDoor-list">
+				<li class="openDoor-list-li" ng-repeat="item in doorRecords">
+					<div class="clearfix message-box">
+						<label class="label-text">姓名：</label>
+						<span class="span-text name">{{item.peopleName}}</span>
+					</div>
+					<div class="clearfix message-box">
+						<label class="label-text">门禁机：</label>
+						<span class="span-text">{{item.deviceName}}</span>
+					</div>
+					<div class="clearfix message-box">
+						<label class="label-text">访问时间：</label>
+						<span class="span-text">{{item.openTime.split(" ")[0]}}&nbsp;{{item.openTime.split(" ")[1]}}</span>
+					</div>
+					<div class="clearfix message-box">
+						<label class="label-text">抓拍影像：</label>
+						<span class="span-text">
+							<span class="photo-btn" ng-click="doorImgClick(item)" ng-show="item.imgUrl"></span>
+							<span class="video-btn" ng-click="doorVideoClick(item)" ng-show="item.videoUrl"></span>
+						</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--开门end-->
+		<!--过车-->
+		<div class="tabs-pane cars-con" ng-show="showTabName.car">
+			<ul class="face-tab-menu clearfix" style="position:relative;left:0" id="carModuleUl">
+				<li class="pull-left" style="width:50%;" ng-class="{'active':carTab.isCar}" ng-click="chageCarTab(true)">机动车</li>
+				<li class="pull-left" style="width:50%;"  ng-class="{'active':!carTab.isCar}" ng-click="chageCarTab(false)">非机动车</li>
+			</ul>
+			<!-- 机动车 -->
+			<div ng-show="carTab.isCar">
+				<div class="header-top" ng-click="clickMore()">更多>></div>
+				<div class="cars-top">
+					<div class="register-num">
+						<div class="all-num" ng-click="toSenseCarFun('RV')" style="cursor: pointer;">
+							<label class="label-text">车辆登记数：</label>
+							<span class="span-text"><span class="span-num">{{carStatus.registerVehicleCount}}</span>辆</span>
+						</div>
+						<div class="all-num-list">
+							<div ng-click="toSenseCarFun('IV')" style="cursor: pointer;">
+								<label class="label-text">今日进入：</label>
+								<span class="span-text"><span class="span-num">{{carStatus.vehicleInCount}}</span>辆</span>
+							</div>
+							<div ng-click="toSenseCarFun('OV')" style="cursor: pointer;">
+								<label class="label-text">今日外出：</label>
+								<span class="span-text"><span class="span-num">{{carStatus.vehicleOutCount}}</span>辆</span>
+							</div>
+						</div>
+					</div>
+					<div class="register-num">
+						<div class="all-num" ng-click="toSenseCarFun('RNV')" style="cursor: pointer;">
+							<label class="label-text">今日外来车辆：</label>
+							<span class="span-text"><span class="span-num">{{carStatus.notRegisteredCount}}</span>辆</span>
+						</div>
+						<div class="all-num-list" ng-click="toSenseCarFun('RNVNL')" style="cursor: pointer;">
+							<div>
+								<label class="label-text">滞留数：</label>
+								<span class="span-text"><span class="span-num">{{carStatus.notRegisteredNotLeaveCount}}</span>辆</span>
+							</div>
+						</div>
+					</div>
+					<div class="register-num">
+						<div class="all-num">
+							<label class="label-text">车辆感知：</label>
+							<span class="span-text"><span class="span-num">{{carStatus.vehicleSenseCount}}</span>辆</span>
+						</div>
+						<div class="all-num-list">
+							<div ng-click="toFactEventSenseCar('carSenseFind')" style="cursor: pointer;">
+								<label class="label-text">感知发现：</label>
+								<span class="span-text"><span class="span-num">{{carStatus.vehicleDiscoveryCount}}</span>辆</span>
+							</div>
+							<div ng-click="toFactEventSenseCar('carSenseLeave')" style="cursor: pointer;">
+								<label class="label-text">感知离开：</label>
+								<span class="span-text"><span class="span-num">{{carStatus.vehicleLeaveCount}}</span>辆</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="cars-list">
+					<li class="cars-list-li" ng-repeat="item in carList">
+						<div class="img-box">
+							<img src="{{item.platePic | transferPic}}"/>
+						</div>
+						<div class="message-box">
+							<p class="license-num">{{item.plateNumber}}</p>
+							<p>{{item.inOutTime}}</p>
+							<span class="btn btn-blue" ng-show="1 == item.inOutType" style="cursor:default;">进入</span>
+							<span class="btn btn-red" ng-show="2 == item.inOutType" style="cursor:default;">离开</span>
+							<span style="display:inline-block;float:right;cursor:pointer;" ng-click="replaceMac(item)">mac: {{item.macCount}}个</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- 非机动车 -->
+			<!-- <div ng-show="!carTab.isCar">
+				<div style="position: absolute; top: 0.7rem;bottom: 0; left: 0; right: 0;opacity:0.5; text-align: center;padding-top: 100%;">
+			    	
+				</div>
+			</div> -->
+			<div ng-show="!carTab.isCar" class="faces-con non-motor" style="border: none;">
+				<div class="header-top" ng-click="clickMore()">更多>></div>
+				<div style="position: absolute;top: 0.7rem;bottom:0;left: 0;right: 0;opacity: 0.5;text-align: center;padding-top: 100%;display: none;">	
+				</div>
+				<ul class="faces-list">
+					<li class="faces-list-li" ng-repeat="item in nonmotorList">
+						<div class="img-box">
+                           <img src="{{item.platePic | transferPic}}"/>
+						</div>
+						<div class="message-box">
+							<p>{{item.name}}</p>
+							<p>{{item.personId}}</p>
+							<p>{{item.tollgateName}}</p>
+							<P>{{item.inOutTime}}</P>
+							<span class="btn btn-blue" ng-show="1 == item.inOutType" style="cursor:default;">进入</span>
+							<span class="btn btn-red" ng-show="2 == item.inOutType" style="cursor:default;">离开</span>	
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--过车end-->
+		<!--wifi-->
+		<div class="tabs-pane wifi-con cars-con" ng-show="showTabName.wifi">
+			<div class="cars-top" style="min-height:0.44rem;margin-top:0.32rem">
+					<div class="register-num">
+						<div class="all-num" style="cursor: pointer;">
+							<label class="label-text">今日MAC采集量：</label>
+							<span class="span-text"><span class="span-num">{{wifiCount}}</span></span>
+						</div>
+					</div>
+				</div>
+			<div class="header-top" ng-click="clickMore()">更多>></div>
+			<ul class="wifi-list">
+				<li class="wifi-list-li" ng-repeat="item in macList">
+					<div class="clearfix message-box">
+						<label class="label-text">MAC地址：</label>
+						<span class="span-text">{{item.userMac}}</span>
+					</div>
+					<div class="clearfix message-box">
+						<label class="label-text">时&nbsp;&nbsp;&nbsp;&nbsp;间：</label>
+						<span class="span-text">{{item.mrowTime}}</span>
+					</div>
+					<span class="guiji-btn" ng-click="toMapTrack(2,item)"><i class="base-icon icon-guiji"></i></span>
+				</li>
+			</ul>
+		</div>
+		<!--wifi end-->
+		<!--消防-->
+		<div class="tabs-pane fire-con" ng-show="showTabName.fire" style="padding:0;margin:0.08rem 0.2rem;overflow:hidden;" id="fireModule">
+				<!-- <div id="fireLeftDiv" style="position:absolute;top:11px;left: 0;top: 18px;" ng-click="scrollFireTab(true)"><a href="" style="cursor: pointer;color:#fff"><</a></div>
+				<div id="firerightDiv" style="position:absolute;top:18px;right:0" ng-click="scrollFireTab(false)"><a href="" style="cursor: pointer;color:#fff">></a></div> -->
+				<ul class="fire-tab-menu clearfix" style="width:400%;position:relative;left:0" id="fireModuleUl">
+					<li class="pull-left" style="width:5%" ng-click="changeFireTab('smoke')" ng-class="{'active':showFireTabName.smoke}">烟雾</li>
+					<li class="pull-left" style="width:5%" ng-click="changeFireTab('electronic')" ng-class="{'active':showFireTabName.electronic}">电气</li>
+					<li class="pull-left" style="width:5%" ng-click="changeFireTab('water')" ng-class="{'active':showFireTabName.water}">水压</li>
+					<li class="pull-left" style="width:5%" ng-click="changeFireTab('polling')" ng-class="{'active':showFireTabName.polling}">巡检</li>
+					<li class="pull-left" style="width:5%" ng-click="changeFireTab('onGuard')" ng-class="{'active':showFireTabName.onGuard}">在岗</li>
+					<!-- <li class="pull-left" style="width:5%" ng-click="changeFireTab('manholeCover')" ng-class="{'active':showFireTabName.manholeCover}">窨井盖</li> -->
+				</ul>
+			<div class="header-top" ng-click="clickMore()">更多>></div>
+			<div class="fire-tabs-content">
+				<!--烟雾-->
+				<div class="fire-pane smog-pane" ng-show="showFireTabName.smoke">
+					<ul class="smog-list">
+						<li class="smog-list-li" ng-repeat="item in fireModule.smokeList">
+							<i class="icon-tag">{{$index+1}}</i>
+							<div class="message-box clearfix">
+								<label class="label-text">地点：</label>
+								<span class="span-text">{{item.buildingNo+" "+(item.roomNo?item.roomNo:"")}}</span><br>
+								<label class="label-text">状态：</label>
+								<span class="btn btn-green" ng-show="item.stateCode == 1">{{item.stateName}}</span>
+								<span class="btn btn-red" ng-show="item.stateCode == 3">{{item.stateName}}</span>
+								<span class="btn btn-red" ng-show="item.stateCode == 2">{{item.stateName}}</span>
+							</div>
+							<div class="message-box clearfix" ng-show="item.alarmTime && item.stateCode != 1">
+								<label class="label-text">时间：</label>
+								<span class="span-text" style="width: auto">{{item.alarmTime}}</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--电气-->
+				<div class="fire-pane electric-con" ng-show="showFireTabName.electronic">
+					<ul class="smog-list">
+						<li class="smog-list-li" ng-repeat="item in fireModule.electroniceList">
+							<i class="icon-tag">{{$index+1}}</i>
+							<div class="message-box clearfix">
+								<label class="label-text">地点：</label>
+								<span class="span-text">{{(item.buildingNo?item.buildingNo:"")+" "+(item.roomNo?item.roomNo:"")}}</span><br>
+								<label class="label-text">状态：</label>
+								<span class="btn btn-green" ng-show="item.stateCode == 1">{{item.stateName}}</span>
+								<span class="btn btn-red" ng-show="item.stateCode == 3">{{item.stateName}}</span>
+								<span class="btn btn-red" ng-show="item.stateCode == 2">{{item.stateName}}</span>
+							</div>
+							<div class="message-box clearfix" ng-show="item.alarmTime && item.stateCode != 1">
+								<label class="label-text">时间：</label>
+								<span class="span-text" style="width: auto">{{item.alarmTime}}</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--水压-->
+				<div class="fire-pane water-con" ng-show="showFireTabName.water">
+					<ul class="smog-list">
+						<li class="smog-list-li" ng-repeat="item in fireModule.waterList">
+							<i class="icon-tag">{{$index+1}}</i>
+							<div class="message-box clearfix">
+								<label class="label-text">地点：</label>
+								<span class="span-text">{{(item.buildingNo?item.buildingNo:"")+" "+(item.roomNo?item.roomNo:"")}}</span><br>
+								<label class="label-text">状态：</label>
+								<span class="btn btn-green" ng-show="item.stateCode == 1">{{item.stateName}}</span>
+								<span class="btn btn-red" ng-show="item.stateCode == 3">{{item.stateName}}</span>
+								<span class="btn btn-red" ng-show="item.stateCode == 2">{{item.stateName}}</span>
+							</div>
+							<div class="message-box clearfix" ng-show="item.alarmTime && item.stateCode != 1">
+								<label class="label-text">时间：</label>
+								<span class="span-text" style="width: auto">{{item.alarmTime}}</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--巡检-->
+				<div class="fire-pane inspection-con" ng-show="showFireTabName.polling">
+					<ul class="inspection-list">
+						<li class="inspection-list-li" ng-repeat="item in fireModule.pollingList">
+							<i class="icon-tag">{{$index+1}}</i>
+							<div class="clearfix message-box">
+								<label class="label-text">姓名：</label>
+								<span class="span-text name">{{item.peopleName}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">巡检设备：</label>
+								<span class="span-text">{{item.deviceName}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">巡检时间：</label>
+								<span class="span-text">{{item.mrowTime}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">抓拍影像：</label>
+								<span class="span-text">
+									<span class="photo-btn" ng-click="doorImgClick(item)" ng-show="item.imgUrl"></span>
+									<!-- <span class="video-btn" ng-click="doorVideoClick(item)"></span> -->
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--在岗-->
+				<div class="fire-pane onguard-con" ng-show="showFireTabName.onGuard">
+					<div class="onguard-head clearfix">
+						<i class="icon-tag-big pull-left"></i>
+						<span class="pull-left">微型消防站</span>
+					</div>
+					<ul class="onguard-list">
+						<li class="onguard-list-li" ng-repeat="item in fireModule.onGuardList">
+							<div class="img-box">
+								<img ng-src="/zhsq/file/show?path={{item.imgUrl}}" />
+							</div>
+							<div class="message-box">
+								<p class="name">{{item.peopleName}}</p>
+								<p>{{item.stationName}}</p>
+								<p>{{item.mrowTime}}</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--消防 end-->
+		<!--位移-->
+		<div class="tabs-pane fire-con" ng-show="showTabName.move" style="padding:0;margin:0.08rem 0.2rem;overflow:hidden;" id="moveModule">
+				<!-- <div id="fireLeftDiv" style="position:absolute;top:11px;left: 0;top: 18px;" ng-click="scrollFireTab(true)"><a href="" style="cursor: pointer;color:#fff"><</a></div>
+				<div id="firerightDiv" style="position:absolute;top:18px;right:0" ng-click="scrollFireTab(false)"><a href="" style="cursor: pointer;color:#fff">></a></div> -->
+				<ul class="fire-tab-menu clearfix" style="width:400%;position:relative;left:0" id="moveModuleUl">
+					<li class="pull-left" style="width:5%" ng-click="changeMoveTab('jinggai')" ng-class="{'active':showMoveTabName.jinggai}">窨井盖</li>
+					<!-- <li class="pull-left" style="width:5%" ng-click="changeFireTab('manholeCover')" ng-class="{'active':showFireTabName.manholeCover}">窨井盖</li> -->
+				</ul>
+			<!-- <div class="header-top" ng-click="clickMore()">更多>></div> -->
+			<div class="fire-tabs-content">
+				<!--窨井盖-->
+				<div class="fire-pane inspection-con" ng-show="showMoveTabName.jinggai">
+					<ul class="inspection-list">
+						<li class="inspection-list-li" ng-repeat="item in moveModule.jinggai">
+							<i class="icon-tag" style="left: 0.1rem;">{{$index+1}}</i>
+							<div class="clearfix message-box">
+								<label class="label-text">设备类型：</label>
+								<span class="span-text name">{{item.wellType}}</span>
+								<!-- <span class="span-text name" ng-if="item.coverId.slice(5)=='1' || item.coverId.slice(5)=='9'">污水</span>
+								<span class="span-text name" ng-if="item.coverId.slice(5)=='2' || item.coverId.slice(5)=='8'">阀门</span>
+								<span class="span-text name" ng-if="item.coverId.slice(5)=='3' || item.coverId.slice(5)=='7'">大水表</span>
+								<span class="span-text name" ng-if="item.coverId.slice(5)=='4' || item.coverId.slice(5)=='6'">污水(复合)</span>
+								<span class="span-text name" ng-if="item.coverId.slice(5)=='5' || item.coverId.slice(5)=='0'">雨水</span> -->
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">地址：</label>
+								<span class="span-text">{{item.equipmentAddress}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">设备编号：</label>
+<!-- 								<span class="span-text">{{item.environmentalState == 'good' ? '良好' : '异常'}}</span>
+ -->								<span class="span-text">{{item.equipmentNo}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">移动状态：</label>
+								<span class="btn btn-green" ng-show="item.isDisplacement == null">否</span>
+								<span class="btn btn-red" ng-show="item.isDisplacement != null">{{item.isDisplacement}}</span>
+							</div>
+							<div class="clearfix message-box" ng-show="item.isDisplacement == 1">
+								<label class="label-text">移动时间：</label>
+								<span class="span-text">{{item.displaceTime}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">设备图片：</label>
+								<span class="span-text">
+									<span class="photo-btn" ng-click="moveImgClick(item)"></span>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--位移 end-->
+		<!--监控-->
+		<div class="tabs-pane monitoring-con" ng-show="showTabName.camera">
+			<ul class="face-tab-menu clearfix" style="position:relative;left:0" id="faceModuleUl">
+				<li class="pull-left" style="width:30%;" ng-class="{'active':activeClass}" ng-click="queryChangeTab('1,2')">小区监控</li>
+				<li class="pull-left" style="width:30%;" ng-click="queryChangeTab('4')" ng-class="{'active':!activeClass}">道路监控</li>
+			</ul>
+			<div class="search-box">
+				<input type="text" placeholder="请输入关键字" ng-keyup="searchText(text.selectCamera)" ng-model="text.selectCamera"/>
+				<span class="clearIcon" ng-click="clearSearchText()"></span>
+			</div>
+			<div class="list-con">
+				<div class="list-con-head clearfix">
+					<i class="icon-tag-blue pull-left"></i>
+					<span class="pull-left">{{villageName || "道路监控"}}</span>									
+				</div>
+				<ul class="vidicon-list">
+					<li class="vidicon-list-li" ng-repeat="item in cameraList">
+						<i class="vidicon-icon"></i>
+						<!-- <i class="vidicon-icon-default"></i> -->
+						<span class="text">{{item.name}}</span>
+						<span class="video-box" ng-click="clickCamera(item)"><i class="video-icon"></i></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--监控end-->
+		<!--CK-->
+		<div class="tabs-pane fire-con" ng-show="showTabName.ck" style="padding:0;margin:0.08rem 0.2rem;overflow:hidden;" id="moveModule">
+			<div class="fire-tabs-content">
+				<!-- <div class="header-top" ng-click="clickMore()">更多>></div> -->
+				<div class="fire-pane inspection-con">
+					<ul class="inspection-list">
+						<li class="inspection-list-li" ng-repeat="item in ckModule.ckList" ng-click="setCenter(item)">
+							<i class="icon-tag" style="left: 0.1rem;">{{$index+1}}</i>
+							<div class="clearfix message-box">
+								<label class="label-text">用户名称：</label>
+								<span class="span-text name">{{item.userName}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">用户地址：</label>
+								<span class="span-text">{{item.userAddress}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">状态：</label>
+								<span class="btn btn-green" ng-show="item.alarmType === '正常'">正常</span>
+								<span class="btn btn-green" ng-show="item.alarmType === '撤防'">撤防</span>
+								<span class="btn btn-red" ng-show="item.alarmType === '警报'">警报</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">负责人：</label>
+								<span class="span-text">{{item.chargePersonName}}</span>
+							</div>
+							<div class="clearfix message-box">
+								<label class="label-text">联系方式：</label>
+								<span class="span-text">{{item.chargePersonTelphone}}</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--ck end-->
+	</div>
+</div>
+</div>
+<!--右侧内容 end-->
+<div class="contrast-con clearfix" style="height:2.48rem;padding: 0.2rem 0.3rem 0.2rem;display:none;overflow: hidden;" id="contrastFace">
+			<div class="left-photo">
+				<div class="img-box">
+					<img ng-src="{{contrastFace.faceUrl}}" />
+				</div>
+				<span class="span-text">抓拍人脸</span>
+			</div>
+			<div class="middle">
+				<div class="rate-box">
+					<div class="rate-con">
+						<span class="rate">{{contrastFace.similarity}}<em>%</em></span>
+						
+					</div>
+				</div>
+				<ul class="ul-middle">
+					<li>
+						<em class="em-text">姓名：</em>
+						<span class="span-text">{{contrastFace.name}}</span>						
+					</li>
+					<li>
+						<em class="em-text">性别：</em>
+						<span class="span-text">{{contrastFace.gender}}</span>						
+					</li>
+					<li>
+						<em class="em-text">所在库：</em>
+						<span class="span-text">{{contrastFace.repository_id}}</span>						
+					</li>
+					<li>
+						<em class="em-text">证件号：</em>
+						<!-- contrastFace.person_id -->
+						<span class="span-text" ng-click="viewPeoplefile(contrastFace.person_id)" style="cursor:pointer;">{{contrastFace.person_id}}</span>						
+					</li>
+				</ul>
+			</div>
+			<div class="right-photo">
+				<div class="img-box">
+					<img ng-src="{{contrastFace.picUrl}}" />
+				</div>
+				<span class="span-text">比中人脸</span>
+			</div>			
+</div>
+<!--告警弹框-->
+<div class="alarm-layerCon" ng-show="alarmMsg">
+	<!-- <div class="big-img">
+		<div class="big-img-box">
+			<img src="image/11.png" />
+		</div>
+		<span class="close-span"><i class="close-icon"></i></span>
+	</div> -->
+	<div class="alarm-information">
+		<div class="alarm-information-head clearfix">
+			<span class="pull-left title"><i class="alarm-icon"></i>警告</span>
+			<span class="pull-right close-btn" ng-click="hideAlarm()">关闭</span>
+			<span class="pull-right close-btn" ng-show="alarmVideo" ng-click="queryVideoById(alarmVideoObj)" style="padding-right:15PX;">查看视频</span>
+		</div>
+		<div class="alarm-information-con" ng-click="clickMoreFromMap(5)" style="cursor:pointer;">
+			<span class="place-name">{{alramName}}</span>
+			<span>{{alramDesc}}</span>
+			<span style="display:block;">{{CreateTime}}</span>
+		</div>
+	</div>
+</div>

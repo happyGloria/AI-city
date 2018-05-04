@@ -1,0 +1,88 @@
+<div class="body trackShow">
+
+    <div id="carTrackId" class="map-main">
+        <!--左侧-->
+        <div class="left-sider">
+            <div class="left-content">
+                <div class="left-head">
+                    <span class="head-txt">车辆轨迹</span>
+                    <span class="head-btn" ng-click="toggleFilter()"></span>
+                </div>
+                <div class="left-filter">
+                    <div class="filter-item">
+                        <div class="filter-name">车牌号:<span style="color: red">*</span></div>
+                        <div class="filter-val">
+                            <input type="text" placeholder="请输入车牌号" ng-model="carNum">
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <div class="filter-name">开始时间:<span style="color: red">*</span></div>
+                        <div class="filter-val"><input type="text" class="calendInput" ng-model="startTime" /></div>
+                    </div>
+                    <div class="filter-item">
+                        <div class="filter-name">结束时间:<span style="color: red">*</span></div>
+                        <div class="filter-val"><input type="text" class="calendInput" ng-model="endTime" /></div>
+                    </div>
+                    <div class="filter-item analyze" ng-click="carTrack()">轨迹分析</div>
+                </div>
+                <div class="left-result">
+                    <div class="pages"ng-if="!!resultLists.length">
+                        <span>共<i>{{resultLists.length}}</i>条记录</span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="result-lists" ng-if="!!resultLists.length">
+                        <div class="list-item h-100" ng-repeat="item in resultLists track by $index" ng-class="{'active':item.active}" ng-click="chooseItem(item)">
+                            <div class="index"><span>{{$index+1}}</span></div>
+                            <div class="content">
+                                <h3 class="carNum">{{item.hphm}}</h3>
+                                <p class="speed"><i class="speed"></i>{{item.speed}}</p>
+                                <p class="address"><i class="address"></i>{{item.address}}</p>
+                                <p class="time"><i class="time"></i>{{item.jgsj}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div id="carInfo" style="display: none;">
+        <div class="npmap-dialog">
+            <div class="npmap-dialog-titlebar">
+                <span class="title">信息详情</span>
+                <span class="close"></span>
+            </div>
+            <div class="npmap-dialog-content">
+                <!--<p class="tips"><i>蓝色文字</i>为经过二次识别项</p>-->
+                <div class="main-content">
+                    <!--<div class="img"><img ng-src="{{carInfo.img}}" alt=""></div>-->
+                    <div class="txt">
+                        <p>车牌号码:{{carInfo.carNo}}</p>
+                        <p>车辆品牌:{{carInfo.carBrand}}</p>
+                        <p>车辆颜色:{{carInfo.carColor}}</p>
+                        <p>车主姓名:{{carInfo.name}}</p>
+                        <p>联系电话:{{carInfo.contactPhone}}</p>
+                        <!--<p class="identify">车牌号码：{{carInfo.carNo}}</p>-->
+                        <!--<p>行驶速度：{{carInfo.speed}}</p>-->
+                        <!--<p>通过时间：{{carInfo.passTime}}</p>-->
+                        <!--<p>通过卡口：{{carInfo.kakou}}</p>-->
+                        <!--<p>通过车道：{{carInfo.road}}</p>-->
+                        <!--<p>车道方向：{{carInfo.direction}}</p>-->
+                        <!--<p class="identify">车牌颜色：{{carInfo.plateColor}}</p>-->
+                        <!--<p class="identify">车牌类型：{{carInfo.plateType}}</p>-->
+                        <!--<p class="identify">车辆颜色：{{carInfo.carColor}}</p>-->
+                        <!--<p class="identify">车辆类型：{{carInfo.carType}}</p>-->
+                        <!--<p class="identify">车辆品牌：{{carInfo.carBrand}}</p>-->
+                        <!--<p class="identify">车型子类：{{carInfo.carChildType}}</p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

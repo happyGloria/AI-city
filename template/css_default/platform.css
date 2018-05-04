@@ -1,0 +1,150 @@
+.layer-drop {
+	overflow: inherit !important
+}
+
+.layer-drop .dropdown-menu.autocomplete {
+	min-width: 200px;
+	max-height: 245px;
+	overflow: hidden;
+	overflow-y: auto
+}
+
+.body-main {
+	height: 100%;
+	min-height: 800px;
+	margin-left: 200px;
+	padding: 16px;
+	position: relative
+}
+
+.body-main-280 {
+	margin-left: 280px
+}
+.platform-new {
+	background: #07335f;
+}
+.platform-new .side {
+    background: #07335f;
+}
+
+.platform-new .side {
+    background: #07335f;
+    border: 1px solid #2b4460;
+}
+/*树状图字体颜色*/
+.ztree li span {
+    color: #e8a423;
+}
+/*树状图下拉框*/
+.layer-drop .dropdown-menu.autocomplete{
+	min-width: 400px;
+    min-height: 200px;
+}
+.platform-new .side-item{
+    border-top: 1px solid #2b4460;
+    border-left: 4px solid #2b4460;
+}
+
+.platform-new .side .selected .side-link{
+    background: #062c52;
+}
+
+.platform-new .morelayer #mechanismTree{
+	height: 60%;
+}
+
+.layer .control-label{
+	text-align: right;
+}
+
+.layer .form-control{
+    width: 400px;
+}
+.layer textarea{
+    width: 400px;
+    height: 100px;
+}
+
+.platform-new .table-icon{
+	display:inline-block;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+	background:url(../img/table-icon.png) no-repeat;
+}
+.platform-new .table-icon:hover{
+    outline: 0;
+    text-decoration: none;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+}
+
+#settingTree{
+	height: 300px;
+	overflow: auto;
+}
+/*修改、编辑*/
+.platform-new .icon-editor{
+	background-position:0 0;
+}
+.platform-new .icon-editor:hover{
+	background-position:0 -16px;
+}
+/*权限设置*/
+.platform-new .icon-jurin-seting{
+	background-position:-16px 0;
+}
+.platform-new .icon-jurin-seting:hover{
+	background-position:-16px -16px;
+}
+/*重置密码*/
+.platform-new .icon-reset-password{
+	background-position:-32px 0;
+}
+.platform-new .icon-reset-password:hover{
+	background-position:-32px -16px;
+}
+/*详情、详细*/
+.platform-new .icon-detail{
+	background-position:-48px 0;
+}
+.platform-new .icon-detail:hover{
+	background-position:-48px -16px;
+}
+/*解冻*/
+.platform-new .icon-unfreeze{
+	background-position:-64px 0;
+}
+.platform-new .icon-unfreeze:hover{
+	background-position:-64px -16px;
+}
+/*忽略*/
+.platform-new .icon-overlook{
+	background-position:-80px 0;
+}
+.platform-new .icon-overlook:hover{
+	background-position:-80px -16px;
+}
+/*查看*/
+.platform-new .icon-look{
+	background-position:-96px 0;
+}
+.platform-new .icon-look:hover{
+	background-position:-96px -16px;
+}
+/*删除*/
+.platform-new .icon-delect{
+	background-position:-112px 0;
+}
+.icon-delect:hover{
+	background-position:-112px -16px;
+}
+
+.form-selected{
+	color:#fff;
+	background:#00a0e9;
+	cursor:pointer;
+}

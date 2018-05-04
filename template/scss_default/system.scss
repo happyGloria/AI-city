@@ -1,0 +1,354 @@
+@mixin inline-block-middle {
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *zoom:1;
+}
+@mixin ellipse {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.sys.body {
+  min-height: 800px;
+  .body-main {
+    height: 100%;
+    min-height: 100%;
+  }
+}
+
+/* chart **/
+.sys .section {
+  float: left;
+  position: relative;
+  width: 800px;
+  height: 400px;
+  background: #fff;
+  box-shadow: 2px 2px 4px #e6e6e6;
+  margin: 0 10px 10px 0;
+  padding: 30px;
+}
+.sys .gauge-chart .section {
+  width: 530px;
+  height: 400px;
+  padding: 30px 80px;
+}
+.sys .legend-wrap {
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  .legend-text {
+    font-size: 12px;
+    color:#666;
+    margin-left: 5px;
+  }
+  .rect-0:before {
+    @include inline-block-middle;
+    width: 8px;
+    height: 8px;
+    background: #D87A80;
+    content: "";
+  }
+  .rect-1:before {
+    @include inline-block-middle;
+    width: 8px;
+    height: 8px;
+    background: #5AB1EF;
+    content: "";
+  }
+  .rect-2:before {
+    @include inline-block-middle;
+    width: 8px;
+    height: 8px;
+    background: #2EC7C9;
+    content: "";
+  }
+}
+.sys .chart-descript {
+  position: absolute;
+  top:80px;
+  left:30px;
+  .descript-text {
+    font-size: 12px;
+    color:#666;
+  }
+  .descript-data {
+    font-size: 16px;
+    font-weight: bold;
+    color:#ff6c00;
+  }
+}
+
+.sys .line-chart {
+  .yName {
+    position: absolute;
+    top: 55px;
+    left: 80px;
+    font-size: 14px;
+    color: #666;
+  }
+  .legend-wrap {
+    position: absolute;
+    top: 55px;
+    right: 50px;
+    .legend-item {
+      @include inline-block-middle;
+      margin-right: 25px;
+    }
+    .rect-0:before {
+      @include inline-block-middle;
+      width: 28px;
+      height: 8px;
+      background: #ff4683;
+      content: "";
+    }
+    .rect-1:before {
+      @include inline-block-middle;
+      width: 78px;
+      height: 8px;
+      background: -moz-linear-gradient(left, #ff7aa4 0%, #fff298 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff7aa4), color-stop(100%,#fff298));
+      background: -webkit-linear-gradient(left, #ff7aa4 0%,#fff298 100%);
+      background: -o-linear-gradient(left, #ff7aa4 0%,#fff298 100%);
+      background: -ms-linear-gradient(left, #ff7aa4 0%,#fff298 100%);
+      background: linear-gradient(left, #ff7aa4 0%,#fff298 100%);
+      content: "";
+    }
+  }
+}
+
+
+/* port **/
+.sys .port-section {
+  display: block;
+  margin-bottom: 30px;
+    .port-header {
+      font-size: 18px;
+      font-weight: bold;
+      padding-bottom: 5px;
+      border-bottom: 1px dashed #dcdcdc;
+    }
+  .port-item {
+    float: left;
+    position: relative;
+    width: 395px;
+    height: 60px;
+    line-height: 60px;
+    margin: 10px 10px 0 0;
+    border: 1px solid #dedede;
+    background: #fff;
+    .port-name {
+      display: inline-block;
+      vertical-align: middle;
+      width: 120px;
+      margin-left: 20px;
+      font-size: 14px;
+      color: #00a0e9;
+      @include ellipse;
+    }
+    .port-number {
+      display: inline-block;
+      vertical-align: middle;
+      width: 60px;
+      margin-left: 20px;
+      font-size: 12px;
+      @include ellipse;
+    }
+    .port-time {
+      display: inline-block;
+      vertical-align: middle;
+      width: 50px;
+      margin-left: 20px;
+      font-size: 12px;
+      color: #959595;
+      @include ellipse;
+    }
+    .port-state {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 84px;
+      height: 58px;
+      background:#fbfbfb;
+      text-align: center;
+      .port-state-light {
+        display: inline-block;
+        vertical-align: middle;
+        width: 10px;
+        height: 10px;
+        -webkit-border-radius: 100%;
+        -moz-border-radius: 100%;
+        border-radius: 100%;
+        background: #22ac38;
+        margin-right: 5px;
+      }
+      .port-state-text {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        color: #22ac38;
+      }
+      &.disconnect {
+        .port-state-light {
+          background: #ff4a57;
+        }
+        .port-state-text {
+          color: #ff4a57;
+        }
+      }
+      &.noconnect {
+        .port-state-light {
+          background: #AAAFAF;
+        }
+        .port-state-text {
+          color: #AAAFAF;
+        }
+      }
+    }
+
+  }
+}
+
+.sys .form-body-box {
+  height: 350px;
+  background: #fff;
+  border-top: 1px solid #dedede;
+  .sys-item {
+    float: left;
+    height: 100%;
+    border-left: 1px dashed #e4e4e4;
+    &.complex-box {
+      width: 30%;
+    }
+    &.chart-box {
+      width: 15%;
+      text-align: center;
+      .title {
+        margin-top: 44px;
+      }
+    }
+    &.table-box {
+      width: 40%;
+    }
+    &:first-child{
+      border-left: none;
+    }
+    &:last-child{
+      border-left: 1px solid #dedede;
+    }
+    .title-wrap {
+      padding: 10px 20px;
+    }
+    .title {
+      font-size: 14px;
+      color: #666;
+      .title-stress {
+        font-size: 18px;
+        color: #ec6941;
+      }
+    }
+    .chart-data {
+      font-size: 30px;
+      color:#8fc31f;
+      &.state-warn {
+        color:#ec6941;
+      }
+    }
+    .sys-item-sub {
+      width: 100%;
+      height: 50%;
+      border-top: 1px dashed #e4e4e4;
+      text-align: center;
+      &:first-child {
+        border-top: none;
+      }
+      &.sub-first {
+        height: 40%;
+        padding: 30px 0;
+      }
+      &.sub-two {
+        position: relative;
+        height: 60%;
+        .chart {
+          margin-top: 20px;
+        }
+        .chart-title {
+          position:absolute;
+          top: 20px;
+          left: 60px;
+          font-size:14px;
+          color: #00a0e9;
+        }
+        .legend-wrap {
+          top: 20px;
+          .rect-0:before {
+            width: 10px;
+            height: 10px;
+            background: #8fc31f;
+            content: "";
+          }
+          .rect-1:before {
+            width: 10px;
+            height: 10px;
+            background: #ec6941;
+            content: "";
+          }
+        }
+      }
+      .tag-img {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .tag-data {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 50px;
+        .data {
+          font-size: 36px;
+          color: #00a0e9;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+.table-sys-alarm > tbody > tr {
+  background: #f5f3f4;
+}
+.table-sys-alarm > tbody > tr:nth-child(even) {
+  background: #fff;
+}
+.table-sys-alarm > tbody > tr > td {
+  border-bottom: none;
+  text-align: left;
+  padding: 8px 20px;
+  .data-ellipse {
+    display: inline-block;
+    max-width: 80%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+}
+
+.table-sys-config {
+  .connect-state {
+    color: #8fc31f;
+    &.disconnect {
+      color: #ff6900;
+    }
+  }
+  .sub-table {
+    display: none;
+  }
+  .table-fold-tr.unfold + .sub-table{
+    display: table-row;
+  }
+}
+
+.form-bottom.has-inner-table {
+  border-bottom: none;
+}

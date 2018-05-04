@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">   
+<html xmlns="http://www.w3.org/1999/xhtml" >   
+<head>   
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script type="text/javascript" src="/lib/angular/jquery-1.10.2.min.js"></script>   
+</head>   
+<body>     
+<div id="objectDiv" style="height:5.5rem">   
+    <OBJECT classid="clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921" 
+    codebase=""  
+       width="100%" height="100%" id="vlc" events="True">  
+ <param name="MRL" value="" />  
+ <param name="Src" value="" />  
+   <param name="ShowDisplay" value="True" />  
+ <param name="AutoLoop" value="False" />  
+ <param name="AutoPlay" value="False" />  
+ <param name="Time" value="True"/>  
+ <EMBED pluginspage="http://www.videolan.org"  
+       type="application/x-vlc-plugin"  
+       version="VideoLAN.VLCPlugin.2"  
+       width="100%"  
+       height="100%"      
+       text="Waiting for video"  
+       name="vlc"  
+       ></EMBED>  
+ </OBJECT>   
+</div>   
+<div style="height:0.5rem;position:relative;">
+  <input type="button" id="outDoor" value="门外" onClick="playOutDoor()" style="position:absolute;left:0">
+  <input type="button" id="inDoor" value="门内" onClick="playInDoor()" style="position:absolute;left:0.8rem">    
+<!-- <input type=button id="btn_play" value=" 播放 " onClick='doPlay();' disabled="true">   
+<input type=button id="btn_stop" value="停止" onClick='doStop();' disabled="true">   
+<input type=button value="静音切换" onclick='getVLC("vlc").audio.togglemute();'>   
+<input type=button value="减小音量" onclick='updateVolume(-10)'>   
+<input type=button value="增加音量" onclick='updateVolume(+10)'>  -->  
+</div>
+<script>
+// var width = 860/1.406;
+// var height = 650/1.406;   
+// $("#objectDiv").attr("width",width);
+// $("#objectDiv").attr("height",height);
+// $("#objectDiv").find("EMBED")attr("width",width);
+// $("#objectDiv").find("EMBED")attr("height",height);
+function getVLC(name)   
+{   
+        if (window.document[name])      
+        {   
+                return window.document[name];   
+        }   
+        if (navigator.appName.indexOf("Microsoft Internet")==-1)   
+        {   
+                if (document.embeds && document.embeds[name])   
+                        return document.embeds[name];      
+        }   
+        else   
+        {   
+                return document.getElementById(name);   
+        }   
+}   
+  
+function doGo(mrl)   
+{   
+        var vlc = getVLC("vlc");   
+        itemId=vlc.playlist.add(mrl);   
+        vlc.playlist.playItem(itemId);   
+        document.getElementById("btn_stop").disabled = false;
+}   
+  
+function updateVolume(deltaVol)   
+{   
+        var vlc = getVLC("vlc");   
+        vlc.audio.volume += deltaVol;   
+}   
+  
+function doPlay()   
+{   
+        vlc.playlist.playItem(itemId);   
+           
+        document.getElementById("btn_stop").disabled = false;   
+        document.getElementById("btn_play").disabled = true;   
+}   
+  
+function doStop()   
+{   
+        getVLC("vlc").playlist.stop();   
+        document.getElementById("btn_stop").disabled = true;   
+        document.getElementById("btn_play").disabled = false;   
+}
+
+function playOutDoor(){
+  document.getElementById("outDoor").style.backgroundColor = "#067cd9";
+  document.getElementById("inDoor").style.backgroundColor = "";
+  doGo(door_src.videoUrlOut);
+}
+
+function playInDoor(){
+  document.getElementById("inDoor").style.backgroundColor = "#067cd9";
+  document.getElementById("outDoor").style.backgroundColor = "";
+  doGo(door_src.videoUrlIn);
+}
+var door_src = JSON.parse(sessionStorage.getItem("videoSrc")) || "";
+sessionStorage.removeItem("videoSrc");
+document.getElementById("outDoor").style.backgroundColor = "#067cd9"; 
+doGo(door_src.videoUrlOut);   
+</script>     
+</body>   
+</html>  

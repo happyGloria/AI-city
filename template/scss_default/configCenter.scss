@@ -1,0 +1,1098 @@
+.configCenter{
+  height: 100%;
+  min-height: 800px;
+  margin-left: 200px;
+  padding: 16px;
+  position: relative;
+  .time{
+    background: url(../img/canlendar.png) 150px no-repeat;
+  }
+  th{
+    color: #666 !important;
+  }
+  tr{
+    &:hover{
+      td{
+        background-color: #f9f9f9;
+        color: #00A1F2;
+      }
+    }
+  }
+  select{
+    color: inherit;
+  }
+
+  .edit{
+    position: relative;
+    //top: 5px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+    background: url(../img/home/homemap/pic.png) no-repeat;
+    background-position: -40px -62px;
+    &:hover{
+      background-position: -57px -62px;
+    }
+  }
+  .delete{
+    position: relative;
+    //top: 5px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+    background: url(../img/home/homemap/pic.png) no-repeat;
+    background-position: -40px -106px;
+    &:hover{
+      background-position: -57px -106px;
+    }
+  }
+
+  td{
+    .status{
+      position: relative;
+      top: 6px;
+      display: inline-block;
+      width: 38px;
+      height: 20px;
+      cursor: pointer;
+      background: url(../img/home/homemap/pic.png) no-repeat;
+    }
+    .active{
+      background-position: -82px -61px;
+    }
+    .noActive{
+      background-position: -82px -83px;
+    }
+
+  }
+
+  .fn-ic {
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    background: url(../img/configCenter/person-default.png) no-repeat center #F1F0F0;
+    img{
+      width: auto;
+      height: 100%;
+      margin: 0;
+      display: inline;
+      transition: all 500ms;
+      -webkit-transition: all 500ms;
+      -moz-transition: all 500ms;
+      -o-transition: all 500ms;
+    }
+    &:hover{
+      img{
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1);
+      }
+
+    }
+  }
+
+  .fn-122-150 {
+    width: 122px;
+    height: 150px;
+    vertical-align: middle;
+  }
+
+}
+
+//任务管理页面样式
+.taskManager{
+    .fn-text-overflow {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+   .addTask, .editTask{
+      .select_wrapper{
+        .link-libs {
+          position: relative;
+          top: 10px;
+          width: 300px;
+          height: 28px;
+          line-height: 28px;
+        }
+        .select_container {
+          height: 26px;
+          line-height: 26px;
+          width: 350px;
+          background-color: white;
+          border: solid 1px #DDD;
+          margin-left: 2px;
+          display: inline-block;
+          border-radius: 2px;
+          font-size: 0;
+          -webkit-transition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+          -os-transition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+          -moz-transition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+          -mstransition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+          transition: background-color .2s ease-out, box-shadow .2s ease, border-color .2s ease;
+          .text {
+            width: 90%;
+            text-indent: 5px;
+            display: inline-block;
+            cursor: default;
+            font-size: 12px;
+          }
+
+          .arrow-up {
+            display: inline-block;
+            float: right;
+            width: 10px;
+            height: 5px;
+            margin-right: 5px;
+            margin-top: 10px;
+            background: url('../img/configCenter/arrow.png') -10px 0 no-repeat;
+            background-position: 0 0;
+            cursor: pointer;
+          }
+        }
+        .fn-inline {
+          display: inline-block !important;
+        }
+        .sr-only{
+          display: none;
+        }
+
+        .select-pubdiv {
+          width: 300px;
+          left: 84px;
+          top: 40px;
+          position: absolute;
+          max-height: 150px;
+          z-index: 5000;
+          background-color: white;
+          border: solid 1px #becad4;
+          moz-box-shadow: 2px 2px 10px #909090;
+          -webkit-box-shadow: 2px 2px 10px #909090;
+          box-shadow: 2px 2px 10px #909090;
+          overflow-x: hidden;
+          overflow-y: auto;
+          li {
+            height: 26px;
+            line-height: 26px;
+            padding-left: 5px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 12px;
+            cursor: pointer;
+            .fn-icon {
+              background: url("../img/home/homemap/pic.png") no-repeat;
+              background-position: -2px -40px;
+            }
+            .active{
+              background-position: -18px -40px !important;
+            }
+            .checkbox-bright-icon {
+              background-position: -2px -40px;
+            }
+
+            .checkbox-bright-icon {
+              position: relative;
+              top: 4px;
+              display: inline-block;
+              width: 16px;
+              height: 16px;
+              margin-right: 5px;
+            }
+            &:hover{
+              background-color: #edf2f8;
+            }
+          }
+        }
+      }
+   }
+}
+
+//人脸库管理样式
+.facelibManager{
+  .operator{
+    line-height: 30px;
+    margin-bottom: 5px;
+  }
+
+  .add,.editLib{
+    .information{
+      height: 90px;
+      border-radius: 2px;
+      border: solid 1px #e1e1e1;
+      background: #f9f9f9;
+      margin: 0;
+      .baseText{
+        line-height: 88px;
+        border-right: 1px dashed #ccc;
+      }
+
+      .col-md-4{
+        line-height: 45px;
+      }
+      .col-md-12{
+        line-height: 45px;
+        input{
+          width: 80%;
+        }
+      }
+    }
+    .addLib{
+      line-height: 40px;
+      margin: 0;
+      margin-top: 5px;
+      border-radius: 2px;
+      border: solid 1px #e1e1e1;
+      background: #f9f9f9;
+    }
+    .cont{
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+      margin: 0;
+      ul{
+        li{
+          display: inline-block;
+          width: 130px;
+          height: 208px;
+          margin: 5px 20px 10px 0;
+          .imgContainer{
+            width: 122px;
+            height: 150px;
+            overflow: hidden;
+            img{
+              width: 200px;
+              height: 100%;
+              margin-left: -30px;
+              &:hover{
+                -ms-transform: scale(1.1);
+                -moz-transform: scale(1.1);
+                -webkit-transform: scale(1.1);
+                -ms-webkit-transition: all 0.3s ease 0s;
+                -moz-transition: all 0.3s ease 0s;
+                -webkit-transition: all 0.3s ease 0s;
+                transition: all 0.3s ease 0s;
+              }
+            }
+          }
+
+
+          .img-select{
+            position: absolute;
+            margin: -145px 0 0 5px;
+            opacity: 0;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+            background: url(../img/home/homemap/pic.png) no-repeat;
+            background-position: -127px -27px;
+            &:hover{
+              background-position: -100px -27px;
+            }
+          }
+
+          .active{
+            opacity: 1;
+            background-position: -100px -27px;
+          }
+
+          .edit{
+            margin-left: 36px;
+            opacity: 0;
+          }
+          .delete{
+            opacity: 0;
+          }
+          &:hover{
+            .edit,.delete{
+              opacity: 1;
+            }
+            .img-select{
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .noResult{
+        width: 170px;
+        height: 124px;
+        margin: 0 auto;
+        margin-top: 50px;
+        background: url(../img/configCenter/no-people-bg.png) no-repeat center 30%
+      }
+    }
+  }
+}
+
+//检索历史库
+.history{
+  .search-panel{
+    height: 40px;
+    width: 550px;
+    overflow: hidden;
+    margin: 10px auto;
+    box-sizing: border-box;
+    position: relative;
+    .picbox{
+      position: absolute;
+      width: 56px;
+      max-width: 413px;
+      height: 36px;
+      overflow: hidden;
+      left: 3px;
+      top: 2px;
+    }
+    .text {
+      width: 450px;
+      height: 40px;
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 0 80px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      box-sizing: border-box;
+      float: left;
+    }
+
+    .textsearch-btn {
+      width: 100px;
+      height: 40px;
+      background: #00A1F1;
+      text-align: center;
+      color: #fff;
+      font-size: 16px;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border: 0;
+      float: left;
+      cursor: pointer;
+    }
+    .disabled{
+      background: #ccc;
+    }
+
+    .imgsearch-btn {
+      position: absolute;
+      top: 7px;
+      right: 110px;
+      width: 29px;
+      height: 24px;
+      background: url(../img/configCenter/camera.png) no-repeat center center;
+      cursor: pointer;
+      text-align: center;
+      line-height: 24px;
+    }
+  }
+  .search{
+    line-height: 50px;
+  }
+}
+
+.history-page{
+  overflow: hidden;
+  .fn-text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .fn-ic {
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    background: url(../img/configCenter/person-default.png) no-repeat center #F1F0F0;
+    img{
+      width: auto;
+      height: 100%;
+      margin: 0;
+      display: inline;
+      transition: all 500ms;
+      -webkit-transition: all 500ms;
+      -moz-transition: all 500ms;
+      -o-transition: all 500ms;
+    }
+    &:hover{
+      img{
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        -moz-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        -o-transform: scale(1.1);
+      }
+
+    }
+  }
+
+  .fn-122-150 {
+    width: 100%;
+    height: 150px;
+    vertical-align: middle;
+  }
+
+  .show-container{
+    margin-top: 10px;
+    ul{
+      list-style: none;
+      li.info-list-item{
+        display: inline-block;
+        margin: 0 5px 10px 5px;
+        border: 1px solid #999;
+        width: 122px;
+        .detail-text-info{
+          background-color: #ccc;
+          padding: 5px 8px;
+          .text-label {
+            display: inline-block;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.addface-page{
+  overflow: hidden;
+  .content{
+    padding: 20px;
+    .box{
+      width: 220px;
+      margin: 0 auto;
+      vertical-align: top;
+      .imgCon{
+        width: 220px;
+        height: 270px;
+        display: inline-block;
+        overflow: hidden;
+        border: solid 1px #f4f4f4;
+        background: url(../img/configCenter/add-bg.png) no-repeat center center #EEEEEE;
+      }
+      ul{
+        font-size: 0;
+        width: 230px;
+        vertical-align: middle;
+        li.crud-peo-upl-s-c{
+          display: inline-block;
+          font-size: 12px;
+          width: 38px;
+          height: 38px;
+          margin: 6px 8px 0 0;
+          cursor: pointer;
+          border: solid 2px #fff;
+          background: url(../img/configCenter/add-file.png) no-repeat center #8fc31f;
+          img{
+            //display: none;
+            height: 100%;
+            width: 100%;
+          }
+          .img-container{
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: relative;
+            .webuploader-pick{
+              position: relative;
+              display: inline-block;
+              cursor: pointer;
+              width: 100%;
+              height: 100%;
+              color: #fff;
+              text-align: center;
+              overflow: hidden;
+            }
+
+            .uploader-container{
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              width: 38px;
+              height: 38px;
+              overflow: hidden;
+              bottom: auto;
+              right: auto;
+              .webuploader-element-invisible {
+                position: absolute !important;
+                clip: rect(1px 1px 1px 1px);
+                clip: rect(1px,1px,1px,1px);
+              }
+              label{
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                display: block;
+                cursor: pointer;
+                background: rgb(255, 255, 255);
+              }
+            }
+          }
+
+          .fn-icon{
+            background: url(../img/home/homemap/pic.png) no-repeat;
+          }
+
+          .pic-del-icon{
+            background-position: -100px -151px;
+            position: relative;
+            float: right;
+            width: 12px;
+            height: 12px;
+            top: -44px;
+            left: 5px;
+          }
+
+          .fn-hidden{
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+  .addRight{
+    margin-bottom: 10px;
+    .sex{
+      position: relative;
+      top: 3px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      cursor: pointer;
+      background: url(../img/home/homemap/pic.png) no-repeat;
+      background-position: -80px -130px;
+    }
+    .active{
+      background-position: -80px -149px;
+    }
+    select{
+      color: inherit;
+      width: 174px;
+    }
+
+    textarea{
+      width: 260px;
+      height: 110px;
+
+    }
+  }
+}
+
+//任务管理样式
+.taskManager{
+  .operator{
+    line-height: 30px;
+    margin-bottom: 5px;
+  }
+  .addTask,.editTask{
+    .breadcrumb{
+      margin-bottom: 0;
+    }
+    .row{
+      line-height: 45px;
+      .taskName{
+        width: 450px;
+      }
+
+      .validTimd{
+        width: 96px;
+      }
+
+      .introduce{
+        width: 70%;
+      }
+
+      .left,.right{
+        height: 390px;
+        border: solid 1px #E1E1E1;
+        background-color: #f9f9f9;
+        .selectCamera{
+          margin-top: 5px;
+        }
+        .c-l-content {
+          margin-top: 5px;
+          .active {
+            background-color: #EEEEEE;
+          }
+          li {
+            padding-left: 20px;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            list-style: none;
+            .camera-icon {
+              float: left;
+              margin-top: 8px;
+              display: inline-block;
+              width: 13px;
+              height: 12px;
+              background: url("../img/home/homemap/pic.png") no-repeat;
+              background-position: -135px -64px;
+            }
+
+            .c-name {
+              display: inline-block;
+              width: 85%;
+              text-indent: 5px;
+              color: #505050;
+            }
+
+            .del-icon {
+              display: none;
+              float: right;
+              margin: 6px 2px 0 0;
+              width: 16px;
+              height: 16px;
+              cursor: pointer;
+              background: url("../img/home/homemap/pic.png") no-repeat;
+              background-position: -40px -106px;
+            }
+            &:hover{
+              background-color: #EEEEEE;
+              .del-icon{
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+    .but{
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
+
+
+}
+
+.task-page{
+  .left{
+    margin-left: 5px;
+    display: inline-block;
+    .search{
+      height: 40px;
+      line-height: 40px;
+      width: 500px;
+      //border: 1px solid #dad7d7;
+      //border-radius: 3px;
+      input{
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        text-indent: 20px;
+        background: url(../img/analyze/search.png) 96% no-repeat;
+      }
+    }
+
+    .content{
+      height: 335px;
+      width: 500px;
+      min-width: 500px;
+      //margin: 0 auto;
+      border: 1px solid #dad7d7;
+      border-radius: 3px;
+      overflow: hidden;
+      background-color: #fff;
+      margin-top: 5px;
+      #cameraTree{
+        height: auto;
+        li{
+          .button-comm{
+            line-height: 0;
+            margin: 0;
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            vertical-align: middle;
+            border: 0 none;
+            cursor: pointer;
+            outline: none;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-image: url(../img/analyze/zTreeStandard.png);
+          }
+          span.button.pIcon02_ico_open, span.button.pIcon02_ico_close{
+            @extend .button-comm;
+            margin: 0 3px;
+            background-position: -14px -73px;
+          }
+
+          span.button.icon02_ico_docu{
+            @extend .button-comm;
+            background-position: -46px -72px;
+          }
+
+          span.button.chk.checkbox_false_full {
+            @extend .button-comm;
+            background-position: 0 -92px;
+          }
+
+          span.button.chk.checkbox_false_full_focus {
+            @extend .button-comm;
+            background-position: 0 -92px;
+          }
+
+          span.button.chk {
+            width: 16px;
+            height: 16px;
+            background-size: inherit;
+          }
+
+          span.button.chk.checkbox_true_full {
+            @extend .button-comm;
+            background-position: -16px -92px;
+          }
+
+          span.button.chk.checkbox_true_full_focus {
+            @extend .button-comm;
+            background-position: -16px -92px;
+          }
+        }
+      }
+    }
+  }
+
+  .right{
+    width: 240px;
+    height: 378px;
+    display: inline-block;
+    border: 1px solid #dad7d7;
+    border-radius: 3px;
+    overflow: hidden;
+    background-color: #fff;
+    .top {
+      line-height: 30px;
+      margin-left: 5px;
+      margin-right: 5px;
+      font-weight: bold;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .middle{
+      height: 100%;
+      padding: 5px 0;
+      overflow-y: auto;
+      ul{
+        list-style: none;
+        margin-left: 5px;
+        margin-right: 5px;
+        li{
+          height: 30px;
+          line-height: 30px;
+          font-size: 12px;
+          padding: 0 2px;
+
+          .fn-icon{
+            position: relative;
+            top: 6px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background: url(../img/home/homemap/pic.png) no-repeat;
+          }
+          .camera-icon{
+            background-position: -135px -64px;
+            top: 8px;
+            float: left;
+          }
+          .fn-text-overflow {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+
+          .c-name {
+            text-indent: 3px;
+            display: inline-block;
+            width: 180px;
+          }
+
+          .del-icon {
+            display: none;
+            float: right;
+            cursor: pointer;
+            background-position: -40px -106px;
+          }
+          &:hover{
+            background-color: #edf2f8;
+            .del-icon{
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+
+  }
+}
+
+//接入平台样式
+.plateform{
+  .operater{
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 5px;
+  }
+
+
+
+  .fn-icon{
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    cursor: pointer;
+    background: url(../img/home/homemap/pic.png) no-repeat;
+  }
+
+  .edit{
+    background-position: -40px -62px;
+    &:hover{
+      background-position: -57px -62px;
+    }
+  }
+
+  .refresh{
+    background-position: -40px -85px;
+    &:hover{
+      background-position: -57px -85px;
+    }
+  }
+
+  .remove{
+    background-position: -40px -106px;
+    &:hover{
+      background-position: -57px -106px;
+    }
+  }
+}
+
+//用户管理样式
+.userManager{
+  .add{
+    height: 30px;
+    //line-height: 30px;
+    margin-bottom: 5px;
+  }
+
+  th{
+    color: #666 !important;
+  }
+  tr{
+    &:hover{
+      td{
+        background-color: #f9f9f9;
+        color: #00A1F2;
+      }
+    }
+  }
+  td{
+    .status{
+      position: relative;
+      top: 6px;
+      display: inline-block;
+      width: 38px;
+      height: 20px;
+      cursor: pointer;
+      background: url(../img/home/homemap/pic.png) no-repeat;
+    }
+    .active{
+      background-position: -82px -61px;
+    }
+    .noActive{
+      background-position: -82px -83px;
+    }
+    .edit{
+      position: relative;
+      top: 5px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      cursor: pointer;
+      background: url(../img/home/homemap/pic.png) no-repeat;
+      background-position: -40px -62px;
+      &:hover{
+        background-position: -57px -62px;
+      }
+    }
+    .delete{
+      position: relative;
+      top: 5px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      cursor: pointer;
+      background: url(../img/home/homemap/pic.png) no-repeat;
+      background-position: -40px -106px;
+      &:hover{
+        background-position: -57px -106px;
+      }
+    }
+  }
+}
+
+.adduser-page,.edituser-page,.addPlateform-page, .editPlateform-page{
+  overflow: hidden;
+  .add{
+    margin: 10px 0;
+    .title{
+      display: inline-block;
+      width: 100px;
+      text-align: right;
+      margin-right: 5px;
+    }
+
+    .sex{
+      position: relative;
+      top: 3px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      cursor: pointer;
+      background: url(../img/home/homemap/pic.png) no-repeat;
+      background-position: -80px -130px;
+    }
+
+    .active{
+      background-position: -80px -149px;
+    }
+
+    input{
+      width: 264px;
+    }
+  }
+}
+
+//日志管理样式
+.logManager{
+  .record{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 5px;
+    span{
+      margin-right: 10px;
+    }
+  }
+  th{
+    color: #666 !important;
+  }
+}
+
+
+//设备管理样式
+.deviceManager{
+  select{
+    color: inherit;
+  }
+  thead{
+    th{
+      color: #666 !important;
+    }
+  }
+
+  tbody{
+    .location{
+      position: relative;
+      top: 5px;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+      cursor: pointer;
+      background: url(../img/configCenter/location-icon.png) no-repeat center center;
+      bottom: 45px;
+      right: 0;
+    }
+    tr{
+      &:hover{
+        td{
+          background-color: #f9f9f9;
+          color: #00A1F2;
+        }
+      }
+    }
+  }
+}
+
+.device-page{
+  .location{
+    margin-left: 20px;
+    line-height: 60px;
+  }
+}
+
+//服务管理样式
+.serviceManager{
+  thead{
+    th{
+      color: #666 !important;
+    }
+  }
+  tbody{
+    tr{
+      td{
+        .refresh{
+          position: relative;
+          top: 5px;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          margin-left: 5px;
+          cursor: pointer;
+          background: url(../img/configCenter/tests-state.png) no-repeat center 30%;
+        }
+      }
+      &:hover{
+        td{
+          background-color: #f9f9f9;
+          color: #00A1F2;
+        }
+      }
+    }
+  }
+}
+
+//系统设置样式
+.systemSetting{
+  .row{
+    line-height: 50px;
+    border-bottom: 1px solid #e1e1e1;
+    .sysTitle{
+      font-weight: bold;
+    }
+    .form-control{
+      color: inherit;
+    }
+
+    .memery{
+      .progress{
+        margin-top: 15px;
+        width: 312px;
+      }
+    }
+  }
+}
+
+//日志统计样式
+.logStatis{
+  .date{
+    background: url(../img/canlendar.png) 150px no-repeat;
+  }
+  .logSelect{
+    color: inherit;
+  }
+
+  #logChart{
+    width: 100%;
+    height: 360px;
+  }
+}

@@ -1,0 +1,354 @@
+@mixin inline-block-middle {
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *zoom:1;
+}
+.side1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  min-height: 800px;
+  background: #ffffff;
+  border-right: 1px solid #dbdbdb;
+  transition: left .3s ease;
+  -moz-transition: left .3s ease; /* Firefox 4 */
+  -webkit-transition: left .3s ease; /* Safari 和 Chrome */
+  -o-transition: left .3s ease; /* Opera */
+  .side-top {
+    margin-top: 5px;
+    padding: 6px 6px;
+    border-left: 4px solid #f4f4f4;
+    border-bottom: 1px solid #dbdbdb;
+    color: #666666;
+    font-size: 14px;
+  }
+  .side-select{
+    text-align: center;
+    margin-top: 18px;
+    .side-items {
+      padding:7px 35px;
+      background: #f3f3f3;
+      font-size: 14px;
+      cursor: pointer;
+      .side-texts {
+        color: #333333;
+      }
+      &:first-child {
+        border-top: 1px solid #dedede;
+        border-left: 1px solid #dedede;
+        border-bottom: 1px solid #dedede;
+        border-radius: 4px 0 0 4px;
+      }
+      &:last-child {
+        border-top: 1px solid #dedede;
+        border-right: 1px solid #dedede;
+        border-bottom: 1px solid #dedede;
+        border-radius: 0 4px 4px 0;
+      }
+      &.selected {
+        collapse: #ffffff;
+        background: #00a0e9;
+        border-radius: 4px;
+        border: 1px solid  #00a0e9;
+        .side-texts {
+          color: #f5f5f5;
+        }
+      }
+      .side-text {
+        @include inline-block-middle;
+        color:#666;
+      }
+    }
+  }
+
+}
+.side-btn {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 14px;
+  height: 44px;
+  background: url(../img/btn-side.png) no-repeat;
+  cursor: pointer;
+  z-index: 9;
+}
+
+.statistic {
+   .form-top {
+     margin: 0 !important;
+   }
+   .form-bottom {
+     margin-right: 0 !important;
+     border-radius: 0;
+     position: absolute;
+     top: 50px;
+     width: 100%;
+     bottom: 0;
+     background-color: #fff;
+   }
+   .body-main {
+     height: 100%;
+     margin-left: 280px !important;
+     padding: 16px !important;
+     position: relative;
+   }
+  .zr-element{
+    cursor: default;
+  }
+ }
+
+.case {
+  .form-top {
+    margin: 0 !important;
+  }
+  .form-bottom {
+    margin-right: 0 !important;
+    border-radius: 0;
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    bottom: 0;
+    background-color: #fff;
+  }
+  .body-main {
+    height: 100%;
+    margin-left: 280px !important;
+    padding: 16px !important;
+    position: relative;
+  }
+  .zr-element{
+    cursor: default;
+  }
+}
+
+.side-hide .side1 {
+  left: -280px;
+  .side-btn {
+    position: absolute;
+    transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    right: -16px;
+  }
+}
+
+.side-hide .body-main {
+  margin-left: 0 !important;
+}
+
+.animate-margin-left{
+  transition: margin-left .3s ease;
+  -moz-transition: margin-left .3s ease; /* Firefox 4 */
+  -webkit-transition: margin-left .3s ease; /* Safari 和 Chrome */
+  -o-transition: margin-left .3s ease; /* Opera */
+}
+
+.btn-op{
+  width: 30px;
+  height: 40px;
+  background: #a6a6a6;
+  padding:9px;
+}
+
+.droplist{
+  margin-top: 12px;
+  margin-left: 10px;
+  .dropdownlist-wrap{
+    padding-top: 6px;
+    min-width: 260px;
+  }
+  .droplist-search{
+    text-align: center;
+    padding: 4px;
+    font-size: 14px;
+    color: #f5f5f5;
+    margin-top: 10px;
+    width: 260px;
+    height: 30px;
+    background:#0baafc;
+    border-radius: 4px;
+
+  }
+}
+
+
+.form-list {
+  //padding: 5px 0;
+  //border-bottom: 1px dashed #e1e1e1;
+  .control-label {
+    min-width: 60px;
+    margin-bottom: 0;
+    margin-right: 20px;
+    color:#999;
+  }
+}
+
+//.date-scope {
+//  @include inline-block-middle;
+//  .date-item {
+//    @include inline-block-middle;
+//    //background: #0baafc;
+//    padding: 5px 10px;
+//    margin-right: 10px;
+//    border-radius: 4px;
+//    cursor: pointer;
+//    &:hover,&.selected {
+//      background: #0baafc;
+//      color: #fff;
+//    }
+//  }
+//}
+
+  //.date-label {
+  //  @include inline-block-middle;
+  //  padding: 5px 10px;
+  //  margin-right: 10px;
+  //  border-radius: 4px;
+  //  background: #e7e7e7;
+  //}
+.ul-inline {
+  @include inline-block-middle;
+  .li-inline {
+    @include inline-block-middle;
+  }
+}
+
+.times{
+  display:inline-block;
+  vertical-align: middle;
+}
+.commonStyle {
+  background-color: #ff8533;
+  color: whitesmoke;
+  border:1px solid #ff8533;
+}
+
+.defaultStyle {
+  background-color: #FFFFFF;
+  border: 1px solid #ff8533;
+  color: #ff8533 !important;
+}
+
+.showType {
+  //padding-top: 1%;
+  text-align: center;
+  div {
+    color: #fff1eb;
+    font-size: 14px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    line-height: 28px;
+    display: inline-block;
+    &:hover {
+      cursor: pointer;
+    }
+    &:first-child {
+      border-radius: 15px 0 0 15px;
+    }
+    &:last-child {
+      margin: 0 0 0 -4px;
+      border-radius: 0 15px 15px 0;
+    }
+  }
+}
+
+.div-check{
+  float: right;
+  margin-top: -23px;
+}
+.div-check .checkbox {
+  background-position: 0 0;
+  color:#000000;
+  display: inline-block;
+}
+.div-check .checkbox.checked {
+  background-position: 0 -20px;
+}
+
+#form-top{
+  margin-bottom: 16px;
+  border: 1px solid #dedede;
+  background: #fff;
+  transition: margin-left .3s ease;
+  -moz-transition: margin-left .3s ease;
+  -webkit-transition: margin-left .3s ease;
+  -o-transition: margin-left .3s ease;
+  .conditionInput{
+    background: url(../img/canlendar.png) 151px no-repeat;
+  }
+}
+
+#from-bottom {
+  position: absolute;
+  top: 100px;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background-color: #fff;
+}
+.isDisplay{
+  display: none;
+}
+
+.leftRight{
+  height: 32px;
+  margin: 0 auto;
+  margin-top: -15px;
+  z-index: 1;
+  position: relative;
+  .comm{
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    background: url(../img/judge/direction.png) no-repeat;
+  }
+
+  .left{
+    background-position: -34px 0;
+    &:hover{
+      background-position: 0 0;
+      cursor: pointer;
+    }
+  }
+
+  .right{
+    background-position: -102px 0;
+    float: right;
+    &:hover{
+      background-position: -68px 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.maplist{
+  transition: margin-left .3s ease;
+  -moz-transition: margin-left .3s ease;
+  -webkit-transition: margin-left .3s ease;
+  -o-transition: margin-left .3s ease;
+  position: absolute;
+  top: 0px;
+  margin-left: 110px;
+  li{
+    margin-top: 10px;
+    div{
+      color:#666;
+    }
+  }
+}
+.marginleft{
+  transition: margin-left .3s ease;
+  -moz-transition: margin-left .3s ease;
+  -webkit-transition: margin-left .3s ease;
+  -o-transition: margin-left .3s ease;
+  margin-left:245px;
+}
+
+.goBackBtn{
+  margin: 10px;
+}

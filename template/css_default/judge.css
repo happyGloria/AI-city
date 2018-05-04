@@ -1,0 +1,1955 @@
+/* line 12, ../scss_default/judge.scss */
+.judge .body-main {
+  height: 100%;
+  margin-left: 0 !important;
+  margin-right: 0;
+  padding: 0;
+  background-color: #f3f3f3 !important;
+  position: relative;
+  min-height: 600px;
+}
+
+/* line 23, ../scss_default/judge.scss */
+.hot-situation {
+  min-height: 640px !important;
+  background: url("../img/judge/hot-situation.jpg") center bottom #f3f3f3 !important;
+}
+/* line 27, ../scss_default/judge.scss */
+.hot-situation .hot-news-title {
+  width: 98%;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #333;
+  line-height: 49px;
+  border-bottom: 1px solid #ddd;
+}
+/* line 36, ../scss_default/judge.scss */
+.hot-situation .form-options {
+  width: 640px;
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  margin-left: -480px;
+}
+/* line 43, ../scss_default/judge.scss */
+.hot-situation .form-options > div {
+  margin-bottom: 20px;
+}
+/* line 45, ../scss_default/judge.scss */
+.hot-situation .form-options > div > p {
+  color: #999;
+  margin: 6px 0 0 90px;
+}
+/* line 49, ../scss_default/judge.scss */
+.hot-situation .form-options > div .btn-primary {
+  height: auto;
+  border: 0;
+  background-color: #0389c7;
+  padding: 7px 12px 8px 6px;
+  vertical-align: -2px;
+  display: inline-block;
+}
+/* line 59, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-label {
+  margin: 0;
+  padding: 5px;
+}
+/* line 64, ../scss_default/judge.scss */
+.hot-situation .form-options label.date {
+  margin: 0;
+  margin-right: 7px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  width: 230px;
+  background: url(../img/canlendar.png) 205px no-repeat white;
+}
+/* line 73, ../scss_default/judge.scss */
+.hot-situation .form-options label.date span {
+  padding-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 78, ../scss_default/judge.scss */
+.hot-situation .form-options label.date input {
+  width: 100px;
+  padding: 2px 0 0 10px;
+  border: 0;
+  outline: 0;
+  border-left: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+  background-color: transparent;
+}
+/* line 89, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn {
+  width: 60px;
+  margin-right: 10px;
+  padding: 5px 0;
+  font-size: 12px;
+  color: #333;
+  outline: 0;
+  background-color: #f2f2f2;
+  border: 1px solid;
+  transition: all .3s ease;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 100, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn.hot-btn-all {
+  border-color: #ddd;
+}
+/* line 102, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn.hot-btn-all.active {
+  background-color: #ddd;
+}
+/* line 106, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn.hot-btn-high {
+  border-color: #f44;
+}
+/* line 108, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn.hot-btn-high.active {
+  color: #fff;
+  background-color: #f44;
+}
+/* line 113, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn.hot-btn-mid {
+  border-color: #ffb339;
+}
+/* line 115, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn.hot-btn-mid.active {
+  color: #fff;
+  background-color: #ffb339;
+}
+/* line 120, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn.hot-btn-low {
+  border-color: #1ec7ff;
+}
+/* line 122, ../scss_default/judge.scss */
+.hot-situation .form-options .hot-btn.hot-btn-low.active {
+  color: #fff;
+  background-color: #1ec7ff;
+}
+/* line 131, ../scss_default/judge.scss */
+.hot-situation #layoutCloud {
+  width: 640px;
+  height: 480px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -200px 0 0 -480px;
+}
+/* line 139, ../scss_default/judge.scss */
+.hot-situation #layoutCloud g.tag {
+  cursor: pointer;
+}
+/* line 142, ../scss_default/judge.scss */
+.hot-situation #layoutCloud g.tag text {
+  font-family: 'Microsoft YaHei', sans-serif;
+  font-weight: bold;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: fill .2s ease;
+}
+/* line 151, ../scss_default/judge.scss */
+.hot-situation #layoutCloud g.tag rect {
+  fill-opacity: 0;
+  transition: fill-opacity .2s ease;
+}
+/* line 156, ../scss_default/judge.scss */
+.hot-situation #layoutCloud g.tag.active text, .hot-situation #layoutCloud g.tag:hover text {
+  fill: white !important;
+}
+/* line 159, ../scss_default/judge.scss */
+.hot-situation #layoutCloud g.tag.active rect, .hot-situation #layoutCloud g.tag:hover rect {
+  fill-opacity: .9;
+}
+/* line 165, ../scss_default/judge.scss */
+.hot-situation .eventDetail {
+  width: 405px;
+  padding: 15px;
+  background-color: #f7f7f7;
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  bottom: 20px;
+  word-break: break-all;
+  box-shadow: 0 0 5px 0 rgba(136, 136, 136, 0.5);
+  transform: translateX(-20px);
+  opacity: 0;
+}
+/* line 178, ../scss_default/judge.scss */
+.hot-situation .eventDetail.transition {
+  transition: all 400ms ease;
+}
+/* line 182, ../scss_default/judge.scss */
+.hot-situation .eventDetail.show {
+  transform: translateX(0);
+  opacity: 1;
+  overflow-y: auto;
+}
+/* line 188, ../scss_default/judge.scss */
+.hot-situation .eventDetail .title {
+  color: #333;
+  margin: 40px 0 10px 0;
+}
+/* line 191, ../scss_default/judge.scss */
+.hot-situation .eventDetail .title span {
+  font-size: 18px;
+  font-weight: bold;
+}
+/* line 196, ../scss_default/judge.scss */
+.hot-situation .eventDetail .icon {
+  width: 13px;
+  height: 13px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 7px;
+  background-color: #ffb339;
+  display: inline-block;
+  vertical-align: -1px;
+}
+/* line 206, ../scss_default/judge.scss */
+.hot-situation .eventDetail .time {
+  padding-left: 35px;
+  color: #999;
+}
+/* line 210, ../scss_default/judge.scss */
+.hot-situation .eventDetail hr {
+  height: 1px;
+  margin: 15px 0;
+  overflow: hidden;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+/* line 217, ../scss_default/judge.scss */
+.hot-situation .eventDetail #detail {
+  line-height: 22px;
+  color: #333;
+}
+
+/* line 227, ../scss_default/judge.scss */
+.securityContainer.slider .left {
+  margin-left: -300px;
+  box-shadow: none;
+}
+/* line 230, ../scss_default/judge.scss */
+.securityContainer.slider .left .side-btn {
+  margin-right: -33px;
+  transform: rotate(180deg);
+}
+/* line 235, ../scss_default/judge.scss */
+.securityContainer.slider .maphold {
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+/* line 241, ../scss_default/judge.scss */
+.securityContainer {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+/* line 246, ../scss_default/judge.scss */
+.securityContainer .left {
+  width: 280px;
+  height: 100%;
+  float: left;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+/* line 254, ../scss_default/judge.scss */
+.securityContainer .left .leftContent {
+  width: 100%;
+  height: 100%;
+  color: #959595;
+}
+/* line 258, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .head {
+  font-size: 12px;
+}
+/* line 260, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .head .guijikehua {
+  height: 40px;
+  line-height: 40px;
+}
+/* line 263, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .head .guijikehua .headText {
+  vertical-align: middle;
+  color: #000;
+}
+/* line 267, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .head .guijikehua .touxiang {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  display: inline-block;
+  background: url(../img/map/reli.png) no-repeat;
+  margin-left: 2%;
+}
+/* line 277, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .head .tiaojian {
+  height: 40px;
+  line-height: 40px;
+  border-top: 1px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
+}
+/* line 282, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .head .tiaojian .tiaojianText {
+  margin-left: 2%;
+}
+/* line 286, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .head .tiaojian .menuUp {
+  transform: rotateX(180deg);
+  -moz-transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg);
+  -webkit-transform: rotateX(180deg);
+}
+/* line 293, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .head .tiaojian .menuDown {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  float: right;
+  margin-top: 9px;
+  margin-right: 5%;
+  background: url(../img/map/menu_down.png) no-repeat;
+}
+/* line 306, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #f8f8f8;
+}
+/* line 310, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten {
+  margin-top: 6px;
+  font-size: 12px;
+}
+/* line 311, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten:first-child {
+  margin-top: 0;
+}
+/* line 316, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime {
+  height: 34px;
+  width: 260px;
+  margin-left: 10px;
+  line-height: 32px;
+  background-color: #fff;
+}
+/* line 322, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .conditionText {
+  display: inline-block;
+  color: #959595;
+  float: left;
+  width: 68px;
+  text-align: center;
+  border: 1px solid #dbdbdb;
+  border-right: none;
+}
+/* line 331, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .conditionText .down {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 7px;
+  background: url(../img/map/menu_down.png) no-repeat;
+}
+/* line 341, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .margin-right-12 {
+  width: 192px;
+  float: left;
+}
+/* line 344, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .margin-right-12 .isDiabled {
+  background-color: #ccc;
+  cursor: default;
+}
+/* line 347, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .margin-right-12 .isDiabled span {
+  cursor: default;
+}
+/* line 351, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .margin-right-12 a {
+  height: 34px;
+  border-radius: 0 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 356, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .margin-right-12 a .dropdown-icon {
+  top: 8px;
+}
+/* line 362, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .calendInput {
+  background: url(../img/canlendar.png) 176px 9px no-repeat;
+}
+/* line 366, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .conten .startTime .conditionInput {
+  display: inline-block;
+  width: 192px;
+  height: 34px;
+  border-radius: 0;
+}
+/* line 375, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .query {
+  width: 260px;
+  margin-left: 10px;
+  cursor: pointer;
+  text-align: center;
+  height: 36px;
+  margin-top: 10px;
+  line-height: 36px;
+  background-color: #0baafc;
+  border-radius: 4px;
+  color: #fff;
+}
+/* line 386, ../scss_default/judge.scss */
+.securityContainer .left .leftContent .leftMiddle .query .findImg {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  background: url(../img/map/mapLeftContent.png) no-repeat;
+  background-position: 0 -40px;
+}
+/* line 402, ../scss_default/judge.scss */
+.securityContainer .maphold {
+  height: 100%;
+  margin-left: 280px;
+  position: relative;
+}
+/* line 406, ../scss_default/judge.scss */
+.securityContainer .maphold .search {
+  width: 600px;
+  margin-left: 50%;
+  left: -300px;
+  padding: 12px 0;
+  z-index: 1;
+}
+/* line 412, ../scss_default/judge.scss */
+.securityContainer .maphold .search input {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+/* line 416, ../scss_default/judge.scss */
+.securityContainer .maphold .search .searchButton {
+  background-color: #00a0e9;
+  position: relative;
+}
+/* line 419, ../scss_default/judge.scss */
+.securityContainer .maphold .search .searchButton:hover {
+  background-color: #00afff;
+}
+/* line 424, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId {
+  width: 100%;
+  height: 100%;
+}
+/* line 429, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme {
+  height: 40px;
+  background-color: #fff;
+  position: absolute;
+  right: 5px;
+  z-index: 500;
+  margin-top: 5px;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* line 443, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme div {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 10px;
+  color: #000;
+}
+/* line 448, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme div:first-child {
+  margin-left: 10px;
+}
+/* line 451, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme div span {
+  float: left;
+  cursor: pointer;
+}
+/* line 456, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme div .active {
+  background-image: url(../img/login/resurfacing-ico.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: default;
+}
+/* line 463, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme div .color {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  margin-right: 3px;
+}
+/* line 469, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme div .text {
+  line-height: 21px;
+}
+/* line 475, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme .original .color {
+  background-color: #ffb35b;
+}
+/* line 481, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .changeTheme .classic .color {
+  background-color: #03060d;
+}
+/* line 486, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .olMapViewport {
+  z-index: 0;
+}
+/* line 489, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 {
+  position: absolute;
+  z-index: 1;
+  bottom: auto;
+  right: 5px;
+  top: 30px;
+  left: auto;
+  font-size: 12px;
+}
+/* line 497, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 #time-control-btns2 {
+  overflow: hidden;
+}
+/* line 499, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 #time-control-btns2 .time-control-btn {
+  margin-left: 5px;
+  padding: 5px 10px;
+  border: 1px solid #acb2bb;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  float: left;
+  outline: 0;
+}
+/* line 510, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 #time-control-btns2 .active {
+  background: #278df2;
+  color: #fff;
+}
+/* line 516, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel {
+  background: rgba(255, 255, 255, 0.8);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF);
+  border: 1px solid #acb2bb;
+  padding: 13px;
+  margin-top: 5px;
+  width: 323px;
+  overflow: hidden;
+  position: absolute;
+  top: 32px;
+  right: 0;
+}
+/* line 528, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-title {
+  font-weight: 700;
+}
+/* line 530, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-title .time-panel-time {
+  font-weight: 400;
+  margin-left: 10px;
+}
+/* line 536, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-control {
+  overflow: hidden;
+}
+/* line 538, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-control .time-panel-progress-container {
+  float: left;
+  width: 252px;
+}
+/* line 541, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-control .time-panel-progress-container .time-panel-progress-bar {
+  background: url(../img/map/time-progress-bar.png) no-repeat right 0;
+  width: 252px;
+  height: 8px;
+  position: relative;
+  margin-top: 10px;
+}
+/* line 547, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-control .time-panel-progress-container .time-panel-progress-bar .time-panel-progress {
+  background: url(../img/map/time-progress.png) no-repeat 0 0;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  z-index: 2;
+  top: -5px;
+  left: 0;
+}
+/* line 558, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-control .time-panel-progress-container .time-panel-progress-text {
+  overflow: hidden;
+  margin-top: -3px;
+  width: 270px;
+  position: relative;
+  left: -5px;
+}
+/* line 564, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-control .time-panel-progress-container .time-panel-progress-text .time-panel-progress-tick {
+  float: left;
+  background: url(../img/map/tick.png) no-repeat 50% 0;
+  padding-top: 7px;
+  width: 12.5%;
+  text-align: center;
+}
+/* line 575, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-control .time-panel-btn {
+  background: url(../img/map/time-btn-pause.png) no-repeat 0 0;
+  width: 33px;
+  height: 33px;
+  float: right;
+  cursor: pointer;
+}
+/* line 583, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel .time-panel-control .play {
+  background: url(../img/map/time-btn-play.png) no-repeat 0 0;
+}
+/* line 590, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId #time-control2 .time-panel-week .time-panel-progress-tick {
+  width: 14.28% !important;
+}
+/* line 596, ../scss_default/judge.scss */
+.securityContainer .maphold #securityId .olMapViewport {
+  z-index: 0 !important;
+}
+/* line 601, ../scss_default/judge.scss */
+.securityContainer .maphold .legend {
+  position: absolute;
+  z-index: 10;
+  bottom: 12px;
+  right: 12px;
+  top: auto;
+  left: auto;
+  font-size: 12px;
+  background-color: #fff;
+  padding: 7px;
+}
+/* line 611, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-text {
+  float: left;
+  line-height: 21px;
+}
+/* line 616, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-item {
+  float: left;
+  margin-left: 1px;
+  padding: 2px 12px 2px 16px;
+  border: 1px solid transparent;
+  color: #000;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+/* line 627, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-item:hover {
+  overflow: visible;
+}
+/* line 630, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-item:before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  display: inline-block;
+}
+/* line 639, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-item .legend-item-wrapper {
+  position: absolute;
+  height: 45px;
+  top: -38px;
+  left: -84px;
+}
+/* line 644, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-item .legend-item-wrapper .legend-item-tip {
+  position: relative;
+  border: 1px solid #acb2bb;
+  color: #333;
+  white-space: nowrap;
+  background-repeat: no-repeat;
+  background-position: 14px 50%;
+  padding: 6px 14px 6px 99px;
+  width: 260px;
+  font-size: 12px;
+  text-align: center;
+}
+/* line 657, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-item .legend-item-wrapper .legend-item-tip .legend-item-tip-arrow {
+  background: url(../img/map/tip_arrow.png) no-repeat 0 0;
+  width: 7px;
+  height: 5px;
+  position: absolute;
+  left: 50%;
+  margin-left: -3px;
+  top: 29px;
+}
+/* line 668, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-item:hover {
+  border: 1px solid #acb2bb;
+}
+/* line 676, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-1:before {
+  background: blue;
+  border: 2px solid #9898ff;
+}
+/* line 680, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-1 .legend-item-tip {
+  background: url(../img/map/bg_level_1.png) no-repeat 14px 50% white;
+}
+/* line 687, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-2:before {
+  background: aqua;
+  border: 2px solid #98ffff;
+}
+/* line 691, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-2 .legend-item-wrapper {
+  left: -94px;
+}
+/* line 693, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-2 .legend-item-wrapper .legend-item-tip {
+  background: url(../img/map/bg_level_2.png) no-repeat 14px 50% white;
+}
+/* line 701, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-3:before {
+  background: lime;
+  border: 2px solid #95fc95;
+}
+/* line 705, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-3 .legend-item-wrapper {
+  left: -94px;
+}
+/* line 707, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-3 .legend-item-wrapper .legend-item-tip {
+  background: url(../img/map/bg_level_3.png) no-repeat 14px 50% white;
+}
+/* line 715, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-4:before {
+  background: yellow;
+  border: 2px solid #ffff98;
+}
+/* line 719, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-4 .legend-item-wrapper {
+  left: -94px;
+}
+/* line 721, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-4 .legend-item-wrapper .legend-item-tip {
+  background: url(../img/map/bg_level_4.png) no-repeat 14px 50% white;
+}
+/* line 729, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-5:before {
+  background: red;
+  border: 2px solid #ff9898;
+}
+/* line 733, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-5 .legend-item-wrapper {
+  left: -173px;
+}
+/* line 735, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-5 .legend-item-wrapper .legend-item-tip {
+  width: 280px;
+  background: url(../img/map/bg_level_5.png) no-repeat 14px 50% white;
+}
+/* line 738, ../scss_default/judge.scss */
+.securityContainer .maphold .legend .legend-5 .legend-item-wrapper .legend-item-tip .legend-item-tip-arrow {
+  margin-left: 82px;
+}
+
+/* line 750, ../scss_default/judge.scss */
+.similarContainer {
+  width: 100%;
+  background: #f3f3f3;
+}
+/* line 757, ../scss_default/judge.scss */
+.similarContainer .dropdown-menu li a {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 764, ../scss_default/judge.scss */
+.similarContainer .points-sec-title {
+  width: 98%;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #333;
+  line-height: 50px;
+}
+/* line 771, ../scss_default/judge.scss */
+.similarContainer .main-box {
+  width: 98%;
+  margin: 0 auto;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #dedede;
+  border-radius: 4px;
+}
+/* line 778, ../scss_default/judge.scss */
+.similarContainer .main-box .showType {
+  margin: 25px auto;
+  font-size: 14px;
+}
+/* line 782, ../scss_default/judge.scss */
+.similarContainer .main-box .showType .type-area {
+  width: 240px;
+  height: 32px;
+  background-color: #ff9212;
+  border-radius: 32px;
+}
+/* line 787, ../scss_default/judge.scss */
+.similarContainer .main-box .showType .type-area div {
+  width: 118px;
+  height: 30px;
+  margin: 1px;
+  float: left;
+  line-height: 30px;
+}
+/* line 793, ../scss_default/judge.scss */
+.similarContainer .main-box .showType .type-area div.commonStyle {
+  color: #fff;
+}
+/* line 796, ../scss_default/judge.scss */
+.similarContainer .main-box .showType .type-area div.defaultStyle {
+  background-color: #fff;
+  color: #ff9212;
+}
+/* line 800, ../scss_default/judge.scss */
+.similarContainer .main-box .showType .type-area div:hover {
+  color: #fff;
+  background-color: #ff8533;
+}
+/* line 813, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .inline-block-middle, .similarContainer .main-box .form-body .form-top .xiaqu .date-scope, .similarContainer .main-box .form-body .form-top .xiaqu .date-scope .date-item {
+  display: inline-block;
+  vertical-align: middle;
+  *display: inline;
+  *zoom: 1;
+}
+/* line 818, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .inline-block-middle .split, .similarContainer .main-box .form-body .form-top .xiaqu .date-scope .split, .similarContainer .main-box .form-body .form-top .xiaqu .date-scope .date-item .split {
+  margin: 15px 2px;
+}
+/* line 822, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top {
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  padding-top: 6px;
+  padding-bottom: 1px;
+  border-top: 1px solid #dedede;
+  margin-bottom: 0 !important;
+  border-radius: 0 !important;
+  height: 50px;
+  overflow: visible;
+}
+/* line 834, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu {
+  padding: 6px 15px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border-bottom: 1px dotted #e1e1e1;
+}
+/* line 839, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .conditionInput {
+  background: url(../img/canlendar.png) 150px 6px no-repeat;
+}
+/* line 842, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu:nth-child(3), .similarContainer .main-box .form-body .form-top .xiaqu:last-child {
+  border-bottom: none;
+}
+/* line 845, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu:last-child {
+  margin-left: 0;
+  margin-right: 0;
+  border-top: 1px solid #dedede;
+  padding: 0;
+}
+/* line 851, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .switch {
+  margin-left: 98%;
+  padding: 12px 0;
+}
+/* line 855, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .switch .comm {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  cursor: pointer;
+  background: url(../img/judge/chart.png) no-repeat;
+}
+/* line 863, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .switch .toChart {
+  background-position: 0 0;
+}
+/* line 870, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .switch .isCurrentChart, .similarContainer .main-box .form-body .form-top .xiaqu .switch .toChart:hover {
+  background-position: -14px 0;
+}
+/* line 874, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .switch .toTable {
+  background-position: -28px 0;
+}
+/* line 881, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .switch .isCurrentTable, .similarContainer .main-box .form-body .form-top .xiaqu .switch .toTable:hover {
+  background-position: -42px 0;
+}
+/* line 885, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .control-label {
+  min-width: 60px;
+  margin-bottom: 0;
+  color: #333;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 896, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .date-scope .date-item {
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+/* line 902, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .date-scope .date-item:hover, .similarContainer .main-box .form-body .form-top .xiaqu .date-scope .date-item.selected {
+  background: #0baafc;
+  color: #fff;
+}
+/* line 908, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .condition-item {
+  float: none;
+}
+/* line 915, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .xiaqu .form-group {
+  margin: 0;
+  margin-bottom: 0;
+}
+/* line 921, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item {
+  float: left;
+  margin-left: 20px;
+}
+/* line 924, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item .conditionText {
+  display: inline-block;
+}
+/* line 931, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item:first-child {
+  margin-left: 10px;
+}
+/* line 934, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item label.control-label {
+  font-size: 12px;
+  color: #999999;
+  line-height: 30px;
+  float: left;
+  min-width: 50px;
+}
+/* line 942, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item .dropcomm {
+  float: left;
+}
+/* line 946, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item .form-group {
+  margin: 0;
+}
+/* line 949, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item .form-group button.btn {
+  min-width: 36px;
+  vertical-align: top;
+  padding: 0;
+}
+/* line 954, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item .form-group button.btn-icon-green {
+  background: #4eaf38;
+  padding: 0 30px;
+}
+/* line 960, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item .create {
+  background: #d6d6d6;
+  color: #000;
+}
+/* line 963, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-top .condition-item .create:hover {
+  color: #fff;
+  background: #0baafc;
+}
+/* line 970, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom {
+  margin-bottom: 20px;
+  background: #fff;
+  min-height: 300px;
+  border: none !important;
+  border-radius: 0 !important;
+}
+/* line 978, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .table-base > thead > tr > th:first-child {
+  width: 50px;
+}
+/* line 981, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .table-base > thead > tr > th:nth-child(2) {
+  width: 100px;
+}
+/* line 985, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .table-base > tbody > tr > td {
+  color: #666;
+}
+/* line 989, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .leftRight {
+  height: 32px;
+  margin: 0 auto;
+  width: 1000px;
+  margin-top: -55px;
+  z-index: 1;
+  position: relative;
+}
+/* line 996, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .leftRight .comm {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  background: url(../img/judge/direction.png) no-repeat;
+}
+/* line 1003, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .leftRight .left {
+  background-position: -34px 0;
+}
+/* line 1005, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .leftRight .left:hover {
+  background-position: 0 0;
+}
+/* line 1010, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .leftRight .right {
+  background-position: -102px 0;
+  float: right;
+}
+/* line 1013, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom .leftRight .right:hover {
+  background-position: -68px 0;
+}
+/* line 1019, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom1 {
+  margin-bottom: 20px;
+  background: #fff;
+  border: none !important;
+  border-radius: 0 !important;
+}
+/* line 1024, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom1 .table-base > tbody > tr > td {
+  color: #666;
+}
+/* line 1027, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom1 .leftRight {
+  height: 32px;
+  margin: 0 auto;
+  width: 1000px;
+  margin-top: -55px;
+  z-index: 1;
+  position: relative;
+}
+/* line 1034, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom1 .leftRight .comm {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  background: url(../img/judge/direction.png) no-repeat;
+}
+/* line 1040, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom1 .leftRight .left {
+  background-position: -34px 0;
+}
+/* line 1042, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom1 .leftRight .left:hover {
+  background-position: 0 0;
+}
+/* line 1046, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom1 .leftRight .right {
+  background-position: -102px 0;
+  float: right;
+}
+/* line 1049, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-bottom1 .leftRight .right:hover {
+  background-position: -68px 0;
+}
+/* line 1055, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+/* line 1061, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main .form-left {
+  width: 20%;
+  height: 390px;
+  float: left;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+}
+/* line 1069, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main .form-right {
+  width: 79%;
+  margin-left: 1%;
+  height: 390px;
+  float: left;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+}
+/* line 1076, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main .form-right .points-config-detail {
+  width: 96%;
+  margin: 0 auto;
+  border-bottom: 1px solid #e0e0e0;
+}
+/* line 1080, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main .form-right .points-config-detail .config-choose {
+  width: 100%;
+  height: 27px;
+  margin-top: 13px;
+}
+/* line 1084, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main .form-right .points-config-detail .config-choose .config-choose-sec {
+  display: inline-block;
+  padding-bottom: 8px;
+  vertical-align: top;
+  font-size: 12px;
+  cursor: pointer;
+}
+/* line 1090, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main .form-right .points-config-detail .config-choose .config-choose-sec.act {
+  border-bottom: 2px inset #3ec3ff;
+  color: #3ec3ff;
+  font-weight: bold;
+}
+/* line 1095, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main .form-right .points-config-detail .config-choose .config-choose-sec:hover {
+  border-bottom: 2px inset #3ec3ff;
+}
+/* line 1099, ../scss_default/judge.scss */
+.similarContainer .main-box .form-body .form-main .form-right .points-config-detail .config-choose i.seprate {
+  width: 1px;
+  height: 15px;
+  background: #dddddd;
+  display: inline-block;
+  margin: 0 20px;
+}
+/* line 1114, ../scss_default/judge.scss */
+.similarContainer .main-box .isXiaQu .form-top {
+  padding: 0;
+}
+/* line 1117, ../scss_default/judge.scss */
+.similarContainer .main-box .isXiaQu .form-top .condition-item:first-child {
+  margin-left: 0px;
+}
+/* line 1123, ../scss_default/judge.scss */
+.similarContainer .main-box .isXiaQu .form-bottom {
+  margin-top: 124px;
+}
+
+/* line 1133, ../scss_default/judge.scss */
+.leianLayer .layer-form-group .form-group {
+  margin: 5px 0 5px 0;
+}
+/* line 1136, ../scss_default/judge.scss */
+.leianLayer .layer-form-group .form-group:first-child input {
+  width: 300px;
+}
+/* line 1139, ../scss_default/judge.scss */
+.leianLayer .layer-form-group .form-group:first-child .name {
+  font-size: 12px;
+  color: red;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+/* line 1147, ../scss_default/judge.scss */
+.leianLayer .layer-form-group .form-group:first-child .info {
+  font-size: 12px;
+  color: red;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+/* line 1157, ../scss_default/judge.scss */
+.leianLayer .layer-form-group .form-group:last-child .control-label {
+  float: left;
+}
+/* line 1160, ../scss_default/judge.scss */
+.leianLayer .layer-form-group .form-group:last-child textarea {
+  width: 300px;
+  resize: none;
+  color: #000;
+}
+/* line 1169, ../scss_default/judge.scss */
+.leianLayer .btn-box {
+  float: right;
+}
+
+/* line 1175, ../scss_default/judge.scss */
+.stability {
+  overflow: hidden;
+}
+/* line 1177, ../scss_default/judge.scss */
+.stability .tiaojian {
+  height: auto !important;
+  line-height: 1 !important;
+  padding: 10px;
+  text-align: center;
+}
+/* line 1183, ../scss_default/judge.scss */
+.stability .tiaojian .btn {
+  width: 50%;
+  height: 35px;
+  color: #333;
+  background-color: #f3f3f3;
+  font-size: 12px;
+  outline: 0;
+  border: 1px solid #dedede;
+}
+/* line 1191, ../scss_default/judge.scss */
+.stability .tiaojian .btn.active {
+  color: #fff;
+  border: 0;
+  background-color: #00a0e9;
+}
+/* line 1198, ../scss_default/judge.scss */
+.stability .form-body {
+  padding: 10px;
+  background-color: #f8f8f8;
+}
+/* line 1202, ../scss_default/judge.scss */
+.stability .form-body .target p {
+  line-height: 26px;
+}
+/* line 1204, ../scss_default/judge.scss */
+.stability .form-body .target p .btn-primary {
+  height: 26px;
+  border: 0;
+  border-radius: 2px;
+  font-size: 12px;
+  background-color: #27a6cb;
+}
+/* line 1212, ../scss_default/judge.scss */
+.stability .form-body .target ul {
+  min-height: 80px;
+  max-height: 321px;
+  margin: 10px 0;
+  padding: 10px 0 0 10px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  border-radius: 2px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+/* line 1222, ../scss_default/judge.scss */
+.stability .form-body .target ul li {
+  line-height: 24px;
+  margin: 0 7px 7px 0;
+  padding: 0 10px;
+  color: #626262;
+  border-radius: 2px;
+  background-color: #ececec;
+  float: left;
+  position: relative;
+  cursor: pointer;
+}
+/* line 1232, ../scss_default/judge.scss */
+.stability .form-body .target ul li:after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  vertical-align: -1px;
+  background: url(../img/default/icon.png) -1px -42px no-repeat;
+  margin-left: 10px;
+}
+/* line 1244, ../scss_default/judge.scss */
+.stability .form-body .input-group {
+  margin-bottom: 6px;
+}
+/* line 1246, ../scss_default/judge.scss */
+.stability .form-body .input-group .input-group-addon {
+  color: #959595;
+  border-color: #dbdbdb;
+  background-color: #f9f9f9;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  font-size: 12px;
+}
+/* line 1254, ../scss_default/judge.scss */
+.stability .form-body .input-group .form-control {
+  color: #626262;
+  border-color: #dbdbdb;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow: none !important;
+  font-family: Arial, serif;
+  background: url(../img/canlendar.png) 160px no-repeat white;
+}
+/* line 1264, ../scss_default/judge.scss */
+.stability .form-body .btn-block {
+  height: 36px;
+  margin-top: 10px;
+  border: 0;
+  border-radius: 2px;
+  background-color: #00a0e9;
+}
+/* line 1272, ../scss_default/judge.scss */
+.stability .maphold {
+  padding: 16px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+/* line 1276, ../scss_default/judge.scss */
+.stability .maphold .panel {
+  margin-bottom: 0;
+  border-color: #dedede;
+  border-radius: 2px;
+}
+/* line 1281, ../scss_default/judge.scss */
+.stability .maphold .panel .panel-top {
+  height: auto;
+}
+/* line 1284, ../scss_default/judge.scss */
+.stability .maphold .panel .areas {
+  padding: 13px 20px 7px 20px;
+  border-bottom: 1px solid #dbdbdb;
+  overflow: hidden;
+}
+/* line 1288, ../scss_default/judge.scss */
+.stability .maphold .panel .areas .btn {
+  height: 24px;
+  margin: 0 5px 5px 0;
+  border: 0;
+  border-radius: 2px;
+  outline: 0;
+  color: #333;
+  background-color: transparent;
+  font-size: 12px;
+}
+/* line 1297, ../scss_default/judge.scss */
+.stability .maphold .panel .areas .btn:hover, .stability .maphold .panel .areas .btn.active {
+  color: #fff;
+  background-color: #0baafc;
+}
+/* line 1303, ../scss_default/judge.scss */
+.stability .maphold .panel .chart {
+  height: 540px;
+}
+/* line 1305, ../scss_default/judge.scss */
+.stability .maphold .panel .chart line.link {
+  stroke: #bfbfbf;
+  stroke-width: 1px;
+}
+/* line 1309, ../scss_default/judge.scss */
+.stability .maphold .panel .chart circle.white {
+  fill: #fff;
+}
+/* line 1313, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .root circle.border {
+  fill: #81d4f1;
+  fill-opacity: .4;
+}
+/* line 1317, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .root circle.other {
+  fill: #39bcff;
+}
+/* line 1320, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .root text {
+  font-size: 16px;
+  fill: #fff;
+}
+/* line 1323, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .root text tspan {
+  font-size: 12px;
+}
+/* line 1328, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .node {
+  cursor: pointer;
+}
+/* line 1330, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .node circle.border {
+  fill: #edf1f9;
+  fill-opacity: .7;
+}
+/* line 1334, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .node circle.other {
+  fill: #c3d3eb;
+}
+/* line 1337, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .node text {
+  fill: #666;
+}
+/* line 1341, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .node.active circle.border {
+  fill: #43c0ff;
+  fill-opacity: .15;
+}
+/* line 1345, ../scss_default/judge.scss */
+.stability .maphold .panel .chart .node.active circle.other {
+  fill: #93dbff;
+}
+/* line 1350, ../scss_default/judge.scss */
+.stability .maphold .panel .chart text {
+  text-anchor: middle;
+  pointer-events: none;
+}
+/* line 1355, ../scss_default/judge.scss */
+.stability .maphold .panel .slideUp {
+  height: 28px;
+  background-color: #f7f7f7;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+  position: relative;
+  cursor: pointer;
+}
+/* line 1362, ../scss_default/judge.scss */
+.stability .maphold .panel .slideUp span.arrow {
+  width: 24px;
+  height: 12px;
+  overflow: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -12px;
+}
+/* line 1370, ../scss_default/judge.scss */
+.stability .maphold .panel .slideUp span.arrow:before {
+  content: '';
+  border-width: 14px;
+  border-color: transparent transparent #acacac transparent;
+  border-style: solid;
+  display: block;
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  margin-left: -14px;
+}
+/* line 1381, ../scss_default/judge.scss */
+.stability .maphold .panel .slideUp span.arrow:after {
+  content: '';
+  border-width: 14px;
+  border-color: transparent transparent #f7f7f7 transparent;
+  border-style: solid;
+  display: block;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -14px;
+}
+/* line 1394, ../scss_default/judge.scss */
+.stability .maphold .panel .title {
+  line-height: 70px;
+  font-size: 18px;
+  text-align: center;
+}
+/* line 1399, ../scss_default/judge.scss */
+.stability .maphold .panel .table th, .stability .maphold .panel .table td {
+  padding: 11px;
+}
+/* line 1402, ../scss_default/judge.scss */
+.stability .maphold .panel .table thead th {
+  background-color: #f2f2f2;
+  border: solid #dbdbdb;
+  border-width: 1px 0;
+}
+/* line 1407, ../scss_default/judge.scss */
+.stability .maphold .panel .table tbody > tr:nth-of-type(even) {
+  background-color: #f4f4f4;
+}
+/* line 1411, ../scss_default/judge.scss */
+.stability .maphold .panel.slide .panel-top {
+  height: 0;
+  overflow: hidden;
+}
+/* line 1415, ../scss_default/judge.scss */
+.stability .maphold .panel.slide .slideUp {
+  border-top: 0;
+}
+/* line 1418, ../scss_default/judge.scss */
+.stability .maphold .panel.slide span.arrow {
+  -ms-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+
+/* line 1427, ../scss_default/judge.scss */
+.add-area {
+  height: 100%;
+  padding: 15px;
+  overflow: hidden;
+  border-bottom: 1px solid #dedede;
+}
+/* line 1432, ../scss_default/judge.scss */
+.add-area ul, .add-area input {
+  color: #666;
+  font-size: 12px;
+  border-radius: 2px;
+  border: 1px solid #dedede;
+}
+/* line 1438, ../scss_default/judge.scss */
+.add-area .arrow {
+  width: 20px;
+  height: 30px;
+  background: url("../img/arror.jpg") center no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  cursor: pointer;
+}
+/* line 1448, ../scss_default/judge.scss */
+.add-area .pull-left, .add-area .pull-right {
+  width: 230px;
+  height: 100%;
+}
+/* line 1451, ../scss_default/judge.scss */
+.add-area .pull-left > ul, .add-area .pull-right > ul {
+  padding: 10px 0;
+  overflow: hidden;
+  overflow-y: auto;
+}
+/* line 1458, ../scss_default/judge.scss */
+.add-area .pull-left .form-control {
+  width: 100%;
+  height: 32px;
+  margin-bottom: 10px;
+}
+/* line 1463, ../scss_default/judge.scss */
+.add-area .pull-left > ul {
+  height: 462px;
+}
+/* line 1465, ../scss_default/judge.scss */
+.add-area .pull-left > ul li {
+  margin: 0 !important;
+  padding: 4px 0 4px 20px;
+  text-indent: 25px;
+}
+/* line 1469, ../scss_default/judge.scss */
+.add-area .pull-left > ul li a {
+  line-height: 20px;
+  color: inherit;
+  display: block;
+}
+/* line 1474, ../scss_default/judge.scss */
+.add-area .pull-left > ul li > ul {
+  width: 100%;
+  border: 0;
+}
+/* line 1479, ../scss_default/judge.scss */
+.add-area .pull-left > ul li.check-box a {
+  background: url(../img/checkbox.png) 0 0 no-repeat;
+}
+/* line 1482, ../scss_default/judge.scss */
+.add-area .pull-left > ul li.check-box:hover > a {
+  background-position: 0 -40px;
+}
+/* line 1485, ../scss_default/judge.scss */
+.add-area .pull-left > ul li.check-box.active > a {
+  background-position: 0 -60px;
+}
+/* line 1490, ../scss_default/judge.scss */
+.add-area .pull-left > ul li.tree > a {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAoBAMAAAAMH8foAAAAG1BMVEUAAACZmZmenp7Hx8fMzMy/v7+srKylpaWioqIltfK5AAAAAXRSTlMAQObYZgAAADxJREFUGNNjoA4wQDDFEEzFBgRT0AHBNIAzFeAKxBHaAhgGPwhUUhKGMtkFBRPgHpKAq2AUgDOZHahuPwDaSgQiZUOhSAAAAABJRU5ErkJggg==") 0 0 no-repeat;
+}
+/* line 1493, ../scss_default/judge.scss */
+.add-area .pull-left > ul li.tree.active > a {
+  background-position: 0 -20px;
+}
+/* line 1496, ../scss_default/judge.scss */
+.add-area .pull-left > ul li.tree > ul {
+  display: none;
+}
+/* line 1499, ../scss_default/judge.scss */
+.add-area .pull-left > ul li.tree.active > ul {
+  display: block;
+}
+/* line 1507, ../scss_default/judge.scss */
+.add-area .pull-right > ul {
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+}
+/* line 1511, ../scss_default/judge.scss */
+.add-area .pull-right > ul li {
+  padding: 4px 20px;
+  cursor: pointer;
+}
+/* line 1514, ../scss_default/judge.scss */
+.add-area .pull-right > ul li i {
+  width: 10px;
+  height: 10px;
+  background: url(../img/default/icon.png) -1px -42px no-repeat;
+  float: right;
+  margin: 4px 0;
+  display: none;
+}
+/* line 1522, ../scss_default/judge.scss */
+.add-area .pull-right > ul li:hover {
+  background-color: #ededed;
+}
+/* line 1524, ../scss_default/judge.scss */
+.add-area .pull-right > ul li:hover i {
+  display: block;
+}
+/* line 1528, ../scss_default/judge.scss */
+.add-area .pull-right > ul li.active {
+  background-color: #00a0e9;
+}
+
+/* line 1537, ../scss_default/judge.scss */
+.similar-people-car .form-top {
+  overflow: hidden;
+}
+
+/* line 1541, ../scss_default/judge.scss */
+.peoplecar {
+  margin-top: 10px;
+  background-color: #FEFEF2;
+  border: 1px solid #ddd;
+  height: 110px;
+}
+/* line 1546, ../scss_default/judge.scss */
+.peoplecar .case-container {
+  margin-left: 20px;
+  position: relative;
+}
+/* line 1549, ../scss_default/judge.scss */
+.peoplecar .case-container .case-box {
+  width: 323px;
+  height: 90px;
+  border: 1px solid #E5E0CB;
+  background-color: #F9F3D9;
+  border-radius: 4px;
+  float: left;
+  margin-right: 15px;
+  margin-top: 10px;
+  position: relative;
+  padding: 10px;
+}
+/* line 1560, ../scss_default/judge.scss */
+.peoplecar .case-container .case-box p {
+  padding-top: 10px;
+  font-size: 14px;
+}
+/* line 1564, ../scss_default/judge.scss */
+.peoplecar .case-container .case-box span {
+  width: auto;
+  display: inline-block;
+  font-size: 12px;
+  color: #999999;
+}
+/* line 1569, ../scss_default/judge.scss */
+.peoplecar .case-container .case-box span.time {
+  float: left;
+}
+/* line 1572, ../scss_default/judge.scss */
+.peoplecar .case-container .case-box span.time-area {
+  float: right;
+}
+/* line 1576, ../scss_default/judge.scss */
+.peoplecar .case-container .case-box i.close-btn {
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  border-radius: 14px;
+  background-color: #F9F3D9;
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  cursor: pointer;
+}
+
+/* line 1594, ../scss_default/judge.scss */
+.peopleText {
+  font-size: 22px;
+  text-align: center;
+}
+
+/* line 1599, ../scss_default/judge.scss */
+.peopleText18 {
+  font-size: 16px;
+  text-align: center;
+}
+
+/* line 1604, ../scss_default/judge.scss */
+.layerPeopleImgN {
+  background: url("/template/img/people-info-avatar.png") 0 0 no-repeat;
+  width: 104px;
+  height: 104px;
+  margin-top: 60px;
+  margin-left: 30px;
+}
+
+/* line 1612, ../scss_default/judge.scss */
+.layerPeopleImgM {
+  background: url("/template/img/people-info-avatar.png") 0 0 no-repeat;
+  background-position: -104px 0;
+  width: 104px;
+  height: 104px;
+  margin-top: 60px;
+  margin-left: 30px;
+}
+
+/* line 1621, ../scss_default/judge.scss */
+.layerCarImg {
+  background: url("/template/img/eye/carinfo/car.png");
+  width: 120px;
+  height: 110px;
+}
+
+/* line 1627, ../scss_default/judge.scss */
+.peopleInfo {
+  border-bottom: 1px dashed #eee;
+  margin-top: 10px;
+  height: 35px;
+}
+/* line 1631, ../scss_default/judge.scss */
+.peopleInfo dl dt {
+  float: left;
+  line-height: 30px;
+}
+
+/* line 1637, ../scss_default/judge.scss */
+.people-title {
+  color: #D1D1D1;
+  line-height: 30px;
+}
+
+/* line 1642, ../scss_default/judge.scss */
+.people-content {
+  color: #000;
+  line-height: 30px;
+}
+
+/* line 1648, ../scss_default/judge.scss */
+.peopleTable {
+  margin-top: 15px;
+}
+/* line 1650, ../scss_default/judge.scss */
+.peopleTable .table > thead > tr > th, .peopleTable .table > tbody > tr > th, .peopleTable .table > tfoot > tr > th, .peopleTable .table > thead > tr > td, .peopleTable .table > tbody > tr > td, .peopleTable .table > tfoot > tr > td {
+  vertical-align: middle;
+  border: 1px solid #eee;
+}
+
+/* line 1655, ../scss_default/judge.scss */
+.similarContainer .showType div {
+  width: 120px;
+}
+
+/* line 1658, ../scss_default/judge.scss */
+.similarContainer .main-box .showType .defaultStyle {
+  background-color: #ffffff;
+  border: 1px solid #ff8533;
+  color: #ff8533;
+}
+
+/* line 1663, ../scss_default/judge.scss */
+.similarContainer .main-box .showType .commonStyle {
+  background-color: #ff8533;
+  border: 1px solid #ff8533;
+}
+
+/* line 1668, ../scss_default/judge.scss */
+.situation-table {
+  overflow: auto;
+}
+/* line 1670, ../scss_default/judge.scss */
+.situation-table .title {
+  background-color: #ffffff;
+  border-radius: 4px;
+  width: 100%;
+  height: 72px;
+  margin: 20px auto;
+}
+/* line 1676, ../scss_default/judge.scss */
+.situation-table .title .content {
+  line-height: 72px;
+  font-size: 14px;
+  text-align: center;
+  height: 22px;
+}
+/* line 1681, ../scss_default/judge.scss */
+.situation-table .title .content .left {
+  color: #999999;
+}
+/* line 1685, ../scss_default/judge.scss */
+.situation-table .title .content span a {
+  height: 27px;
+  color: #000000;
+  padding: 10px 15px;
+}
+/* line 1690, ../scss_default/judge.scss */
+.situation-table .title .content span a:hover {
+  background-color: #20A4F8;
+  color: #FFFFFF;
+  height: 27px;
+  border-radius: 4px;
+}
+/* line 1696, ../scss_default/judge.scss */
+.situation-table .title .content span .a-checked {
+  background-color: #20A4F8;
+  border-radius: 4px;
+  color: #FFFFFF;
+}
+/* line 1702, ../scss_default/judge.scss */
+.situation-table .title .content div {
+  position: relative;
+  display: inline-block;
+}
+/* line 1710, ../scss_default/judge.scss */
+.situation-table .main-none {
+  text-align: center;
+}
+/* line 1714, ../scss_default/judge.scss */
+.situation-table .main-charts {
+  background-color: #ffffff;
+  border-radius: 4px;
+  width: 100%;
+  margin: 40px auto;
+  text-align: center;
+}
+/* line 1720, ../scss_default/judge.scss */
+.situation-table .main-charts .top-title {
+  height: 72px;
+}
+/* line 1722, ../scss_default/judge.scss */
+.situation-table .main-charts .top-title .a-title {
+  color: #29A6E8;
+  font-size: 20px;
+  line-height: 72px;
+}
+/* line 1728, ../scss_default/judge.scss */
+.situation-table .main-charts .one {
+  width: 1205px;
+  overflow: hidden;
+  margin: auto;
+}
+/* line 1732, ../scss_default/judge.scss */
+.situation-table .main-charts .one .one-title {
+  height: auto;
+  overflow: hidden;
+}
+/* line 1735, ../scss_default/judge.scss */
+.situation-table .main-charts .one .one-title .a-title {
+  color: #29A6E8;
+  font-size: 16px;
+  line-height: 44px;
+  float: left;
+}
+/* line 1741, ../scss_default/judge.scss */
+.situation-table .main-charts .one .one-title .a-content {
+  color: #000000;
+  font-size: 16px;
+  float: left;
+  text-align: left;
+  line-height: 40px;
+}
+/* line 1747, ../scss_default/judge.scss */
+.situation-table .main-charts .one .one-title .a-content i {
+  color: #29A6E8;
+  padding: 0px 6px;
+}
+/* line 1751, ../scss_default/judge.scss */
+.situation-table .main-charts .one .one-title .a-content .red {
+  color: #DA7A80;
+}
+/* line 1756, ../scss_default/judge.scss */
+.situation-table .main-charts .one .one-chart {
+  width: 1010px;
+  height: 546px;
+  margin: auto;
+  padding-top: 65px;
+}
+/* line 1762, ../scss_default/judge.scss */
+.situation-table .main-charts .one .one-pie {
+  width: 100%;
+  margin: auto;
+  padding-top: 65px;
+}
+/* line 1768, ../scss_default/judge.scss */
+.situation-table .main-charts .two {
+  width: 1205px;
+  margin: auto;
+}
+/* line 1771, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-title {
+  height: 44px;
+}
+/* line 1773, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-title .a-title {
+  color: #29A6E8;
+  font-size: 16px;
+  line-height: 44px;
+  text-align: center;
+}
+/* line 1779, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-title .a-content {
+  color: #000000;
+  font-size: 16px;
+  float: left;
+  text-align: left;
+  line-height: 40px;
+}
+/* line 1785, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-title .a-content i {
+  color: #DA7A80;
+  padding: 0px 6px;
+}
+/* line 1792, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-table .a-title {
+  color: #29A6E8;
+  font-size: 16px;
+  line-height: 44px;
+  float: left;
+}
+/* line 1798, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-table .i-red {
+  color: #DA7A80;
+  padding: 0px 6px;
+}
+/* line 1802, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-table .i-blue {
+  color: #29A6E8;
+  padding: 0px 6px;
+}
+/* line 1807, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-chart {
+  height: 600px;
+  margin: auto;
+}
+/* line 1810, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-chart .a-title {
+  color: #29A6E8;
+  font-size: 16px;
+  line-height: 44px;
+  float: left;
+}
+/* line 1816, ../scss_default/judge.scss */
+.situation-table .main-charts .two .two-chart .chart {
+  width: 100%;
+  height: 600px;
+  margin-top: 40px;
+}
+
+/* line 1825, ../scss_default/judge.scss */
+.datePickerFromBelow .time {
+  background: url(../img/canlendar.png) 151px no-repeat;
+  border-right: 1;
+}

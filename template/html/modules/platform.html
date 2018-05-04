@@ -1,0 +1,18 @@
+<!--管理平台--用户管理-->
+<div class="body platform platform-new" id="body">
+    <div class="side">
+        <div class="side-header">
+            <i class="icon-base icon-40 icon-side-user"></i>
+            <span class="side-text">用户中心</span>
+        </div>
+        <ul>
+            <li class="side-item" ng-repeat="sideItem in sideItems" ng-click="sideChange($index)" ng-class="$index == currentPage ? 'selected' : ''">
+                <a href="javascript:void(0);" class="side-link"><span class="side-text">{{sideItem.name}}</span></a>
+            </li>
+        </ul>
+        <div class="side-btn" ng-click="toggleSide()"></div>
+    </div>
+    <div class="body-main morelayer">
+        <div ng-repeat="sideItem in sideItems" ng-include="sideItem.url" ng-show="$index == currentPage" onload="initLoad($index)"></div>
+    </div>
+</div>

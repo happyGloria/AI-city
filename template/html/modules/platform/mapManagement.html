@@ -1,0 +1,122 @@
+<div class="mapManagement">
+    <div class="mapCon">
+        <div class="config">
+            <div class="header">
+                <span class="bianhuaText">地图管理</span>
+                <ul>
+                    <li ng-class="{isCurrent: currentMenu.index == 0}" ng-click="selectConfig(0)">天地图</li>
+                    <li ng-class="{isCurrent: currentMenu.index == 1}" ng-click="selectConfig(1)">天地图在线地图</li>
+                    <li ng-class="{isCurrent: currentMenu.index == 2}" ng-click="selectConfig(2)">PGIS地图</li>
+                </ul>
+            </div>
+
+            <div class="configContent">
+                <!--天地图矢量地址-->
+                <div class="onLine row">
+                    <div class="addressText col-md-1">
+                        <span style="color: red;">*</span>
+                        地图矢量地址
+                    </div>
+                    <div class="address">
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="example col-md-4">
+                        包含"Vector,配置.txt"的网站地址,如:http://10.1.10.1:9501
+                    </div>
+                </div>
+                <!--天地影像图地址-->
+                <div class="onLine row">
+                    <div class="addressText col-md-1">
+                        <span style="color: red;">*</span>
+                        地图影像图地址
+                    </div>
+                    <div class="address">
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="example col-md-4">
+                        包含"Vector,配置.txt"的网站地址,如:http://10.1.10.1:9501
+                    </div>
+                </div>
+                <!--最小层级-->
+                <div class="onLine row">
+                    <div class="addressText col-md-1">
+                        <span style="color: red;">*</span>
+                        最小层级
+                    </div>
+                    <div class="address">
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="example col-md-4">
+                        如:10
+                    </div>
+                </div>
+                <!--最大层级-->
+                <div class="onLine row">
+                    <div class="addressText col-md-1">
+                        <span style="color: red;">*</span>
+                        最大层级
+                    </div>
+                    <div class="address">
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="example col-md-4">
+                        如:18
+                    </div>
+                </div>
+
+                <!--中心坐标-->
+                <div class="onLine row">
+                    <div class="addressText col-md-1">
+                        <span style="color: red;">*</span>
+                        中心坐标
+                    </div>
+                    <div class="address">
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="example col-md-4">
+                        如:116.4717265,40.2562355
+                    </div>
+                </div>
+
+                <!--初始层级-->
+                <div class="onLine row">
+                    <div class="addressText col-md-1">
+                        初始层级
+                    </div>
+                    <div class="address">
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="example col-md-4">
+                        默认为最小层级
+                    </div>
+                </div>
+
+                <!--限制区域-->
+                <div class="onLine row">
+                    <div class="addressText col-md-1">
+                        限制区域
+                    </div>
+                    <div class="address">
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="example col-md-4">
+                        如:115.430282,39.445587,117.513171,41.066884
+                    </div>
+                </div>
+
+                <div class="row onLine">
+                    <span class="load" ng-click="reloadMap()">加载地图</span>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="mapContent">
+            <div id="map">
+
+            </div>
+        </div>
+    </div>
+</div>

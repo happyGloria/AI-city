@@ -1,0 +1,437 @@
+*{
+	box-sizing: border-box;
+}
+html,body{
+	min-height:100%;
+	background:url(/template/img/community/body-bg.png) no-repeat;
+	background-size:cover;
+}
+/*头部的icon css start*/
+.head-top{
+	font-size:0.14rem;
+	color:#00ccff;
+	line-height:0.39rem;
+}
+.head-icon{
+	display:inline-block;
+	vertical-align:middle;
+	width:24px;
+	height:24px;
+	margin-left:0.1rem;
+	background:url(/template/img/community/head-top-icon.png) no-repeat;
+}
+.open-door-icon-icon{
+	background-position:0 0;
+}
+.important-area-icon{
+	background-position:-24px 0;
+}
+.smoke-alarm-icon{
+	background-position:-48px 0;
+}
+.gaikuang-icon{
+	background-position:-72px 0;
+}
+.case-icon{
+	background-position:-96px 0;
+}
+.data-icon{
+	background-position:-120px 0;
+}
+.house-car-icon{
+	background-position:-144px 0;
+}
+.house-monitoring-icon{
+	background-position:-168px 0;
+}
+.house-mac-icon{
+	background-position:-192px 0;
+}
+.face-icon{
+	background-position:-216px 0;
+}
+
+/*头部的icon css end*/
+
+/*公共的icon css*/
+.base-icon{
+	display:inline-block;
+	vertical-align:middle;
+	cursor:pointer;
+	width:18px;
+	height:18px;
+	background:url(/template/img/community/base.png) no-repeat;
+}
+.icon-photo{
+	background-position:0 0;
+}
+.icon-video{
+	background-position:0 -18px;
+}
+.icon-warning{
+	background-position:0 -54px;
+}
+.icon-magnify{
+	background-position:-32px 0;
+}
+.icon-compaon{
+	background-position:-32px -18px;	
+}
+
+/*公共的icon css end*/
+
+/*文本溢出显示省略号*/
+.text-overflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.box-container .header{
+	width:100%;
+	height:0.64rem;
+	background:url(/template/img/community/header-bg.png) no-repeat;
+	background-size:cover;
+}
+.main-content{
+	padding:0.18rem 0.2rem 0.1rem 0.2rem;
+	position:relative;
+	font-size:0.12rem;
+	color:#91cde4;
+}
+.left-content{
+	margin-right:3.34rem;
+	margin-left:0.04rem;
+	position:relative;
+}
+/*左侧css start*/
+.left-content .left-left-con{
+	float:left;
+}
+.left-left-con .main-box{
+	position:relative;
+	width:2.82rem;
+	margin-bottom:0.18rem;
+}
+.left-left-con .main-box .head-top{
+	width:2.82rem;
+	height:0.39rem;
+	background:url(/template/img/community/left-top.png) no-repeat;
+	background-size:cover;
+}
+.left-left-con .main-box .top-left-bg,.right-content .main-box .top-left-bg{
+	position:absolute;
+	width:0.69rem;
+	height:1.02rem;
+	left:-0.08rem;
+	top:-0.08rem;
+	background:url(/template/img/community/top-left-bg.png) no-repeat;
+	background-size:cover;
+}
+.left-left-con .main-box.open-door .item-con{
+	height:4.66rem;
+	overflow-y:auto;
+	border:1px solid #067cd9;
+	background:rgba(0,70,125,0.5);
+	padding:0 0.08rem;
+}
+.left-left-con .main-box.important-area .item-con{
+	height:1.75rem;
+	border:1px solid #067cd9;
+	background:rgba(0,70,125,0.5);
+}
+.left-left-con .main-box.smoke-alarm .item-con{
+	height:1.86rem;
+	border:1px solid #067cd9;
+	background:rgba(0,70,125,0.5);
+}		
+/*中间css start*/
+.left-content .left-right-con{
+	position:absolute;
+	left:2.92rem;
+	top:0;
+}
+.left-right-con .main-box{
+	position:relative;
+}
+.left-right-con .main-box .top-left-bg{
+	position:absolute;
+	width:0.69rem;
+	height:1.02rem;
+	left:-0.08rem;
+	top:-0.08rem;
+	background:url(/template/img/community/top-left-bg.png) no-repeat;
+	background-size:cover;
+}
+.left-right-con .map-con{
+	width:12.47rem;
+	margin-bottom:0.18rem;
+}
+.left-right-con .main-box.map-con .item-con{
+	height:6.98rem;
+	border:1px solid #067cd9;
+}
+.left-right-con .map-con .head-top{
+	width:12.47rem;
+	height:0.39rem;
+	background:url(/template/img/community/center-big-top.png) no-repeat;
+	background-size:cover;
+}
+.left-right-bottom .main-box{
+	position:relative;
+	float:left;
+}
+.left-right-bottom .main-box .item-con{
+	height:1.86rem;
+	border:1px solid #067cd9;
+	background:rgba(0,70,125,0.5);
+}
+.left-right-bottom .main-box.house-car{
+	width:4.08rem;
+	margin:0 0.18rem 0 0.08rem;
+}
+.left-right-bottom .main-box.house-monitoring{
+	width:6.06rem;
+	/*margin-right:0.18rem;*/
+}
+.left-right-bottom .main-box.house-mac{
+	width:1.92rem;
+	float:right;
+}
+.left-right-bottom .house-car .head-top{
+	width:4.08rem;
+	height:0.39rem;
+	background:url(/template/img/community/center-left-top.png) no-repeat;
+	background-size:cover;
+}
+.left-right-bottom .house-monitoring .head-top{
+	width:6.06rem;
+	height:0.39rem;
+	background:url(/template/img/community/center-center-top.png) no-repeat;
+	background-size:cover;
+}
+.left-right-bottom .house-mac .head-top{
+	width:1.92rem;
+	height:0.39rem;
+	background:url(/template/img/community/center-right-top.png) no-repeat;
+	background-size:cover;
+}
+/*开门记录 css*/
+.open-door-table{
+	width:100%;
+	table-layout: fixed;
+}
+.open-door-table th{
+	color:#00ccff;
+}
+.open-door-table th,.open-door-table td{
+	text-align:center;
+	padding:0.05rem 0.04rem;
+}
+.open-door-table tbody tr{
+	cursor:pointer;
+}
+.open-door-table tbody .td-date{
+	color:#8b8b8b;
+}
+.open-door-table .span-icon{
+	display:none;
+}
+.open-door-table tbody tr:hover{
+	background-color:#067cd9;
+}
+.open-door-table tbody tr:hover td{
+	color:#fff;
+}
+.open-door-table tbody tr:hover .td-time{
+	display:none;
+}
+.open-door-table tbody tr:hover .span-icon{
+	display:inline-block;
+}
+/*烟感报警 css*/
+.smoke-list{
+	padding:0.08rem 0.12rem 0 0.2rem;
+}
+.smoke-list li{
+	line-height:0.24rem;
+}
+.smoke-list .smoke-list-left{
+	width:1.8rem;
+}
+.smoke-list .smoke-list-right{
+	width:0.6rem;
+	text-align:right;
+}
+.smoke-list .smoke-list-right .icon-warning{
+	vertical-align:text-bottom;
+}
+.smoke-list-li.smoke-red{
+	color:#ff3b3b;
+}
+.smoke-list-li.smoke-red .icon-warning{
+	background-position:0 -36px;
+}
+/*中间地图*/
+.main-box .head-tab{
+	margin:0 0.2rem;
+}
+/*小区监控css*/		
+.house-monitoring .monitoring-left{
+	position:absolute;
+	width:2.1rem;
+	height:1.56rem;
+	top: 0.53rem;
+	left: 0.16rem;
+	overflow:hidden;
+	border:#2f80c5 solid 1px;
+}
+.monitoring-left img{
+	width:auto;
+	height:100%;
+	position:absolute;
+	left:50%;
+	top:50%;
+	-webkit-transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);
+	transform:translate(-50%,-50%);
+}
+.house-monitoring .monitoring-right{
+	height:1.56rem;
+	margin:0.14rem 0 0 2.42rem;
+	overflow-y:auto;
+}
+.monitoring-right .list-li{
+	float:left;
+	/*width:1.5rem;*/
+	line-height:0.24rem;
+	margin-right:0.14rem;
+	padding:0 0.08rem;
+}
+.monitoring-right .list-li .name{
+	display:inline-block;
+	width:0.82rem;
+}
+.monitoring-right .list-li .icon-status,.monitoring-right .list-li .icon-play{
+	width:13px;
+	height:13px;
+}
+.monitoring-right .list-li.online .icon-status{
+	background-position:-19px -2px;
+}
+.monitoring-right .list-li.offline .icon-status{
+	background-position:-19px -17px;			
+}
+.monitoring-right .list-li.online .icon-play{
+	background-position:-18px -31px;
+	margin-left:0.02rem;
+}
+.monitoring-right .list-li.offline .icon-play{
+	background-position:-18px -47px;
+	margin-left:0.02rem;
+}
+.monitoring-right .list-li.offline .name{
+	color:#ff8d33;
+}
+.monitoring-right .list-li.offline .status-text{
+	color:#8b8b8b;
+}
+.monitoring-right .list-li.online:hover{
+	background-color:#067cd9;
+	color:#fff;
+}
+.monitoring-right .list-li.online:hover .icon-play{
+	background-position:-18px -47px;
+}
+/*小区MAC css*/
+.house-mac .mac-list{
+	padding:0 0.2rem;
+	margin:0.12rem 0;
+	height:1.62rem;
+	overflow-y:auto;
+}
+.house-mac .mac-list li{
+	line-height:0.26rem;
+}
+.house-mac .mac-list li span:last-child{
+	color:#8b8b8b;
+}
+/*右侧人脸抓拍css start*/
+.right-content{
+	position:absolute;
+	width:3.12rem;
+	right:0.2rem;
+	top:0.2rem;
+	/*border:red solid 1px;*/
+}
+.right-content .face .head-top{
+	width:3.12rem;
+	height:0.39rem;
+	background:url(/template/img/community/right-top.png) no-repeat;
+	background-size:cover;
+}
+.right-content .main-box.face .item-con{
+	height:9.42rem;
+	border:1px solid #067cd9;
+	background:rgba(0,70,125,0.5);
+}
+.face-list{
+	padding:0.2rem 0.2rem 0 0.2rem;
+}
+.face-list .face-list-li{
+	width:1.34rem;
+	float:left;
+	margin-bottom:0.16rem;
+}
+.face-list .face-list-li .img-box{
+	width:1rem;
+	height:1.2rem;
+	overflow:hidden;
+	position:relative;
+	margin:0 auto 0.03rem auto;
+}
+.face-list .face-list-li .img-box img{
+	width:auto;
+	height:100%;
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);
+	transform:translate(-50%,-50%);
+}
+.face-list .face-list-li .list-text{
+	display:block;
+	text-align:center;
+}
+.face-list .face-list-li .list-text .date{
+	color:#8b8b8b;
+	line-height:0.22rem;
+}
+.face-list .face-list-li .list-text .address{
+	width:100%;
+	display:block;	
+}
+.face-list .face-list-li .oper-btn{
+	position:absolute;
+	width:100%;
+	height:0.24rem;
+	bottom:0;
+	left:0;
+	background:rgba(0,0,0,0.4);
+	display:none;
+}
+.face-list .face-list-li .img-box:hover .oper-btn{
+	display:block;
+}
+.face-list .face-list-li .oper-btn span{
+	width:50%;
+	text-align:center;
+	line-height:0.2rem;
+	height:100%;
+	cursor:pointer;
+}
+.face-list .face-list-li .oper-btn span:hover{
+	background:#067cd9;
+}
+/*右侧人脸抓拍css end*/

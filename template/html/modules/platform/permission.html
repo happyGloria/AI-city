@@ -1,0 +1,218 @@
+<link rel="stylesheet" href="template/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+<div class="form-top">
+	<!--<label class="control-label">警号：</label>
+		<input type="text" class="form-control" ng-model="" placeholder="请输入登录名">-->
+	<label class="control-label">账号名称：</label>
+	<input type="text" class="form-control" ng-model="uesrListReq2.account" placeholder="请输入账号名称">
+	<label class="control-label">显示名称：</label>
+	<input type="text" class="form-control" ng-model="uesrListReq2.showName" placeholder="请输入显示名称">
+	<!--<label class="control-label">单位：</label>
+		<input type="text" class="form-control" ng-model="" placeholder="请选择">-->
+	<div class="form-group" ng-click="queryUserName()">
+		<button type="button" class="btn btn-icon-blue">
+		        <i class="icon-base icon-24 icon-btn-query"></i>
+				<span class="btn-icon-text">查询</span>
+			</button>
+	</div>
+
+</div>
+<div class="form-bottom">
+	<div class="table-top btn-box">
+		<button type="button" class="btn btn-icon-blue" ng-click="createUser()">
+            <i class="icon-base icon-24 icon-btn-add"></i>
+            <span class="btn-icon-text">新增用户</span>
+        </button>
+	</div>
+	<table class="table table-base waterprint">
+		<colgroup>
+			<col width="20%" />
+			<col width="10%" />
+			<col width="20%" />
+			<col width="10%" />
+			<col width="10%" />
+			<col width="10%" />
+            <col width="20%" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th>账号</th>
+				<th>显示名称</th>
+				<th>所属组织机构</th>
+				<th>登录状态 </th>
+				<th>账号状态</th>
+				<th>入库时间</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--ng-repeat="item in warningListData track by $index" ng-class="{'error':item.dealState == '0'}"-->
+			<tr ng-repeat="item in userList track by $index">
+				<td>{{item.account}}</td>
+				<td>{{item.showName}}</td>
+				<td>{{item.orgName}}</td>
+				<td>{{item.loginStatus==0?'不在线':'在线'}}</td>
+				<!--item.status==1?'正常':item.status==2?'锁定':item.status==3?'过期':'删除'-->
+				<td>{{item.status==1?'正常':item.status==2?'锁定':item.status==3?'过期':'删除'}}</td>
+				<td>{{item.mrowTime}}</td>
+				<td class="operatePer">
+					<span class="result-findBtn table-icon icon-reset-password" ng-click="resetUserPassword(item.id)" title="重置密码"></span>
+					<span class="result-findBtn table-icon icon-editor" ng-click="updateUser(item)" title="修改"></span>
+					<span class="result-findBtn table-icon icon-jurin-seting" ng-click="settingUser(item)" title="设置角色"></span>
+					<span class="result-findBtn table-icon icon-delect" ng-click="delUser(item.id)" title="删除 "></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="table-empty" ng-if="uesrListReq.totalNum==0 && !loader">
+		<i class="icon-base icon-32 icon-table-empty"></i>
+		<span class="empty-text">没有查询到符合条件的记录</span>
+	</div>
+	<div ng-if="loader" style="position: absolute;top:30%;left:50%">
+		<div class="ball-clip-rotate"></div>
+	</div>
+</div>
+<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="uesrListReq.totalNum > 0">
+	<pagination total-items="uesrListReq.totalNum" ng-model="uesrListReq.currentPage" max-size="3" items-per-page="uesrListReq.pageSize" class="pagination-sm pull-right" previous-text="上一页" next-text="下一页" first-text="首页" last-text="末页" ng-click="queryUserList()">
+	</pagination>
+</div>
+<!--新增弹出窗-->
+<script id="layer-user-create" type="ng/template">
+	<form class="layer" style="display: block">
+		<div class="layer-form-group">
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">账号：</label>
+				<input type="text" class="form-control" placeholder="请输入组织机构名" ng-model="newUser.account">
+			</div>
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">密码：</label>
+				<input type="password" class="form-control" placeholder="请输入组织机构名" ng-model="newUser.password">
+			</div>
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">显示名称：</label>
+				<input type="text" class="form-control" placeholder="请输入显示名称" ng-model="newUser.showName">
+			</div>
+			<div class="form-group dropdown">
+				<span style="color: red">*</span>
+				<label class="control-label">所属机构：</label>
+				<input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" autocomplete="off" placeholder="请选择" ng-model="newUser.orgName" ng-keyup="newUserKeyUp()" ng-focus="newUserFocus()" ng-blur="">
+				<div id="newUserTree" class="dropdown-menu autocomplete ztree" role="menu" aria-labelledby="dropdownMenu" style="left: 85px"></div>
+			</div>
+		</div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="createUserTrue()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="createUserCancel()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+</script>
+
+<!--修改用户弹出框-->
+<script id="layer-user-update" type="ng/template">
+	<form class="layer" style="display: block">
+		<div class="layer-form-group">
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">账号：</label>
+				<input type="text" class="form-control" placeholder="请输入组织机构名" ng-model="oldUser.account">
+			</div>
+			<div class="form-group">
+				<span style="color: red">*</span>
+				<label class="control-label">显示名称：</label>
+				<input type="text" class="form-control" placeholder="请输入显示名称" ng-model="oldUser.showName">
+			</div>
+			<div class="form-group dropdown">
+				<span style="color: red">*</span>
+				<label class="control-label">所属机构：</label>
+				<input type="text" class="form-control dropdown-toggle" data-toggle="dropdown" autocomplete="off" placeholder="" ng-model="oldUser.orgName" ng-keyup="oldUserKeyUp()" ng-focus="oldUserFocus()" ng-blur="">
+				<div id="oldUserTree" class="dropdown-menu autocomplete ztree" role="menu" aria-labelledby="dropdownMenu" style="left: 85px"></div>
+			</div>
+		</div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="updateUserTrue()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="updateUserCancel()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+</script>
+
+
+<!--设置用户角色弹出窗-->
+<script id="layer-updatePer-role" type="ng/template">
+	<form class="layer" style="display: block">
+		<div class="form-group">
+			&nbsp;&nbsp;&nbsp;
+			<input style="width: 266px;margin-left: 16px;" type="text" class="form-control" placeholder="" ng-model="roleUptOpts.keyword">
+			<button type="button" class="btn btn-icon-blue" ng-click="roleUptOpts.searchResultList()">
+		        <!--<i class="icon-base icon-24 icon-btn-query"></i>-->
+				<span class="btn-icon-text">查询</span>
+			</button>
+		</div>
+		<div class="form-group">
+			&nbsp;&nbsp;&nbsp;
+			<div class="searchMenu" style="width: 150px;height: 250px;border:1px solid #dedede;float: left;margin:20px 30px">
+				<ul>
+					<li ng-repeat="role in roleUptOpts.resultList" ng-class="{'form-selected': role.active}" ng-bind="role.name" ng-click="roleUptOpts.select(role, 0)">
+					</li>
+				</ul>
+			</div>
+			<div style="position: absolute; margin-top: 72px;margin-left: 190px;">
+				<div class="arror" ng-click='roleUptOpts.add()'>
+					<img src="template/img/arror.png">
+				</div>
+				<br/><br/>
+				<div class="arror" ng-click='roleUptOpts.remove()'>
+					<img src="template/img/reverse.png">
+				</div>
+			</div>
+			<div class="searchMenu" style="width: 150px;height: 250px;border:1px solid #dedede;float: left; margin-top: 21px;">
+				<ul>
+					<li ng-repeat="(key,role) in roleUptOpts.confirmMap" ng-if="!role.hide" ng-class="{'form-selected': role.hover}" ng-bind="role.name" ng-click="roleUptOpts.select(role, 1)">
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="roleUptOpts.confirm()">
+                <span class="btn-icon-text">确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="roleUptOpts.close()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+
+</script>
+
+<!--修改有效期弹出窗-->
+<script id="layer-validTime-update" type="ng/template">
+	<form class="layer" style="display: block">
+		<div class="layer-form-group">
+			<div class="datetimepicker">
+				<label class="control-label" style="margin-left: 10.5px;">有效期：</label>
+				<input type="text" class="conditionInput form-control" id="changeValidTime" ng-model="changeValidTime" style="background: url(template/img/canlendar.png) 151px no-repeat;">
+				<input type="hidden" class="form-control" placeholder="" ng-model="perId">
+				<button type="button" class="btn btn-icon-blue" ng-click="emptyTime()">
+                    <span class="btn-icon-text" >设置永久日期</span>
+                </button>
+			</div>
+		</div>
+		<div class="btn-box">
+			<button type="button" class="btn btn-icon-blue" ng-click="submitTime()">
+                <span class="btn-icon-text" >确定</span>
+            </button>
+			<button type="button" class="btn btn-icon-default" ng-click="TimeCancel()">
+                <span class="btn-icon-text">取消</span>
+            </button>
+		</div>
+	</form>
+</script>

@@ -1,0 +1,77 @@
+<div class="body trackShow">
+    <div id="faceTrackId" class="map-main">
+        <!--左侧-->
+        <div class="left-sider">
+            <div class="left-content">
+                <div class="left-head">
+                    <span class="head-txt">人脸轨迹</span>
+                    <span class="head-btn" ng-click="toggleFilter()"></span>
+                </div>
+                <div class="left-filter">
+                    <div class="img-upload">
+                        <img ng-src="{{facePath.img}}" alt="" style="width:200px;height:200px;">
+                        <div class="upload-btn btn btn-icon-default btn-tx-reload">
+                            <!-- <div id="uploadBtn" ng-click="uploadImg()"></div> -->
+                            <input type="file" id="imageFile" class="upload" name="imageFile">
+                            <i class="icon-base icon-24 icon-btn-reload"></i>
+                            <span class="btn-icon-text">上传人脸照片</span>
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <div class="filter-name">相似度:<span style="color: red">*</span></div>
+                        <div class="filter-val nob">
+                            <div class="similarity"></div>
+                        </div>
+                    </div>
+                    <div class="filter-item">
+                        <div class="filter-name">开始时间:<span style="color: red">*</span></div>
+                        <div class="filter-val"><input type="text" class="calendInput" ng-model="startTime" id="startTime"/></div>
+                    </div>
+                    <div class="filter-item">
+                        <div class="filter-name">结束时间:<span style="color: red">*</span></div>
+                        <div class="filter-val"><input type="text" class="calendInput" ng-model="endTime" id="endTime"/></div>
+                    </div>
+                    <div class="filter-item analyze" ng-click="contrasFaceFun()">轨迹分析</div>
+                </div>
+                <div class="left-result">
+                    <div class="result-list">
+                        <div class="pages">
+                            <span>共<i>{{facePath.arr.length}}</i>条记录</span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="result-lists">
+                            <div class="list-item" ng-repeat="item in facePath.arr track by $index"
+                                 ng-class="{'active':item.active}">
+                                <div class="index"><span>{{$index+1}}</span></div>
+                                <div class="img" ng-click="chooseMarker(item,$index)"><img ng-src="{{item.faceUrl}}"></div>
+                                <div class="txt" ng-click="positionMarker(item,$index)">
+                                    <div class="txt-list"><span>相似度：</span><span>{{item.similarity}}</span></div>
+                                    <div class="txt-list"><span>监控点：</span><span>{{item.name}}</span></div>
+                                    <div class="txt-list"><span class="time-label">时间:</span><span class="time">{{item.captureTime}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!-- 全图展示 -->
+<script id="fullscreen-layer" type="ng/template">
+    <form class="fullscreen-layer" style="height:100%">
+        <span class="left-screen" ng-click="pre()" ng-if="!!facePath.arr.length"></span>
+        <img onerror="this.src='template/img/home/homemap/face-img.png'" ng-src="{{currentFace.picUrl}}">
+        <span class="right-screen" ng-click="next()" ng-if="!!facePath.arr.length"></span>
+    </form>
+</script>
+
+
+
+
+

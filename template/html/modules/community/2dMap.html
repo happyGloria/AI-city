@@ -1,0 +1,68 @@
+
+	<div class="layerSelect1" style="min-width:10rem;">
+	    <div class="layerSelect-title">图层</div>
+	     <ul class="layerSelect-list clearfix">
+	    	<li class="layerSelect-li" ng-repeat="layer in layerList" ng-class="{active: layer.isChecked == 'true'}" ng-mouseenter="layerMouse(layer,'enter')"  ng-mouseleave="layerMouse(layer,'leave')"   style="cursor: pointer;position: relative;">
+	    		<div class="layerSelect-li-box">
+	    			<span class="checkbox" ng-click="selectLayer(layer)" ng-class="layer.isChecked==0?'':layer.isChecked==1?'checkPart':'checkAll'"></span>
+	    			<span class="text" ng-click="selectLayer(layer)">{{layer.name}}</span>
+	    		</div>		    		    		
+	    		<ul class="layerSelect-li-list" ng-show="layer.isMouseOn=='true' && layer.hasChild=='true'" style="bottom: 0.4rem;">
+	            	<li class="layerSelect-li-list-li"  ng-repeat="layerChild in layer.child" ng-class="{active: layer.isChecked == 'true'}" ng-mouseenter="layerMouse(layerChild,'enter')"  ng-mouseleave="layerMouse(layerChild,'leave')"   style="cursor: pointer;">
+	            		<div class="layerSelect-li-list-li-box">
+	            			<!--checkPart-->
+	            			<span class="checkbox" ng-class="layerChild.isChecked==0?'':layerChild.isChecked==1?'checkPart':'checkAll'" ng-click="selectLayer(layerChild)"></span>
+		            		<span class="text" ng-click="selectLayer(layerChild)">{{layerChild.name}}</span>
+		            		<i class="arrow-icon" ng-if="layerChild.hasChild=='true'"></i>
+	            		</div>	
+						<ul class="layerSelect-li-list-last" ng-show="layerChild.isMouseOn=='true' && layerChild.hasChild=='true'" style="margin-left: -0.1rem;">
+	            			<li class="layerSelect-li-list-li-last" ng-repeat="layerChildChild in layerChild.child"   style="cursor: pointer;">
+								<span class="checkbox" ng-class="layerChildChild.isChecked==0?'':layerChildChild.isChecked==1?'checkPart':'checkAll'" ng-click="selectLayer(layerChildChild)"></span>
+			            		<span class="text" ng-click="selectLayer(layerChildChild)">{{layerChildChild.name}}</span>
+			            	</li>
+	            		</ul>			
+	            	</li>
+	            </ul>
+	    	</li>
+	    </ul>
+	</div>
+<div id="2dMap" style="width: 100%; height: 100%"></div>
+<!--中间的搜索内容-->
+<div class="communityAllNew-saerch">
+	<div class="search-input"><input id="searchCommunityMap" ng-blur="communityMap.blur()" ng-focus="communityMap.focus()" ng-model="communityMap.communityName" type="text" ng-keyup="communityMap.keyup()" placeholder="请输入搜索内容"/></div>
+	<div class="communityAllNew-search-ztree" style="display: none;">
+		<ul class="search-ztree-ul">
+			<li class="search-ztree-li" ng-repeat="item in communityMap.communityAllInfo">
+				<i class="button-arrow" ng-click="communityMap.open(item)"></i>
+				<a href="javascript:;">
+					<span class="saerchZtree-icon"></span>
+					<span class="searchZtree-text">{{item.name}}</span>
+				</a>
+				<ul class="search-ztree-li-ul" ng-if="item.open">
+					<li class="search-ztree-li-ul-li" ng-repeat="item2 in item.children">
+						<i class="button-arrow" ng-click="communityMap.open(item2)"></i>
+						<a href="javascript:;" ng-click="communityMap.huaTianLin(item2)">
+							<span class="saerchZtree-icon" ></span>
+							<span class="searchZtree-text">{{item2.name}}</span>
+						</a>
+						<ul class="search-ztree-ul-last" ng-if="item2.open">
+							<li class="search-ztree-li-last" ng-repeat="item3 in item2.children" >
+								<a href="javascript:;">
+									<span class="saerchZtree-icon"></span>
+									<span class="searchZtree-text">{{item3.name}}</span>
+								</a>
+								<div class="oper-btn">
+									<i class="location-icon" title="定位" ng-click="communityMap.communityLocation(item3)"></i>
+									<i class="tag-icon" title="一标六实" ng-click="communityMap.href2d(item3)"></i>
+									<i class="threeMap-icon" title="三维地图" ng-click="communityMap.href3d(item3)"></i>
+								</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+
+

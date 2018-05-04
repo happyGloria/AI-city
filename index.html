@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=9"/>  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>奉贤智能安防系统</title>
+    <link rel="shortcut icon" type="image/x-icon" href="template/img/police.png"/>
+    <!--<link rel="stylesheet" href="template/css/bootstrap.css">-->
+    <link rel="stylesheet" href="template/css/layer/skin/layer.css">
+    <link rel="stylesheet" href="template/css/layer/skin/laydate.css">
+    <link rel="stylesheet" href="template/css/dropdownlist/dropdownlist.css">
+    <link rel="stylesheet" href="template/css/odometer-theme-car.css">
+    <link rel="stylesheet" href="template/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="template/css/jquery.plugin.css">
+    <link rel="stylesheet" type="text/css" href="template/css/imgAreaSelect/imgareaselect-default.css" />
+    <link rel="stylesheet" type="text/css" href="lib/video/video-js.css" />
+    <link rel="stylesheet" type="text/css" href="lib/swiper/swiper.min.css" />
+    <link rel="stylesheet" type="text/css" href="lib/select2/select2.min.css" />
+    <!--<link rel="stylesheet" href="template/css_default/navigation-new.css"/>-->
+    <!--<link rel="stylesheet" href="template/css/base.css">-->
+    <script type="text/javascript">
+        (function (cssList){
+            var $head = document.getElementsByTagName('head')[0];
+            var themeMap = {'default': 1, 'dark': 1};
+            var setTheme = window.setTheme = function (theme, reload){
+                theme = 'default';
+                if ( !themeMap[theme] ) {
+                    theme = 'default';
+                }
+                sessionStorage.setItem('theme', theme);
+                if ( reload ) {
+                    return window.location.reload();
+                }
+                var href = 'template/css_{theme}/{name}'.replace('{theme}', theme);
+                for ( var i = 0, name, id, $link ; i < cssList.length ; i++ ) {
+                    name = cssList[i];
+                    $link = document.getElementById(name);
+                    !!$link && $head.removeChild($link);
+                    $link = document.createElement('link');
+                    $link.setAttribute('id', name);
+                    $link.setAttribute('rel', 'stylesheet');
+                    $link.setAttribute('href', href.replace('{name}', name));
+                    $head.appendChild($link);
+                }
+            };
+            setTheme(sessionStorage.getItem('theme'));
+            var setWaterPrint = window.setWaterPrint = function (){
+                var style = document.createElement('style');
+                style.innerHTML = sessionStorage.getItem('waterprint');
+                $head.appendChild(style);
+            };
+            setWaterPrint();
+        })([
+            'bootstrap.css', 'base.css', 'communityAll.css', 'dataHouse.css','analyze.css','configCenter.css','webuploader.css','collideAnalyse.css','navigation.css', 'statistic.css',
+            'navigation-new.css', 'home.css', 'homePage.css','homeMain.css', 'homeWifi.css', 'homeBayonet.css', 'faceTrace.css', 'faceControl.css', 'faceMac.css','searchFace.css','nmap.css',
+                'carMac.css','crowdWarning.css','trackShow.css','point.css','unusual.css','community.css','doorRecord.css','dropdownlist.css','peopleFile.css','index-new.css','index-three.css',
+                'communityAllNew.css','platform.css','secondLevel.css','animate.css'
+            /*'home.css', 'search.css', 'map.css', 'heatmap.css', 'baseStation.css',
+            'collide.css', 'area.css', 'contrast.css', 'eye.css', 'statistic.css', 'vehicleStatistic.css',
+            'dataHouse.css', 'platform.css', 'system.css', 'judge.css', 'early-warning.css', 'navigation-new.css',
+            'nmap.css', 'log.css', 'bwList.css', 'sysConfig.css', 'map-trace-portray.css', 'sysParam.css',
+            'points-view.css', 'tactics.css','mapManagement.css','nationOrbit.css','faceMac.css','faceCluster.css','faceOrbit.css',
+                'faceManagement.css'*/
+        ]);
+    </script>
+    <script type="text/javascript" src="lib/angular/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="lib/scroll/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="lib/angular/angular.min.js"></script>
+    <script type="text/javascript" src="lib/other/d3.js"></script>
+    <script type="text/javascript" src="lib/other/underscore.js"></script>
+    <script type="text/javascript" src="lib/video/video.js"></script>
+    <script type="text/javascript" src="lib/echart/echarts.js"></script>
+<!--     <script type="text/javascript" src="http://15.128.21.231/3dapi/UnityObject2.js"></script>
+    <script type="text/javascript" src="http://15.128.21.231/3dapi/uzft.js"></script> -->
+    <!-- <script type="text/javascript" src="http://15.128.21.231/3dapi/UnityObject2.js"></script> -->
+    <!-- <script type="text/javascript" src="http://15.128.21.231/3dapi/uzft.js"></script> -->
+    <!-- <script type="text/javascript" src="http://47.93.174.30/3dapi/UnityObject2.js"></script>
+    <script type="text/javascript" src="http://47.93.174.30/3dapi/uzft.js"></script> -->
+    <!--<script type="text/javascript" src="http://15.128.21.231/3dapi/UnityObject2.js"></script>-->
+    <!--<script type="text/javascript" src="http://15.128.21.231/3dapi/uzft.js"></script>-->
+    <!-- <script type="text/javascript" src="http://readearth2014.vicp.cc:8098/gisServer3/gisServer/gisServer.js"></script> -->
+    <script type="text/javascript" src="lib/moment.js"></script>
+    <script type="text/javascript" src="lib/scroll/scroller.min.js"></script>
+    <script type="text/javascript" src="lib/swiper/swiper.min.js"></script>
+    <script type="text/javascript" src="lib/select2/select2.min.js"></script>
+    <!-- <script type="text/javascript" src="lib/config/config.js"></script> -->
+    <!--<script type="text/javascript" src="lib/other/jquery-ui-1.10.4.custom.js"></script>-->
+    <script type="text/javascript" src="lib/base64/base64.js"></script>
+    <script type="text/javascript" src="lib/md5/md5.js"></script>
+    <style>
+        @keyframes fx-overlay{
+            0%{
+                transform: translate3d(0%,0%,0);
+            }
+
+            50%{
+                transform:translate3d(-55%,-55%,-150px) scale(0.5) rotate(35deg) rotateY(35deg) rotateZ(35deg);
+                opacity: 0.5;
+            }
+
+            70%{
+                transform:translate3d(-100%,-100%,0) scale(0.9) rotate(180deg) rotateY(180deg) rotateZ(180deg);
+                opacity: 0.5;
+            }
+
+            100%{
+                transform:translate3d(0,0,0) scale(1) rotate(360deg) rotateY(360deg) rotateZ(360deg);
+                opacity: 1;
+            }
+        }
+        /*lightSpeedIn rubberBand bounceIn fadeInLeftBig bounceOut zoomInLeft zoomInUp rollIn flipInY*/
+        .layoutAnimate{
+            animation:fadeInLeftBig 1.5s  1 ease-in-out forwards;
+        }
+
+        /*.layoutAnimate{
+            animation-name:lightSpeedIn;
+            animation-timing-function: ease-out;
+        }*/
+        body {
+            font-family: "Microsoft Yahei", Verdana, Geneva, sans-serif;
+            margin: 0;
+            width: 100%;
+            filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
+            -moz-background-size: 100% 100%;
+            background-size: 100% 100%;
+        }
+
+        body.masking {
+            overflow: hidden;
+        }
+
+        #themeMask {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            background: url('template/img/default/loading-0.gif') center no-repeat #fff;
+            display: none;
+            z-index: 999999999;
+        }
+
+        body.masking #themeMask {
+            display: block;
+        }
+
+        body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td, hr {
+            margin: 0;
+            padding: 0
+        }
+    </style>
+    <script type="text/javascript">
+        videojs.options.flash.swf = "lib/video/video-js.swf";
+        $(function(){
+            // $(".layout").addClass("layoutAnimate");
+            if(window.location.href.indexOf("/index/community/") != -1 || window.location.href.indexOf("/index/peoplefile/") != -1 || window.location.href.indexOf("/index/communityNew/") != -1 || window.location.href.indexOf("/index/communityRight/") != -1 ){
+                // debugger;
+                window.onResize = function() {
+                var baseWidth = 1920;
+                var screenWidth = document.body.clientWidth;
+                windowHtmlSize = screenWidth / baseWidth * 100;
+                var defSize = screenWidth / baseWidth;
+                var axisFontSize = defSize * 24;
+                $("html").css({
+                    fontSize: windowHtmlSize + 'px'
+                });
+                }
+                onResize();
+                $(window).resize(function() {
+                    onResize();
+                })
+            }
+            if(window.location.href.indexOf("/index/clickBuilding/") != -1|| window.location.href.indexOf("/index/communityAllNew/")!=-1 || window.location.href.indexOf("/index/clickResident/") != -1 || window.location.href.indexOf("/index/factHouse/")!=-1){
+                window.onResize = function() {
+                var baseWidth = 1920;
+                var screenWidth = document.body.clientWidth;
+                windowHtmlSize = screenWidth / baseWidth * 130;
+                var defSize = screenWidth / baseWidth;
+                var axisFontSize = defSize * 24;
+                $("html").css({
+                    fontSize: windowHtmlSize + 'px'
+                });
+                }
+                onResize();
+                $(window).resize(function() {
+                    onResize();
+                })
+            }
+            // debugger
+             if(window.location.href.indexOf("/index/communityAllNew/")!=-1){
+               window.onResize = function() {
+                var baseWidth = 1920;
+                var screenWidth = document.body.clientWidth;
+                windowHtmlSize = screenWidth / baseWidth * 100;
+                var defSize = screenWidth / baseWidth;
+                var axisFontSize = defSize * 24;
+                $("html").css({
+                    fontSize: windowHtmlSize + 'px'
+                });
+                }
+                onResize();
+                $(window).resize(function() {
+                    onResize();
+                    //location.reload()
+                })
+             }
+
+             if(window.location.href.indexOf("/index/factHouse/")!=-1){
+                window.onResize = function() {
+                var baseWidth = 1920;
+                var screenWidth = document.body.clientWidth;
+                windowHtmlSize = screenWidth / baseWidth * 100;
+                var defSize = screenWidth / baseWidth;
+                var axisFontSize = defSize * 24;
+                $("html").css({
+                    fontSize: windowHtmlSize + 'px'
+                });
+                }
+                onResize();
+                $(window).resize(function() {
+                    onResize();
+                })
+            }
+
+        })
+    </script>
+</head>
+<body>
+<div class="layout">
+    <div ui-view></div>
+</div>
+<div id="themeMask"></div>
+<!-- <iframe src="http://15.128.21.207/third.html?user=pssc&pwd=e10adc3949ba59abbe56e057f20f883e" style="display: none"></iframe> -->
+<script src="lib/require/require.js" data-main="modules/main"></script>
+</body>
+</html>

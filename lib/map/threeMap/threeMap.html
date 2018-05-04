@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="http://15.128.21.231:8080/gisServer3/gisServer/gisServer.js"></script>
+</head>
+
+<body>
+    <div id="serverDiv" style="width: 500px;height: 400px;"></div>
+    <script type="text/javascript">
+        var codeToPosition = {
+            "310104006001":{
+                "name":"田林十二村",
+                "position":"121.42909083852446:31.171989041203485:0:90:496.69901898824383:200"
+            },
+            "310104006006":{
+                "name":"千鹤2/4",
+                "position":"121.42009264565217:31.178387628520582:0:90:157.7931944558963:200"
+            },
+            "310104006007":{
+                "name":"钦州路785弄",
+                "position":"121.42779099492284:31.178094780310374:0:90:125.80825234106865:150"
+            },
+            "310104006009":{
+                "name":"东航公寓",
+                "position":"121.42140033337286:31.190384186777034:0:90:158.7237682594724:200"
+            },
+            "310104006004":{
+                "name":"宜山路655弄2-4号",
+                "position":"121.42558643514665:31.176291517347557:0:90:270.0289990754683:200"
+            },
+            "310104006008":{
+                "name":"吴中公寓",
+                "position":"121.4207935392582:31.18752148872098:0:90:221.58429543189626:200"
+            },
+            "310104006002":{
+                "name":"田林十四村",
+                "position":"121.42346388134135:31.1755185204378:0:90:392.1076378916489:200"
+            },
+            "310104006011":{
+                "name":"田林十三村",
+                "position":"121.42468957075185:31.173255024786396:0:90:259.05530224275804:200"
+            },
+            "310104006010":{
+                "name":"华鼎广场",
+                "position":"121.43208811645635:31.180175063192298:0:90:276.85054679105303:200"
+            },
+            "310104006005":{
+                "name":"高知楼",
+                "position":"121.42544157004697:31.175765660196745:0:90:86.96467910862907:50"
+            }
+        }
+    	var code = localStorage.getItem("community3dCode");
+    	//初始化三维地图
+	    function initMap(type) {
+	        tgisServer.Event.serverStartFinished = function() {
+	            tgisServer.getConfig(function(config) {
+	                tgisServer.centerAndZoom(config.baseLon, config.baseLat, config.baseZoom);
+	                flyto();
+                    getObjEventOpen();
+	                // leftEvent();
+	            });
+	        };
+			tgisServer.initServer("serverDiv",type);
+	    }
+
+	    //按照经纬度定位到对应的小区
+	    function flyto(){
+	    	var position = codeToPosition[code].position.split(":");
+            tgisServer.Earth.goToLookAt(position[0],position[1],position[2],position[3],position[4],position[5]);
+        }
+
+        //左击事件
+        function leftEvent(){
+            tgisServer.Event.MouseLeftKeyEvent(callBackClick)
+        }
+
+        //左击事件回调函数
+        function callBackClick(e){
+        	debugger;
+        	e.test = "我是子页面数据";
+        	window.parent.threeMapClickFun(e);
+        }
+
+        //人物浏览模式 flag为true，添加人物
+        function addPeople(flag){
+        	if(flag){
+        		alert("子页面"+JSON.stringify(tgisServer));
+        	}
+        }
+
+        //触发事件模式
+        var oldObj=null;
+        function getObjEventOpen(){
+            tgisServer.Earth.pickModelObjEvent(function(obj){
+                
+                // alert(JSON.stringify(obj));
+                window.parent.threeMapClickFun(obj);
+                if(oldObj){
+                    oldObj.swobj.StopHighLight();//停止高亮闪烁对象
+                    //oldObj=obj.swobj;
+                }
+                obj.swobj.ShowHighLight();//高亮闪烁对象
+                oldObj=obj.swobj;
+
+            });
+        }
+
+        //关闭事件模式
+        function getObjEventClose(){
+            tgisServer.Earth.pickModelObjEvent(null);
+        }
+
+        //
+        function childFun(){
+            alert("child")
+        }
+
+        //初始化方法
+        function initFun(){
+            initMap('2');
+        }
+
+        initFun();
+    </script>
+</body>
+
+</html>
