@@ -43,7 +43,7 @@ define(['controllers/controllers', 'jquery', 'config/configFile', 'layer', 'noti
 				$scope.currentWeek = weekList[day];
 				$scope.currentDay = moment().format('YYYY-MM-DD');
 
-				$scope.msg = "确定要退出【奉贤智能安防系统】吗？";
+				$scope.msg = "确定要退出【奉贤社会面智能安防平台】吗？";
 				//退出登录弹出框
 				var logOut = '';
 				$scope.logout = function() {
