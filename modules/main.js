@@ -159,6 +159,7 @@ require.config({
 //angular
 define(['angular', "routes"], function (angular, routes){
     //手动启动angular
+    console.log(routes, 163)
     angular.bootstrap(document, [routes.name]);
 });
 //
