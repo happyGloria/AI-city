@@ -31,12 +31,7 @@ define(
                 $(".layout").find("div").eq(0).css({
                     "padding-top": "0px"
                 });
-                
-                // 1. 一标六实数据
-
-                // 2. 实有人员分析
-                // 2.1 年龄分布
-                
+                console.log('communityPanel...')
             }
         ]
 		return communityAllCtrl;
