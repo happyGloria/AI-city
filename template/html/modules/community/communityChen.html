@@ -29,91 +29,102 @@
 	<!-- Top end -->
 
 	<div class="PanelMain">
-		<div class="PanelL">
+		<!-- 左侧面板 -->
+		<div class="PanelLeft">
+			<div class="triggerToggle" title="打开/关闭面板"></div>
 			<div class="yblsPanel">
 				<ul class="yblsCountList">
-					<li>
-						<span class="text">实有人口</span>
+					<li>实有人口
 						<span class="num">531,900</span>
 					</li>
 					<li>
-						<span class="num">17,395</span>
-						<span class="text">实有房屋</span>
-					</li>
-					<li>
-						<span class="text">实有单位</span>
+						<span class="num">17,395</span>实有房屋</li>
+					<li>实有单位
 						<span class="num">5,846</span>
 					</li>
 					<li>
-						<span class="num">2,846</span>
-						<span class="text">实有安防设施</span>
-					</li>
-					<li>
-						<span class="text">实有警情事件</span>
+						<span class="num">2,846</span>实有安防设施</li>
+					<li>实有警情事件
 						<span class="num">3,082</span>
 					</li>
 					<li>
-						<span class="num">4,637</span>
-						<span class="text">实有力量与装备</span>
-					</li>
+						<span class="num">4,637</span>实有力量与装备</li>
 				</ul>
 			</div>
 			<!-- yblsPanel end -->
 			<div class="commonPanel">
 				<h2 class="title">实有人员分析</h2>
-				<div class="content">
+				<div class="content PeopleAnalysis">
 					<ul class="commonTabHd">
-						<li class="actived">年龄分布</li>
-						<li>性别与户籍</li>
-						<li>人员性质</li>
+						<li ng-click="changePeopleTab('age')" ng-class="peopleTabAction=='age'?'active':''">年龄分布</li>
+						<li ng-click="changePeopleTab('sex')" ng-class="peopleTabAction=='sex'?'active':''">性别与户籍</li>
+						<li ng-click="changePeopleTab('person')"ng-class="peopleTabAction=='person'?'active':''">人员性质</li>
 					</ul>
-					<div>
-						<div id="ageAnalysis" style="width:2rem;height:2rem">
+					<!-- 年龄分布 -->
+					<div class="ageAnalysisView" ng-show="peopleTabAction=='age'">
+						<div id="ageAnalysis" class='ageAnalysis' style="width:1.4rem;height:1.4rem;"></div>
+						<ul class="ageAnalysisList">
+							<li>
+								<div class="item">
+									<div class="index">1</div>
+									<div class="ageAnalysisTitle">1-16岁</div>
+									<div class="prenum">3.28%</div>
+								</div>
+							</li>
+							<li class='active'>
+								<div class="item">
+									<div class="index">2</div>
+									<div class="ageAnalysisTitle">17-40岁</div>
+									<div class="prenum">13.28%</div>
+								</div>
+							</li>
 
-						</div>
-						<!-- 年龄分布 -->
-						<div id="sexAnalysis">
-
-						</div>
-						<!-- 性别与户籍 -->
-						<div id="personnelAnalysis">
-
-						</div>
-						<!-- 人员性质 -->
+						</ul>
+					</div>
+					<!-- 性别与户籍 -->
+					<div class="sexAnalysisView" ng-show="peopleTabAction=='sex'">
+							<div id="sexAnalysis" class='sexAnalysis' style="width:1.4rem;height:1.4rem;"></div>
+							<div id="hujiAnalysis" class='hujiAnalysis' style="width:1.4rem;height:1.4rem;"></div>
+					</div>
+					<!-- 人员性质 -->
+					<div class="personnelAnalysisView" ng-show="peopleTabAction=='person'">
+						<div id="personnelAnalysis" class='personnelAnalysis' style="width:1.4rem;height:1.4rem;"></div>
+						<div id="perception" class='perception' style="width:1.4rem;height:1.4rem;"></div>
 					</div>
 				</div>
 			</div>
 			<div class="commonPanel">
 				<h2 class="title">实有力量分析</h2>
-				<div class="content">
-					<div id="strengthView" style="width:100%;height:100%">
-
-					</div>
+				<div class="content PowerAnalysis">
+					<div id="PowerAnalysis" style="width:4rem;height:1.4rem"></div>	
 				</div>
 			</div>
 			<div class="commonPanel">
 				<h2 class="title">今日实有警情分析</h2>
-				<div class="content">
+				<div class="content TodayAnalysis">
 					...
 				</div>
 			</div>
 		</div>
-		<div class="PanelC">
-			<div class="MapBox">
-				MapBox
-			</div>
-		</div>
-		<div class="PanelR">
+		<!-- 右侧面板 -->
+		<div class="PanelRight">
+			<div class="triggerToggle" title="打开/关闭面板"></div>
 			<div class="commonPanel">
 				<h2 class="title">一周感知数据量统计</h2>
-				<div class="content">
+				<div class="content WeekAnalysis">
+					...
+				</div>
+			</div>
+			<div class="commonPanel">
+				<h2 class="title">MAC感知实时统计</h2>
+				<div class="content MacAnalysis">
 					...
 				</div>
 			</div>
 			<div class="commonPanel">
 				<h2 class="title">实有安防设施分析</h2>
-				<div class="content">
-					...
+				<div class="content SafeAnalysis">
+					<div id="SafeAnalysis" style="width:4rem;height:1.4rem"></div>
 				</div>
 			</div>
 			<div class="roundPanel">

@@ -307,6 +307,7 @@
     text-align: right;
     font-size: 0;
     padding: 0 0.2rem;
+    margin-bottom: 0.2rem;
 }
 .commonTabHd li{
     color: #5dbef6;
@@ -321,7 +322,7 @@
     display: inline-block;
     cursor: pointer;
 }
-.commonTabHd li.actived{
+.commonTabHd li.active{
     color: #0c396e;
     border: .01rem solid #159de8;
     background-image: linear-gradient(0deg, 
@@ -333,6 +334,71 @@
 .commonPanel .PeopleAnalysis{
     height: 1.72rem;
 }
+.commonPanel .PeopleAnalysis .ageAnalysisView{
+    height: 1.48rem;
+}
+
+.commonPanel .PeopleAnalysis .ageAnalysisView .ageAnalysis{
+    float:left
+}
+.commonPanel .PeopleAnalysis .ageAnalysisView .ageAnalysisList{
+    float:left;
+    width: 2.1rem;
+}
+.commonPanel .PeopleAnalysis .ageAnalysisView .ageAnalysisList li{
+    width: 2.1rem;
+    height: 0.24rem;
+    line-height: 0.24rem;
+    background: url(../img/panel/ageAnalysisLine.png) no-repeat 100%/100%;
+    padding: 1px 0;
+}
+.commonPanel .PeopleAnalysis .ageAnalysisView .ageAnalysisList li .item{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding-left: 0.22rem;
+    color: #5dbef6;
+}
+.ageAnalysisList li .item>div {
+    float: left;
+}
+.ageAnalysisList li .item .index{
+    font-family: DINEngschriftStd;
+    font-size: 0.16rem;
+    width: 0.18rem;
+}
+.ageAnalysisList li .item .ageAnalysisTitle {
+    font-family: '微软雅黑';
+    font-size: 0.12rem;
+    width: 0.8rem;
+}
+
+.commonPanel .PeopleAnalysis .ageAnalysisView .ageAnalysisList li.active{
+    background: url(../img/panel/ageAnalysisRedLine.png) no-repeat 100%/100%;
+}
+.commonPanel .PeopleAnalysis .ageAnalysisView .ageAnalysisList li.active .item{
+    color: #FFF;
+    background: url(../img/panel/ageAnalysisListRedBg.png) no-repeat 100%/100%;
+}
+
+.commonPanel .PeopleAnalysis .sexAnalysisView,
+.commonPanel .PeopleAnalysis .personnelAnalysisView {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.commonPanel .PeopleAnalysis .sexAnalysisView>div,
+.commonPanel .PeopleAnalysis .personnelAnalysisView>div {
+    float: left;
+}
+
+
+
+
+
+
+
+
 .commonPanel .PowerAnalysis{
     height: 1.26rem;
 }

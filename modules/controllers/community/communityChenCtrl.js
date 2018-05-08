@@ -33,21 +33,17 @@ define(
 				});
 
 				// 1. 一标六实数据
-
-				// 2. 实有人员分析
 				// 2.1 年龄分布
 				/* 实有力量~~~~~~~~~~~· */
-				echarts.dispose(document.getElementById("strengthView"));
-				var ECharts = echarts.init(document.getElementById('strengthView'));
-				var myColor = ['#eb2100', '#eb4800', '#eb7f00', '#d0a00e', '#c9db00', '#93c222'];
-				option = {
+				echarts.dispose(document.getElementById("PowerAnalysis"));
+				var ECharts = echarts.init(document.getElementById('PowerAnalysis'));
+				let powerOption = {
 					backgroundColor: '#0e2147',
 					grid: {
-						left: '0%',
+						left: '-10%',
 						right: '0%',
 						bottom: '5%',
 						top: '20%',
-						width:'300px',
 						containLabel: true
 					},
 					xAxis: {
@@ -67,7 +63,7 @@ define(
 					series: [{
 						name: 'hill',
 						type: 'pictorialBar',
-						barCategoryGap: '0%',
+						barCategoryGap: '20%',
 						symbol: 'path://M150 50 L130 130 L170 130 Z',
 						label: {
 							normal: {
@@ -120,13 +116,24 @@ define(
 						z: 10
 					}]
 				};
-				ECharts.setOption(option);
+				ECharts.setOption(powerOption);
+				//实有安防设施分析
+				echarts.dispose(document.getElementById("SafeAnalysis"));
+				var ECharts = echarts.init(document.getElementById('SafeAnalysis'));
+				powerOption.xAxis.data = ['窖井盖', '微型\n消防站', '消防栓', '电壶','烟感', '车辆\n卡口', '人脸\n卡口', 'WIFI\n探针', '门禁','摄像机']
+				powerOption.series[0].data=['170','40','178','98','74','114','100','28','144','56']
+				ECharts.setOption(powerOption);
 
 				/* 实有人员分析 */
+				//一周感知数据统计
+				$scope.peopleTabAction = 'age';
+				$scope.changePeopleTab = function (val) {
+					$scope.peopleTabAction = val;
+				}
+				//年龄分布
 				echarts.dispose(document.getElementById("ageAnalysis"));
 				var ECharts = echarts.init(document.getElementById('ageAnalysis'));
 				var dataName = ['1', '2', '3', '4', '5'];
-
 				var dataName2 = ['1-16岁', '17-40岁', '41-60岁', '61-80岁', '80岁以上'];
 				var value = [12, 10, 5, 7, 8]
 				var dataarr = []
@@ -142,24 +149,15 @@ define(
 						name: dataName2[index]
 					})
 				})
-
-				option = {
-					backgroundColor: '#0e2147',
+				let PeopleOption = {
 					animation: false,
-					grid: {
-						left: '0%',
-						right: '0%',
-						bottom: '5%',
-						top: '10%',
-						containLabel: true
-					},
 					title: {
 						text: '年龄\n分布',
 						x:'center',
 						y: 'center',
 						textStyle: {
 							fontWeight: 'normal',
-							fontSize: 14,
+							fontSize: 12,
 							color: "#5dbef6",
 						}
 					},
@@ -174,15 +172,48 @@ define(
 						radius: ['30%', '65%'],
 						// center: [150, 50],
 						color: [
-							'#2CEDED',
-							'#7049F0',
-							'#B347FF',
-							'#E70E65',
-							'#FF714A',
-							'#F6B768',
-							'#B0DF5D',
-							'#FC7DBC',
-							'#0A9FFD'
+							{
+								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+								colorStops: [{
+									offset: 0, color: '#0677d6'
+								}, {
+									offset: 1, color: '#009db9'
+								}],
+								globalCoord: false // 缺省为 false
+							}, {
+								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+								colorStops: [{
+									offset: 0, color: '#095ca3'
+								}, {
+										offset: 1, color: '#0084aa'
+								}],
+								globalCoord: false // 缺省为 false
+							}, {
+								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+								colorStops: [{
+									offset: 0, color: '#e81e6d'
+								}, {
+										offset: 1, color: '#ff6b31'
+								}],
+								globalCoord: false // 缺省为 false
+							}, {
+								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+								colorStops: [{
+									offset: 0, color: '#095ca3'
+								}, {
+									offset: 1, color: '#0084aa'
+								}],
+								globalCoord: false // 缺省为 false
+							}, {
+								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
+								colorStops: [{
+									offset: 0, color: '#0e8af3'
+								}, {
+										offset: 1, color: '#07b8d8'
+								}],
+								globalCoord: false // 缺省为 false
+							},
+
 						],
 						label: {
 							normal: {
@@ -195,7 +226,7 @@ define(
 						labelLine: {
 							normal: {
 								show: true,
-								length: -10,
+								length: -15,
 								length2: 0
 							}
 						},
@@ -203,18 +234,14 @@ define(
 					}, {
 						name: '年龄分布',
 						type: 'pie',
-						radius: ['30%', '85%'],
+						radius: ['65%', '80%'],
 							// center: [150, 50],
 						color: [
-							'transparent',
-							'transparent',
-							'transparent',
-							'transparent',
-							'transparent',
-							'transparent',
-							'transparent',
-							'rgba(252,125,188,0.5)',
-							'transparent'
+							'rgba(7,184,216,0.5)',
+							'rgba(14,138,243,0.5)',
+							'rgba(232,30,109,0.5)',
+							'rgba(14,138,243,0.5)',
+							'rgba(7,184,216,0.5)',
 						],
 						label: {
 							normal: {
@@ -231,7 +258,25 @@ define(
 						zlevel: 2
 					}]
 				};
-				ECharts.setOption(option);
+				ECharts.setOption(PeopleOption);
+				//性别与户籍
+				/* 性别 */
+				echarts.dispose(document.getElementById("sexAnalysis"));
+				var ECharts = echarts.init(document.getElementById('sexAnalysis'));
+				PeopleOption.title.text='性别\n比例',
+				ECharts.setOption(PeopleOption);
+				/* 户籍 */
+				echarts.dispose(document.getElementById("hujiAnalysis"));
+				var ECharts = echarts.init(document.getElementById('hujiAnalysis'));
+				PeopleOption.title.text = '户籍\n比例',
+				ECharts.setOption(PeopleOption);
+				// 人员性质
+				echarts.dispose(document.getElementById("personnelAnalysis"));
+				var ECharts = echarts.init(document.getElementById('personnelAnalysis'));
+				PeopleOption.title.text = '人员\n性质',
+				ECharts.setOption(PeopleOption);
+
+
 			}
 		]
 		return communityAllCtrl;
