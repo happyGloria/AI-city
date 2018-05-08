@@ -104,6 +104,19 @@ define(['app', 'angularAMD'], function (app, angularAMD) {
                 },
                 resolve: {}
             })
+            //----------------以下为陈皓用于测试
+            .state('index.communityChen', {
+                url: '/communityChen/',
+                views: {
+                    'topbar@index': {},
+                    'main@index': angularAMD.route({
+                        templateUrl: 'template/html/modules/community/communityChen.html',
+                        controllerUrl: 'controllers/community/communityChenCtrl'
+                    })
+                },
+                resolve: {}
+            })
+            //----------------以上为陈皓用于测试
             .state('index.communityPanel', {
                 url: '/communityPanel/',
                 views: {
