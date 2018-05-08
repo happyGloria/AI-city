@@ -5,7 +5,7 @@
 define(
     ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'config/common'],
 	function(app, controllers, $, configFile, notify, dark, dMapCtrl, common) {
-		var communityAllCtrl = [
+		var communityPanelCtrl = [
             '$scope',
             '$state',
             '$stateParams',
@@ -34,6 +34,6 @@ define(
                 
             }
         ]
-		return communityAllCtrl;
+		return communityPanelCtrl;
     }
 );
