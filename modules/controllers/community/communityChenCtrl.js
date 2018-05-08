@@ -49,7 +49,12 @@ define(
 					xAxis: {
 						data: ['保安', '保绿', '志愿者', '居委干部', '快递人员', '楼栋长','保洁'],
 						axisTick: { show: false },
-						axisLine: { show: false },
+						axisLine: { 
+							show: true ,
+							lineStyle:{
+								color:"#1590e7"
+							}
+						},
 						axisLabel: {
 							textStyle: {
 								color: 'rgba(255,255,255,0.8)',
@@ -63,7 +68,7 @@ define(
 					series: [{
 						name: 'hill',
 						type: 'pictorialBar',
-						barCategoryGap: '20%',
+						barCategoryGap: '25%',
 						symbol: 'path://M150 50 L130 130 L170 130 Z',
 						label: {
 							normal: {
@@ -89,9 +94,9 @@ define(
 									x2: 0,
 									y2: 1,
 									colorStops: [{
-										offset: 0, color: 'rgba(21, 144, 231, 0.6)' // 0% 处的颜色 //#e81e6d
+										offset: 0, color: '#17bcec'   // 0% 处的颜色 //#e81e6d
 									}, {
-											offset: 1, color: '#17bcec' // 100% 处的颜色//#ff6b31
+											offset: 1, color: 'rgba(21, 144, 231, 0.6)' // 100% 处的颜色//#ff6b31
 									}],
 									globalCoord: false // 缺省为 false
 								}
