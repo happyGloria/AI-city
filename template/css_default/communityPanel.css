@@ -189,8 +189,8 @@
     position: relative;
     padding-top: 0.28rem;
     padding-bottom: 0.3rem;
-    padding-top: .15rem;
     margin-bottom: 0.24rem;
+    padding-right: 0.1rem;
 }
 .commonPanel .title{
     position: absolute;
@@ -225,9 +225,10 @@
 
 .commonPanel .content{
     position: relative;
-    width: 4.61rem;
     height: 100px;
-    background: url(../img/panel/panel.png) 0 0 repeat-y;
+    /* background: url(../img/panel/panel.png) 0 0 repeat-y; */
+    border-left: .01rem solid #0b4677;
+    border-right: .01rem solid #0b4677;
     background-size: 13.83rem auto;
 }
 .commonPanel::before,
@@ -289,4 +290,31 @@
 .MapBox::before,
 .MapBox::after{
 
+}
+
+/* commonTabHd */
+.commonTabHd{
+    text-align: right;
+    font-size: 0;
+    padding: 0 0.2rem;
+}
+.commonTabHd li{
+    color: #5dbef6;
+    font-size: .12rem;
+    height: 0.24rem;
+    line-height: 0.23rem;
+    padding: 0 .12rem;
+    border-radius: 3px;
+    text-align: center;
+    margin-left: 0.1rem;
+    border: .01rem solid #0a4678;
+    display: inline-block;
+    cursor: pointer;
+}
+.commonTabHd li.actived{
+    color: #0c396e;
+    border: .01rem solid #159de8;
+    background-image: linear-gradient(0deg, 
+		#1590e7 0%, 
+        #17bcec 100%);
 }

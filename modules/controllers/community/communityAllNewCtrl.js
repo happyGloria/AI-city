@@ -647,6 +647,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 						// echarts.dispose(document.getElementById("perceptionAllCharts"));
 						perceptionECharts = echarts.init(document.getElementById('perceptionAllCharts'));
 						perceptionECharts.setOption(perceptionOption);
+						console.log(perceptionOption, 650)
 						//添加圆环点击事件
 						perceptionECharts.on('click', function(params) {
 	                        getFaceEcharts(params.data.type);
