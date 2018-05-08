@@ -3,7 +3,8 @@
     position: relative;
     width: 100%;
     height: 100%;
-    background: #040a12 url(../img/panel/panleBg.jpg) center top repeat;
+    /* background: #040a12 url(../img/panel/panleBg.jpg) center top repeat; */
+    background: #040a12;
     background-size: cover;
 }
 .communityPanel .Top{
@@ -12,9 +13,9 @@
     left: 0;
     right: 0;
     width: 100%;
-    height: .77rem;
+    height: .86rem;
     background: url(../img/panel/topBg.png) center top no-repeat;
-    background-size: auto .77rem;
+    background-size: auto .86rem;
 }
 .communityPanel .Title{
     position: absolute;
@@ -24,7 +25,7 @@
     width: 5.68rem;
     height: .68rem;
     display: block;
-    background: url(../img/panel/title.png?v=.0) center no-repeat;
+    background: url(../img/panel/title.png) center no-repeat;
     background-size: 5.68rem auto;
     overflow: hidden;
     text-indent: -9999rem;
@@ -117,33 +118,102 @@
 /* PanelMain 面板 */
 .PanelMain{
     position: absolute;
-    top: 1rem;
+    top: 1.2rem;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 0 0.22rem;
-    display: flex;
-   flex-direction: row;
 }
-.PanelMain .PanelL{
-    width: 4.6rem;
-    overflow: hidden;
+.PanelMain .PanelLeft,
+.PanelMain .PanelRight
+{
+    position: absolute;
+    top: 0;
+    bottom: 0.08rem;
+    width: 4.2rem;
+    border: .01rem solid #0971c4;
+    border-radius: .05rem;
+    background: rgba(10, 29, 59, .9);
+    padding: 0 0.12rem .14rem;
 }
-.PanelMain .PanelC{
-    margin: 0 .2rem;
-    flex: auto;
+.PanelMain .PanelLeft::before,
+.PanelMain .PanelRight::before,
+.PanelMain .PanelLeft::after,
+.PanelMain .PanelRight::after{
+    position: absolute;
+    left: -0.02rem;
+    z-index: 1;
+    content: '';
+    width: 4.23rem;
+    height: 0.17rem;
+    background: url(../img/panel/line.png) no-repeat;
+    display: block;
+    background-size: auto .17rem;
 }
-.PanelMain .PanelR{
-    width: 4.6rem;
-    overflow: hidden;
+.PanelMain .PanelLeft::before,
+.PanelMain .PanelRight::before{
+    top: -0.02rem;
+    background-position: left top;
+}
+.PanelMain .PanelLeft::after,
+.PanelMain .PanelRight::after{
+    bottom: -0.02rem;
+    background-position: right bottom;
 }
 
+.PanelMain .PanelLeft{
+    left: .08rem;
+}
+.PanelMain .PanelRight{
+    right: .08rem;
+}
+
+/* triggerToggle 打开/关闭面板 */
+.PanelMain .triggerToggle{
+    position: absolute;
+    top: 50%;
+    margin-top: -0.4rem;
+    width: 0.17rem;
+    height: 0.8rem;
+    background: url(../img/panel/triggerButton.png) no-repeat;
+    background-size: .34rem auto;
+    cursor: pointer;
+}
+.PanelMain .triggerToggle::before{
+    position: absolute;
+    top: 50%;
+    content: '';
+    display: block;
+    margin-top: -0.07rem;
+    width: 0.06rem;
+    height: 0.14rem;
+    background: url(../img/panel/triggerButton.png) no-repeat;
+    background-size: .34rem auto;
+}
+.PanelLeft .triggerToggle{
+    right: -0.17rem;
+    background-position: left top;
+}
+.PanelRight .triggerToggle{
+    left: -0.17rem;
+    background-position: right top;
+}
+.PanelLeft .triggerToggle::before,
+.PanelRight.closed .triggerToggle::before{
+    left: 0.01rem;
+    background-position: left bottom;
+}
+.PanelRight .triggerToggle::before,
+.PanelLeft.closed .triggerToggle::before{
+    right: 0.01rem;
+    background-position: right bottom;
+}
+
+/* 左右面板 */
 .PanelMain .yblsPanel{
-    width: 4.8rem;
     height: 1.22rem;
     background: url(../img/panel/yblsBg.png) center top no-repeat;
     background-size: cover;
-    margin-bottom: 0.32rem;
+    margin-top: 0.3rem;
 }
 .yblsCountList{
     overflow: hidden;
@@ -152,17 +222,16 @@
     width: 50%;
     height: 0.36rem;
     line-height: 0.36rem;
+    float: left;
+    color: #5dbef6;
+    font-size: .12rem;
     white-space: nowrap;
     overflow: hidden;
-    float: left;
-}
-.yblsCountList .text{
-    color: #5dbef6;
-    font-size: .14rem;
 }
 .yblsCountList .num{
-    font-size: .24rem;
+    font-size: .2rem;
     color: #ffcb54;
+    display: inline-block;
 }
 .yblsCountList li:nth-child(odd){
     text-align: right;
@@ -171,6 +240,13 @@
 .yblsCountList li:nth-child(even){
     text-align: left;
     padding-left: 0.56rem;
+    text-overflow: ellipsis;
+}
+.yblsCountList li:nth-child(odd) .num{
+    margin-left: 0.06rem;
+}
+.yblsCountList li:nth-child(even) .num{
+    margin-right: 0.06rem;
 }
 .yblsCountList li:nth-child(3),
 .yblsCountList li:nth-child(4){
@@ -187,75 +263,24 @@
 /* commonPanel */
 .commonPanel{
     position: relative;
-    padding-top: 0.28rem;
-    padding-bottom: 0.3rem;
-    margin-bottom: 0.24rem;
-    padding-right: 0.1rem;
 }
 .commonPanel .title{
-    position: absolute;
-    top: 0;
-    left: 0.44rem;
+    width: 3.8rem;
+    height: 0.3rem;
     font-size: .16rem;
-    height: 0.29rem;
-    line-height: 0.29rem;
+    line-height: 0.3rem;
+    text-align: center;
     color: #bcf3ff;
-    background: url(../img/panel/panelTitle.png) 0 -0.6rem repeat-x;
-    background-size: .22rem auto;
-}
-.commonPanel .title::after,
-.commonPanel .title::before{
-    position: absolute;
-    top: 0;
-    content: '';
-    width: 0.2rem;
-    height: 100%;
     background: url(../img/panel/panelTitle.png) no-repeat;
-    background-size: .22rem auto;
-    overflow: hidden;
-}
-.commonPanel .title::before{
-    left: -0.2rem;
-    background-position: left 0;
-}
-.commonPanel .title::after{
-    right: -0.2rem;
-    background-position: right -0.3rem;
-}
-
-.commonPanel .content{
-    position: relative;
-    height: 100px;
-    /* background: url(../img/panel/panel.png) 0 0 repeat-y; */
-    border-left: .01rem solid #0b4677;
-    border-right: .01rem solid #0b4677;
-    background-size: 13.83rem auto;
-}
-.commonPanel::before,
-.commonPanel::after{
-    position: absolute;
-    content: '';
-    width: 100%;
-    display: block;
-    background: url(../img/panel/panel.png) no-repeat;
-    background-size: 13.83rem auto;
-}
-.commonPanel::before{
-    top: .14rem;
-    height: 0.15rem;
-    background-position: -4.61rem 0;
-}
-.commonPanel::after{
-    bottom: 0;
-    height: 0.85rem;
-    background-position: -9.22rem 0;
-    
+    background-size: 3.8rem 0.3rem;
+    margin: .35rem auto 0.1rem;
 }
 
 /* roundPanel */
 .roundPanel{
     position: relative;
-    width: 4.52rem;
+    border: .01rem solid #0a6fc3;
+    border-radius: .05rem;
 }
 .roundPanel::before,
 .roundPanel::after{
@@ -274,23 +299,8 @@
     bottom: 0;
     background-position: -4.52rem bottom;
 }
-.roundPanel .content{
-    margin: 0 1px;
-    border-left: 1px solid #0a4270;
-    border-right: 1px solid #0a4270;
-}
 
-/* MapBox */
-.MapBox{
-    position: relative;
-    height: 200px;
-    border: 1px solid #1489be;
-    border-radius: .1rem;
-}
-.MapBox::before,
-.MapBox::after{
 
-}
 
 /* commonTabHd */
 .commonTabHd{
@@ -316,5 +326,23 @@
     border: .01rem solid #159de8;
     background-image: linear-gradient(0deg, 
 		#1590e7 0%, 
-        #17bcec 100%);
+		#17bcec 100%);
+}
+
+/* peopleAnalysis 实有人员分析 */
+.commonPanel .PeopleAnalysis{
+    height: 1.72rem;
+}
+.commonPanel .PowerAnalysis{
+    height: 1.26rem;
+}
+.commonPanel .TodayAnalysis{
+    height: 2.36rem;
+}
+.commonPanel .WeekAnalysis{
+    height: 1.6rem;
+}
+.commonPanel .MacAnalysis,
+.commonPanel .SafeAnalysis{
+    height: 1.45rem;
 }

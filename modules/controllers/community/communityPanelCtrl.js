@@ -1,6 +1,6 @@
 /**
  * 一标六实主面板
- * 2018/05/04
+ * 2018/05/08
  */
 define(
     ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'config/common'],
@@ -31,11 +31,6 @@ define(
                 $(".layout").find("div").eq(0).css({
                     "padding-top": "0px"
                 });
-                
-                // 1. 一标六实数据
-
-                // 2. 实有人员分析
-                // 2.1 年龄分布
                 
             }
         ]
