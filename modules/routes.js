@@ -104,17 +104,6 @@ define(['app', 'angularAMD'], function (app, angularAMD) {
                 },
                 resolve: {}
             })
-            .state('index.communityPanel', {
-                url: '/communityPanel/',
-                views: {
-                    'topbar@index': {},
-                    'main@index': angularAMD.route({
-                        templateUrl: 'template/html/modules/community/communityPanel.html',
-                        controllerUrl: 'controllers/community/communityPanelCtrl'
-                    })
-                },
-                resolve: {}
-            })
             .state('index.2dmap', {
                 url: '/2dmap/',
                 views: {
