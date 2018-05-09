@@ -412,3 +412,93 @@
 .commonPanel .SafeAnalysis{
     height: 1.45rem;
 }
+
+/* CylinderChart */
+.CylinderChart{
+    position: relative;
+    height: 1.6rem;
+}
+.CylinderChart .yAxis{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.CylinderChart .yAxis li{
+    position: relative;
+    height: 0.2rem;
+    font-size: .12rem;
+    color: #5dbef6;
+}
+.CylinderChart .yAxis li .num{
+    width: 0.32rem;
+    text-align: right;
+    display: inline-block;
+}
+.CylinderChart .yAxis li::before{
+    position: absolute;
+    top: 50%;
+    left: 0.35rem;
+    content: '';
+    right: 0;
+    height: 0.01rem;
+    background: rgba(93, 190, 246, .3);
+}
+.CylinderChart .yAxis li:first-child::before{
+    display: none;
+}
+
+.CylinderChart .xAxis{
+    position: absolute;
+    top: 0.2rem;
+    left: 0.35rem;
+    right: 0;
+    bottom: 0;
+    font-size: .12rem;
+}
+.CylinderChart .xAxis ul{
+    height: 100%;
+}
+.CylinderChart .xAxis li{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+.CylinderChart .xAxis li .box{
+    position: relative;
+    height: 1rem;
+    width: 0.3rem;
+    margin: 0 auto;
+}
+.CylinderChart .xAxis li .box span{
+    position: relative;
+    z-index: 2;
+    display: block;
+    background: linear-gradient(0deg, 
+    rgba(0, 99, 201, 0.4) 0%, 
+    rgba(0, 48, 120, 0.6) 73%, 
+    rgba(0, 89, 165, 0.5) 100%);
+}
+.CylinderChart .xAxis li .box::before{
+    position: absolute;
+    left: 0;
+    top: -.07rem;
+    z-index: 3;
+    width: .3rem;
+    height: 0.14rem;
+    content: '';
+    background: url(../img/panel/up.png) center no-repeat;
+    background-size: .3rem .14rem;
+}
+.CylinderChart .xAxis li .box::after{
+    position: absolute;
+    left: 0;
+    bottom: -.07rem;
+    z-index: 1;
+    width: .3rem;
+    height: 0.14rem;
+    content: '';
+    background: url(../img/panel/down.png) center no-repeat;
+    background-size: .3rem .14rem;
+}

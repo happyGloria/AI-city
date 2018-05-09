@@ -32,6 +32,9 @@ define(
                     "padding-top": "0px"
                 });
                 
+                // WeekAnalysis 一周感知数据量统计
+                // 由于三维柱状图使用echarts不好实现，所以自己模拟!
+                // x轴，配置：[{ type: 'MAC', 'label': 'MAC感知', 'value': '1000'}]
             }
         ]
 		return communityPanelCtrl;
