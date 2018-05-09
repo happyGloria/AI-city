@@ -484,11 +484,10 @@
 .commonPanel .WeekAnalysis{
     height: 1.6rem;
 }
-.commonPanel .MacAnalysis,
+.commonPanel .realtimeAnalysis,
 .commonPanel .SafeAnalysis{
     height: 1.45rem;
 }
-
 .commonPanel .content .canvasView{
     width:1.4rem;
     height:1.4rem;
