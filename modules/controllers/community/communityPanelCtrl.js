@@ -88,6 +88,12 @@ define(
                 echarts.dispose(document.getElementById("realtimeAnalysis"));
                 realtimeAnalysisECharts = echarts.init(document.getElementById('realtimeAnalysis'));
                 realtimeAnalysisECharts.setOption(realtimeAnalysisOption);
+
+                // resize echarts
+                $(window).resize(function() {
+                    WeekAnalysisECharts.resize();
+                    realtimeAnalysisECharts.resize();
+                })
             }
         ]
 		return communityPanelCtrl;

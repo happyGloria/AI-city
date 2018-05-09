@@ -593,3 +593,63 @@
     height: 1.4rem;
 }
 
+/* 感知总数 - 面板 */
+.PanelPerception{
+    position: absolute;
+    top: 0.6rem;
+    right: 0.1rem;
+    height: 0.5rem;
+    background: #120912 linear-gradient(0deg, 
+		#120938 0%, 
+        #061336 100%);
+    border-radius: .03rem;
+    text-align: center;
+}
+.PanelPerception .text{
+    font-size: .12rem;
+    line-height: 0.18rem;
+    color: #5dbef6;
+}
+.PanelPerception .num{
+    line-height: 0.2rem;
+    font-size: .16rem;
+    color: #71f0ff;
+}
+.PanelPerception li{
+    margin-top: 0.06rem;
+}
+.PanelPerception .total{
+    position: relative;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+}
+.PanelPerception .total::after{
+    position: absolute;
+    top: 0;
+    right: 0;
+    content: '';
+    width: 1px;
+    height: 100%;
+    display: block;
+	background-image: linear-gradient(0deg, 
+		#091638 0%, 
+		#25274b 51%, 
+		#091638 100%);
+}
+.PanelPerception .total li{
+    padding: 0 .15rem;
+    float: left;
+}
+.PanelPerception .total li .num{
+    color: #ffcb54;
+}
+
+.PanelPerception .list{
+    float: left;
+}
+.PanelPerception .list li{
+    width: 0.56rem;
+    float: left;
+    
+}
