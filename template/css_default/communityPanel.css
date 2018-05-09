@@ -1,8 +1,10 @@
 @charset "utf-8";
 .communityPanel{
-    position: relative;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     /* background: #040a12 url(../img/panel/panleBg.jpg) center top repeat; */
     background: #040a12;
     background-size: cover;
@@ -219,14 +221,18 @@
 .PanelBottom .triggerToggle::before{
     background-position: left bottom;
 }
+.PanelLeft .triggerToggle::before{
+    left: 0.01rem;
+}
 .PanelLeft .triggerToggle::before,
 .PanelRight.closed .triggerToggle::before{
-    left: 0.01rem;
     background-position: left bottom;
+}
+.PanelRight .triggerToggle::before{
+    right: 0.01rem;
 }
 .PanelRight .triggerToggle::before,
 .PanelLeft.closed .triggerToggle::before{
-    right: 0.01rem;
     background-position: right bottom;
 }
 /* 底部面板 */

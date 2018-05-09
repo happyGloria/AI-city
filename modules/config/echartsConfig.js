@@ -4,6 +4,7 @@
 
 define([],function(){
     return{
+        // 一周感知数据统计
         BarEcharts: function(xAxisdData, seriesData){
             return {
                 xAxis: {
@@ -47,6 +48,7 @@ define([],function(){
                 }]
             };
         },
+        // 一周感知数据统计 - 实时统计
         LineEcharts: function(seriesData){
             return {
                 tooltip: {

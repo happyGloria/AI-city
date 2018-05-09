@@ -31,6 +31,35 @@ define(
                 $(".layout").find("div").eq(0).css({
                     "padding-top": "0px"
                 });
+
+                /*
+                 * 左、右、下面板，打开/关闭
+                 **/
+                var leftPanel = $(".PanelLeft"),
+                    rightPanel = $(".PanelRight"),
+                    togglePanelTime = 1000,
+                    closePosition = '-4.19rem',
+                    openPosition = '.08rem';
+                $scope.isLeftClosed = false;
+				$scope.togglePanelLeftMethod = function() {
+					if($scope.isLeftClosed) {
+						$scope.isLeftClosed = false;
+						leftPanel.animate({ left: openPosition }, togglePanelTime);
+					} else {
+						$scope.isLeftClosed = true;
+						leftPanel.animate({ left: closePosition }, togglePanelTime);
+					}
+                }
+                $scope.isRightClosed = false;
+				$scope.togglePanelRightMethod = function() {
+					if($scope.isRightClosed) {
+						$scope.isRightClosed = false;
+						rightPanel.animate({ right: openPosition }, togglePanelTime);
+					} else {
+						$scope.isRightClosed = true;
+						rightPanel.animate({ right: closePosition }, togglePanelTime);
+					}
+				}
                 
                 // WeekAnalysis 一周感知数据量统计
                 var WeekAnalysisECharts = null;
