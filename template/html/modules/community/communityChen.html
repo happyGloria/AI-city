@@ -62,7 +62,7 @@
 					</ul>
 					<!-- 年龄分布 -->
 					<div class="ageAnalysisView" ng-show="peopleTabAction=='age'">
-						<div id="ageAnalysis" class='ageAnalysis' style="width:1.4rem;height:1.4rem;"></div>
+						<div id="ageAnalysis" class='ageAnalysis canvasView'></div>
 						<ul class="ageAnalysisList">
 							<li>
 								<div class="item">
@@ -83,20 +83,20 @@
 					</div>
 					<!-- 性别与户籍 -->
 					<div class="sexAnalysisView" ng-show="peopleTabAction=='sex'">
-							<div id="sexAnalysis" class='sexAnalysis' style="width:1.4rem;height:1.4rem;"></div>
-							<div id="hujiAnalysis" class='hujiAnalysis' style="width:1.4rem;height:1.4rem;"></div>
+							<div id="sexAnalysis" class='sexAnalysis canvasView' ></div>
+							<div id="hujiAnalysis" class='hujiAnalysis canvasView' ></div>
 					</div>
 					<!-- 人员性质 -->
 					<div class="personnelAnalysisView" ng-show="peopleTabAction=='person'">
-						<div id="personnelAnalysis" class='personnelAnalysis' style="width:1.4rem;height:1.4rem;"></div>
-						<div id="perception" class='perception' style="width:1.4rem;height:1.4rem;"></div>
+						<div id="personnelAnalysis" class='personnelAnalysis canvasView' ></div>
+						<div id="perception" class='perception canvasView' ></div>
 					</div>
 				</div>
 			</div>
 			<div class="commonPanel">
 				<h2 class="title">实有力量分析</h2>
 				<div class="content PowerAnalysis">
-					<div id="PowerAnalysis" style="width:4rem;height:1.4rem"></div>	
+					<div id="PowerAnalysis" class='canvasView1'></div>	
 				</div>
 			</div>
 			<div class="commonPanel">
@@ -124,13 +124,41 @@
 			<div class="commonPanel">
 				<h2 class="title">实有安防设施分析</h2>
 				<div class="content SafeAnalysis">
-					<div id="SafeAnalysis" style="width:4rem;height:1.4rem"></div>
+					<div id="SafeAnalysis" class='canvasView1'></div>
 				</div>
 			</div>
 			<div class="roundPanel">
 				<div class="content">
 					...
 				</div>
+			</div>
+		</div>
+		<!-- 底部面板 -->
+		<ul class="PanelBottom">
+			<div class="triggerToggle" title="打开/关闭面板"></div>
+			<ul class="headerTab">
+				<li ng-click="changeBottomTab('face')" ng-class="bottomTabAction=='face'?'active':''">人脸</li>
+				<li ng-click="changeBottomTab('opendoor')" ng-class="bottomTabAction=='opendoor'?'active':''">开门</li>
+				<li ng-click="changeBottomTab('cars')" ng-class="bottomTabAction=='cars'?'active':''">过车</li>
+				<li ng-click="changeBottomTab('wifi')" ng-class="bottomTabAction=='wifi'?'active':''">WIFI</li>
+				<li ng-click="changeBottomTab('fire')" ng-class="bottomTabAction=='fire'?'active':''">消防</li>
+				<li ng-click="changeBottomTab('move')" ng-class="bottomTabAction=='move'?'active':''">位移</li>
+				<li ng-click="changeBottomTab('monitoring')" ng-class="bottomTabAction=='monitoring'?'active':''">监控</li>
+			</ul>
+			<div class="contentView">
+				<div class="faceContent" ng-if="bottomTabAction=='face'">
+					<div class="faceBtnBox">
+						<button class='active'>全部</button>
+						<button>实有力量</button>
+						<button>关注人员</button>
+					</div>
+				</div>
+				<div class="opendoorContent" ng-if="bottomTabAction=='opendoor'">2</div>
+				<div class="carsContent" ng-if="bottomTabAction=='cars'">3</div>
+				<div class="wifiContent" ng-if="bottomTabAction=='wifi'">4</div>
+				<div class="fireContent" ng-if="bottomTabAction=='fire'">5</div>
+				<div class="moveContent" ng-if="bottomTabAction=='move'">6</div>
+				<div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">7</div>
 			</div>
 		</div>
 	</div>

@@ -56,9 +56,11 @@ define(
 							}
 						},
 						axisLabel: {
+							color:'#5dbef6',
+							interval:0,
+							rotate:0,
 							textStyle: {
-								color: 'rgba(255,255,255,0.8)',
-								fontSize: '14',
+								fontSize: '12',
 							},
 						},
 					},
@@ -281,6 +283,11 @@ define(
 				PeopleOption.title.text = '人员\n性质',
 				ECharts.setOption(PeopleOption);
 
+				//底部面板交互
+				$scope.bottomTabAction = 'face';
+				$scope.changeBottomTab = function (val) {
+						$scope.bottomTabAction = val;
+				}
 
 			}
 		]

@@ -124,7 +124,8 @@
     bottom: 0;
 }
 .PanelMain .PanelLeft,
-.PanelMain .PanelRight
+.PanelMain .PanelRight,
+.PanelMain .PanelBottom
 {
     position: absolute;
     top: 0;
@@ -138,7 +139,8 @@
 .PanelMain .PanelLeft::before,
 .PanelMain .PanelRight::before,
 .PanelMain .PanelLeft::after,
-.PanelMain .PanelRight::after{
+.PanelMain .PanelRight::after
+{
     position: absolute;
     left: -0.02rem;
     z-index: 1;
@@ -155,7 +157,8 @@
     background-position: left top;
 }
 .PanelMain .PanelLeft::after,
-.PanelMain .PanelRight::after{
+.PanelMain .PanelRight::after
+{
     bottom: -0.02rem;
     background-position: right bottom;
 }
@@ -166,7 +169,15 @@
 .PanelMain .PanelRight{
     right: .08rem;
 }
+.PanelMain .PanelBottom{
+    padding: 0.22rem 0.2rem;
+    width: 10.2rem;
+    height: 3.5rem;
+    bottom: 0.1rem;
+    left: 4.52rem;
+    top: auto;
 
+}
 /* triggerToggle 打开/关闭面板 */
 .PanelMain .triggerToggle{
     position: absolute;
@@ -197,6 +208,17 @@
     left: -0.17rem;
     background-position: right top;
 }
+.PanelBottom .triggerToggle
+{
+    transform: rotate(-90deg);
+    top: 0;
+    left: 50%;
+    margin-top: -0.48rem;
+    margin-left: -0.08rem;
+}
+.PanelBottom .triggerToggle::before{
+    background-position: left bottom;
+}
 .PanelLeft .triggerToggle::before,
 .PanelRight.closed .triggerToggle::before{
     left: 0.01rem;
@@ -207,6 +229,66 @@
     right: 0.01rem;
     background-position: right bottom;
 }
+/* 底部面板 */
+.PanelBottom .headerTab{
+    padding-left: 0.1rem;
+    width: 100%;
+    height: 0.32rem;
+    border-bottom: 1px solid rgba(14, 104, 178, 0.6);
+}
+.PanelBottom .headerTab li {
+    cursor: pointer;
+    width: 0.7rem;
+    height: 0.32rem;
+    background-image: linear-gradient(0deg, rgba(14, 104, 178, 0.6) 0%, rgba(14, 104, 178, 0.7) 100%);
+    border-radius: 3px 3px 0px 0px;
+    color:#fff;
+    font-size: 0.14rem;
+    color: #bcf3ff;
+    line-height: 0.32rem;
+    text-align: center;
+    float: left;
+    margin-right: 0.03rem;
+    position: relative;
+}
+.PanelBottom .headerTab li.active{
+    border: solid 1px rgba(14, 104, 178, 0.6);
+    background: rgba(10, 29, 59, .9);
+    color: #5dbef6;
+    line-height: 0.3rem;
+    border-bottom: 0 none;
+}
+.PanelBottom .contentView{
+    width: 100%;
+    height: 2.74rem;
+    overflow: hidden;
+}
+.PanelBottom .contentView>div{
+    width: 100%;
+    height: 100%;
+    padding-left: 0.1rem;
+}
+.faceContent .faceBtnBox  {
+    margin-top: 0.12rem;
+}
+.faceContent .faceBtnBox button{
+    min-width: 0.7rem;
+    height: 0.24rem;
+    border-radius: 0.03rem;
+    border: solid 1px rgba(14, 104, 178, 0.6);
+    background: none;
+    color: #5dbef6;
+    line-height: 0.24rem;
+    font-size: 0.12rem;
+}
+.faceContent .faceBtnBox button.active{
+    background-image: linear-gradient(0deg, #1590e7 0%, #17bcec 100%);
+    color: #0c396e;
+}
+
+
+
+
 
 /* 左右面板 */
 .PanelMain .yblsPanel{
@@ -393,12 +475,6 @@
 }
 
 
-
-
-
-
-
-
 .commonPanel .PowerAnalysis{
     height: 1.26rem;
 }
@@ -412,3 +488,13 @@
 .commonPanel .SafeAnalysis{
     height: 1.45rem;
 }
+
+.commonPanel .content .canvasView{
+    width:1.4rem;
+    height:1.4rem;
+}
+.commonPanel .content .canvasView1 {
+    width: 4rem;
+    height: 1.4rem;
+}
+
