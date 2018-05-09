@@ -274,10 +274,13 @@
     height: 100%;
     padding-left: 0.1rem;
 }
-.faceContent .faceBtnBox  {
+.faceContent .btnBox  {
     margin-top: 0.12rem;
 }
-.faceContent .faceBtnBox button{
+.faceContent .btnBox span{
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
     min-width: 0.7rem;
     height: 0.24rem;
     border-radius: 0.03rem;
@@ -287,13 +290,100 @@
     line-height: 0.24rem;
     font-size: 0.12rem;
 }
-.faceContent .faceBtnBox button.active{
-    background-image: linear-gradient(0deg, #1590e7 0%, #17bcec 100%);
-    color: #0c396e;
+.faceContent .btnBox .searchBox{
+    float: right;
+    width: 2rem;
+    height: 0.28rem;
+    position: relative;
+}
+.faceContent .btnBox .searchBtn{
+    position: absolute;
+    right: 0.12rem;
+    top: 0.08rem;
+    width: 0.14rem;
+    height: 0.14rem;
+    cursor: pointer;
+    background: url(../img/panel/searchicon.png) no-repeat center/cover;
 }
 
 
+.faceContent .btnBox input{
+    width: 2rem;
+    height: 0.28rem;
+    background-color: #102648;
+    border-radius: 13px;
+    border: solid 1px #0e68b2;
+    padding-left: 0.14rem;
+    font-size: 0.12rem;
+    color: #5dbef6;
+    outline: none;
+}
+.faceContent .btnBox span.active{
+    background-image: linear-gradient(0deg, #1590e7 0%, #17bcec 100%);
+    color: #0c396e;
+}
+.faceContent  .contentBox{
+    margin-top: 0.2rem;
+    overflow-x: scroll;
+    height: 2rem;
+    overflow-y: hidden;
+    width: 100%;
+}
 
+
+.faceContent .content{
+    display: inline-block;
+    white-space: nowrap;
+}
+.faceContent .content li{
+    display: inline-block;
+    margin-right: 0.2rem;
+}
+.faceContent .content .img-box{
+    height: 1.2rem;
+    width: 1.2rem;
+    position: relative;
+    overflow: hidden;
+}
+.faceContent .content .bidui .img-box{
+    width: 2.5rem;
+}
+.faceContent .content .bidui .img-box .count{
+    position: absolute;
+    width: 0.5rem;
+    height:0.5rem;
+    border-radius: 50%;
+    color:#fff;
+    line-height: 0.5rem;
+    font-size: 0.16rem;
+    text-align: center;
+    left: 1rem;
+    top: 0.35rem;
+    background-image: linear-gradient(0deg, #e81e6d 0%, #ff6b31 100%);
+}
+
+.faceContent .content .img{
+    float: left;
+    width: 1.2rem;
+    height: 1.2rem;
+    border: solid 1px #225f92;
+    margin-bottom: 0.03rem;
+}
+.faceContent .content .bidui .img-box .img:first-of-type{
+    margin-right: 0.1rem;
+}
+
+.faceContent .content .bidui .info{
+    width: 2.5rem;
+}
+
+.faceContent .content .info{
+    width: 1.2rem;
+    overflow: hidden;
+    line-height: 0.16rem;
+    font-size: 0.12rem;
+    color: #9ff4fb;
+}
 
 
 /* 左右面板 */

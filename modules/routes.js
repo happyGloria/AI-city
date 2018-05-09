@@ -108,7 +108,10 @@ define(['app', 'angularAMD'], function (app, angularAMD) {
             .state('index.communityChen', {
                 url: '/communityChen/',
                 views: {
-                    'topbar@index': {},
+                    'topbar@index': angularAMD.route({
+                        templateUrl: 'template/html/topbar.html'
+                        // controllerUrl: 'controllers/community/communityChenCtrl'
+                    }),
                     'main@index': angularAMD.route({
                         templateUrl: 'template/html/modules/community/communityChen.html',
                         controllerUrl: 'controllers/community/communityChenCtrl'
