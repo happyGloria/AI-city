@@ -3,8 +3,8 @@
  * 2018/05/08
  */
 define(
-    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'config/common'],
-	function(app, controllers, $, configFile, echartsConfig, notify, dark, dMapCtrl, common) {
+    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js','/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'config/common'],
+	function(app, controllers, $, configFile, basicConfig, echartsConfig, notify, dark, dMapCtrl, common) {
 		var communityPanelCtrl = [
             '$scope',
             '$state',
@@ -31,6 +31,45 @@ define(
                 $(".layout").find("div").eq(0).css({
                     "padding-top": "0px"
                 });
+
+                /*
+                 * zTree 顶部树状结构
+                 **/
+                $scope.initzTree = function(){
+                    var zTreeSetting = {
+                        view: {
+                            selectedMulti: true, //设置是否能够同时选中多个节点
+                            showIcon: true,      //设置是否显示节点图标
+                            showLine: true,      //设置是否显示节点与节点之间的连线
+                            showTitle: true,     //设置是否显示节点的title提示信息
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true,   //设置是否启用简单数据格式（zTree支持标准数据格式跟简单数据格式，上面例子中是标准数据格式）
+                                idKey: "id",     //设置启用简单数据格式时id对应的属性名称
+                                pidKey: "pId",    //设置启用简单数据格式时parentId对应的属性名称,ztree根据id及pid层级关系构建树结构
+                                rootPId: 0
+                            }
+                        },
+                        callback: {
+                            onClick: zTreeOnCheck //点击节点时 回调
+                        }
+                    };
+                    var zTree = $.fn.zTree.init($("#zTreeVillage"), zTreeSetting, basicConfig.villageNameMap);//初始化
+                    var zTreeVillageList = $.fn.zTree.getZTreeObj("zTreeVillage");
+                    zTreeVillageList.expandAll(true); //默认展开所有
+                }
+                $scope.initzTree()
+
+                function zTreeOnCheck(){
+                    $scope.getNodeDetail();
+                };
+
+                $scope.getNodeDetail = function(){
+                    var treeObj = $.fn.zTree.getZTreeObj("zTreeVillage");
+                    var node = treeObj.getSelectedNodes();//点击节点后 获取节点数据
+                    $scope.id = node[0].id;
+                };
 
                 /*
                  * 左、右、下面板，打开/关闭
