@@ -54,9 +54,34 @@ define(
                 }
                 $scope.nowTimeInt = $interval(function () {
                     var d2 = new Date();
-                    $scope.nowTime = d2.format('yyyy年MM月dd日 hh:mm:ss')
+                    var day = d2.getDay();
+                    var x='星期天'
+                    switch (day) {
+                        case 0:
+                            x = "星期天";
+                            break;
+                        case 1:
+                            x = "星期一";
+                            break;
+                        case 2:
+                            x = "星期二";
+                            break;
+                        case 3:
+                            x = "星期三";
+                            break;
+                        case 4:
+                            x = "星期四";
+                            break;
+                        case 5:
+                            x = "星期五";
+                            break;
+                        case 6:
+                            x = "星期六";
+                            break;
+                    }
+                    $scope.nowTime = d2.format('yyyy年MM月dd日 hh:mm:ss')+" "+x
                     console.log($scope.nowTime)
-                },1000)
+                },500)
                 /* 树状搜索 */
                 $scope.zTreeSearch = {
                     communityAllInfo:[
