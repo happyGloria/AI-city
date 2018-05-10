@@ -124,6 +124,68 @@ define([],function(){
                     
                 }]
             };
+        },
+        // 今日实有警情分析
+        RadarEcharts: function(){
+            return {
+                tooltip: {
+                    backgroundColor: '#091f3c',
+                    textStyle: { color: '#5dbef6' },
+                    axisPointer: { lineStyle: { color: '#1884b7' }},
+                    extraCssText: 'box-shadow: 0 0 5px rgba(0,0,0,0.3)'
+                },
+                radar: {
+                    shape: 'circle',
+                    name: {
+                        textStyle: {
+                            color: '#5dbef6'
+                        }
+                    },
+                    splitNumber: 5,
+                    splitLine: {
+                        lineStyle: {
+                            color: 'rgba(47, 156, 207, 0.36)'
+                        }
+                    },
+                    splitArea: {
+                        areaStyle: {
+                            color: [
+                                'rgba(27, 124, 170, 0.36)', 'rgba(27, 124, 170, 0.28)', 'rgba(27, 124, 170, 0.2)', 'rgba(27, 124, 170, 0.12)', 'rgba(27, 124, 170, 0.06)'
+                            ],
+                            shadowColor: 'rgba(0, 0, 0, 0.3)',
+                            shadowBlur: 0
+                        }
+                    },
+                    axisLine: {
+                        lineStyle: {
+                            color: '#1b7caa'
+                        }
+                    },
+                    indicator: [{
+                            name: '车辆感知发现',
+                            max: 6500,
+                            axisLabel:{ show:true, color:'#5dbef6' }
+                        },
+                        { name: '智能分析', max: 16000 },
+                        { name: '消防告警', max: 30000 },
+                        { name: '刷卡异常', max: 38000 },
+                        { name: '案件接报', max: 52000 },
+                        { name: '车辆滞留', max: 25000 }
+                    ]
+                },
+                series: [{
+                    type: 'radar',
+                    data: [{
+                        value: [5000, 4000, 28000, 31000, 42000, 21000],
+                        name: '数据',
+                        itemStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(1, 1, 1, 0, [{ offset: 0, color: '#e81e6d' }, { offset: 1, color: '#ff6b31' }], false)
+                            }
+                        }
+                    }]
+                }]
+            }
         }
     }
 })

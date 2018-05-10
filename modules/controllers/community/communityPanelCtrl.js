@@ -89,10 +89,17 @@ define(
                 realtimeAnalysisECharts = echarts.init(document.getElementById('realtimeAnalysis'));
                 realtimeAnalysisECharts.setOption(realtimeAnalysisOption);
 
+                // TodayAnalysis - 今日实有警情分析
+                var TodayAnalysisECharts = null;
+                var TodayAnalysisOption = echartsConfig.RadarEcharts()
+                TodayAnalysisECharts = echarts.init(document.getElementById('TodayAnalysis'));
+                TodayAnalysisECharts.setOption(TodayAnalysisOption);
+
                 // resize echarts
                 $(window).resize(function() {
                     WeekAnalysisECharts.resize();
                     realtimeAnalysisECharts.resize();
+                    TodayAnalysisECharts.resize();
                 })
             }
         ]
