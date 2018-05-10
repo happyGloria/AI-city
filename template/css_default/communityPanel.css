@@ -182,13 +182,16 @@ input,button{
 .PanelMain .PanelBottom
 {
     position: absolute;
-    top: 0;
     bottom: 0.08rem;
     z-index: 1;
-    width: 4.2rem;
     border: .01rem solid #0971c4;
     border-radius: .05rem;
     background: rgba(10, 29, 59, .9);
+}
+.PanelMain .PanelLeft,
+.PanelMain .PanelRight{
+    top: 0;
+    width: 4.2rem;
     padding: 0 0.12rem .14rem;
 }
 .PanelMain .PanelLeft::before,
@@ -228,9 +231,8 @@ input,button{
     padding: 0.22rem 0.2rem;
     width: 10.2rem;
     height: 3.5rem;
-    bottom: 0.1rem;
-    left: 4.52rem;
-    top: auto;
+    left: 50%;
+    margin-left: -5.1rem;
 
 }
 /* triggerToggle 打开/关闭面板 */
