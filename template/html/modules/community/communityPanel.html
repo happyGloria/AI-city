@@ -9,9 +9,37 @@
             2018年5月8日 周二 09:41
         </div>
         <div class="topRight">
-            <div class="selectBox">
-                <div class="selectShow">
-                    奉贤区
+            <div class="SearchBox">
+                <div class="SearchShow">
+                    <input class="searchInput" type="text" ng-blur="zTreeSearch.blur()" ng-focus="zTreeSearch.focus()" ng-model="zTreeSearch.communityName"  ng-keyup="zTreeSearch.keyup()" placeholder="请输入搜索内容">
+                </div>
+                <div class="SearchTree" id="zTreeVillage">
+                    <ul class="Search-ztree-ul">
+                        <li class="search-ztree-li" ng-repeat="item in zTreeSearch.communityAllInfo">
+                            <i class="button-arrow" ng-click="zTreeSearch.open(item)"></i>
+                            <a href="javascript:;">
+                                <span class="saerchZtree-icon"></span>
+                                <span class="searchZtree-text">{{item.name}}</span>
+                            </a>
+                            <ul class="search-ztree-li-ul" ng-if="item.open">
+                                <li class="search-ztree-li-ul-li" ng-repeat="item2 in item.children">
+                                    <i class="button-arrow" ng-click="zTreeSearch.open(item2)"></i>
+                                    <a href="javascript:;" ng-click="zTreeSearch.huaTianLin(item2)">
+                                        <span class="saerchZtree-icon" ></span>
+                                        <span class="searchZtree-text">{{item2.name}}</span>
+                                    </a>
+                                    <ul class="search-ztree-ul-last" ng-if="item2.open">
+                                        <li class="search-ztree-li-last" ng-repeat="item3 in item2.children" >
+                                            <a href="javascript:;"  ng-click="zTreeSearch.communityLocation(item3)">
+                                                <span class="saerchZtree-icon"></span>
+                                                <span class="searchZtree-text">{{item3.name}}</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul> <!-- zTreeVillage -->
                 </div>
             </div>
             <div class="userPanel">
@@ -26,7 +54,40 @@
         </div>
         <div class="Title">奉贤社会面智能安防平台</div>
     </div> <!-- Top end -->
-
+    <div class="PanelPerception">
+        <ul class="total">
+            <li>
+                <div class="text">感知总数</div>
+                <div class="num">1000</div>
+            </li>
+            <li>
+                <div class="text">今日感知增量</div>
+                <div class="num">500</div>
+            </li>
+        </ul>
+        <ul class="list">
+            <li>
+                <div class="text">车</div>
+                <div class="num">10</div>
+            </li>
+            <li>
+                <div class="text">人</div>
+                <div class="num">20</div>
+            </li>
+            <li>
+                <div class="text">门禁</div>
+                <div class="num">30</div>
+            </li>
+            <li>
+                <div class="text">事件</div>
+                <div class="num">40</div>
+            </li>
+            <li>
+                <div class="text">MAC</div>
+                <div class="num">50</div>
+            </li>
+        </ul>
+    </div>
     <div class="PanelMain">
         <!-- 左侧面板 -->
         <div class="PanelLeft" ng-class="isLeftClosed ? 'closed' : ''">
@@ -68,9 +129,7 @@
             </div>
             <div class="commonPanel">
                 <h2 class="title">今日实有警情分析</h2>
-                <div class="content TodayAnalysis">
-                    ...
-                </div>
+                <div class="content TodayAnalysis" id="TodayAnalysis"></div>
             </div>
         </div>
         <!-- 右侧面板 -->
@@ -101,3 +160,5 @@
         </div>
     </div>
 </div>
+
+<div class="MapPanel" ng-include="templateUrl" ng-controller="templateControllerMap"></div>
