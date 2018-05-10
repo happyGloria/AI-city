@@ -121,9 +121,13 @@ define(['app', 'angularAMD'], function (app, angularAMD) {
             })
             //----------------以上为陈皓用于测试
             .state('index.communityPanel', {
+                
                 url: '/communityPanel/',
                 views: {
-                    'topbar@index': {},
+                    'topbar@index': angularAMD.route({
+                        templateUrl: 'template/html/topbar.html',
+                        controllerUrl: 'controllers/common/topbar'
+                    }),
                     'main@index': angularAMD.route({
                         templateUrl: 'template/html/modules/community/communityPanel.html',
                         controllerUrl: 'controllers/community/communityPanelCtrl'
