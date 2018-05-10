@@ -80,7 +80,6 @@ define(
                             break;
                     }
                     $scope.nowTime = d2.format('yyyy年MM月dd日 hh:mm:ss')+" "+x
-                    console.log($scope.nowTime)
                 },500)
                 /* 树状搜索 */
                 $scope.zTreeSearch = {

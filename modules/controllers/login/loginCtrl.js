@@ -141,7 +141,7 @@ define(['controllers/controllers', 'jquery', 'notify'],
                                 //重新登录不需要保存首页模式状态
                                 sessionStorage.removeItem("isCurrentModule");
                                 //location.href = "#/index/home/";
-                                location.href = "#/index/home/";
+                                location.href = "#/index/communityPanel/";
                             }, 1);
                         } else {
                             notify.error(data.data.status)
