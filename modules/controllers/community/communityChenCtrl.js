@@ -3,8 +3,8 @@
  * 2018/05/04
  */
 define(
-	['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'config/common'],
-	function (app, controllers, $, configFile, notify, dark, dMapCtrl, common) {
+	['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'config/common'],
+	function (app, controllers, $, configFile, echartsConfig,notify, dark, dMapCtrl, common) {
 		var communityAllCtrl = [
 			'$scope',
 			'$state',
@@ -15,7 +15,8 @@ define(
 			'communityRightModuleService',
 			'moreService',
 			'$interval',
-			function ($scope, $state, $stateParams, communityAllService, mapService, $compile, rightService, moreService, $interval) {
+			'moreService',
+			function ($scope, $state, $stateParams, communityAllService, mapService, $compile, rightService, moreService, $interval, moreService) {
 				// 设置样式
 				window.onResize = function () {
 					var baseWidth = 1920;
@@ -31,264 +32,90 @@ define(
 				$(".layout").find("div").eq(0).css({
 					"padding-top": "0px"
 				});
-
+				setEchart=function (id,option,cb){
+					echarts.dispose(document.getElementById(id));
+					var ECharts = echarts.init(document.getElementById(id));
+					ECharts.on('click', function (params) {
+						cb(params)
+					});
+					ECharts.setOption(option);
+				}
 				// 1. 一标六实数据
 				// 2.1 年龄分布
 				/* 实有力量~~~~~~~~~~~· */
-				echarts.dispose(document.getElementById("PowerAnalysis"));
-				var ECharts = echarts.init(document.getElementById('PowerAnalysis'));
-				let powerOption = {
-					backgroundColor: '#0e2147',
-					grid: {
-						left: '-10%',
-						right: '0%',
-						bottom: '5%',
-						top: '20%',
-						containLabel: true
-					},
-					xAxis: {
-						data: ['保安', '保绿', '志愿者', '居委干部', '快递人员', '楼栋长','保洁'],
-						axisTick: { show: false },
-						axisLine: { 
-							show: true ,
-							lineStyle:{
-								color:"#1590e7"
-							}
-						},
-						axisLabel: {
-							color:'#5dbef6',
-							interval:0,
-							rotate:0,
-							textStyle: {
-								fontSize: '12',
-							},
-						},
-					},
-					yAxis: {
-						show:false,
-					},
-					series: [{
-						name: 'hill',
-						type: 'pictorialBar',
-						barCategoryGap: '25%',
-						symbol: 'path://M150 50 L130 130 L170 130 Z',
-						label: {
-							normal: {
-								// backgroundColor:'#f03b56',
-								// width:'50px',
-								// height:'50px',
-								// padding:[4,6],
-								// borderRadius:4,
-								show: true,
-								position: 'top',
-								textStyle: {
-									fontSize: '16',
-									color: '#5dbef6'
-								}
-							}
-						},
-						itemStyle: {
-							normal: {
-								color: {
-									type: 'linear',
-									x: 0,
-									y: 0,
-									x2: 0,
-									y2: 1,
-									colorStops: [{
-										offset: 0, color: '#17bcec'   // 0% 处的颜色 //#e81e6d
-									}, {
-											offset: 1, color: 'rgba(21, 144, 231, 0.6)' // 100% 处的颜色//#ff6b31
-									}],
-									globalCoord: false // 缺省为 false
-								}
-							},
-							emphasis :{
-								color: {
-									type: 'linear',
-									x: 0,
-									y: 0,
-									x2: 0,
-									y2: 1,
-									colorStops: [{
-										offset: 0, color: '#e81e6d' // 0% 处的颜色 //
-									}, {
-											offset: 1, color: '#ff6b31' // 100% 处的颜色//
-									}],
-									globalCoord: false // 缺省为 false
-								}
-							},
-						},
-						data: [6, 2, 55, 8, 6, 83, 20],
-						z: 10
-					}]
-				};
-				ECharts.setOption(powerOption);
+				//1)实有力量在线统计
+				queryRealPower()
+				function queryRealPower() {
+					communityAllService.realPower().then(function (resp) {
+						if (resp.resultCode == '200') {
+							var powerData = resp.data
+							var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长','志愿者','保安', '保洁', '保绿',  '快递人员'], [powerData.jy,powerData.jwgb, powerData.lzz,powerData.zyz,  powerData.ba, powerData.bj, powerData.bl, powerData.kd])
+							setEchart("PowerAnalysis", powerOption)
+						}
+					}).catch(function () { }).finally(function () { });
+				}
+				var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [1,2,3,4,5,6,7,8])
+				setEchart("PowerAnalysis", powerOption,function (params) {
+					//点击图标跳转页面
+					var key = "resident_";
+					localStorage.setItem(key, JSON.stringify(params.dataIndex + 1 + ""));
+					var newurl = window.location.href.split("/#")[0] + "#/index/factPower/";
+					window.open(newurl);
+				})
 				//实有安防设施分析
-				echarts.dispose(document.getElementById("SafeAnalysis"));
-				var ECharts = echarts.init(document.getElementById('SafeAnalysis'));
-				powerOption.xAxis.data = ['窖井盖', '微型\n消防站', '消防栓', '电壶','烟感', '车辆\n卡口', '人脸\n卡口', 'WIFI\n探针', '门禁','摄像机']
-				powerOption.series[0].data=['170','40','178','98','74','114','100','28','144','56']
-				ECharts.setOption(powerOption);
-
-				/* 实有人员分析 */
-				//一周感知数据统计
+				moreService.queryFacilityList({villageCode: ''}).then(function (resp) {
+					console.log(resp.data)
+					var dataArr=[]
+					var nameArr=[]
+					resp.data.forEach(function (v,k) {
+						dataArr.push(v.num)
+						if (v.name==='WiFi探针'){
+							v.name ='WiFi\n探针'
+						}else if (v.name.length>2){
+							v.name = v.name.substr(0,2)+'\n'+v.name.substr(2, a.length - 2)
+						}
+						dataArr.push(v.name)
+					})
+					console.log(dataArr, nameArr)
+				})
+				var SafeOption = echartsConfig.triangleEcharts(['窖井盖', '微型\n消防站', '消防栓', '电壶', '烟感', '车辆\n卡口', '人脸\n卡口', 'WIFI\n探针', '门禁', '摄像机'], ['170', '40', '178', '98', '74', '111', '100', '28', '144', '56'])
+				setEchart("SafeAnalysis", SafeOption)
+				/* 实有人员分析 */,  
 				$scope.peopleTabAction = 'age';
 				$scope.changePeopleTab = function (val) {
 					$scope.peopleTabAction = val;
 				}
 				//年龄分布
-				echarts.dispose(document.getElementById("ageAnalysis"));
-				var ECharts = echarts.init(document.getElementById('ageAnalysis'));
-				var dataName = ['1', '2', '3', '4', '5'];
-				var dataName2 = ['1-16岁', '17-40岁', '41-60岁', '61-80岁', '80岁以上'];
-				var value = [12, 10, 5, 7, 8]
-				var dataarr = []
-				var dataarr2 = []
-				value.forEach(function (ele, index) {
-
-					dataarr.push({
-						value: ele,
-						name: dataName[index]
-					})
-					dataarr2.push({
-						value: ele,
-						name: dataName2[index]
-					})
-				})
-				let PeopleOption = {
-					animation: false,
-					title: {
-						text: '年龄\n分布',
-						x:'center',
-						y: 'center',
-						textStyle: {
-							fontWeight: 'normal',
-							fontSize: 12,
-							color: "#5dbef6",
-						}
-					},
-					// tooltip: {
-					// 	trigger: 'item',
-					// 	formatter: "{a} <br/>{b}: {c} ({d}%)",
-					// },
-
-					series: [{
-						name: '年龄分布',
-						type: 'pie',
-						radius: ['30%', '65%'],
-						// center: [150, 50],
-						color: [
-							{
-								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-								colorStops: [{
-									offset: 0, color: '#0677d6'
-								}, {
-									offset: 1, color: '#009db9'
-								}],
-								globalCoord: false // 缺省为 false
-							}, {
-								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-								colorStops: [{
-									offset: 0, color: '#095ca3'
-								}, {
-										offset: 1, color: '#0084aa'
-								}],
-								globalCoord: false // 缺省为 false
-							}, {
-								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-								colorStops: [{
-									offset: 0, color: '#e81e6d'
-								}, {
-										offset: 1, color: '#ff6b31'
-								}],
-								globalCoord: false // 缺省为 false
-							}, {
-								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-								colorStops: [{
-									offset: 0, color: '#095ca3'
-								}, {
-									offset: 1, color: '#0084aa'
-								}],
-								globalCoord: false // 缺省为 false
-							}, {
-								type: 'linear', x: 0, y: 0, x2: 0, y2: 1,
-								colorStops: [{
-									offset: 0, color: '#0e8af3'
-								}, {
-										offset: 1, color: '#07b8d8'
-								}],
-								globalCoord: false // 缺省为 false
-							},
-
-						],
-						label: {
-							normal: {
-								formatter: '{b}',
-								fontSize: 12,
-								color: '#fff'
-							},
-
-						},
-						labelLine: {
-							normal: {
-								show: true,
-								length: -15,
-								length2: 0
-							}
-						},
-						data: dataarr
-					}, {
-						name: '年龄分布',
-						type: 'pie',
-						radius: ['65%', '80%'],
-							// center: [150, 50],
-						color: [
-							'rgba(7,184,216,0.5)',
-							'rgba(14,138,243,0.5)',
-							'rgba(232,30,109,0.5)',
-							'rgba(14,138,243,0.5)',
-							'rgba(7,184,216,0.5)',
-						],
-						label: {
-							normal: {
-								show: false
-							},
-
-						},
-						labelLine: {
-							normal: {
-								show: false,
-							}
-						},
-						data: dataarr2,
-						zlevel: 2
-					}]
-				};
-				ECharts.setOption(PeopleOption);
+				var PeopleOption = echartsConfig.pieEcharts(['1', '2', '3', '4', '5'], ['1-16岁', '17-40岁', '41-60岁', '61-80岁', '80岁以上'], [12, 10, 5, 7, 9])
+				setEchart("ageAnalysis", PeopleOption)
 				//性别与户籍
 				/* 性别 */
-				echarts.dispose(document.getElementById("sexAnalysis"));
-				var ECharts = echarts.init(document.getElementById('sexAnalysis'));
-				PeopleOption.title.text='性别\n比例',
-				ECharts.setOption(PeopleOption);
+				var SexOption = echartsConfig.pieEcharts(['男', '女'], ['1', '2'], [45000, 55000])
+				SexOption.title.text='性别\n比例',
+					setEchart("sexAnalysis", SexOption)
 				/* 户籍 */
-				echarts.dispose(document.getElementById("hujiAnalysis"));
-				var ECharts = echarts.init(document.getElementById('hujiAnalysis'));
-				PeopleOption.title.text = '户籍\n比例',
-				ECharts.setOption(PeopleOption);
+				var HujiOption = echartsConfig.pieEcharts(['来沪人员', '户籍人员', '外籍人员'], ['1', '2', '3'], [18000, 73000,9000])
+				HujiOption.title.text = '户籍\n比例',
+					setEchart("hujiAnalysis", HujiOption)
 				// 人员性质
-				echarts.dispose(document.getElementById("personnelAnalysis"));
-				var ECharts = echarts.init(document.getElementById('personnelAnalysis'));
 				PeopleOption.title.text = '人员\n性质',
-				ECharts.setOption(PeopleOption);
+				setEchart("personnelAnalysis", PeopleOption)
 
-				//底部面板交互
-				$scope.bottomTabAction = 'face';
+				//底部面板切换
+				$scope.bottomTabAction = 'cars';
 				$scope.changeBottomTab = function (val) {
 						$scope.bottomTabAction = val;
 				}
-
+				//人脸面板切换
+				$scope.faceTabAction = 'all';
+				$scope.changeFaceTab = function (val) {
+					$scope.faceTabAction = val;
+				}
+				//过车面板切换
+				$scope.carsTabAction = 'iscar';
+				$scope.changeCarsTab = function (val) {
+					$scope.carsTabAction = val;
+				}
 			}
 		]
 		return communityAllCtrl;

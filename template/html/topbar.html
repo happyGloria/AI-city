@@ -1,22 +1,22 @@
 <link rel="stylesheet" href="../../template/css_default/topbar.css">
-<div class='nav'>
+<div class='nav ' ng-class="activeNav=='/index/communityChen/'?'hid':''">
     <div class="logo">
         <div class="logoImg"></div>
         <div class="logoText">奉贤社会面智能安防平台</div>
     </div>
     <ul class="navList">
-        <li class='active'>一标六实</li>
-        <li>轨迹刻画</li>
-        <li>数据监控</li>
-        <li>平台管理</li>
+        <li ng-class="activeNav=='/index/communityChen/'?'active':'' " ng-mouseover="showSecondMenus('ybls')">一标六实</li>
+        <li ng-mouseover="showSecondMenus('gjkh')">轨迹刻画</li>
+        <li ng-mouseover="showSecondMenus('sjjk')">数据监控</li>
+        <li ng-mouseover="showSecondMenus('ptgl')">平台管理</li>
     </ul>
     <div class="userInfoBox"></div>
     <div class="searchBox">
         <div class="searchBtn"></div>
         <input class='search' type="text">
     </div>
-    <div class="menuList">
-        <ul>
+        <div class="menuList" ng-if='showSecondMenusHover' ng-mouseleave="hideSecondMenus()">
+        <ul ng-if="showSecondMenusHover=='ybls'" >
             <li>
                 <h2>实有安装设备</h2>
                 <p class='active'>实有安装设备</p>
@@ -47,5 +47,8 @@
                 <p>实有人口</p>
             </li>
         </ul>
+        <ul ng-if="showSecondMenusHover=='gjkh'">轨迹刻画</ul>
+        <ul ng-if="showSecondMenusHover=='sjjk'">数据监控</ul>
+        <ul ng-if="showSecondMenusHover=='ptgl'">平台管理</ul>
     </div>
 </div

@@ -947,7 +947,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 					localStorage.setItem(key, JSON.stringify(val));
 					var newurl = window.location.href.split("/#")[0] + "#/index/factPower/";
 					window.open(newurl);
-					
 				}
 				//跳转事件
 				$scope.toFactEvent = function(value){

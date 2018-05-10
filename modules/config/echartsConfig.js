@@ -124,6 +124,176 @@ define([],function(){
                     
                 }]
             };
-        }
+        },
+        //实有力量,实有安装设备
+        triangleEcharts: function (xAxisdData, seriesData) {
+            return {
+                backgroundColor: '#0e2147',
+                grid: {
+                    left: '-8%',
+                    right: '0%',
+                    bottom: '5%',
+                    top: '20%',
+                    containLabel: true
+                },
+                xAxis: {
+                    data: xAxisdData ,
+                    axisTick: { show: false },
+                    axisLine: {
+                        show: true,
+                        lineStyle: {
+                            color: "#1590e7"
+                        }
+                    },
+                    axisLabel: {
+                        color: '#5dbef6',
+                        interval: 0,
+                        rotate: 0,
+                        textStyle: {
+                            fontSize: '12',
+                        },
+                    },
+                },
+                yAxis: {
+                    show: false,
+                },
+                series: [{
+                    name: 'hill',
+                    type: 'pictorialBar',
+                    barCategoryGap: '25%',
+                    symbol: 'path://M150 50 L130 130 L170 130 Z',
+                    label: {
+                        normal: {
+                            // backgroundColor:'#f03b56',
+                            // width:'50px',
+                            // height:'50px',
+                            // padding:[4,6],
+                            // borderRadius:4,
+                            show: true,
+                            position: 'top',
+                            textStyle: {
+                                fontSize: '14',
+                                color: '#5dbef6'
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            color:  new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                                [{ offset: 0, color: '#17bcec' }, { offset: 1, color: 'rgba(21, 144, 231, 0.6)' }]
+                            )
+                        },
+                        emphasis: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                                [{ offset: 0, color: '#e81e6d' }, { offset: 1, color: '#ff6b31' }]
+                            ),
+                        },
+                    },
+                    data: seriesData,
+                    z: 10
+                }]
+            };
+        },
+        //实有人员分析
+        pieEcharts: function (dataName, dataName2, value){
+            var myColor = [
+                new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: '#0677d6' }, { offset: 1, color: '#009db9' }]
+                ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: '#e81e6d' }, { offset: 1, color: '#ff6b31' }]
+                ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: '#095ca3' }, { offset: 1, color: '#0084aa' }]
+                ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: '#0e8af3' }, { offset: 1, color: '#07b8d8' }]
+                ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: '#095ca3' }, { offset: 1, color: '#0084aa' }]
+                ),
+            ]
+            var myColor2 = [
+                'rgba(7,184,216,0.5)',
+                'rgba(232,30,109,0.5)',
+                'rgba(14,138,243,0.5)',
+                'rgba(7,184,216,0.5)',
+                'rgba(14,138,243,0.5)',
+            ]
+            var dataarr = []
+            var dataarr2 = []
+            var dataColor = []
+            var dataColor2=[]
+            value.forEach(function (ele, index) {
+                dataarr.push({
+                    value: ele,
+                    name: dataName[index]
+                })
+                dataColor.push(myColor[index])
+                dataColor2.push(myColor2[index])
+                dataarr2.push({
+                    value: ele,
+                    name: dataName2[index]
+                })
+            })
+            return {
+                animation: false,
+                title: {
+                    text: '年龄\n分布',
+                    x: 'center',
+                    y: 'center',
+                    textStyle: {
+                        fontWeight: 'normal',
+                        fontSize: 12,
+                        color: "#5dbef6",
+                    }
+                },
+                // tooltip: {
+                // 	trigger: 'item',
+                // 	formatter: "{a} <br/>{b}: {c} ({d}%)",
+                // },
+
+                series: [
+                    {
+                    type: 'pie',
+                    radius: ['30%', '65%'],
+                    // center: [150, 50],
+                    color: dataColor,
+                    label: {
+                        normal: {
+                            formatter: '{b}',
+                            fontSize: 12,
+                            color: '#fff'
+                        },
+
+                    },
+                    labelLine: {
+                        normal: {
+                            show: true,
+                            length: -15,
+                            length2: 0
+                        }
+                    },
+                    data: dataarr,
+                    zlevel: 3
+                }, 
+                {
+                    type: 'pie',
+                    radius: ['65%', '80%'],
+                    // center: [150, 50],
+                    color: dataColor2,
+                    label: {
+                        normal: {
+                            show: false
+                        },
+
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false,
+                        }
+                    },
+                    data: dataarr2,
+                    zlevel: 2
+                }]
+            };
+        },
+        
     }
 })

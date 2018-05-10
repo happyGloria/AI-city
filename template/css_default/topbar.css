@@ -5,6 +5,21 @@
   line-height: 0.5rem;
   position: relative;
 }
+.nav.hid{
+  margin-top: -0.47rem;
+  transition: all 0.1s;
+}
+.nav.hid:hover{
+  margin-top: 0;
+}
+.nav.hid .menuList{
+  display: none
+}
+.nav.hid:hover .menuList{
+  display: block
+}
+
+
 .nav .logo{
   float: left;
   width: 3.2rem;
@@ -42,12 +57,16 @@
   float: left;
   position: relative;
 }
-.nav .navList li.active {
-  background: rgba(255,255,255,0.2);
+.nav .navList li.active{
+  background: rgba(255, 255, 255, 0.3);
   color: #FFFFFF;
 }
-.nav .navList li::before{
-  display: none;
+.nav .navList li:hover{
+  background: rgba(255,255,255,0.1);
+  color: #FFFFFF;
+}
+.nav .navList li:hover::before {
+  display: block;
   position: absolute; 
   content: '';
   width: 0.1rem;
@@ -57,9 +76,7 @@
   transform: rotate(45deg);
   left: 0.38rem;
 }
-.nav .navList li.active::before {
-  display: block;
-}
+
 .nav .menuList{
   position: absolute;
   top: 0.5rem;
