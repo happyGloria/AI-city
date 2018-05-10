@@ -692,3 +692,101 @@ input,button{
     float: left;
     
 }
+
+
+
+/* zTree search */
+.SearchTree{
+    display: none;
+}
+.Search-ztree-ul a{
+	color:#5dbef6;
+}
+.Search-ztree-ul .search-ztree-li .button-arrow{
+	display:inline-block;
+	vertical-align:middle;
+	width:0.11rem;
+	height:0.06rem;
+	background:url(/template/img/communityNew/arrow-icon.png) no-repeat;
+	background-size:0.11rem 0.06rem;
+	cursor:pointer;
+}
+.Search-ztree-ul .search-ztree-li>a>.saerchZtree-icon{
+	display:inline-block;
+	vertical-align:middle;
+	width:0.2rem;
+	height:0.2rem;
+	background:url(/template/img/communityNew/ztree-icon.png) no-repeat;
+	background-position:0 0;
+	background-size:0.2rem 1.2rem;
+}
+.Search-ztree-ul .search-ztree-li-ul .button-arrow{
+	margin-left: 0.18rem;
+}
+.Search-ztree-ul .search-ztree-li-ul-li>a>.saerchZtree-icon{
+	display:inline-block;
+	vertical-align:middle;
+	width:0.2rem;
+	height:0.2rem;
+	background:url(/template/img/communityNew/ztree-icon.png) no-repeat;
+	background-position:0 -0.2rem;
+	background-size:0.2rem 1.2rem;
+}
+.Search-ztree-ul .search-ztree-li-last{
+	position:relative;
+}
+.Search-ztree-ul .search-ztree-li-last>a{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+.Search-ztree-ul .search-ztree-li-last>a>.saerchZtree-icon{
+	display:inline-block;
+	vertical-align:middle;
+	width:0.2rem;
+	height:0.2rem;
+	background:url(/template/img/communityNew/ztree-icon.png) no-repeat;
+	background-position:0 -0.4rem;
+	background-size:0.2rem 1.2rem;
+	margin-left: 0.32rem;
+}
+.Search-ztree-ul .search-ztree-li-last>a>searchZtree-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.Search-ztree-ul .search-ztree-li-last:hover{
+	background:-webkit-linear-gradient(left,#11b3ff,#0076ef);
+    background:-moz-linear-gradient(left,#11b3ff,#0076ef);
+    background:-ms-linear-gradient(left,#11b3ff,#0076ef);
+    background:linear-gradient(left,#11b3ff,#0076ef);
+}
+.Search-ztree-ul .search-ztree-li-last:hover a{
+    color: #fff;
+}
+.Search-ztree-ul .oper-btn{
+	position:absolute;
+	top:0.02rem;
+	right:0.25rem;
+	display:none;
+}
+.Search-ztree-ul .search-ztree-li-last:hover .oper-btn{
+	display:block;
+}
+.Search-ztree-ul .oper-btn i{
+	display:inline-block;
+	vertical-align:middle;
+	width:0.2rem;
+	height:0.2rem;
+	margin-right:0.1rem;
+	background:url(/template/img/communityNew/ztree-icon.png) no-repeat;
+	background-position:0 -0.6rem;
+	background-size:0.2rem 1.2rem;
+	cursor:pointer;
+}
+.Search-ztree-ul .oper-btn i.tag-icon{
+	background-position:0 -0.8rem;
+}
+.Search-ztree-ul .oper-btn i.threeMap-icon{
+	background-position:0 -1rem;
+}

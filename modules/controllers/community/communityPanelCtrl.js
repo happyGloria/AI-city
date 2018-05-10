@@ -32,6 +32,97 @@ define(
                     "padding-top": "0px"
                 });
 
+                /* 树状搜索 */
+                $scope.zTreeSearch = {
+                    communityAllInfo:[
+                        {
+                            name:'奉贤区',
+                            open:true,
+                            id:'1',
+                            children:[                   
+                                {
+                                    name:'南桥镇',
+                                    open:true,
+                                    // children: basicConfig.villageAllInfo
+                                    children: [
+                                        { name: '杨王村', open: true },
+                                        { name: '江海村', open: true }
+                                    ]
+                                },
+                                {
+                                    name:'金汇镇',
+                                    open:true,
+                                    children: [
+                                        { name: '金星村', open: true },
+                                        { name: '金碧汇虹苑小区', open: true }
+                                    ]
+                                },
+                            ]
+                        }
+                    ],
+                    open: function(item){
+						item.open = !item.open;
+						$scope.$apply();
+                    },
+                    blur: function(){
+                        console.log('trigger blur')
+                        if($("#zTreeVillage").is(":visible")){
+                            $("#zTreeVillage").css("display","none");
+                        }
+                    },
+                    focus: function(){
+                        console.log('trigger focus')
+						$("#zTreeVillage").css("display","block");
+                        // $(".slimScrollDiv").css("display","block");
+                        // 添加滚动条
+                        // var slimScrollDivW = $('.slimScrollDiv').width();
+                        // slimScrollDivW = $('.slimScrollDiv').children().first().width();
+                        // $(".zTreeVillage").slimScroll({
+                        //     width: '',
+                        //     height: '2.5rem',
+                        //     size: '8px', //组件宽度
+                        //     color: '#7E7D7D', //滚动条颜色#0565b0
+                        //     opacity: 0.1, //滚动条透明度
+                        //     alwaysVisible: false, //是否 始终显示组件
+                        //     railVisible: true, //是否 显示轨道
+                        //     railColor: '#0565b0', //轨道颜色
+                        //     railOpacity: 0.1, //轨道透明度
+                        //     railClass: 'slimScrollRail', //轨道div类名 
+                        //     barClass: 'slimScrollBar', //滚动条div类名
+                        //     wrapperClass: 'slimScrollDiv', //外包div类名
+                        //     allowPageScroll: false, //是否 使用滚轮到达顶端/底端时，滚动窗口
+                        //     wheelStep: 20, //滚轮滚动量
+                        //     borderRadius: '7px', //滚动条圆角
+                        //     railBorderRadius: '7px' //轨道圆角
+                        // });
+					},
+					keyup: function(){
+						this.communityAllInfo = getTreeName($.extend(true,[],communityAllInfoCopy),this.communityName);						
+                    },
+                    communityLocation: function(){
+                        console.log('trigger communityLocation')
+                        $("#zTreeVillage").css("display","none");
+						// $(".slimScrollDiv").css("display","none");
+						// map.setZoom(18);
+                        // map.setCenter(new NPMapLib.Geometry.Point(obj.map2d.center.split(',')[0], obj.map2d.center.split(',')[1]));
+                        // var searchFlag = true;
+						// angular.forEach(psArr, function(ps) {
+                        //     if(searchFlag){
+                        //         if(obj.villageCode == ps.villageCode) {
+                        //             ps.setStyle({
+                        //                 color: 'red', //颜色
+                        //                 fillColor: '#00b99e', //填充颜色
+                        //                 weight: 2, //宽度，以像素为单位
+                        //                 opacity: 1, //透明度，取值范围0 - 1
+                        //                 fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+                        //                 //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+                        //             })
+                        //         }
+                        //     }
+						// })
+                    }
+                }
+
                 /*
                  * 左、右、下面板，打开/关闭
                  **/

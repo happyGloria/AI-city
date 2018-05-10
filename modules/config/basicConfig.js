@@ -12,7 +12,7 @@ define([],function(){
             { id: 6, pId: 3, code: '310120106203', name: '金星村', addressName: '奉贤区金汇镇金星村' },
             { id: 7, pId: 3, code: '310120106005', name: '金碧汇虹苑', addressName: '奉贤区金汇镇金碧汇虹苑' }
         ],
-        communityAllInfo: [
+        villageAllInfo: [
             {
                 name: "田林十二村",
                 villageCode:'310104006001',
