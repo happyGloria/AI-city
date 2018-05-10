@@ -1,6 +1,6 @@
 <style>
     body{
-        overflow:hidden;
+        overflow-x:hidden;
     }
 </style>
 <div class="communityPanel">
@@ -202,215 +202,215 @@
             <!-- 底部面板 -->
     
         </div>
-        <div class="PanelBottom" ng-class="isBottomClosed ? 'closed' : ''">
-            <div class="triggerToggle" title="打开/关闭面板" ng-click="togglePanelBottomMethod()"></div>
-            <ul class="headerTab">
-                <li ng-click="changeBottomTab('face')" ng-class="bottomTabAction=='face'?'active':''">人脸</li>
-                <li ng-click="changeBottomTab('opendoor')" ng-class="bottomTabAction=='opendoor'?'active':''">开门</li>
-                <li ng-click="changeBottomTab('cars')" ng-class="bottomTabAction=='cars'?'active':''">过车</li>
-                <li ng-click="changeBottomTab('wifi')" ng-class="bottomTabAction=='wifi'?'active':''">WIFI</li>
-                <li ng-click="changeBottomTab('fire')" ng-class="bottomTabAction=='fire'?'active':''">消防</li>
-                <li ng-click="changeBottomTab('move')" ng-class="bottomTabAction=='move'?'active':''">位移</li>
-                <li ng-click="changeBottomTab('monitoring')" ng-class="bottomTabAction=='monitoring'?'active':''">监控</li>
-            </ul>
-            <div class="contentView">
-                <!-- 人脸 -->
-                <div class="faceContent" ng-if="bottomTabAction=='face'">
-                    <div class="btnBox">
-                        <span ng-click="changeFaceTab('all')" ng-class="faceTabAction=='all'?'active':''">全部</span>
-                        <span ng-click="changeFaceTab('have')" ng-class="faceTabAction=='have'?'active':''">实有力量</span>
-                        <span ng-click="changeFaceTab('follow')" ng-class="faceTabAction=='follow'?'active':''">关注人员</span>
-                        <div class="headerInfo">
-                            <span class="title">今日人脸感知</span>
-                            <span>感知发现: 8人</span>
-                            <span>感知离开: 2人</span>
+                <ul class="PanelBottom">
+                    <div class="triggerToggle" title="打开/关闭面板"></div>
+                    <ul class="headerTab">
+                        <li ng-click="changeBottomTab('face')" ng-class="bottomTabAction=='face'?'active':''">人脸</li>
+                        <li ng-click="changeBottomTab('opendoor')" ng-class="bottomTabAction=='opendoor'?'active':''">开门</li>
+                        <li ng-click="changeBottomTab('cars')" ng-class="bottomTabAction=='cars'?'active':''">过车</li>
+                        <li ng-click="changeBottomTab('wifi')" ng-class="bottomTabAction=='wifi'?'active':''">WIFI</li>
+                        <li ng-click="changeBottomTab('fire')" ng-class="bottomTabAction=='fire'?'active':''">消防</li>
+                        <li ng-click="changeBottomTab('move')" ng-class="bottomTabAction=='move'?'active':''">位移</li>
+                        <li ng-click="changeBottomTab('monitoring')" ng-class="bottomTabAction=='monitoring'?'active':''">监控</li>
+                    </ul>
+                    <div class="contentView">
+                        <!-- 人脸 -->
+                        <div class="faceContent" ng-if="bottomTabAction=='face'">
+                            <div class="btnBox">
+                                <span ng-click="changeFaceTab('all')" ng-class="faceTabAction=='all'?'active':''">全部</span>
+                                <span ng-click="changeFaceTab('have')" ng-class="faceTabAction=='have'?'active':''">实有力量</span>
+                                <span ng-click="changeFaceTab('follow')" ng-class="faceTabAction=='follow'?'active':''">关注人员</span>
+                                <div class="headerInfo">
+                                    <span class="title">今日人脸感知</span>
+                                    <span>感知发现: 8人</span>
+                                    <span>感知离开: 2人</span>
+                                </div>
+                                <div class="searchBox">
+                                    <div class="searchBtn"></div>
+                                    <input class='search' type="text" placeholder="请输入关键字搜索">
+                                </div>
+                            </div>
+                            <div class="contentBox">
+                                <ul class="content all" ng-if="faceTabAction=='all'">
+                                    <li>
+                                        <div class="img-box">
+                                            <div class="biduiIcon faceicon" title='比对'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="fangdaIcon faceicon" title='放大'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="guijiIcon faceicon" title='轨迹'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="img"></div>
+                                        </div>
+                                        <div class="info">
+                                            <p>东大门进</p>
+                                            <p>2018-05-10 14:03:32</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="content have" ng-if="faceTabAction=='have'">
+                                    <li>
+                                        <div class="img-box">
+                                            <div class="biduiIcon faceicon" title='比对'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="fangdaIcon faceicon" title='放大'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="guijiIcon faceicon" title='轨迹'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="img"></div>
+                                        </div>
+                                        <div class="info">
+                                            <h2>金灿修</h2>
+                                            <p>保洁</p>
+                                            <p>2018-05-10 14:03:32</p>
+                                            <p>东边门出</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="content follow" ng-if="faceTabAction=='follow'">
+                                    <li>
+                                        <div class="img-box">
+                                            <div class="biduiIcon faceicon" title='比对'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="fangdaIcon faceicon" title='放大'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="guijiIcon faceicon" title='轨迹'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="img"></div>
+                                        </div>
+                                        <div class="info">
+                                            <h2>金灿修</h2>
+                                            <p>保洁</p>
+                                            <p>2018-05-10 14:03:32</p>
+                                            <p>东边门出</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-box">
+                                            <div class="biduiIcon faceicon" title='比对'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="fangdaIcon faceicon" title='放大'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="guijiIcon faceicon" title='轨迹'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="img"></div>
+                                        </div>
+                                        <div class="info">
+                                            <h2>金灿修</h2>
+                                            <p>保洁</p>
+                                            <p>2018-05-10 14:03:32</p>
+                                            <p>东边门出</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="img-box">
+                                            <div class="biduiIcon faceicon" title='比对'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="fangdaIcon faceicon" title='放大'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="guijiIcon faceicon" title='轨迹'>
+                                                <div class="icon"></div>
+                                            </div>
+                                            <div class="img"></div>
+                                        </div>
+                                        <div class="info">
+                                            <h2>金灿修</h2>
+                                            <p>保洁</p>
+                                            <p>2018-05-10 14:03:32</p>
+                                            <p>东边门出</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="searchBox">
-                            <div class="searchBtn"></div>
-                            <input class='search' type="text" placeholder="请输入关键字搜索">
+                        <!-- 开门 -->
+                        <div class="opendoorContent" ng-if="bottomTabAction=='opendoor'">
+                            <div class="btnBox">
+                                <div class="headerInfo">
+                                    <span class="title">今日刷卡异常</span>
+                                    <span>未处理: 8人</span>
+                                    <span>已处理: 2人</span>
+                                </div>
+                            </div>
+                            <div class="contentBox">
+                                <ul class="content">
+                                    <li>
+                                        <h2>于美华</h2>
+                                        <p class="title">门禁机:</p>
+                                        <p class="con">杨王村53号-A9</p>
+                                        <p class="title">访问时间：</p>
+                                        <p class="con">2018-05-09 12:35:21</p>
+                                        <p class="title">抓拍影像：</p>
+                                        <p class="con">
+                                            <span class='active'>查看照片</span>
+                                            <span>查看视频</span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contentBox">
-                        <ul class="content all" ng-if="faceTabAction=='all'">
-                            <li>
-                                <div class="img-box">
-                                    <div class="biduiIcon faceicon" title='比对'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="fangdaIcon faceicon" title='放大'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="guijiIcon faceicon" title='轨迹'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="img"></div>
+                        <!-- 过车 -->
+                        <div class="carsContent" ng-if="bottomTabAction=='cars'">
+                            <div class="btnBox">
+                                <span ng-click="changeCarsTab('iscar')" ng-class="carsTabAction=='iscar'?'active':''">机动车</span>
+                                <span ng-click="changeCarsTab('notcar')" ng-class="carsTabAction=='notcar'?'active':''">非机动车</span>
+                                <div class="headerInfo">
+                                    <span class="title">今日刷卡异常</span>
+                                    <span>未处理: 8人</span>
+                                    <span>已处理: 2人</span>
                                 </div>
-                                <div class="info">
-                                    <p>东大门进</p>
-                                    <p>2018-05-10 14:03:32</p>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="content have" ng-if="faceTabAction=='have'">
-                            <li>
-                                <div class="img-box">
-                                    <div class="biduiIcon faceicon" title='比对'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="fangdaIcon faceicon" title='放大'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="guijiIcon faceicon" title='轨迹'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="img"></div>
-                                </div>
-                                <div class="info">
-                                    <h2>金灿修</h2>
-                                    <p>保洁</p>
-                                    <p>2018-05-10 14:03:32</p>
-                                    <p>东边门出</p>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="content follow" ng-if="faceTabAction=='follow'">
-                            <li>
-                                <div class="img-box">
-                                    <div class="biduiIcon faceicon" title='比对'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="fangdaIcon faceicon" title='放大'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="guijiIcon faceicon" title='轨迹'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="img"></div>
-                                </div>
-                                <div class="info">
-                                    <h2>金灿修</h2>
-                                    <p>保洁</p>
-                                    <p>2018-05-10 14:03:32</p>
-                                    <p>东边门出</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="img-box">
-                                    <div class="biduiIcon faceicon" title='比对'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="fangdaIcon faceicon" title='放大'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="guijiIcon faceicon" title='轨迹'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="img"></div>
-                                </div>
-                                <div class="info">
-                                    <h2>金灿修</h2>
-                                    <p>保洁</p>
-                                    <p>2018-05-10 14:03:32</p>
-                                    <p>东边门出</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="img-box">
-                                    <div class="biduiIcon faceicon" title='比对'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="fangdaIcon faceicon" title='放大'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="guijiIcon faceicon" title='轨迹'>
-                                        <div class="icon"></div>
-                                    </div>
-                                    <div class="img"></div>
-                                </div>
-                                <div class="info">
-                                    <h2>金灿修</h2>
-                                    <p>保洁</p>
-                                    <p>2018-05-10 14:03:32</p>
-                                    <p>东边门出</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- 开门 -->
-                <div class="opendoorContent" ng-if="bottomTabAction=='opendoor'">
-                    <div class="btnBox">
-                        <div class="headerInfo">
-                            <span class="title">今日刷卡异常</span>
-                            <span>未处理: 8人</span>
-                            <span>已处理: 2人</span>
+                            </div>
+                            <div class="contentBox">
+                                <ul class="content iscar" ng-if="carsTabAction=='iscar'">
+                                    <li>
+                                        <div class="img-box">
+                                            <div class="img"></div>
+                                        </div>
+                                        <div class="info">
+                                            <h2>沪ER3827</h2>
+                                            <p>东大门进</p>
+                                            <p>2018-05-10 14:03:32</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="content notcar" ng-if="carsTabAction=='notcar'">
+                                    <li>
+                                        <div class="img-box">
+                                            <div class="img"></div>
+                                        </div>
+                                        <div class="info">
+                                            <h2>李广发</h2>
+                                            <p>东大门进</p>
+                                            <p>2018-05-10 14:03:32</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                        <!-- WIFI -->
+                        <div class="wifiContent" ng-if="bottomTabAction=='wifi'">4</div>
+                        <!-- 消防 -->
+                        <div class="fireContent" ng-if="bottomTabAction=='fire'">5</div>
+                        <!-- 位移 -->
+                        <div class="moveContent" ng-if="bottomTabAction=='move'">6</div>
+                        <!-- 检测 -->
+                        <div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">7</div>
                     </div>
-                    <div class="contentBox">
-                        <ul class="content">
-                            <li>
-                                <h2>于美华</h2>
-                                <p class="title">门禁机:</p>
-                                <p class="con">杨王村53号-A9</p>
-                                <p class="title">访问时间：</p>
-                                <p class="con">2018-05-09 12:35:21</p>
-                                <p class="title">抓拍影像：</p>
-                                <p class="con">
-                                    <span class='active'>查看照片</span>
-                                    <span>查看视频</span>
-                                </p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- 过车 -->
-                <div class="carsContent" ng-if="bottomTabAction=='cars'">
-                    <div class="btnBox">
-                        <span ng-click="changeCarsTab('iscar')" ng-class="carsTabAction=='iscar'?'active':''">机动车</span>
-                        <span ng-click="changeCarsTab('notcar')" ng-class="carsTabAction=='notcar'?'active':''">非机动车</span>
-                        <div class="headerInfo">
-                            <span class="title">今日刷卡异常</span>
-                            <span>未处理: 8人</span>
-                            <span>已处理: 2人</span>
-                        </div>
-                    </div>
-                    <div class="contentBox">
-                        <ul class="content iscar" ng-if="carsTabAction=='iscar'">
-                            <li>
-                                <div class="img-box">
-                                    <div class="img"></div>
-                                </div>
-                                <div class="info">
-                                    <h2>沪ER3827</h2>
-                                    <p>东大门进</p>
-                                    <p>2018-05-10 14:03:32</p>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="content notcar" ng-if="carsTabAction=='notcar'">
-                            <li>
-                                <div class="img-box">
-                                    <div class="img"></div>
-                                </div>
-                                <div class="info">
-                                    <h2>李广发</h2>
-                                    <p>东大门进</p>
-                                    <p>2018-05-10 14:03:32</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- WIFI -->
-                <div class="wifiContent" ng-if="bottomTabAction=='wifi'">4</div>
-                <!-- 消防 -->
-                <div class="fireContent" ng-if="bottomTabAction=='fire'">5</div>
-                <!-- 位移 -->
-                <div class="moveContent" ng-if="bottomTabAction=='move'">6</div>
-                <!-- 检测 -->
-                <div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">7</div>
-            </div>
-        </div>
+                </ul>
     </div>
 </div>
 

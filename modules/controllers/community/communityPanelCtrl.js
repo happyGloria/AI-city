@@ -185,7 +185,6 @@ define(
                  **/
                 var leftPanel = $(".PanelLeft"),
                     rightPanel = $(".PanelRight"),
-                    bottomPanel =  $(".PanelBottom"),
                     togglePanelTime = 1000,
                     closePosition = '-4.19rem',
                     openPosition = '.08rem';
@@ -208,17 +207,7 @@ define(
 						$scope.isRightClosed = true;
 						rightPanel.animate({ right: closePosition }, togglePanelTime);
 					}
-                }
-                $scope.isBottomClosed = false;
-				$scope.togglePanelBottomMethod = function() {
-					if($scope.isBottomClosed) {
-						$scope.isBottomClosed = false;
-						bottomPanel.animate({ bottom: openPosition }, togglePanelTime);
-					} else {
-						$scope.isBottomClosed = true;
-						bottomPanel.animate({ bottom: '-3.5rem' }, togglePanelTime);
-					}
-                }
+				}
                 
                 // WeekAnalysis 一周感知数据量统计
                 var WeekAnalysisECharts = null;
