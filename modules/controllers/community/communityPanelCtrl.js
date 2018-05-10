@@ -123,6 +123,13 @@ define(
                     }
                 }
 
+                /* 引入 二维地图 */
+                function registerTemplate() {
+					$scope.templateUrl = 'template/html/modules/community/2dMapPanel.html';
+					app.register.controller('templateControllerMap', dMapCtrl);
+                }
+                registerTemplate()
+
                 /*
                  * 左、右、下面板，打开/关闭
                  **/
