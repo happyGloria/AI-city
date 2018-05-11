@@ -129,7 +129,7 @@ define(['app', 'angularAMD'], function (app, angularAMD) {
                         controllerUrl: 'controllers/common/topbar'
                     }),
                     'main@index': angularAMD.route({
-                        templateUrl: 'template/html/modules/community/communityPanel.html?v='+(new Date()).valueOf(),
+                        templateUrl: 'template/html/modules/community/communityPanel.html',
                         controllerUrl: 'controllers/community/communityPanelCtrl'
                     })
                 },
