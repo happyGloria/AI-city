@@ -178,7 +178,6 @@ define(
 					$scope.templateUrl = 'template/html/modules/community/2dMapPanel.html';
 					app.register.controller('templateControllerMap', dMapCtrl);
                 }
-                registerTemplate()
 
                 /*
                  * 左、右、下面板，打开/关闭
@@ -219,6 +218,40 @@ define(
                         bottomPanel.animate({ bottom: '-3.5rem' }, togglePanelTime);
 					}
                 }
+
+                /*
+                 * 一标六实统计页
+                 **/
+                querySixEntityCount();
+                var region_ids=[]
+				function querySixEntityCount() {
+					communityAllService.sixEntityCount({ villageCode: '' }).then(function(res) {
+                        if(res.resultCode === 200){
+                            var data = res.data;
+                            $scope.sixEntityCountData = data;
+                            $scope.sixEntityCountData.realPowerEquipmentCount = (data.realPowerCount ? data.realPowerCount : 0 ) + '/' + (data.realEquipmentCount ? data.realEquipmentCount : 0);
+                        }
+						// if(resp.resultCode == '200') {
+                        //     $scope.sixEntityCountData = resp.data;
+                        //     $scope.sixEntityCountData.realPowerEquipmentCount = (resp.data.realPowerCount?resp.data.realPowerCount:0) + '/' + (resp.data.realEquipmentCount?resp.data.realEquipmentCount:0);
+                        //     region_ids=[];
+                        //     $.each(configFile.villageNameMap,function(i,v){
+                        //             region_ids.push(v.code);
+                        //     });
+                        //     yituFace.yitu_incomingAndLeaving(region_ids,function(data){
+                        //         var incoming_dossier=0;
+                        //         var leaving_dossier=0;
+                        //         $.each(data.incoming_dossier,function(i,v){
+                        //             incoming_dossier+=Number(v);
+                        //         });
+                        //         $.each(data.leaving_dossier,function(i,v){
+                        //             leaving_dossier+=Number(v);
+                        //         });
+                        //         $scope.sixEntityCountData.peopleCount=$scope.sixEntityCountData.peopleCount+incoming_dossier-leaving_dossier;
+                        //     })
+                        // }
+					}).catch(function() {}).finally(function() {});
+				}
                 
                 // WeekAnalysis 一周感知数据量统计
                 var WeekAnalysisECharts = null;
@@ -413,6 +446,9 @@ define(
                 $scope.changeCarsTab = function (val) {
                     $scope.carsTabAction = val;
                 }
+
+
+                registerTemplate()
             }
         ]
 		return communityPanelCtrl;

@@ -141,7 +141,8 @@ input,button{
     border-radius: 50%;
 }
 .userPanel .nicename{
-    font-size: 12px;
+    font-size: .12rem;
+    line-height: 0.24rem;
     color: #5dbef6;
     display: inline-block;
     vertical-align: middle;
@@ -909,6 +910,10 @@ input,button{
 }
 .MapPanelController .item:hover .sub>i{
     background-position-y: -.14rem;
+}
+
+.PVGContent{
+    height: 1.6rem;
 }
 
 /* zTree search */
