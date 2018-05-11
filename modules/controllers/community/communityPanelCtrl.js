@@ -304,7 +304,6 @@ define(
                         }
                         dataArr.push(v.name)
                     })
-                    console.log(dataArr, nameArr)
                 })
                 var SafeOption = echartsConfig.triangleEcharts(['窖井盖', '微型\n消防站', '消防栓', '电壶', '烟感', '车辆\n卡口', '人脸\n卡口', 'WIFI\n探针', '门禁', '摄像机'], ['170', '40', '178', '98', '74', '111', '100', '28', '144', '56'])
                 setEchart("SafeAnalysis", SafeOption)

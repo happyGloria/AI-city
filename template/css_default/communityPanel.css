@@ -314,7 +314,7 @@ input,button{
 }
 .PanelBottom .headerTab li.active{
     border: solid 1px rgba(14, 104, 178, 0.6);
-    background: rgba(10, 29, 59, .9);
+    background: #1f364e;
     color: #5dbef6;
     line-height: 0.3rem;
     border-bottom: 0 none;
