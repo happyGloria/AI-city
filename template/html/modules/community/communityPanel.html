@@ -100,7 +100,7 @@
                     <li>实有单位<a class="num" target="_blank" href="#/index/communityAllNewChart/3">{{ sixEntityCountData.realCompany || 0 }}</a></span></li>
                     <li><a class="num" target="_blank" href="#/index/communityAllNewChart/4">{{ sixEntityCountData.securityEquipmentCount|| 0 }}</a></span>实有安防设施</li>
                     <li>实有警情事件<a class="num" target="_blank" href="#/index/communityAllNewChart/5">{{ sixEntityCountData.policeEventCount || 0 }}</a></span></li>
-                    <li><a class="num" target="_blank" href="#/index/communityAllNewChart/6">{{ sixEntityCountData.realPowerEquipmentCount || 0 }}</a></span>实有力量与装备</li>
+                    <li><a class="num" target="_blank" href="#/index/communityAllNewChart/6">{{ sixEntityCountData.realPowerEquipmentCount || '0/0' }}</a></span>实有力量/装备</li>
                 </ul>
             </div> <!-- yblsPanel end -->
             <div class="commonPanel">
@@ -504,7 +504,29 @@
                     </div>
                 </div>
                 <!-- 检测 -->
-                <div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">7</div>
+                <div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">
+                    <div class="btnBox clearfix">
+                        <span ng-click="queryChangeTab('1,2')" ng-class="{'active':activeClass}">小区监控</span>
+                        <span ng-click="queryChangeTab('4')" ng-class="{'active':!activeClass}">道路监控</span>
+                        <div class="searchBox">
+                            <div class="searchBtn"></div>
+                            <input class='search' type="text" placeholder="请输入关键字搜索">
+                        </div>
+                    </div>
+                    <div class="CameraBox">
+                        <h2 class="Hd">杨王村</h2>
+                        <div class="Bd">
+                            <ul class="CameraList clearfix" ng-if="faceTabAction=='all'">
+                                <li ng-click="clickCamera(item)" ng-repeat="item in cameraList">
+                                    <span class="name">{{item.name}}</span>
+                                </li>
+                                <li ng-click="clickCamera(item)">
+                                    <span class="name">{{item.name}}ddd</span>
+                                </li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>
                 <div class="ckContent" ng-if="bottomTabAction=='ck'">8</div>
             </div>
         </div>
