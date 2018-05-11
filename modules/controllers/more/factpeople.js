@@ -14,8 +14,16 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
         var urlParam = {};
         $scope.villageName = configFile.communityCodeToName[villageCode];
         function init() {
+          var key = 'factpeopleUrlParam_'
+          if (localStorage.getItem(key)){
+            urlParam = JSON.parse(localStorage.getItem(key))
+            $scope.changeTab('people', true)
+            localStorage.removeItem(key)
+          }
           statisticsFun();
         };
+        
+        
         /**
          * 数据统计
          * @type {[type]}
@@ -309,6 +317,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
             myChart.on('click', function(params) {
               urlParam.type = "sexType";
               urlParam.data = params.data;
+              console.log(urlParam)
               toFactPeoplePage();
             });
             myChart1.on('click', function(params) {
@@ -319,6 +328,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
             myChart2.on('click', function(params) {
               urlParam.type = "ageType";
               urlParam.data = params.data;
+              console.log(urlParam)
               toFactPeoplePage()
             });
             myChart3.on('click', function(params) {
@@ -345,7 +355,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
               toFactEventPage();
             })
           }
-
           function toFactPeoplePage() {
             $scope.changeTab('people', true)
           }
@@ -427,7 +436,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
           //   })
           // }
         };
-
         /**
          * 人口信息
          * @type {[type]}
@@ -535,7 +543,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
           $scope.selectLabel = function(item) {
             item.active = !item.active;
           };
-
           //查询1
           $scope.factPeople1 = function(value) {
             debugger

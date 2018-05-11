@@ -304,6 +304,23 @@ define(
                 }
                 // 1. 一标六实数据
                 var villageCode = $stateParams.villageCode || '';
+                function openDataList(title, url) {
+                    var newurl = window.location.href.split("/#")[0] + url;
+                    window.open(newurl);
+                }
+                var securityFacilityObj = {
+                    // "摄像机": "/#/index/camera/" + villageCode, //cameraType为空
+                    "门禁": "/#/index/doorrecord/" + villageCode,
+                    "WiFi探针": "/#/index/communityMac/" + villageCode,
+                    // "人脸卡口": "/#/index/camera/" + villageCode,//cameraType 传2
+                    // "车辆卡口": "/#/index/communityCar/" + villageCode, //单独的车辆列表
+                    "烟感": "/#/index/smoke/" + villageCode,
+                    "电表": "/#/index/smoke/" + villageCode,
+                    "电弧": "/#/index/smoke/" + villageCode,
+                    // "消防栓": "",
+                    // "微型消防站": "",
+                    // "窨井盖": ""
+                }
                 // 2.1 年龄分布
                 /* 实有力量~~~~~~~~~~~· */
                 //1)实有力量在线统计
@@ -313,18 +330,16 @@ define(
                         if (resp.resultCode == '200') {
                             var powerData = resp.data
                             var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [powerData.jy||0, powerData.jwgb||0, powerData.lzz||0, powerData.zyz||0, powerData.ba||0, powerData.bj||0, powerData.bl||0, powerData.kd||0])
-                            setEchart("PowerAnalysis", powerOption)
+                            setEchart("PowerAnalysis", powerOption ,function (params) {
+                                //点击实有力量图标跳转页面
+                                var key = "resident_";
+                                localStorage.setItem(key, JSON.stringify(params.dataIndex + 1 + ""));
+                                var newurl = window.location.href.split("/#")[0] + "#/index/factPower/";
+                                window.open(newurl);
+                            })
                         }
                     }).catch(function () { }).finally(function () { });
                 }
-                // var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [1, 2, 3, 4, 5, 6, 7, 8])
-                // setEchart("PowerAnalysis", powerOption, function (params) {
-                //     //点击图标跳转页面
-                //     var key = "resident_";
-                //     localStorage.setItem(key, JSON.stringify(params.dataIndex + 1 + ""));
-                //     var newurl = window.location.href.split("/#")[0] + "#/index/factPower/";
-                //     window.open(newurl);
-                // })
                 //实有安防设施分析
                 moreService.queryFacilityList({ villageCode: villageCode }).then(function (resp) {
                     var dataArr = []
@@ -339,7 +354,22 @@ define(
                         nameArr.push(v.name)
                     })
                     var SafeOption = echartsConfig.triangleEcharts(nameArr, dataArr)
-                    setEchart("SafeAnalysis", SafeOption)
+                    setEchart("SafeAnalysis", SafeOption, function (params) {
+                        console.log(params)
+                        var urlParam = {
+							name: params.name,
+                            value: params.value
+                        };
+                        if (urlParam.name == "门禁" || urlParam.name == "WiFi\n探针" || urlParam.name == "烟感" || urlParam.name == "电表" || urlParam.name == "电弧") {
+                            urlParam.type = "toDevicePage";
+                            var key = "facility_" + villageCode;
+                            localStorage.setItem(key, JSON.stringify(urlParam));
+
+                            openDataList(urlParam.name, securityFacilityObj[urlParam.name]);
+                        } else {
+                            return
+                        }
+                    })
                 })
                 /* 实有人员分析 */
                 $scope.peopleTabAction = 'age';
@@ -373,7 +403,7 @@ define(
                 initiInside()
 
                 function afterGetData(data) {
-                    console.log(data)
+                    var urlParam={}
                     //年龄
                     var ageCon = ["age1", "age2", "age3","age4","age5"]
                     var ageConfig = {
@@ -392,8 +422,17 @@ define(
                         ageIndex.push(k+1)
                     })
                     //年龄分布
-                    var PeopleOption = echartsConfig.pieEcharts(ageIndex, ageName, ageData)
-                    setEchart("ageAnalysis", PeopleOption)
+                    var ageOption = echartsConfig.pieEcharts(ageIndex, ageName, ageData)
+                    setEchart("ageAnalysis", ageOption, function (params) {
+                        //点击年龄分布图跳转页面
+                        urlParam.type ='ageType'
+                        urlParam.data = params.data
+                        urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
+                        var key = "factpeopleUrlParam_";
+                        localStorage.setItem(key, JSON.stringify(urlParam));
+                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/";
+                        window.open(newurl);
+                    })
                     /* 性别与户籍 */
                     //性别 
                     var sexData = [];
@@ -407,8 +446,18 @@ define(
                         sexIndex.push(k+1)
                     })
                     var SexOption = echartsConfig.pieEcharts(sexName, sexIndex, sexData)
-                    SexOption.title.text = '性别\n比例',
-                    setEchart("sexAnalysis", SexOption)
+                    SexOption.title.text = '性别\n比例'
+                    SexOption.series[0].label.normal.formatter = "{b}: \n{c} ({d}%)"
+                    setEchart("sexAnalysis", SexOption, function (params) {
+                        //点击性别图跳转页面
+                        urlParam.type ='sexType'
+                        urlParam.data = params.data
+                        urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
+                        var key = "factpeopleUrlParam_";
+                        localStorage.setItem(key, JSON.stringify(urlParam));
+                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/";
+                        window.open(newurl);
+                    })
                     //户籍
                     var peopleTypeData = [];
                     var peopleTypeName = [];
@@ -420,19 +469,29 @@ define(
                     })
                     // 户籍
                     var HujiOption = echartsConfig.pieEcharts(peopleTypeName, peopleTypeIndex, peopleTypeData)
-                    HujiOption.title.text = '户籍\n比例',
-                    setEchart("hujiAnalysis", HujiOption)
+                    HujiOption.title.text = '户籍\n比例'
+                    HujiOption.series[0].label.normal.formatter = "{b}: \n{c} ({d}%)"
+                    setEchart("hujiAnalysis", HujiOption, function (params) {
+                        //点击户籍分布图跳转页面
+                        urlParam.type ='fromType'
+                        urlParam.data = params.data
+                        urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
+                        var key = "factpeopleUrlParam_";
+                        localStorage.setItem(key, JSON.stringify(urlParam));
+                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/";
+                        window.open(newurl);
+                    })
                 }
-
-                
-
 
                 // 人员性质
                 // PeopleOption.title.text = '人员\n性质',
                 //     setEchart("personnelAnalysis", PeopleOption)
+                
+
+
 
                 //底部面板切换
-                $scope.bottomTabAction = 'face';
+                $scope.bottomTabAction = 'move';
                 $scope.changeBottomTab = function (val) {
                     $scope.bottomTabAction = val;
                 }
@@ -446,7 +505,16 @@ define(
                 $scope.changeCarsTab = function (val) {
                     $scope.carsTabAction = val;
                 }
-
+                //消防面板切换
+                $scope.fireTabAction = 'smoke';
+                $scope.changeFireTab = function (val) {
+                    $scope.fireTabAction = val;
+                } 
+                //位移面板切换
+                $scope.moveTabAction = 'jinggai';
+                $scope.changeMoveTab = function (val) {
+                    $scope.moveTabAction = val;
+                }
 
                 registerTemplate()
             }

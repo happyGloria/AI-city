@@ -150,12 +150,7 @@ input,button{
 .userPanel .nicename .arrow{
     position: relative;
 }
-.userPanel .nicename .arrow::before{
 
-}
-.userPanel .nicename .arrow::after{
-
-}
 .userPanel .dropdown{
     position: absolute;
     top: 100%;
@@ -403,7 +398,7 @@ input,button{
 .contentBox{
     margin-top: 0.1rem;
     overflow-x: scroll;
-    height: 2.2rem;
+    height: 2.25rem;
     overflow-y: hidden;
     width: 100%;
 }
@@ -450,8 +445,10 @@ input,button{
 .contentView .content li:hover {
     background-color: #0e3357;
 }
-.contentView .content li:hover .info {
-    color:#fff
+.contentView .content li:hover .info,
+.contentView .content li:hover .title,
+.contentView .content li:hover .con {
+    color:#fff;
 }
 
 .contentView .content li:hover .img-box .faceicon{
@@ -522,12 +519,10 @@ input,button{
     font-size: 0.14rem;
 }
 /* 底部栏 开门 开门 开门 */
-.opendoorContent .content{
-    margin-top: 0.1rem;
-}
+
 .opendoorContent .content li{
     width: 1.8rem;
-    height: 2rem;
+    height: 2.1rem;
     border: solid 1px #0e3357;
     padding: 0.2rem;
 }
@@ -536,19 +531,19 @@ input,button{
     color:#fff;
     line-height: 0.18rem;
 }
+.content li>p{
+    font-size: 0.12rem;
+    line-height: 0.24rem;
+    height: 0.24rem;
+}
 .content li .title {
     margin-top: 0.05rem;
-    font-size: 0.12rem;
     color:#5dbef6;
-    line-height: 0.24rem;
 }
 
 .content li .con {
     overflow: hidden;
-    font-size: 0.12rem;
     color: #9ff4fb;
-    line-height: 0.24rem;
-    height: 0.24rem;
 }
 .content li .con span {
     cursor: pointer;
@@ -567,8 +562,67 @@ input,button{
     background-image: linear-gradient(0deg, #1590e7 0%, #17bcec 100%);
 
 }
+/* 底部栏 消防 消防 消防 */
+.fireContent .content {
+    margin-top: 0.1rem;
+}
+.content li .icon-tag {
+    width: 0.2rem;
+    display: block;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 0.12rem;
+    background: url(../img/tag-icon.png) no-repeat center/cover;
+}
+.content li .normal,
+.content li .abnormal {
+    color:#34ff34;
+    padding-left: 0.12rem;
+    position: relative;
+}
+.content li .normal span,
+.content li .abnormal span {
+    width: 0.06rem;
+    height: 0.06rem;
+    position: absolute;
+    background: #34ff34;
+    top: 0.09rem;
+    border-radius:50%; 
+    left: 0;
+    display: block;
+}
+.content li .abnormal{
+    color:#e81e6d
+}
+.content li .abnormal span{
+    background: #e81e6d;
+}
 
-
+.fireContent .content.smoke li,
+.fireContent .content.electronic li,
+.fireContent .content.water li {
+    width:1.2rem;
+    height: 2rem;
+    border: solid 1px #0e3357;
+    padding: 0.2rem;
+}
+.fireContent .content.polling li {
+    padding: 0.1rem 0.2rem;
+    width:1.6rem;
+    height: 2rem;
+    border: solid 1px #0e3357;
+}
+.onGuardItem{
+    color: #bcf3ff;
+    font-size: 0.14rem;
+    line-height: 0.24rem;
+}
+.onGuardItem .icon-tag {
+    display: inline-block;
+    background: url(../img/tag-icon.png) no-repeat center/cover;
+    height: 0.24rem;
+    width: 0.18rem;
+}
 
 /* 左右面板 */
 .PanelMain .yblsPanel{
@@ -753,6 +807,10 @@ input,button{
 .commonPanel .PeopleAnalysis .personnelAnalysisView>div {
     float: left;
 }
+.commonPanel .PeopleAnalysis .sexAnalysisView .sexAnalysis{
+    margin-right: 0.47rem;
+}
+
 
 
 .commonPanel .PowerAnalysis{
@@ -769,8 +827,9 @@ input,button{
     height: 1.45rem;
 }
 .commonPanel .content .canvasView{
-    width:1.4rem;
-    height:1.4rem;
+    width:1.6rem;
+    height:1.6rem;
+    margin-top: -0.1rem;
 }
 .commonPanel .content .canvasView1 {
     width: 4rem;

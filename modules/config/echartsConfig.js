@@ -251,7 +251,7 @@ define([],function(){
                 series: [
                     {
                     type: 'pie',
-                    radius: ['30%', '65%'],
+                    radius: ['30%', '70%'],
                     // center: [150, 50],
                     color: dataColor,
                     label: {
@@ -265,7 +265,7 @@ define([],function(){
                     labelLine: {
                         normal: {
                             show: true,
-                            length: -15,
+                            length: -20,
                             length2: 0
                         }
                     },
@@ -274,7 +274,7 @@ define([],function(){
                 }, 
                 {
                     type: 'pie',
-                    radius: ['65%', '80%'],
+                    radius: ['70%', '80%'],
                     // center: [150, 50],
                     color: dataColor2,
                     label: {

@@ -49,6 +49,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 				}
                 
                 $scope.toFactPeoplePage=function(obj) {
+
                 	debugger
         	        var urlParam = {
 						name: obj.name,
@@ -96,6 +97,8 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 						var urlParam = {};
 					})
 					$scope.toDevicePage = function(obj){
+						console.log(obj)
+						return
 						debugger
 						var urlParam = {
 							name: obj.name,
