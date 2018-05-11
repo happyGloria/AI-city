@@ -811,8 +811,8 @@ input,button{
 .commonPanel .PeopleAnalysis .personnelAnalysisView>div {
     float: left;
 }
-.commonPanel .PeopleAnalysis .sexAnalysisView .sexAnalysis{
-    margin-right: 0.47rem;
+.commonPanel .PeopleAnalysis .sexAnalysisView .hujiAnalysis {
+   float: right;
 }
 
 

@@ -197,23 +197,29 @@ define([],function(){
         pieEcharts: function (dataName, dataName2, value){
             var myColor = [
                 new echarts.graphic.LinearGradient(0, 0, 0, 1,
-                    [{ offset: 0, color: '#0677d6' }, { offset: 1, color: '#009db9' }]
+                    [{ offset: 0, color: 'rgb(6, 119, 214)' }, { offset: 1, color: 'rgb(0,157,185)' }]
                 ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
-                    [{ offset: 0, color: '#e81e6d' }, { offset: 1, color: '#ff6b31' }]
+                    [{ offset: 0, color: 'rgb(232,30,109)' }, { offset: 1, color: 'rgb(255,107,49)' }]
                 ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
-                    [{ offset: 0, color: '#095ca3' }, { offset: 1, color: '#0084aa' }]
+                    [{ offset: 0, color: 'rgb(9,92,163)' }, { offset: 1, color: 'rgb(0,132,170)' }]
                 ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
-                    [{ offset: 0, color: '#0e8af3' }, { offset: 1, color: '#07b8d8' }]
+                    [{ offset: 0, color: 'rgb(14,138,243)' }, { offset: 1, color: 'rgb(7,184,216)' }]
                 ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
-                    [{ offset: 0, color: '#095ca3' }, { offset: 1, color: '#0084aa' }]
+                    [{ offset: 0, color: 'rgb(9,92,163)' }, { offset: 1, color: 'rgb(0,132,170)' }]
                 ),
             ]
             var myColor2 = [
-                'rgba(7,184,216,0.5)',
-                'rgba(232,30,109,0.5)',
-                'rgba(14,138,243,0.5)',
-                'rgba(7,184,216,0.5)',
-                'rgba(14,138,243,0.5)',
+                new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: 'rgba(6, 119, 214,0.3)' }, { offset: 1, color: 'rgba(0,157,185,0.3)' }]
+                ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: 'rgba(232,30,109,0.3)' }, { offset: 1, color: 'rgba(255,107,49,0.3)' }]
+                ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: 'rgba(9,92,163,0.3)' }, { offset: 1, color: 'rgba(0,132,170,0.3)' }]
+                ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: 'rgba(14,138,243,0.3)' }, { offset: 1, color: 'rgba(7,184,216,0.3)' }]
+                ), new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                    [{ offset: 0, color: 'rgba(9,92,163,0.3)' }, { offset: 1, color: 'rgba(0,132,170,0.3)' }]
+                ),
             ]
             var dataarr = []
             var dataarr2 = []

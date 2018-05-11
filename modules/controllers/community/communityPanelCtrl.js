@@ -453,7 +453,7 @@ define(
                     })
                     var SexOption = echartsConfig.pieEcharts(sexName, sexIndex, sexData)
                     SexOption.title.text = '性别\n比例'
-                    SexOption.series[0].label.normal.formatter = "{b}: \n{c} ({d}%)"
+                    SexOption.series[0].label.normal.formatter = "{b}\n{c} ({d}%)"
                     setEchart("sexAnalysis", SexOption, function (params) {
                         //点击性别图跳转页面
                         urlParam.type ='sexType'
@@ -476,7 +476,7 @@ define(
                     // 户籍
                     var HujiOption = echartsConfig.pieEcharts(peopleTypeName, peopleTypeIndex, peopleTypeData)
                     HujiOption.title.text = '户籍\n比例'
-                    HujiOption.series[0].label.normal.formatter = "{b}: \n{c} ({d}%)"
+                    HujiOption.series[0].label.normal.formatter = "{b}\n{c} ({d}%)"
                     setEchart("hujiAnalysis", HujiOption, function (params) {
                         //点击户籍分布图跳转页面
                         urlParam.type ='fromType'
