@@ -95,12 +95,12 @@
             <div class="triggerToggle" title="打开/关闭面板" ng-click="togglePanelLeftMethod()"></div>
             <div class="yblsPanel">
                 <ul class="yblsCountList">
-                    <li>实有人口<span class="num">0</span></li>
-                    <li><span class="num">0</span>实有房屋</li>
-                    <li>实有单位<span class="num">0</span></li>
-                    <li><span class="num">0</span>实有安防设施</li>
-                    <li>实有警情事件<span class="num">0</span></li>
-                    <li><span class="num">0</span>实有力量与装备</li>
+                    <li>实有人口<a class="num" target="_blank" href="#/index/communityAllNewChart/1">{{ sixEntityCountData.peopleCount || 0 }}</a></span></li>
+                    <li><a class="num" target="_blank" href="#/index/communityAllNewChart/2">{{ sixEntityCountData.buildingCount || 0 }}</a></span>实有房屋</li>
+                    <li>实有单位<a class="num" target="_blank" href="#/index/communityAllNewChart/3">{{ sixEntityCountData.realCompany || 0 }}</a></span></li>
+                    <li><a class="num" target="_blank" href="#/index/communityAllNewChart/4">{{ sixEntityCountData.securityEquipmentCount|| 0 }}</a></span>实有安防设施</li>
+                    <li>实有警情事件<a class="num" target="_blank" href="#/index/communityAllNewChart/5">{{ sixEntityCountData.policeEventCount || 0 }}</a></span></li>
+                    <li><a class="num" target="_blank" href="#/index/communityAllNewChart/6">{{ sixEntityCountData.realPowerEquipmentCount || 0 }}</a></span>实有力量与装备</li>
                 </ul>
             </div> <!-- yblsPanel end -->
             <div class="commonPanel">
@@ -197,7 +197,7 @@
                 </div>
             </div>
             <div class="roundPanel">
-                <div class="content">
+                <div class="content PVGContent">
                     ...
                 </div>
             </div>

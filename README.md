@@ -10,6 +10,19 @@
 
 
 
+### 请求
+
+#### 1. 一标六实
+
+* 地址： `/zhsq/statistics/sixEntityCount?villageCode= `
+* 请求方式：`get`
+
+
+
+
+
+
+
 ## Build Setup
 
 ``` bash
