@@ -146,6 +146,10 @@ input,button{
     color: #5dbef6;
     display: inline-block;
     vertical-align: middle;
+    padding-right: .2rem;
+    background: url(../img/login/logout.png) right center no-repeat;
+    background-size: .14rem .14rem;
+    cursor: pointer;
 }
 .userPanel .nicename .arrow{
     position: relative;
@@ -974,6 +978,7 @@ input,button{
 .PVGContent{
     height: 1.6rem;
 }
+
 /* CameraList 一标六实-底部面板 - 监控 */
 .CameraBox{
     padding-top: 0.18rem;
@@ -1043,6 +1048,7 @@ input,button{
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
 /* zTree search */
 .SearchTree{
     display: none;

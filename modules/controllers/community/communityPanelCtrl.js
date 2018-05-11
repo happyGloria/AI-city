@@ -3,8 +3,8 @@
  * 2018/05/08
  */
 define(
-    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'config/common','yituFace'],
-    function (app, controllers, $, configFile, basicConfig, echartsConfig, notify, dark, dMapCtrl, common, yituFace) {
+    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'controllers/user/userCtrl', 'config/common','yituFace'],
+    function (app, controllers, $, configFile, basicConfig, echartsConfig, notify, dark, dMapCtrl, userCtrl, common, yituFace) {
 		var communityPanelCtrl = [
             '$scope',
             '$state',
@@ -32,6 +32,8 @@ define(
                 $(".layout").find("div").eq(0).css({
                     "padding-top": "0px"
                 });
+
+                $scope.villageCode = $stateParams.id || 310120101234;
 
                 /* 时间 */
                 Date.prototype.format = function (format) {
@@ -178,6 +180,96 @@ define(
 					$scope.templateUrl = 'template/html/modules/community/2dMapPanel.html';
 					app.register.controller('templateControllerMap', dMapCtrl);
                 }
+                /* 顶部左侧用户信息 */
+                function registerUserTemplate() {
+					$scope.userTplUrl = 'template/html/modules/component/user.tpl.html';
+					app.register.controller('userTplController', userCtrl);
+                }
+                registerUserTemplate()
+
+                /* 底部面板 - 监控Tab */
+                $scope.cameraList = [];
+                $scope.queryCameraTab = function(val){
+                    if(val === "4"){
+                        $scope.activeClass = false;
+                        $scope.villageCode = "";
+                        $scope.text.selectCamera = "";
+                    }else{
+                        $scope.activeClass = true;
+                        $scope.villageCode = $stateParams.id;
+                        $scope.text.selectCamera = "";
+                    }
+                    $scope.nowType = val;
+                    queryCameraList("",val);
+                };
+                //查询摄像机列表start
+                function queryCameraList(text,type) {
+                    $scope.queryMapInfoData = function(id) {
+                        var req = {
+                            villageCode: $scope.villageCode,
+                            cameraType: type || "4",
+                            cameraName: text || "",
+                            pageNumber: 1,
+                            pageSize: 999,
+                        }
+                        communityAllService.queryMapInfo(id, req).then(function(data) {
+                            if(data.resultCode == '200') {
+                                var list = data.data.list;
+                                $scope.cameraList = list;  
+                                $scope.villageName = data.villageName;
+                            } else {
+                                notify.warn('无法获取摄像机列表');
+                            }
+                        });
+                    }
+                    $scope.queryMapInfoData('camera');
+                };
+                //搜索摄像机
+                $scope.searchText = function(text){
+                    queryCameraList(text,$scope.nowType);
+                };
+                //清空搜索摄像机
+                $scope.clearSearchText = function(){
+                    $scope.text.selectCamera = "";
+                    queryCameraList();
+                };
+                queryCameraList();
+
+                //根据id查询当前摄像头视频
+                $scope.queryVideoById = function(item) {
+                    var obj={
+                        cameraIp: item.cameraIp,
+                        cameraPort: item.cameraPort,
+                        login: item.login,
+                        password: item.password,
+                        name: item.name,
+                        pvgChannelID: item.pvgChannelID
+                    }
+                    localStorage.setItem("ocxVideoSrc",JSON.stringify(obj));
+                    cameraId = layer.open({
+                        type: 2,
+                        title: "视频播放",
+                        skin: 'dark-layer',
+                        area: ['8.6rem', '6.8rem'],
+                        shade: 0.8,
+                        closeBtn: 1,
+                        shadeClose: true,
+                        content: ['../../../lib/video/ocx_video.html', 'no'],
+                        end: function(index, layero) {
+                            cameraId = null;
+                        },
+                        success: function(layero) {
+                            $(layero).find("iframe").contents().find("html").css('font-size', $("html").css('font-size'))
+                            $(layero).append(iframe);
+                        }
+                    });
+                }
+                // 点击摄像头
+                var cameraId;
+                $scope.clickCamera = function(obj) {
+                    $scope.queryVideoById(obj);
+                }
+                console.log($scope.cameraList, 258)
 
                 /* 底部面板 - 监控Tab */
                 $scope.cameraList = [];
@@ -531,7 +623,7 @@ define(
                     })
                     var SexOption = echartsConfig.pieEcharts(sexName, sexIndex, sexData)
                     SexOption.title.text = '性别\n比例'
-                    SexOption.series[0].label.normal.formatter = "{b}: \n{c} ({d}%)"
+                    SexOption.series[0].label.normal.formatter = "{b}\n{c} ({d}%)"
                     setEchart("sexAnalysis", SexOption, function (params) {
                         //点击性别图跳转页面
                         urlParam.type ='sexType'
@@ -554,7 +646,7 @@ define(
                     // 户籍
                     var HujiOption = echartsConfig.pieEcharts(peopleTypeName, peopleTypeIndex, peopleTypeData)
                     HujiOption.title.text = '户籍\n比例'
-                    HujiOption.series[0].label.normal.formatter = "{b}: \n{c} ({d}%)"
+                    HujiOption.series[0].label.normal.formatter = "{b}\n{c} ({d}%)"
                     setEchart("hujiAnalysis", HujiOption, function (params) {
                         //点击户籍分布图跳转页面
                         urlParam.type ='fromType'
