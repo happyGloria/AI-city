@@ -75,7 +75,7 @@
             </li>
             <li>
                 <div class="text">MAC</div>
-                <div class="num">0</div>
+                <d class="num">0</d iv>
             </li>
         </ul>
     </div>
@@ -492,6 +492,12 @@
                     <div class="btnBox">
                         <span ng-click="changeMoveTab('jinggai')" ng-class="moveTabAction=='jinggai'?'active':''">窨井盖</span>
                     </div>
+                    <ul class="content jinggai" ng-if="moveTabAction=='jinggai'">
+                        <li>
+                            <p class="icon-tag">1</p>
+
+                        </li>
+                    </ul>
                 </div>
                 <!-- 检测 -->
                 <div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">7</div>
