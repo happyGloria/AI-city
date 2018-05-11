@@ -256,18 +256,18 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 							};
 							
 						}
-						if(type==1){
-						   factDateInit=data;
-                           yituFace.yitu_incomingAndLeaving(region_ids,function(data){
-                           var obj=data;
-                          $.each(factDateInit,function(i,v){
-                                v.num=Number(v.num)+Number(obj.incoming_dossier[v.code])-Number(obj.leaving_dossier[v.code]);
-                          });
-                            $scope.chartdData=setTableStyleObj(factDateInit);
-						  });
-						}else{
+						// if(type==1){
+						//    factDateInit=data;
+                        //    yituFace.yitu_incomingAndLeaving(region_ids,function(data){
+                        //    var obj=data;
+                        //   $.each(factDateInit,function(i,v){
+                        //         v.num=Number(v.num)+Number(obj.incoming_dossier[v.code])-Number(obj.leaving_dossier[v.code]);
+                        //   });
+                        //     $scope.chartdData=setTableStyleObj(factDateInit);
+						//   });
+						// }else{
                            $scope.chartdData=setTableStyleObj(data);
-						}
+						// }
 						
 					})
 				};
