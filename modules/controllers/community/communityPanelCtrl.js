@@ -291,7 +291,6 @@ define(
                     window.open(newurl);
                 })
                 //实有安防设施分析
-<<<<<<< HEAD
                 moreService.queryFacilityList({ villageCode: '' }).then(function (resp) {
                     console.log(resp.data)
                     var dataArr = []
@@ -306,23 +305,6 @@ define(
                         dataArr.push(v.name)
                     })
                 })
-=======
-                // moreService.queryFacilityList({ villageCode: '' }).then(function (resp) {
-                //     console.log(resp.data)
-                //     var dataArr = []
-                //     var nameArr = []
-                //     resp.data.forEach(function (v, k) {
-                //         dataArr.push(v.num)
-                //         if (v.name === 'WiFi探针') {
-                //             v.name = 'WiFi\n探针'
-                //         } else if (v.name.length > 2) {
-                //             v.name = v.name.substr(0, 2) + '\n' + v.name.substr(2, a.length - 2)
-                //         }
-                //         dataArr.push(v.name)
-                //     })
-                //     console.log(dataArr, nameArr)
-                // })
->>>>>>> 2816d09cf8a71942a169e53884b1c6804fc864b9
                 var SafeOption = echartsConfig.triangleEcharts(['窖井盖', '微型\n消防站', '消防栓', '电壶', '烟感', '车辆\n卡口', '人脸\n卡口', 'WIFI\n探针', '门禁', '摄像机'], ['170', '40', '178', '98', '74', '111', '100', '28', '144', '56'])
                 setEchart("SafeAnalysis", SafeOption)
 				/* 实有人员分析 */,
