@@ -272,16 +272,6 @@ define(
                 // 2.1 年龄分布
                 /* 实有力量~~~~~~~~~~~· */
                 //1)实有力量在线统计
-                queryRealPower()
-                function queryRealPower() {
-                    communityAllService.realPower().then(function (resp) {
-                        if (resp.resultCode == '200') {
-                            var powerData = resp.data
-                            var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [powerData.jy, powerData.jwgb, powerData.lzz, powerData.zyz, powerData.ba, powerData.bj, powerData.bl, powerData.kd])
-                            setEchart("PowerAnalysis", powerOption)
-                        }
-                    }).catch(function () { }).finally(function () { });
-                }
                 var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [1, 2, 3, 4, 5, 6, 7, 8])
                 setEchart("PowerAnalysis", powerOption, function (params) {
                     //点击图标跳转页面
