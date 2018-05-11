@@ -811,8 +811,8 @@ input,button{
 .commonPanel .PeopleAnalysis .personnelAnalysisView>div {
     float: left;
 }
-.commonPanel .PeopleAnalysis .sexAnalysisView .hujiAnalysis {
-   float: right;
+.commonPanel .PeopleAnalysis .sexAnalysisView .sexAnalysis{
+    margin-right: 0.47rem;
 }
 
 
@@ -977,6 +977,76 @@ input,button{
 
 .PVGContent{
     height: 1.6rem;
+}
+
+/* CameraList 一标六实-底部面板 - 监控 */
+.CameraBox{
+    padding-top: 0.18rem;
+}
+.CameraBox .Hd{
+    font-size: .14rem;
+    height: 0.24rem;
+    line-height: 0.24rem;
+    color: #bcf3ff;
+    padding-left: 0.3rem;
+    background: url(../img/panel/village.png) left center no-repeat;
+    background-size: .24rem .24rem;
+}
+.CameraBox .Bd{
+    margin-top: 0.2rem;
+    overflow-y: scroll;
+    height: 1.5rem;
+}
+.CameraList{
+
+}
+.CameraList li{
+    position: relative;
+    font-size: .12rem;
+    height: .3rem;
+    line-height: 0.3rem;
+    width: 2.22rem;
+	border-radius: .03rem;
+    border: 1px solid #0e3357;
+    float: left;
+    margin-right: 0.1rem;
+    margin-bottom: 0.1rem;
+    color: #9ff4fb;
+    padding: 0 .32rem 0 .4rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+.CameraList li::before,
+.CameraList li::after{
+    position: absolute;
+    top: 0;
+    content: '';
+    width: 0.28rem;
+    height: 0.28rem;
+    background: url(../img/panel/CameraIcon.png) no-repeat;
+    background-size: .56rem .56rem;
+}
+.CameraList li::before{
+    left: 0.06rem;
+    background-position: 0 0;
+}
+.CameraList li::after{
+    right: 0.06rem;
+    background-position: -0.28rem 0;
+}
+.CameraList li:hover{
+    background: #0e3357;
+    color: #fff;
+}
+.CameraList li:hover::before,
+.CameraList li:hover::after{
+    background-position-y: -0.28rem;
+}
+.CameraList li .name{
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 /* zTree search */

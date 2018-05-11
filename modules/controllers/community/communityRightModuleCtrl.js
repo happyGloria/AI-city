@@ -238,6 +238,10 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     queryCameraList("",val);
                 };
 
+                // 监控 切换
+                $scope.queryCameraTab = function(type){
+
+                }
                 //查询摄像机列表start
                 function queryCameraList(text,type) {
                     $scope.queryMapInfoData = function(id) {
