@@ -204,7 +204,6 @@
                 <li ng-click="changeBottomTab('fire')" ng-class="bottomTabAction=='fire'?'active':''">消防</li>
                 <li ng-click="changeBottomTab('move')" ng-class="bottomTabAction=='move'?'active':''">位移</li>
                 <li ng-click="changeBottomTab('monitoring')" ng-class="bottomTabAction=='monitoring'?'active':''">监控</li>
-                <li ng-click="changeBottomTab('ck')" ng-class="bottomTabAction=='ck'?'active':''">CK</li>
             </ul>
             <div class="contentView">
                 <!-- 人脸 -->
@@ -395,107 +394,32 @@
                     </div>
                 </div>
                 <!-- WIFI -->
-                <div class="wifiContent" ng-if="bottomTabAction=='wifi'"></div>
+                <div class="wifiContent" ng-if="bottomTabAction=='wifi'">4</div>
                 <!-- 消防 -->
-                <div class="fireContent" ng-if="bottomTabAction=='fire'">
-                    <div class="btnBox">
-                        <span ng-click="changeFireTab('smoke')" ng-class="fireTabAction=='smoke'?'active':''">烟雾</span>
-                        <span ng-click="changeFireTab('electronic')" ng-class="fireTabAction=='electronic'?'active':''">电气</span>
-                        <span ng-click="changeFireTab('water')" ng-class="fireTabAction=='water'?'active':''">水压</span>
-                        <span ng-click="changeFireTab('polling')" ng-class="fireTabAction=='polling'?'active':''">巡检</span>
-                        <span ng-click="changeFireTab('onGuard')" ng-class="fireTabAction=='onGuard'?'active':''">在岗</span>
-                    </div>
-                    <div class="contentBox">
-                        <ul class="content smoke" ng-if="fireTabAction=='smoke'">
-                            <li>
-                                <p class="icon-tag">1</p>
-                                <p class="title">地点:</p>
-                                <p class="con">车棚1  (北)</p>
-                                <p class="title">状态:</p>
-                                <p class="normal">
-                                    <span></span>
-                                    正常
-                                </p>
-                                <p class="abnormal">
-                                    <span></span>
-                                    异常
-                                </p>
-                            </li>
-                        </ul>
-                        <ul class="content electronic" ng-if="fireTabAction=='electronic'">
-                            <li>
-                                <p class="icon-tag">1</p>
-                                <p class="title">地点:</p>
-                                <p class="con">车棚1 (北)</p>
-                                <p class="title">状态:</p>
-                                <p class="normal">
-                                    <span></span>
-                                    正常
-                                </p>
-                                <p class="abnormal">
-                                    <span></span>
-                                    异常
-                                </p>
-                            </li>
-                        </ul>
-                        <ul class="content water" ng-if="fireTabAction=='water'">
-                            <li>
-                                <p class="icon-tag">1</p>
-                                <p class="title">地点:</p>
-                                <p class="con">车棚1 (北)</p>
-                                <p class="title">状态:</p>
-                                <p class="normal">
-                                    <span></span>
-                                    正常
-                                </p>
-                                <p class="abnormal">
-                                    <span></span>
-                                    异常
-                                </p>
-                            </li>
-                        </ul>
-                        <ul class="content polling" ng-if="fireTabAction=='polling'">
-                            <li>
-                                <p class="icon-tag">1</p>
-                                <h2>于美华</h2>
-                                <p class="title">门禁机:</p>
-                                <p class="con">杨王村53号-A9</p>
-                                <p class="title">访问时间：</p>
-                                <p class="con">2018-05-09 12:35:21</p>
-                                <p class="title">抓拍影像：</p>
-                                <p class="con">
-                                    <span class='active'>查看照片</span>
-                                    <span>查看视频</span>
-                                </p>
-                            </li>
-                        </ul>
-                        
-                        <div class="onGuardItem" ng-if="fireTabAction=='onGuard'">
-                            <span class="icon-tag" >&</span>微型消防站
-                        </div>
-                        <ul class="content onGuard" ng-if="fireTabAction=='onGuard'">
-                            <li>
-                                <div class="img-box">
-                                    <div class="img"></div>
-                                </div>
-                                <div class="info">
-                                    <h2>焦俊一</h2>
-                                    <p>微型消防站</p>
-                                    <p>2018-05-09 12:35:21</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <div class="fireContent" ng-if="bottomTabAction=='fire'">5</div>
                 <!-- 位移 -->
-                <div class="moveContent" ng-if="bottomTabAction=='move'">
-                    <div class="btnBox">
-                        <span ng-click="changeMoveTab('jinggai')" ng-class="moveTabAction=='jinggai'?'active':''">窨井盖</span>
+                <div class="moveContent" ng-if="bottomTabAction=='move'">6</div>
+                <!-- 检测 -->
+                <div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">
+                    <div class="btnBox clearfix">
+                        <span ng-click="queryChangeTab('1,2')" ng-class="{'active':activeClass}">小区监控</span>
+                        <span ng-click="queryChangeTab('4')" ng-class="{'active':!activeClass}">道路监控</span>
+                        <div class="searchBox">
+                            <div class="searchBtn"></div>
+                            <input class='search' type="text" placeholder="请输入关键字搜索">
+                        </div>
+                    </div>
+                    <div class="CameraBox">
+                        <h2 class="Hd">杨王村</h2>
+                        <div class="Bd">
+                            <ul class="CameraList clearfix" ng-if="faceTabAction=='all'">
+                                <li ng-click="clickCamera(item)" ng-repeat="item in cameraList">
+                                    <span class="name">{{item.name}}</span>
+                                </li>
+                            </ul>
+                        </div>                        
                     </div>
                 </div>
-                <!-- 检测 -->
-                <div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">7</div>
-                <div class="ckContent" ng-if="bottomTabAction=='ck'">8</div>
             </div>
         </div>
     </div>
