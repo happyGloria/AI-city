@@ -128,7 +128,6 @@ define([],function(){
         //实有力量,实有安装设备
         triangleEcharts: function (xAxisdData, seriesData) {
             return {
-                backgroundColor: '#0e2147',
                 grid: {
                     left: '-8%',
                     right: '0%',
