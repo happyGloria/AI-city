@@ -3,8 +3,8 @@
  * 2018/05/08
  */
 define(
-    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'config/common','yituFace'],
-    function (app, controllers, $, configFile, basicConfig, echartsConfig, notify, dark, dMapCtrl, common, yituFace) {
+    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'controllers/user/userCtrl', 'config/common','yituFace'],
+    function (app, controllers, $, configFile, basicConfig, echartsConfig, notify, dark, dMapCtrl, userCtrl, common, yituFace) {
 		var communityPanelCtrl = [
             '$scope',
             '$state',
@@ -178,6 +178,12 @@ define(
 					$scope.templateUrl = 'template/html/modules/community/2dMapPanel.html';
 					app.register.controller('templateControllerMap', dMapCtrl);
                 }
+                /*  */
+                function registerUserTemplate() {
+					$scope.userTplUrl = 'template/html/modules/component/user.tpl.html';
+					app.register.controller('userTplController', userCtrl);
+                }
+                registerUserTemplate()
 
                 /*
                  * 左、右、下面板，打开/关闭
