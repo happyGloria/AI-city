@@ -272,6 +272,16 @@ define(
                 // 2.1 年龄分布
                 /* 实有力量~~~~~~~~~~~· */
                 //1)实有力量在线统计
+                // queryRealPower()
+                // function queryRealPower() {
+                //     communityAllService.realPower().then(function (resp) {
+                //         if (resp.resultCode == '200') {
+                //             var powerData = resp.data
+                //             var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [powerData.jy, powerData.jwgb, powerData.lzz, powerData.zyz, powerData.ba, powerData.bj, powerData.bl, powerData.kd])
+                //             setEchart("PowerAnalysis", powerOption)
+                //         }
+                //     }).catch(function () { }).finally(function () { });
+                // }
                 var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [1, 2, 3, 4, 5, 6, 7, 8])
                 setEchart("PowerAnalysis", powerOption, function (params) {
                     //点击图标跳转页面
@@ -281,21 +291,21 @@ define(
                     window.open(newurl);
                 })
                 //实有安防设施分析
-                moreService.queryFacilityList({ villageCode: '' }).then(function (resp) {
-                    console.log(resp.data)
-                    var dataArr = []
-                    var nameArr = []
-                    resp.data.forEach(function (v, k) {
-                        dataArr.push(v.num)
-                        if (v.name === 'WiFi探针') {
-                            v.name = 'WiFi\n探针'
-                        } else if (v.name.length > 2) {
-                            v.name = v.name.substr(0, 2) + '\n' + v.name.substr(2, a.length - 2)
-                        }
-                        dataArr.push(v.name)
-                    })
-                    console.log(dataArr, nameArr)
-                })
+                // moreService.queryFacilityList({ villageCode: '' }).then(function (resp) {
+                //     console.log(resp.data)
+                //     var dataArr = []
+                //     var nameArr = []
+                //     resp.data.forEach(function (v, k) {
+                //         dataArr.push(v.num)
+                //         if (v.name === 'WiFi探针') {
+                //             v.name = 'WiFi\n探针'
+                //         } else if (v.name.length > 2) {
+                //             v.name = v.name.substr(0, 2) + '\n' + v.name.substr(2, a.length - 2)
+                //         }
+                //         dataArr.push(v.name)
+                //     })
+                //     console.log(dataArr, nameArr)
+                // })
                 var SafeOption = echartsConfig.triangleEcharts(['窖井盖', '微型\n消防站', '消防栓', '电壶', '烟感', '车辆\n卡口', '人脸\n卡口', 'WIFI\n探针', '门禁', '摄像机'], ['170', '40', '178', '98', '74', '111', '100', '28', '144', '56'])
                 setEchart("SafeAnalysis", SafeOption)
 				/* 实有人员分析 */,
