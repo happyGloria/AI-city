@@ -33,6 +33,8 @@ define(
                     "padding-top": "0px"
                 });
 
+                $scope.villageCode = $stateParams.id || 310120101234;
+
                 /* 时间 */
                 Date.prototype.format = function (format) {
                     var o = {
@@ -187,22 +189,34 @@ define(
 
                 /* 底部面板 - 监控Tab */
                 $scope.cameraList = [];
+                $scope.queryCameraTab = function(val){
+                    if(val === "4"){
+                        $scope.activeClass = false;
+                        $scope.villageCode = "";
+                        $scope.text.selectCamera = "";
+                    }else{
+                        $scope.activeClass = true;
+                        $scope.villageCode = $stateParams.id;
+                        $scope.text.selectCamera = "";
+                    }
+                    $scope.nowType = val;
+                    queryCameraList("",val);
+                };
                 //查询摄像机列表start
                 function queryCameraList(text,type) {
                     $scope.queryMapInfoData = function(id) {
                         var req = {
-                            villageCode: $scope.villageCode || '310120101234',
-                            cameraType: type || "1,2",
+                            villageCode: $scope.villageCode,
+                            cameraType: type || "4",
                             cameraName: text || "",
                             pageNumber: 1,
                             pageSize: 999,
                         }
-                        console.log(id, 251, req)
                         communityAllService.queryMapInfo(id, req).then(function(data) {
                             if(data.resultCode == '200') {
                                 var list = data.data.list;
                                 $scope.cameraList = list;  
-                                $scope.villageName = data.villageName;  
+                                $scope.villageName = data.villageName;
                             } else {
                                 notify.warn('无法获取摄像机列表');
                             }
@@ -255,6 +269,7 @@ define(
                 $scope.clickCamera = function(obj) {
                     $scope.queryVideoById(obj);
                 }
+                console.log($scope.cameraList, 258)
 
                 /*
                  * 左、右、下面板，打开/关闭
