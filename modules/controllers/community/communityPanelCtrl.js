@@ -3,20 +3,19 @@
  * 2018/05/08
  */
 define(
-    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'controllers/user/userCtrl', 'config/common','yituFace'],
-    function (app, controllers, $, configFile, basicConfig, echartsConfig, notify, dark, dMapCtrl, userCtrl, common, yituFace) {
-		var communityPanelCtrl = [
-            '$scope',
-            '$state',
-            '$stateParams',
-            'communityAllService',
-            'mapService',
-            '$compile',
-            'communityRightModuleService',
-            'moreService',
+    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'controllers/common/ocxCtrl', 'controllers/user/userCtrl', 'config/common','yituFace'],
+    function (app, controllers, $, configFile, basicConfig, echartsConfig, notify, dark, dMapCtrl, OCXCtrl, userCtrl, common, yituFace) {
+        var communityPanelCtrl = [
+            '$scope', 
+            '$state', 
+            '$stateParams', 
+            'communityAllService', 
+            'mapService', 
+            '$compile', 
+            'communityRightModuleService', 
+            'moreService', 
             '$interval',
-            'moreService',
-            function ($scope, $state, $stateParams, communityAllService, mapService, $compile, rightService, moreService, $interval, moreService) {
+			function($scope, $state, $stateParams, communityAllService, mapService, $compile, rightService, moreService, $interval) {
                 // 设置样式
                 window.onResize = function() {
                     var baseWidth = 1920;
@@ -176,16 +175,24 @@ define(
                 }
 
                 /* 引入 二维地图 */
-                function registerTemplate() {
+                function register2dMapTemplate() {
 					$scope.templateUrl = 'template/html/modules/community/2dMapPanel.html';
 					app.register.controller('templateControllerMap', dMapCtrl);
                 }
+                register2dMapTemplate()
                 /* 顶部左侧用户信息 */
                 function registerUserTemplate() {
 					$scope.userTplUrl = 'template/html/modules/component/user.tpl.html';
 					app.register.controller('userTplController', userCtrl);
                 }
                 registerUserTemplate()
+
+                /* OCX 视频播放器 */
+                function registerOcxModuleTemplate(){
+                    $scope.ocxModelTpl = 'template/html/modules/component/ocxModel.html';
+                    app.register.controller('ocxModelController', OCXCtrl)
+                }
+                registerOcxModuleTemplate()
 
                 //查询摄像机列表start
                 function queryCameraList(text,type) {
@@ -610,7 +617,6 @@ define(
                     $scope.moveTabAction = val;
                 }
 
-                registerTemplate()
             }
         ]
 		return communityPanelCtrl;
