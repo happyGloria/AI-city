@@ -121,26 +121,25 @@
                             </li>
                             <li >
                                 <div class="item">
-                                    <div class="index">2</div>
+                                    <div class="index">3</div>
                                     <div class="ageAnalysisTitle">41-60岁</div>
                                     <div class="prenum">0%</div>
                                 </div>
                             </li>
                             <li >
                                 <div class="item">
-                                    <div class="index">2</div>
+                                    <div class="index">4</div>
                                     <div class="ageAnalysisTitle">61-80岁</div>
                                     <div class="prenum">0%</div>
                                 </div>
                             </li>
                             <li >
                                 <div class="item">
-                                    <div class="index">2</div>
+                                    <div class="index">5</div>
                                     <div class="ageAnalysisTitle">80岁以上</div>
                                     <div class="prenum">0%</div>
                                 </div>
                             </li>
-            
                         </ul>
                     </div>
                     <!-- 性别与户籍 -->
@@ -469,7 +468,6 @@
                                 </p>
                             </li>
                         </ul>
-                        
                         <div class="onGuardItem" ng-if="fireTabAction=='onGuard'">
                             <span class="icon-tag" >&</span>微型消防站
                         </div>
@@ -492,12 +490,37 @@
                     <div class="btnBox">
                         <span ng-click="changeMoveTab('jinggai')" ng-class="moveTabAction=='jinggai'?'active':''">窨井盖</span>
                     </div>
-                    <ul class="content jinggai" ng-if="moveTabAction=='jinggai'">
-                        <li>
-                            <p class="icon-tag">1</p>
+                    <div class="contentBox">
+                        <ul class="content jinggai" ng-if="moveTabAction=='jinggai'">
+                            <li>
+                                <p class="icon-tag">1</p>
+                                <div class="hengpai">
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">设备类型：</div>
+                                        <h2 class="rightItem">雨水井</h2>
+                                    </div>
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">地址：</div>
+                                        <p class="rightItem">杨王村40号第六</p>
+                                    </div>
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">设备编号：</div>
+                                        <p class="rightItem">sh000067</p>
+                                    </div>
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">移动状态：</div>
+                                        <span class="rightItem moveType">报告测试</span>
+                                    </div>
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">设备图片</div>
+                                        <span class="rightItem viewPic">查看照片</span>
+                                    </div>
+                                </div>
+                                
 
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <!-- 检测 -->
                 <div class="monitoringContent" ng-if="bottomTabAction=='monitoring'">
@@ -523,7 +546,43 @@
                         </div>                        
                     </div>
                 </div>
-                <div class="ckContent" ng-if="bottomTabAction=='ck'">8</div>
+                <!-- CK -->
+                <div class="ckContent">
+                    <div class="contentBox">
+                        <ul class="content" >
+                            <li>
+                                <p class="icon-tag">1</p>
+                                <div class="hengpai">
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">用户名称：</div>
+                                        <h2 class="rightItem">远大心胸医院</h2>
+                                    </div>
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">用户地址：</div>
+                                        <p class="rightItem">龙漕路218号</p>
+                                    </div>
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">状态：</div>
+                                        <p class="alarm rightItem">
+                                            <span></span>
+                                            报警
+                                        </p>
+                                    </div>
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">负责人：</div>
+                                        <p class="rightItem">曹潜</p>
+                                    </div>
+                                    <div class="hengpaiItem">
+                                        <div class="leftItem">联系方式：</div>
+                                        <p class="rightItem">15921421391</p>
+                                    </div>
+                                </div>
+                    
+                    
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

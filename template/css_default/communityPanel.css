@@ -447,11 +447,16 @@ input,button{
 }
 
 .contentView .content li:hover {
-    background-color: #0e3357;
+    /* background-color: #0e3357; */
+
+    background-color:rgba(255,255,255,0.1);
 }
+
 .contentView .content li:hover .info,
 .contentView .content li:hover .title,
-.contentView .content li:hover .con {
+.contentView .content li:hover .con ,
+.contentView .content li:hover .leftItem, 
+.contentView .content li:hover .hengpaiItem .rightItem  {
     color:#fff;
 }
 
@@ -579,29 +584,43 @@ input,button{
     background: url(../img/tag-icon.png) no-repeat center/cover;
 }
 .content li .normal,
-.content li .abnormal {
-    color:#34ff34;
+.content li .abnormal,
+.content li .alarm{
     padding-left: 0.12rem;
     position: relative;
 }
+
+.content li .normal {
+    color:#34ff34 !important ;
+}
+.content li .abnormal{
+    color:#e81e6d !important;
+}
+.content li .alarm {
+    color: #ffa044 !important;
+}
+
 .content li .normal span,
-.content li .abnormal span {
+.content li .abnormal span,
+.content li .alarm span {
     width: 0.06rem;
     height: 0.06rem;
     position: absolute;
-    background: #34ff34;
-    top: 0.09rem;
+    top: 50%;
+    margin-top: -0.03rem;
     border-radius:50%; 
     left: 0;
     display: block;
 }
-.content li .abnormal{
-    color:#e81e6d
+.content li .normal span {
+    background: #34ff34 !important;
 }
 .content li .abnormal span{
-    background: #e81e6d;
+    background: #e81e6d !important;
 }
-
+.content li .alarm span{
+    background: #ffa044 !important;
+}
 .fireContent .content.smoke li,
 .fireContent .content.electronic li,
 .fireContent .content.water li {
@@ -627,6 +646,79 @@ input,button{
     height: 0.24rem;
     width: 0.18rem;
 }
+/* 底部栏 位移 位移 位移 */
+.moveContent .content.jinggai li{
+    width: 2.4rem;
+    height: 2rem;
+    border: solid 1px #0e3357;
+
+}
+.hengpaiItem {
+    line-height: 0.3rem;
+    height: 0.3rem;
+    width: 100%;
+    overflow: hidden;
+}
+.leftItem {
+    float: left;
+    width: 0.8rem;
+    font-size: 0.12rem;
+    margin-right: 0.1em;
+    text-align: right;
+    color:#5dbef6;
+}
+.rightItem{
+    float: left;
+    line-height: 0.3rem;
+}
+.hengpaiItem h2.rightItem {
+    line-height: 0.3rem;
+    height: 0.3rem;
+    font-weight:900;
+    color:#fff;
+    font-size: 0.14rem;
+}
+p.rightItem {
+    color: #9ff4fb;
+    font-size: 0.12rem;
+}
+span.rightItem{
+    width: 0.7rem;
+    height: 0.24rem;
+    margin-top: 0.03rem;
+    border-radius: 3px;
+    font-size: 0.12rem;
+    line-height: 0.24rem;
+    display: block;
+}
+span.rightItem.moveType{
+    border: solid 1px rgba(255, 160, 68, 0.6);
+    color: #ffa044 !important;
+}
+span.rightItem.viewPic {
+    cursor: pointer;
+    border: solid 1px rgba(14, 104, 178, 0.6);
+    color: #5dbef6 !important;
+
+}
+
+
+
+
+/* 底部栏 CK CK CK */
+.ckContent .contentBox{
+    margin-top: 0.4rem;
+}
+.ckContent .content li {
+    width: 2.4rem;
+    height: 2rem;
+    border: solid 1px #0e3357;
+}
+
+
+
+
+
 
 /* 左右面板 */
 .PanelMain .yblsPanel{
@@ -811,8 +903,8 @@ input,button{
 .commonPanel .PeopleAnalysis .personnelAnalysisView>div {
     float: left;
 }
-.commonPanel .PeopleAnalysis .sexAnalysisView .sexAnalysis{
-    margin-right: 0.47rem;
+.commonPanel .PeopleAnalysis .sexAnalysisView .hujiAnalysis {
+   float: right;
 }
 
 
@@ -977,76 +1069,6 @@ input,button{
 
 .PVGContent{
     height: 1.6rem;
-}
-
-/* CameraList 一标六实-底部面板 - 监控 */
-.CameraBox{
-    padding-top: 0.18rem;
-}
-.CameraBox .Hd{
-    font-size: .14rem;
-    height: 0.24rem;
-    line-height: 0.24rem;
-    color: #bcf3ff;
-    padding-left: 0.3rem;
-    background: url(../img/panel/village.png) left center no-repeat;
-    background-size: .24rem .24rem;
-}
-.CameraBox .Bd{
-    margin-top: 0.2rem;
-    overflow-y: scroll;
-    height: 1.5rem;
-}
-.CameraList{
-
-}
-.CameraList li{
-    position: relative;
-    font-size: .12rem;
-    height: .3rem;
-    line-height: 0.3rem;
-    width: 2.22rem;
-	border-radius: .03rem;
-    border: 1px solid #0e3357;
-    float: left;
-    margin-right: 0.1rem;
-    margin-bottom: 0.1rem;
-    color: #9ff4fb;
-    padding: 0 .32rem 0 .4rem;
-    overflow: hidden;
-    cursor: pointer;
-}
-.CameraList li::before,
-.CameraList li::after{
-    position: absolute;
-    top: 0;
-    content: '';
-    width: 0.28rem;
-    height: 0.28rem;
-    background: url(../img/panel/CameraIcon.png) no-repeat;
-    background-size: .56rem .56rem;
-}
-.CameraList li::before{
-    left: 0.06rem;
-    background-position: 0 0;
-}
-.CameraList li::after{
-    right: 0.06rem;
-    background-position: -0.28rem 0;
-}
-.CameraList li:hover{
-    background: #0e3357;
-    color: #fff;
-}
-.CameraList li:hover::before,
-.CameraList li:hover::after{
-    background-position-y: -0.28rem;
-}
-.CameraList li .name{
-    display: block;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }
 
 /* zTree search */
