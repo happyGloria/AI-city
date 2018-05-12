@@ -446,7 +446,6 @@ define(
                     })
                     var SafeOption = echartsConfig.triangleEcharts(nameArr, dataArr)
                     setEchart("SafeAnalysis", SafeOption, function (params) {
-                        console.log(params)
                         var urlParam = {
 							name: params.name,
                             value: params.value
@@ -455,7 +454,6 @@ define(
                             urlParam.type = "toDevicePage";
                             var key = "facility_" + villageCode;
                             localStorage.setItem(key, JSON.stringify(urlParam));
-
                             openDataList(urlParam.name, securityFacilityObj[urlParam.name]);
                         } else {
                             return
