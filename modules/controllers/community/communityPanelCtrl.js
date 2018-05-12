@@ -505,10 +505,15 @@ define(
                     var ageData = [];
                     var ageName = [];
                     var ageIndex=[]
+                    $scope.ageData=[]
                     ageCon.forEach(function (v,k) {
                         ageData.push(data.data.ageRecord[v])
                         ageName.push(ageConfig[v])
                         ageIndex.push(k+1)
+                        $scope.ageData.push({
+                            name: ageConfig[v],
+                            data: data.data.ageRecord[v]
+                        })
                     })
                     //年龄分布
                     var ageOption = echartsConfig.pieEcharts(ageIndex, ageName, ageData)

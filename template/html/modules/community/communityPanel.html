@@ -105,42 +105,13 @@
                     <div class="ageAnalysisView" ng-show="peopleTabAction=='age'">
                         <div id="ageAnalysis" class='ageAnalysis canvasView'></div>
                         <ul class="ageAnalysisList">
-                            <li>
+                            <li ng-repeat="item in ageData">
                                 <div class="item">
                                     <div class="index">1</div>
-                                    <div class="ageAnalysisTitle">1-16岁</div>
-                                    <div class="prenum">0%</div>
+                                    <div class="ageAnalysisTitle">{{item.name}}</div>
+                                    <div class="prenum">{{item.data}}</div>
                                 </div>
                             </li>
-                            <li class='active'>
-                                <div class="item">
-                                    <div class="index">2</div>
-                                    <div class="ageAnalysisTitle">17-40岁</div>
-                                    <div class="prenum">0%</div>
-                                </div>
-                            </li>
-                            <li >
-                                <div class="item">
-                                    <div class="index">2</div>
-                                    <div class="ageAnalysisTitle">41-60岁</div>
-                                    <div class="prenum">0%</div>
-                                </div>
-                            </li>
-                            <li >
-                                <div class="item">
-                                    <div class="index">2</div>
-                                    <div class="ageAnalysisTitle">61-80岁</div>
-                                    <div class="prenum">0%</div>
-                                </div>
-                            </li>
-                            <li >
-                                <div class="item">
-                                    <div class="index">2</div>
-                                    <div class="ageAnalysisTitle">80岁以上</div>
-                                    <div class="prenum">0%</div>
-                                </div>
-                            </li>
-            
                         </ul>
                     </div>
                     <!-- 性别与户籍 -->
