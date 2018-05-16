@@ -364,7 +364,7 @@ define([
                 ECharts.on('click', function (params) {
                     cb(params)
                 });
-                ECharts.setOption(option);
+                return ECharts
             }
             // 1. 一标六实数据
 
@@ -384,7 +384,7 @@ define([
                         var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [powerData.jy||0, powerData.jwgb||0, powerData.lzz||0, powerData.zyz||0, powerData.ba||0, powerData.bj||0, powerData.bl||0, powerData.kd||0])
                         setEchart("PowerAnalysis", powerOption ,function (params) {
                             //点击实有力量图标跳转页面
-                            var key = "resident_";
+                            var key = "resident_" + villageCode;
                             localStorage.setItem(key, JSON.stringify(params.dataIndex + 1 + ""));
                             var newurl = window.location.href.split("/#")[0] + "#/index/factPower/"+villageCode;
                             window.open(newurl);
@@ -480,6 +480,7 @@ define([
                 var ageName = [];
                 var ageIndex=[]
                 $scope.ageData=[]
+                $scope.ageAll=0
                 ageCon.forEach(function (v,k) {
                     ageData.push(data.data.ageRecord[v])
                     if(data.data.ageRecord[v]==0){
@@ -487,6 +488,7 @@ define([
                     }else{
                         ageIndex.push(k+1)
                     }
+                    $scope.ageAll+=data.data.ageRecord[v]
                     ageName.push(ageConfig[v])
                     $scope.ageData.push({
                         name: ageConfig[v],
@@ -498,16 +500,24 @@ define([
                 }
                 //年龄分布
                 var ageOption = echartsConfig.pieEcharts(ageIndex, ageName, ageData)
-                setEchart("ageAnalysis", ageOption, function (params) {
+                var sexEchart = setEchart("ageAnalysis", ageOption, function (params) {
                     //点击年龄分布图跳转页面
                     urlParam.type ='ageType'
                     urlParam.data = params.data
-                    urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
+                    if(ageConfig[ageCon[urlParam.data.name-1]]){
+                        urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
+                    }
                     var key = "factpeopleUrlParam_";
                     localStorage.setItem(key, JSON.stringify(urlParam));
                     var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/"+villageCode;
                     window.open(newurl);
                 })
+                sexEchart.on('mouseover', function (params) {
+                    $scope.ageDataActive=params.dataIndex
+                });
+                sexEchart.on('mouseout', function (params) {
+                    $scope.ageDataActive=-1
+                });
                 /* 性别与户籍 */
                 //性别 
                 var sexData = [];
@@ -528,6 +538,9 @@ define([
                     urlParam.type ='sexType'
                     urlParam.data = params.data
                     var key = "factpeopleUrlParam_";
+                    if(sexName[urlParam.data.name-1]){
+                        urlParam.data.name=sexName[urlParam.data.name-1]
+                    }
                     localStorage.setItem(key, JSON.stringify(urlParam));
                     var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/"+villageCode;
                     window.open(newurl);
@@ -548,11 +561,24 @@ define([
                     //点击户籍分布图跳转页面
                     urlParam.type ='fromType'
                     urlParam.data = params.data
-                    urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
+                    if(peopleTypeName[urlParam.data.name-1]){
+                        urlParam.data.name=peopleTypeName[urlParam.data.name-1]
+                    }
                     var key = "factpeopleUrlParam_";
                     localStorage.setItem(key, JSON.stringify(urlParam));
                     var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/"+villageCode;
                     window.open(newurl);
+                })
+                //人员性质
+                var peopleRecord=data.data.peopleRecord
+                var peopleData = [peopleRecord.peopleCount,peopleRecord.peopleDiscoveryCount+peopleRecord.peopleLeaveCount];
+                var peopleName = ['登记人口','流动人口'];
+                var peopleIndex = ['1','2'];
+                var peopleOption = echartsConfig.pieEcharts(peopleName, peopleIndex, peopleData)
+                peopleOption.title.text = '人员\n性质'
+                peopleOption.series[0].label.normal.formatter = "{b}\n{c} ({d}%)"
+                setEchart("personnelAnalysis", peopleOption, function (params) {
+                    
                 })
             }
         }
