@@ -4,6 +4,12 @@
 define([],function(){
     return {
         WeekAnalysisType: { '过车感知': 9, '开门记录': 10, '人脸抓拍': 11, 'MAC感知': 12, '事件感知': 13 },
+        villageCodeNameInfo: [
+            { id: 4, pId: 2, code: '310120101234', name: '杨王村', addressName: '奉贤区南桥镇杨王村' },
+            { id: 5, pId: 2, code: '310120101203', name: '江海村', addressName: '奉贤区南桥镇江海村' },
+            { id: 6, pId: 3, code: '310120106203', name: '金星村', addressName: '奉贤区金汇镇金星村' },
+            { id: 7, pId: 3, code: '310120106005', name: '金碧汇虹苑', addressName: '奉贤区金汇镇金碧汇虹苑' }
+        ],
         villageNameMap: [
             { id: 1, pId: 0, code: '3101201', name: '奉贤区', addressName: '奉贤区' },
             { id: 2, pId: 1, code: '310120101', name: '南桥镇', addressName: '奉贤区南桥镇' },
@@ -76,6 +82,59 @@ define([],function(){
                     },
                 }
             }
-        ]
+        ],
+        layerList:[{
+            id: 0, name: '小区', type: 'village', isChecked: 2, hasChild: 'false'
+        },
+        {
+            id: 1, name: '动态感知', type: 'dynamic', isChecked: 2, hasChild: 'true',
+            child: [
+                { id: 11, name: '人脸抓拍', isChecked: 2 },
+                { id: 12, name: '车辆过车', isChecked: 2 },
+                { id: 23, name: '实时警情', isChecked: 2 }
+            ]
+        },
+        {
+            id: 2, name: '实有力量', type: 'power', isChecked: 2, hasChild: 'true',
+            child: [
+                { id: 21, name: '实有力量', isChecked: 2 },
+                { id: 22, name: '实时警力', isChecked: 2 }
+            ]
+        },
+        { id: 3, name: '实有房屋', type: 'house', isChecked: 0 },
+        { id: 4, name: '实有单位', type: 'company', isChecked: 0 },
+        {
+            id: 5, name: '实有安防设施', type: 'facility', isChecked: 0, hasChild: 'true',
+            child: [
+                { id: 50, name: 'CK', isMouseOn: 'false', isChecked: 0 },
+                { id: 52, name: '卡口', isMouseOn: 'false', isChecked: 0 },
+                { id: 49, name: '车棚', isMouseOn: 'false', isChecked: 0 },
+                { id: 53, name: 'wifi', isMouseOn: 'false', isChecked: 0 },
+                { id: 54, name: '门禁', isMouseOn: 'false', isChecked: 0 },
+                { 
+                    id: 51, name: '监控', isMouseOn: 'false', isChecked: 0, hasChild: 'true',
+                    child: [
+                        { id: 511, name: '小区监控', isMouseOn: 'false', isChecked: 0 },
+                        { id: 512, name: '道路监控', isMouseOn: 'false', isChecked: 0 }
+                    ]
+                },
+                {
+                    id: 551, name: '消防', isMouseOn: 'false', isChecked: 0, hasChild: 'true',
+                    child: [
+                        { id: 551, name: '烟感', isChecked: 0 },
+                        { id: 552, name: '电气', isChecked: 0 },
+                        { id: 553, name: '消防栓', isChecked: 0 },
+                        { id: 554, name: '微型消防站', isChecked: 0 }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 6, name: '小区出入口', type: 'io', isChecked: 0
+        },
+        {
+            id: 7, name: '窨井盖', type: 'manhole', isChecked: 0
+        }
+    ]
     }
 })

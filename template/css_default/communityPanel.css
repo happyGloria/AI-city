@@ -1323,3 +1323,138 @@ span.rightItem.viewPic {
 .Search-ztree-ul .oper-btn i.threeMap-icon{
 	background-position:0 -1rem;
 }
+
+/* layerSelect */
+
+/*底部图层*/
+.LayerSelect{
+	font-size:0.16rem;
+    height: 0.5rem;
+	color:#fff;
+}
+.LayerSelect .layerSelect-list{
+    font-size: .13rem;
+    color: #5dbef6;
+    line-height: 0.3rem;
+}
+.LayerSelect .layerSelect-li{
+    position: relative;
+	float:left;
+	cursor:pointer;
+	margin-left: 0.35rem;
+    line-height: 0.5rem;
+}
+.LayerSelect .layerSelect-li .checkBox{
+	display:inline-block;
+	vertical-align:middle;
+	width:0.12rem;
+	height:0.12rem;
+	background:url(../img/layer/layerSelect.png) no-repeat;
+	background-size:0.12rem 0.44rem;
+}
+.LayerSelect .layerSelect-li .checkBox.checkPart{
+	background-position:0 -0.16rem;
+}
+.LayerSelect .layerSelect-li .checkBox.checkAll{
+	background-position:0 -0.32rem;
+}
+.LayerSelect .layerSelect-li-list,
+.LayerSelect .layerSelect-li-list-last{
+    border: .01rem solid #0e68b2;
+    border-radius: .03rem;
+    background: rgb(15, 55, 97);
+}
+.LayerSelect .layerSelect-li-list{
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    line-height: .28rem;
+    padding: 0.05rem 0;
+}
+.LayerSelect .layerSelect-li-list::before,
+.LayerSelect .layerSelect-li-list-li .arrow-icon,
+.LayerSelect .layerSelect-li-list-last::before{
+    background:url(../img/layer/arrow.png) no-repeat;
+	background-size:0.24rem 0.12rem;
+}
+.LayerSelect .layerSelect-li-list::before{
+    position: absolute;
+    content: '';
+    bottom: -.06rem;
+    left: 50%;
+    margin-left: -0.06rem;
+    width: 0.12rem;
+    height: 0.06rem;
+    background-position: -.06rem 0;
+}
+.LayerSelect .layerSelect-li-list-li-box,
+.LayerSelect .layerSelect-li-list-li-last{
+	padding: 0 0.26rem 0 0.15rem;
+	cursor:pointer;
+	position:relative;
+	white-space:nowrap;
+}
+.LayerSelect .layerSelect-li-list-li-box:hover{
+	color:#fff;
+}
+.LayerSelect .layerSelect-li-list-li .arrow-icon{
+	width:0.06rem;
+	height:0.10rem;
+	position: absolute;
+	right:0.1rem;
+    top:50%;
+    margin-top: -0.05rem;
+	background-position: 0 0;
+}
+.LayerSelect .layerSelect-li-list-li-box:hover .arrow-icon{
+	display:block;
+}
+.LayerSelect .layerSelect-li-list-last{
+	position:absolute;
+	bottom: -.01rem;
+    left:100%;
+    padding:0.05rem 0;
+}
+.LayerSelect .layerSelect-li-list-last::before{
+    position: absolute;
+    content: '';
+    left: -0.06rem;
+    bottom: .13rem;
+    width: 0.06rem;
+    height: 0.12rem;
+    background-position: -.17rem 0;
+}
+.LayerSelect .layerSelect-li-list li:nth-last-child(2) .layerSelect-li-list-last::before{
+    bottom: .39rem;
+}
+.LayerSelect .layerSelect-li:hover .layerSelect-li-list{
+	display:block;
+}
+
+.LayerSelect .layerSelect-li-box i{
+    width: 0.16rem;
+    height: 0.16rem;
+    display: inline-block;
+    background: url(../img/layer/layerSelectIcon.png) no-repeat;
+    background-size: auto .32rem;
+    vertical-align: middle;
+    margin-right: 0.04rem;
+}
+.LayerSelect .layerSelect-li-box i.icon-village{background-position: 0 0;}
+.LayerSelect .layerSelect-li-box i.icon-dynamic{background-position: -.16rem 0;}
+.LayerSelect .layerSelect-li-box i.icon-power{background-position: -.32rem 0;}
+.LayerSelect .layerSelect-li-box i.icon-house{background-position: -0.48rem 0;}
+.LayerSelect .layerSelect-li-box i.icon-company{background-position: -0.64rem 0;}
+.LayerSelect .layerSelect-li-box i.icon-facility{background-position: -0.8rem 0;}
+.LayerSelect .layerSelect-li-box i.icon-io{background-position: -0.96rem 0;}
+.LayerSelect .layerSelect-li-box i.icon-manhole{background-position: -1.12rem 0;}
+
+.LayerSelect .layerSelect-li-box:hover,
+.LayerSelect .layerSelect-li-box.active,
+.LayerSelect .layerSelect-li-list-li-last:hover{
+    color: #fff;
+}
+.LayerSelect .layerSelect-li-box.active i,
+.LayerSelect .layerSelect-li-box:hover i{
+    background-position-y: -.16rem;
+}
