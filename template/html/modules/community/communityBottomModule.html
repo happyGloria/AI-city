@@ -356,21 +356,23 @@
             <div ng-if="villageCode">
                 <h2 class="Hd">{{curVillageInfo.name}}</h2>
                 <div class="Bd">
-                    <ul class="CameraList clearfix">
+                    <ul ng-if="cameraList.length > 0" class="CameraList clearfix">
                         <li ng-click="clickCamera(item)" ng-repeat="item in cameraList">
                             <span class="name">{{item.name}}</span>
                         </li>
                     </ul>
+                    <div class="emptyData" ng-if="cameraList.length == 0">没有数据...</div>
                 </div>
             </div>
             <div ng-if="!villageCode" ng-repeat="items in villageCodeNameInfo">
-                <h2 class="Hd" ng-click="toggleCamera($index)">{{items.name}}</h2>
+                <h2 class="Hd" ng-click="toggleCamera($index)">{{items.name}} <sapn class="status">{{!items.showType ? '打开' : '收起'}}</sapn></h2>
                 <div class="Bd" ng-show="!items.showType">
-                    <ul class="CameraList clearfix">
+                    <ul ng-if="getCameraList(cameraList, items.code).length > 0" class="CameraList clearfix">
                         <li ng-click="clickCamera(item)" ng-repeat="item in getCameraList(cameraList, items.code)">
                             <span class="name">{{item.name}}</span>
                         </li>
                     </ul>
+                    <div class="emptyData" ng-if="getCameraList(cameraList, items.code).length == 0">没有数据...</div>
                 </div>
             </div>
         </div>
