@@ -5,10 +5,18 @@
         <div class="logoText">奉贤社会面智能安防平台</div>
     </div>
     <ul class="navList">
-        <li ng-class="activeNav=='/index/communityPanel/'?'active':'' " ng-mouseover="showSecondMenus('ybls')">一标六实</li>
-        <li ng-mouseover="showSecondMenus('gjkh')">轨迹刻画</li>
-        <li ng-mouseover="showSecondMenus('sjjk')">数据监控</li>
-        <li ng-mouseover="showSecondMenus('ptgl')">平台管理</li>
+        <li ng-class="activeNav=='/index/communityPanel/'?'active':'' " ng-mouseover="showSecondMenus('ybls')">
+            <a target="_self" href="#/index/communityPanel/" >一标六实</a>
+        </li>
+        <li ng-mouseover="showSecondMenus('gjkh')">
+            <a target="_self" href="#/index/trackShow/faceTrack/" >轨迹刻画</a>
+        </li>
+        <li ng-mouseover="showSecondMenus('sjjk')">
+            <a target="_self" href="#/index/operation/" >数据监控</a>
+        </li>
+        <li ng-mouseover="showSecondMenus('ptgl')">
+            <a target="_self" href="#/index/platform/0" >平台管理</a>
+        </li>
     </ul>
     <div class="loginOutBox" ng-click='openLog()'>
         <div class="loginOut"></div>
@@ -31,37 +39,60 @@
         <ul ng-if="showSecondMenusHover=='ybls'" >
             <li>
                 <h2>实有安防设备</h2>
-                <p class='active'>实有安防设备</p>
-                <p>消防</p>
-                <p>WI-FI</p>
-                <p>门禁</p>
+                <a target="_self" href="#/index/communityAllNewChart/4" >实有安防设备</a>
+                <a href="#/index/smoke/">消防</a>
+                <a href="#/index/communityMac/">WI-FI</a>
+                <a href="#/index/doorrecord/">门禁</a>
             </li>
             <li>
                 <h2>实有单位</h2>
-                <p>实有单位</p>
-                <p>从业人员详情</p>
+                <a href="#/index/communityAllNewChart/3">实有单位</a>
+                <a href="#/index/factpeople/">从业人员详情</a>
             </li>
             <li>
                 <h2>实有房屋</h2>
-                <p>实有房屋</p>
+                <a href="#/index/communityAllNewChart/2">实有房屋</a>
             </li>
             <li>
                 <h2>实有警情</h2>
-                <p>实有警情</p>
-                <p>实有警情事件</p>
+                <a href="#/index/factEvent/">实有警情</a>
+                <a href="#/index/factEvent/">实有警情事件</a>
             </li>
             <li>
                 <h2>实有力量</h2>
-                <p>实有力量与装备</p>
+                <a href="#/index/communityAllNewChart/5">实有力量与装备</a>
             </li>
             <li>
                 <h2>实有人口</h2>
-                <p>实有人口</p>
+                <a href="#/index/communityAllNewChart/1">实有人口</a>
             </li>
         </ul>
-        <ul ng-if="showSecondMenusHover=='gjkh'">轨迹刻画</ul>
-        <ul ng-if="showSecondMenusHover=='sjjk'">数据监控</ul>
-        <ul ng-if="showSecondMenusHover=='ptgl'">平台管理</ul>
+        <ul ng-if="showSecondMenusHover=='gjkh'">
+            <li>
+                <h2>人脸轨迹</h2>
+                <a href="#/index/trackShow/faceTrack/">人脸轨迹</a>
+            </li>
+            <li>
+                <h2>MAC轨迹</h2>
+                <a href="#/index/trackShow/macTrack/">MAC轨迹</a>
+            </li>
+            <li>
+                <h2>车辆轨迹</h2>
+                <a href="#/index/trackShow/carTrack/">车辆轨迹</a>
+            </li>
+        </ul>
+        <ul ng-if="showSecondMenusHover=='sjjk'">
+            <li>
+                <h2>数据监控</h2>
+                <a href="#/index/operation/">数据监控</a>
+            </li>
+        </ul>
+        <ul ng-if="showSecondMenusHover=='ptgl'">
+            <li>
+                <h2>用户中心</h2>
+                <a href="#/index/platform/0">用户中心</a>
+            </li>
+        </ul>
     </div>
 </div>
 <!--退出登录弹出窗-->

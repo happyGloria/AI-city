@@ -1,0 +1,84 @@
+html,
+body,
+body> div,
+body> div> div.ng-scope,
+body> div> div.ng-scope> div[ui-view="main"] {
+	height: 100% !important
+}
+
+body> .layout> div[ui-view] {
+	padding-top: 0px !important;
+	height: 100%
+}
+
+* {
+	box-sizing: border-box
+}
+input,button{
+	border: 0 none;
+	outline: none;
+}
+
+.Login{
+	width: 100%;
+	height: 100%;
+	min-width:100%;
+	padding-top: 1.08rem;
+	background: #2a4bb4 url(../img/login/login-bg.png) center/cover no-repeat;
+}
+.Login input::-moz-placeholder {
+    color: #20c5de;
+    opacity: 1
+}
+.Login input:-ms-input-placeholder {
+    color: #20c5de
+}
+.Login input::-webkit-input-placeholder {
+    color: #20c5de
+}
+
+.LoginBox{
+	position: relative;
+	width: 16.98rem;
+	height: 100%;
+	margin: 0 auto;
+}
+.LoginR{
+	padding-top: 0.4rem;
+	padding-right: 0.67rem;
+	float: right;
+	width: 4.27rem;
+}
+.LoginLogo{
+	margin: 0 auto 0.48rem;
+	width: 3.32rem;
+	height: 3.80rem;
+	overflow: hidden;
+	text-indent: -9999px;
+	background: url(../img/login/login-logo.png?v=aa0.00) center no-repeat;
+}
+.LoginForm{
+	width: 3.60rem;
+	margin: 0 auto;
+}
+.LoginForm .ipt-text{
+	color: #000;
+	width: 100%;
+	font-size: 0.16rem;
+	height: 0.56rem;
+	line-height: 0.32rem;
+	padding: 0.12rem 0;
+	margin-bottom: 0.36rem;
+	background-color: transparent;
+	border-bottom: 0.02rem solid #005DC0;
+}
+.LoginForm .ipt-submit{
+	font-size: 0.20rem;
+	line-height: 0.68rem;
+	color: #fff;
+	height: 0.68rem;
+	width: 100%;
+	margin-top: 0.28rem;
+	background-image: linear-gradient(90deg, #00D9FF 16%, #005DC0 87%);
+	border-radius: 1.00rem;
+}

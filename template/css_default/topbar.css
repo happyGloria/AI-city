@@ -106,13 +106,15 @@
   border-bottom: 1px solid #ccc;
   margin-bottom: 0.1rem;
 }
-.nav .menuList ul li p{
+.nav .menuList ul li a{
+  display: block;
   cursor: pointer;
   color: #333;
   font-size: 0.14rem;
   line-height: 0.3rem;
 }
-.nav .menuList ul li p.active{
+.nav .menuList ul li a.active,
+.nav .menuList ul li a:hover{
   color:#4488EE;
 }
 
