@@ -177,6 +177,17 @@ input,button{
     right: 0;
     bottom: 0;
 }
+.commonPanelBg{
+    width: 100%;
+    background: rgba(10, 29, 59, .9);
+    border: .01rem solid #0971c4;
+    border-radius: .05rem;
+}
+.PanelBottomTab{
+    position: absolute;
+    bottom: 0;
+    padding: .1rem 0.2rem;
+}
 .PanelMain .PanelLeft,
 .PanelMain .PanelRight,
 .PanelMain .PanelBottom
@@ -184,15 +195,15 @@ input,button{
     position: absolute;
     bottom: 0.08rem;
     z-index: 1;
-    border: .01rem solid #0971c4;
-    border-radius: .05rem;
-    background: rgba(10, 29, 59, .9);
 }
 .PanelMain .PanelLeft,
 .PanelMain .PanelRight{
     top: 0;
     width: 4.2rem;
+    border-radius: .05rem;
     padding: 0 0.12rem .14rem;
+    background: rgba(10, 29, 59, .9);
+    border: .01rem solid #0971c4;
 }
 .PanelMain .PanelLeft::before,
 .PanelMain .PanelRight::before,
@@ -228,12 +239,10 @@ input,button{
     right: .08rem;
 }
 .PanelMain .PanelBottom{
-    padding: 0.22rem 0.2rem;
     width: 10.2rem;
-    height: 3.5rem;
+    height: 3.85rem;
     left: 50%;
     margin-left: -5.1rem;
-
 }
 /* triggerToggle 打开/关闭面板 */
 
@@ -251,7 +260,7 @@ input,button{
     width: 0.8rem;
     height: 0.17rem;
     left: 50%;
-    top: -0.16rem;
+    top: -0.15rem;
     margin-left:-0.4rem ;
     margin-top: 0;
     background: url(../img/panel/triggerButton-b.png) no-repeat;
@@ -279,22 +288,13 @@ input,button{
     margin-left: -0.08rem;
     display: block;
     margin-top: -0.07rem;
-    width: 0.16rem;
+    width: 0.18rem;
     height: 0.16rem;
-    background: url(../img/panel/triggerButton-b.png) no-repeat -0.79rem -0.23rem;
+    background: url(../img/panel/triggerButton-b.png) no-repeat -0.8rem -0.23rem;
     background-size: auto .34rem;
 }
 .PanelMain .PanelBottom.closed .triggerToggle::before{
-        position: absolute;
-        content: '';
-        left: 50%;
-        margin-left: -0.08rem;
-        display: block;
-        margin-top: -0.07rem;
-        width: 0.16rem;
-        height: 0.16rem;
-        background: url(../img/panel/triggerButton-b.png) no-repeat -0.79rem 0.06rem;
-        background-size: auto .34rem;
+    background-position-y: 0.06rem;
 }
 
 
@@ -399,6 +399,11 @@ input,button{
     line-height: 0.24rem;
     font-size: 0.12rem;
 }
+.btnBox .more{
+    cursor: pointer;
+    float:right;
+    color:#fff;
+}
 .btnBox .headerInfo{
     display: inline-block;
     margin-left: 0.5rem;
@@ -411,6 +416,7 @@ input,button{
     display: inline-block;
     color: #9ff4fb;
     font-size: 0.14rem;
+    cursor: pointer;
     margin-right: 0.2rem;
 }
 
@@ -501,7 +507,6 @@ input,button{
 
 .contentView .content li:hover {
     /* background-color: #0e3357; */
-
     background-color:rgba(255,255,255,0.1);
 }
 
@@ -699,12 +704,25 @@ input,button{
     height: 0.24rem;
     width: 0.18rem;
 }
+/* 底部栏 wifi wifi wifi */
+.wifiContent .content li{
+    width: 2.25rem;
+    height: 0.44rem;
+    border: solid 1px #0e3357;
+    padding: 0 0.15rem;
+}
+.wifiContent .content li .hengpaiItem,
+.wifiContent .content li .hengpaiItem .leftItem,
+.wifiContent .content li .hengpaiItem .rightItem{
+    line-height: 0.22rem;
+    height: 0.22rem;
+}
+
 /* 底部栏 位移 位移 位移 */
 .moveContent .content.jinggai li{
     width: 2.4rem;
     height: 2rem;
     border: solid 1px #0e3357;
-
 }
 .hengpaiItem {
     line-height: 0.3rem;
@@ -1121,25 +1139,42 @@ span.rightItem.viewPic {
 }
 
 .PVGContent{
-    height: 1.6rem;
+    height: 2rem;
+    padding: .1rem;
 }
 /* CameraList 一标六实-底部面板 - 监控 */
 .CameraBox{
-    padding-top: 0.18rem;
+    margin-top: 0.18rem;
+    overflow-y: scroll;
+    height: 2.2rem;
 }
 .CameraBox .Hd{
+    position: relative;
     font-size: .14rem;
-    height: 0.24rem;
-    line-height: 0.24rem;
+    height: .3rem;
+    line-height: .3rem;
     color: #bcf3ff;
     padding-left: 0.3rem;
+    background: linear-gradient(0deg,
+        rgba(14, 104, 178, .2) 0%,
+        rgba(14, 104, 178, .3) 100%);
+    cursor: pointer;
+    border-radius: .03rem;
+    margin-right: .3rem;
+    margin-bottom: 0.1rem;
+    overflow: hidden;
+}
+.CameraBox .Hd::before{
+    position: absolute;
+    content: "";
+    top: 0.03rem;
+    left: 0.03rem;
+    width: .24rem;
+    height: .24rem;
     background: url(../img/panel/village.png) left center no-repeat;
     background-size: .24rem .24rem;
 }
 .CameraBox .Bd{
-    margin-top: 0.2rem;
-    overflow-y: scroll;
-    height: 1.5rem;
 }
 .CameraList{
      
@@ -1160,6 +1195,12 @@ span.rightItem.viewPic {
     overflow: hidden;
     cursor: pointer;
 }
+.CameraList li .name{
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 .CameraList li::before,
 .CameraList li::after{
     position: absolute;
@@ -1179,20 +1220,13 @@ span.rightItem.viewPic {
     background-position: -0.28rem 0;
 }
 .CameraList li:hover{
-    background: #0e3357;
+    background-color: #0e3357;
     color: #fff;
 }
 .CameraList li:hover::before,
 .CameraList li:hover::after{
     background-position-y: -0.28rem;
 }
-.CameraList li .name{
-    display: block;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
 
 /* zTree search */
 .SearchTree{

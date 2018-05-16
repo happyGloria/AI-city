@@ -48,10 +48,11 @@ define([
                 });
 
                 // villageCode
-                $scope.villageCode = '';
+                var villageCode =  $scope.villageCode||'';
                 $scope.$on('setCurVillageAllInfo', function(e, data){
-                $scope.villageCode = data.villageCode;
-                $scope.$broadcast('changeCurVillageInfo', data)
+                    $scope.villageCode = data.villageCode;
+                    villageCode = $scope.villageCode||''
+                    $scope.$broadcast('changeCurVillageInfo', data)
                     init()
                 })
 
@@ -59,6 +60,8 @@ define([
                 function init(){
                     querySixEntityCount();
                     WeekAnalysisServer();
+                    queryRealPower();
+                    initiInside()
                 }
                 init()
 
@@ -352,30 +355,17 @@ define([
                     ECharts.setOption(option);
                 }
                 // 1. 一标六实数据
-                var villageCode = $stateParams.villageCode || '';
                 function openDataList(title, url) {
                     var newurl = window.location.href.split("/#")[0] + url;
                     window.open(newurl);
                 }
-                var securityFacilityObj = {
-                    // "摄像机": "/#/index/camera/" + villageCode, //cameraType为空
-                    "门禁": "/#/index/doorrecord/" + villageCode,
-                    "WiFi\n探针": "/#/index/communityMac/" + villageCode,
-                    // "人脸卡口": "/#/index/camera/" + villageCode,//cameraType 传2
-                    // "车辆卡口": "/#/index/communityCar/" + villageCode, //单独的车辆列表
-                    "烟感": "/#/index/smoke/" + villageCode,
-                    "电表": "/#/index/smoke/" + villageCode,
-                    "电弧": "/#/index/smoke/" + villageCode,
-                    // "消防栓": "",
-                    // "微型消防站": "",
-                    // "窨井盖": ""
-                }
+                
                 // 2.1 年龄分布
                 /* 实有力量~~~~~~~~~~~· */
                 //1)实有力量在线统计
                 queryRealPower()
                 function queryRealPower() {
-                    communityAllService.realPower().then(function (resp) {
+                    communityAllService.realPower(villageCode).then(function (resp) {
                         if (resp.resultCode == '200') {
                             var powerData = resp.data
                             var powerOption = echartsConfig.triangleEcharts(['警员', '居委干部', '楼组长', '志愿者', '保安', '保洁', '保绿', '快递人员'], [powerData.jy||0, powerData.jwgb||0, powerData.lzz||0, powerData.zyz||0, powerData.ba||0, powerData.bj||0, powerData.bl||0, powerData.kd||0])
@@ -383,47 +373,61 @@ define([
                                 //点击实有力量图标跳转页面
                                 var key = "resident_";
                                 localStorage.setItem(key, JSON.stringify(params.dataIndex + 1 + ""));
-                                var newurl = window.location.href.split("/#")[0] + "#/index/factPower/";
+                                var newurl = window.location.href.split("/#")[0] + "#/index/factPower/"+villageCode;
                                 window.open(newurl);
                             })
                         }
                     }).catch(function () { }).finally(function () { });
                 }
-                //实有安防设施分析
-                moreService.queryFacilityList({ villageCode: villageCode }).then(function (resp) {
-                    var dataArr = []
-                    var nameArr = []
-                     resp.data&&resp.data.forEach(function (v, k) {
-                        dataArr.push(v.num)
-                        if (v.name === 'WiFi探针') {
-                            v.name = 'WiFi\n探针'
-                        } else if (v.name.length > 3) {
-                            v.name = v.name.substr(0, 2) + '\n' + v.name.substr(2, v.name.length - 2)
-                        }
-                        nameArr.push(v.name)
-                    })
-                    var SafeOption = echartsConfig.triangleEcharts(nameArr, dataArr)
-                    setEchart("SafeAnalysis", SafeOption, function (params) {
-                        var urlParam = {
-							name: params.name,
-                            value: params.value
-                        };
-                        if (urlParam.name == "门禁" || urlParam.name == "WiFi\n探针" || urlParam.name == "烟感" || urlParam.name == "电表" || urlParam.name == "电弧") {
-                            urlParam.type = "toDevicePage";
-                            var key = "facility_" + villageCode;
-                            localStorage.setItem(key, JSON.stringify(urlParam));
-                            openDataList(urlParam.name, securityFacilityObj[urlParam.name]);
-                        } else {
-                            return
-                        }
-                    })
-                })
+
                 /* 实有人员分析 */
                 $scope.peopleTabAction = 'age';
                 $scope.changePeopleTab = function (val) {
                     $scope.peopleTabAction = val;
                 }
                 function initiInside() {
+                    //实有安防设施分析
+                    var securityFacilityObj = {
+                        // "摄像机": "/#/index/camera/" + villageCode, //cameraType为空
+                        "门禁": "/#/index/doorrecord/" + villageCode,
+                        "WiFi\n探针": "/#/index/communityMac/" + villageCode,
+                        // "人脸卡口": "/#/index/camera/" + villageCode,//cameraType 传2
+                        // "车辆卡口": "/#/index/communityCar/" + villageCode, //单独的车辆列表
+                        "烟感": "/#/index/smoke/" + villageCode,
+                        "电表": "/#/index/smoke/" + villageCode,
+                        "电弧": "/#/index/smoke/" + villageCode,
+                        // "消防栓": "",
+                        // "微型消防站": "",
+                        // "窨井盖": ""
+                    }
+                    moreService.queryFacilityList({ villageCode: villageCode }).then(function (resp) {
+                        var dataArr = []
+                        var nameArr = []
+                        resp.data&&resp.data.forEach(function (v, k) {
+                            dataArr.push(v.num)
+                            if (v.name === 'WiFi探针') {
+                                v.name = 'WiFi\n探针'
+                            } else if (v.name.length > 3) {
+                                v.name = v.name.substr(0, 2) + '\n' + v.name.substr(2, v.name.length - 2)
+                            }
+                            nameArr.push(v.name)
+                        })
+                        var SafeOption = echartsConfig.triangleEcharts(nameArr, dataArr)
+                        setEchart("SafeAnalysis", SafeOption, function (params) {
+                            var urlParam = {
+                                name: params.name,
+                                value: params.value
+                            };
+                            if (urlParam.name == "门禁" || urlParam.name == "WiFi\n探针" || urlParam.name == "烟感" || urlParam.name == "电表" || urlParam.name == "电弧") {
+                                urlParam.type = "toDevicePage";
+                                var key = "facility_" + villageCode;
+                                localStorage.setItem(key, JSON.stringify(urlParam));
+                                openDataList(urlParam.name, securityFacilityObj[urlParam.name]);
+                            } else {
+                                return
+                            }
+                        })
+                    })
                     //查询实有人口类别接口
                     var req = {
                         "villageCode": villageCode
@@ -447,7 +451,6 @@ define([
                     });
 
                 };
-                initiInside()
 
                 function afterGetData(data) {
                     var urlParam={}
@@ -473,6 +476,9 @@ define([
                             data: data.data.ageRecord[v]
                         })
                     })
+                    if(ageIndex.filter(function(v){ return v===''}).length===5){
+                        ageIndex=['1','2','3','4','5']
+                    }
                     //年龄分布
                     var ageOption = echartsConfig.pieEcharts(ageIndex, ageName, ageData)
                     setEchart("ageAnalysis", ageOption, function (params) {
@@ -482,7 +488,7 @@ define([
                         urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
                         var key = "factpeopleUrlParam_";
                         localStorage.setItem(key, JSON.stringify(urlParam));
-                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/";
+                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/"+villageCode;
                         window.open(newurl);
                     })
                     /* 性别与户籍 */
@@ -504,10 +510,9 @@ define([
                         //点击性别图跳转页面
                         urlParam.type ='sexType'
                         urlParam.data = params.data
-                        urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
                         var key = "factpeopleUrlParam_";
                         localStorage.setItem(key, JSON.stringify(urlParam));
-                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/";
+                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/"+villageCode;
                         window.open(newurl);
                     })
                     //户籍
@@ -530,7 +535,7 @@ define([
                         urlParam.data.name = ageConfig[ageCon[urlParam.data.name-1]]
                         var key = "factpeopleUrlParam_";
                         localStorage.setItem(key, JSON.stringify(urlParam));
-                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/";
+                        var newurl = window.location.href.split("/#")[0] + "#/index/factpeople/"+villageCode;
                         window.open(newurl);
                     })
                 }
