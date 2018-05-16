@@ -13,12 +13,13 @@ define([
     'notify', 
     'echarts-dark', 
     'controllers/community/2dMapCtrl', 
+    'controllers/community/communityBottomModuleCtrl',
     'controllers/common/ocxCtrl', 
     'controllers/user/userCtrl',
     'controllers/common/zTreeSearchCtrl',
     'config/common',
     'yituFace'
-    ], function (app, controllers, $, configFile, basicConfig, echartsConfig, tools, notify, dark, dMapCtrl, OCXCtrl, userCtrl, zTreeSearchCtrl, common, yituFace) {
+    ], function (app, controllers, $, configFile, basicConfig, echartsConfig, tools, notify, dark, dMapCtrl, communityBottomModuleCtrl, OCXCtrl, userCtrl, zTreeSearchCtrl, common, yituFace) {
         var communityPanelCtrl = [
             '$scope', 
             '$state', 
@@ -65,6 +66,7 @@ define([
                     registerUserTemplate()
                     registerZTreeSearchTemplate()
                     registerOcxModuleTemplate()
+                    registerBottomTemplate()
                 }
                 registerTpl()
 
@@ -82,8 +84,13 @@ define([
 
                 /* 引入 二维地图 */
                 function register2dMapTemplate() {
-					$scope.templateUrl = 'template/html/modules/community/2dMapPanel.html';
+					$scope.template2dMapUrl = 'template/html/modules/community/2dMapPanel.html';
 					app.register.controller('templateControllerMap', dMapCtrl);
+                }
+                /* 引入底部栏 */
+                function registerBottomTemplate() {
+					$scope.templateBottomPanelUrl = 'template/html/modules/community/communityBottomModule.html';
+                    app.register.controller('templateBottomController', communityBottomModuleCtrl);
                 }
                 /* 顶部左侧用户信息 */
                 function registerUserTemplate() {
@@ -169,21 +176,6 @@ define([
                 $scope.clickCamera = function(obj) {
                     $scope.queryVideoById(obj);
                 }
-
-                /* 底部面板 - 监控Tab */
-                $scope.cameraList = [];
-                $scope.activeClass = true;
-                $scope.queryCameraTab = function(val){
-                    if(val === "4"){
-                        $scope.activeClass = false;
-                        $scope.villageCode = "";
-                    }else{
-                        $scope.activeClass = true;
-                        $scope.villageCode = $stateParams.id;
-                    }
-                    $scope.nowType = val;
-                    queryCameraList("",val);
-                };
 
                 /*
                  * 左、右、下面板，打开/关闭
@@ -367,7 +359,7 @@ define([
                 var securityFacilityObj = {
                     // "摄像机": "/#/index/camera/" + villageCode, //cameraType为空
                     "门禁": "/#/index/doorrecord/" + villageCode,
-                    "WiFi探针": "/#/index/communityMac/" + villageCode,
+                    "WiFi\n探针": "/#/index/communityMac/" + villageCode,
                     // "人脸卡口": "/#/index/camera/" + villageCode,//cameraType 传2
                     // "车辆卡口": "/#/index/communityCar/" + villageCode, //单独的车辆列表
                     "烟感": "/#/index/smoke/" + villageCode,
@@ -541,40 +533,6 @@ define([
                         window.open(newurl);
                     })
                 }
-
-                // 人员性质
-                // PeopleOption.title.text = '人员\n性质',
-                //     setEchart("personnelAnalysis", PeopleOption)
-                
-
-
-
-                //底部面板切换
-                $scope.bottomTabAction = 'move';
-                $scope.changeBottomTab = function (val) {
-                    $scope.bottomTabAction = val;
-                }
-                //人脸面板切换
-                $scope.faceTabAction = 'all';
-                $scope.changeFaceTab = function (val) {
-                    $scope.faceTabAction = val;
-                }
-                //过车面板切换
-                $scope.carsTabAction = 'iscar';
-                $scope.changeCarsTab = function (val) {
-                    $scope.carsTabAction = val;
-                }
-                //消防面板切换
-                $scope.fireTabAction = 'smoke';
-                $scope.changeFireTab = function (val) {
-                    $scope.fireTabAction = val;
-                } 
-                //位移面板切换
-                $scope.moveTabAction = 'jinggai';
-                $scope.changeMoveTab = function (val) {
-                    $scope.moveTabAction = val;
-                }
-
             }
         ]
 		return communityPanelCtrl;
