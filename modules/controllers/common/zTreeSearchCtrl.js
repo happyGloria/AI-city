@@ -22,6 +22,7 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
             }
             return newLayer;
         }
+        
         /* 树状搜索 */
         $scope.zTreeSearch = {
             communityAllInfo:[
@@ -130,9 +131,11 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                 this.communityAllInfo = getTreeName($.extend(true,[],communityAllInfoCopy),this.communityName);						
             },
             communityLocation: function(item){
-                // $scope.villageCode
+                $scope.zTreeSearch.communityName = item.name;
                 $scope.$emit('setCurVillageAllInfo', item);
                 $("#zTreeVillage").css("display","none");
+                console.log(item, 113)
+
                 // $(".slimScrollDiv").css("display","none");
                 map.setZoom(18);
                 map.setCenter(new NPMapLib.Geometry.Point(item.map2d.center.split(',')[0], item.map2d.center.split(',')[1]));
@@ -153,6 +156,8 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                 // })
             }
         }
+
+        var communityAllInfoCopy = $.extend(true, [], $scope.zTreeSearch.communityAllInfo);
     }]
     return zTreeSearchCtrl;
 })

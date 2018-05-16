@@ -67,7 +67,7 @@ define([],function(){
                 },
                 xAxis: {
                     type: 'category',
-                    data: [0,0,0,0,0,0,0,0],
+                    data: [],
                     boundaryGap: false,
                     axisLabel: {
                         interval: 0,
@@ -158,7 +158,8 @@ define([],function(){
                 },
                 series: [{
                     name: 'hill',
-                    type: 'pictorialBar',
+                    // type: 'pictorialBar',
+                    type: 'bar',
                     barCategoryGap: '25%',
                     symbol: 'path://M150 50 L130 130 L170 130 Z',
                     label: {
