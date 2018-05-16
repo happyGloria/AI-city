@@ -7,7 +7,7 @@
 }
 .nav.hid{
   margin-top: -0.47rem;
-  transition: all 0.1s;
+  transition: all 0.3s;
 }
 .nav.hid:hover{
   margin-top: 0;
@@ -44,7 +44,6 @@
 }
 .nav .navList{
   float: left;
-  overflow: hidden;
   height: 0.5rem;
 }
 .nav .navList li{
@@ -69,18 +68,21 @@
   display: block;
   position: absolute; 
   content: '';
-  width: 0.1rem;
-  height: 0.1rem;
-  background: #fff;
-  bottom:-0.05rem;
-  transform: rotate(45deg);
+  width: 0;
+  height: 0;
+  border: 0.08rem solid #fff;
+  border-top: 0.06rem solid #143363;
+  border-bottom: 0.06rem solid #fff;
+  bottom: -0.12rem;
   left: 0.38rem;
+  z-index: 2;
 }
 
 .nav .menuList{
   position: absolute;
   top: 0.5rem;
   width: 100%;
+  z-index: 1;
   background: #fff;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.10);
   padding-left:2.4rem;
