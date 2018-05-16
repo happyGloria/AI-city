@@ -2,9 +2,24 @@
  * 一标六实主面板
  * 2018/05/08
  */
-define(
-    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', '/modules/common/tools.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'controllers/common/ocxCtrl', 'controllers/user/userCtrl', 'config/common','yituFace'],
-    function (app, controllers, $, configFile, basicConfig, echartsConfig, tools, notify, dark, dMapCtrl, OCXCtrl, userCtrl, common, yituFace) {        var communityPanelCtrl = [
+define([
+    'app', 
+    'controllers/controllers', 
+    'jquery', 
+    '/modules/config/configFile.js', 
+    '/modules/config/basicConfig.js', 
+    '/modules/config/echartsConfig.js', 
+    '/modules/common/tools.js', 
+    'notify', 
+    'echarts-dark', 
+    'controllers/community/2dMapCtrl', 
+    'controllers/common/ocxCtrl', 
+    'controllers/user/userCtrl',
+    'controllers/common/zTreeSearchCtrl',
+    'config/common',
+    'yituFace'
+    ], function (app, controllers, $, configFile, basicConfig, echartsConfig, tools, notify, dark, dMapCtrl, OCXCtrl, userCtrl, zTreeSearchCtrl, common, yituFace) {
+        var communityPanelCtrl = [
             '$scope', 
             '$state', 
             '$stateParams', 
@@ -31,7 +46,31 @@ define(
                     "padding-top": "0px"
                 });
 
-                $scope.villageCode = $stateParams.id || 310120101234;
+                // villageCode
+                $scope.villageCode = null;
+                $scope.$on('setCurVillageAllInfo', function(e, data){
+                    $scope.villageCode = data.villageCode;
+                    init()
+                })
+
+                // 初始化函数
+                function init(){
+                    querySixEntityCount();
+                    WeekAnalysisServer();
+                }
+                init()
+
+                function registerTpl(){
+                    register2dMapTemplate()
+                    registerUserTemplate()
+                    registerZTreeSearchTemplate()
+                    registerOcxModuleTemplate()
+                }
+                registerTpl()
+
+                $scope.curVillageAllInfo = function(){
+                    console.log('$scope.villageCode', 53);
+                }
 
                 /* 实时时间 */
                 $scope.nowTimeInt = $interval(function () {
@@ -40,116 +79,28 @@ define(
                     var weekArr = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
                     $scope.nowTime = d2.format('yyyy年MM月dd日 hh:mm:ss')+" "+weekArr[day]
                 },500)
-                /* 树状搜索 */
-                $scope.zTreeSearch = {
-                    communityAllInfo:[
-                        {
-                            name:'奉贤区',
-                            open:true,
-                            id:'1',
-                            children:[                   
-                                {
-                                    name:'南桥镇',
-                                    open:true,
-                                    // children: basicConfig.villageAllInfo
-                                    children: [
-                                        { name: '杨王村', open: true },
-                                        { name: '江海村', open: true }
-                                    ]
-                                },
-                                {
-                                    name:'金汇镇',
-                                    open:true,
-                                    children: [
-                                        { name: '金星村', open: true },
-                                        { name: '金碧汇虹苑小区', open: true }
-                                    ]
-                                },
-                            ]
-                        }
-                    ],
-                    open: function(item){
-						item.open = !item.open;
-						$scope.$apply();
-                    },
-                    blur: function(){
-                        console.log('trigger blur')
-                        if($("#zTreeVillage").is(":visible")){
-                            $("#zTreeVillage").css("display","none");
-                        }
-                    },
-                    focus: function(){
-                        console.log('trigger focus')
-						$("#zTreeVillage").css("display","block");
-                        // $(".slimScrollDiv").css("display","block");
-                        // 添加滚动条
-                        // var slimScrollDivW = $('.slimScrollDiv').width();
-                        // slimScrollDivW = $('.slimScrollDiv').children().first().width();
-                        // $(".zTreeVillage").slimScroll({
-                        //     width: '',
-                        //     height: '2.5rem',
-                        //     size: '8px', //组件宽度
-                        //     color: '#7E7D7D', //滚动条颜色#0565b0
-                        //     opacity: 0.1, //滚动条透明度
-                        //     alwaysVisible: false, //是否 始终显示组件
-                        //     railVisible: true, //是否 显示轨道
-                        //     railColor: '#0565b0', //轨道颜色
-                        //     railOpacity: 0.1, //轨道透明度
-                        //     railClass: 'slimScrollRail', //轨道div类名 
-                        //     barClass: 'slimScrollBar', //滚动条div类名
-                        //     wrapperClass: 'slimScrollDiv', //外包div类名
-                        //     allowPageScroll: false, //是否 使用滚轮到达顶端/底端时，滚动窗口
-                        //     wheelStep: 20, //滚轮滚动量
-                        //     borderRadius: '7px', //滚动条圆角
-                        //     railBorderRadius: '7px' //轨道圆角
-                        // });
-					},
-					keyup: function(){
-						this.communityAllInfo = getTreeName($.extend(true,[],communityAllInfoCopy),this.communityName);						
-                    },
-                    communityLocation: function(){
-                        console.log('trigger communityLocation')
-                        $("#zTreeVillage").css("display","none");
-						// $(".slimScrollDiv").css("display","none");
-						// map.setZoom(18);
-                        // map.setCenter(new NPMapLib.Geometry.Point(obj.map2d.center.split(',')[0], obj.map2d.center.split(',')[1]));
-                        // var searchFlag = true;
-						// angular.forEach(psArr, function(ps) {
-                        //     if(searchFlag){
-                        //         if(obj.villageCode == ps.villageCode) {
-                        //             ps.setStyle({
-                        //                 color: 'red', //颜色
-                        //                 fillColor: '#00b99e', //填充颜色
-                        //                 weight: 2, //宽度，以像素为单位
-                        //                 opacity: 1, //透明度，取值范围0 - 1
-                        //                 fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-                        //                 //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
-                        //             })
-                        //         }
-                        //     }
-						// })
-                    }
-                }
 
                 /* 引入 二维地图 */
                 function register2dMapTemplate() {
 					$scope.templateUrl = 'template/html/modules/community/2dMapPanel.html';
 					app.register.controller('templateControllerMap', dMapCtrl);
                 }
-                register2dMapTemplate()
                 /* 顶部左侧用户信息 */
                 function registerUserTemplate() {
 					$scope.userTplUrl = 'template/html/modules/component/user.tpl.html';
 					app.register.controller('userTplController', userCtrl);
                 }
-                registerUserTemplate()
+                /* 左上角 村庄树结构 */
+                function registerZTreeSearchTemplate(){
+                    $scope.zTreeSearchTpl = 'template/html/modules/component/zTreeSearch.html';
+                    app.register.controller('zTreeSearchController', zTreeSearchCtrl)
+                }
 
                 /* OCX 视频播放器 */
                 function registerOcxModuleTemplate(){
                     $scope.ocxModelTpl = 'template/html/modules/component/ocxModel.html';
                     app.register.controller('ocxModelController', OCXCtrl)
                 }
-                registerOcxModuleTemplate()
 
                 //查询摄像机列表start
                 function queryCameraList(text,type) {
@@ -277,10 +228,9 @@ define(
                 /*
                  * 一标六实统计页
                  **/
-                querySixEntityCount();
                 var region_ids=[]
 				function querySixEntityCount() {
-					communityAllService.sixEntityCount({ villageCode: '' }).then(function(res) {
+					communityAllService.sixEntityCount({ villageCode: $scope.villageCode }).then(function(res) {
                         if(res.resultCode === 200){
                             var data = res.data;
                             $scope.sixEntityCountData = data;
@@ -319,7 +269,6 @@ define(
                         }
                     }).catch(function() {}).finally(function() {});
                 }
-                WeekAnalysisServer()
                 // 2. 接收到请求后，渲染图表
                 function drawWeekAnalysisECharts(options){
                     var echartsOption = echartsConfig.BarEcharts(options.xAxisData, options.seriesData)
