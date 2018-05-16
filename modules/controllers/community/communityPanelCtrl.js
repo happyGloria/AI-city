@@ -34,54 +34,12 @@ define(
 
                 $scope.villageCode = $stateParams.id || 310120101234;
 
-                /* 时间 */
-                Date.prototype.format = function (format) {
-                    var o = {
-                        "M+": this.getMonth() + 1, //month
-                        "d+": this.getDate(),    //day
-                        "h+": this.getHours(),   //hour
-                        "m+": this.getMinutes(), //minute
-                        "s+": this.getSeconds(), //second
-                        "q+": Math.floor((this.getMonth() + 3) / 3),  //quarter
-                        "S": this.getMilliseconds() //millisecond
-                    }
-                    if (/(y+)/.test(format)) format = format.replace(RegExp.$1,
-                        (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-                    for (var k in o) if (new RegExp("(" + k + ")").test(format))
-                        format = format.replace(RegExp.$1,
-                            RegExp.$1.length == 1 ? o[k] :
-                                ("00" + o[k]).substr(("" + o[k]).length));
-                    return format;
-                }
                 /* 实时时间 */
                 $scope.nowTimeInt = $interval(function () {
                     var d2 = new Date();
                     var day = d2.getDay();
-                    var x='星期天'
-                    switch (day) {
-                        case 0:
-                            x = "星期天";
-                            break;
-                        case 1:
-                            x = "星期一";
-                            break;
-                        case 2:
-                            x = "星期二";
-                            break;
-                        case 3:
-                            x = "星期三";
-                            break;
-                        case 4:
-                            x = "星期四";
-                            break;
-                        case 5:
-                            x = "星期五";
-                            break;
-                        case 6:
-                            x = "星期六";
-                            break;
-                    }
-                    $scope.nowTime = d2.format('yyyy年MM月dd日 hh:mm:ss')+" "+x
+                    var weekArr = ["星期天", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+                    $scope.nowTime = d2.format('yyyy年MM月dd日 hh:mm:ss')+" "+weekArr[day]
                 },500)
                 /* 树状搜索 */
                 $scope.zTreeSearch = {
