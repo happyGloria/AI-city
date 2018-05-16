@@ -48,9 +48,10 @@ define([
                 });
 
                 // villageCode
-                $scope.villageCode = null;
+                $scope.villageCode = '';
                 $scope.$on('setCurVillageAllInfo', function(e, data){
-                    $scope.villageCode = data.villageCode;
+                $scope.villageCode = data.villageCode;
+                $scope.$broadcast('changeCurVillageInfo', data)
                     init()
                 })
 
