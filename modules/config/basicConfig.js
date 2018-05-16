@@ -3,6 +3,7 @@
  **/
 define([],function(){
     return {
+        WeekAnalysisType: { '过车感知': 9, '开门记录': 10, '人脸抓拍': 11, 'MAC感知': 12, '事件感知': 13 },
         villageNameMap: [
             { id: 1, pId: 0, code: '3101201', name: '奉贤区', addressName: '奉贤区' },
             { id: 2, pId: 1, code: '310120101', name: '南桥镇', addressName: '奉贤区南桥镇' },

@@ -109,7 +109,7 @@ define([],function(){
                     showSymbol: false,
                     symbol: 'circle',
                     symbolSize: 5,
-                    data: seriesData, // ['1200', '1400', '1008', '1411', '626', '588', '300', '100']
+                    data: seriesData ? seriesData : [0, 0, 0, 0, 0, 0, 0, 0], // ['1200', '1400', '1008', '1411', '626', '588', '300', '100']
                     itemStyle : {
                         normal : {
                             color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{

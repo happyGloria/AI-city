@@ -3,9 +3,8 @@
  * 2018/05/08
  */
 define(
-    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'controllers/common/ocxCtrl', 'controllers/user/userCtrl', 'config/common','yituFace'],
-    function (app, controllers, $, configFile, basicConfig, echartsConfig, notify, dark, dMapCtrl, OCXCtrl, userCtrl, common, yituFace) {
-        var communityPanelCtrl = [
+    ['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.js', '/modules/config/basicConfig.js', '/modules/config/echartsConfig.js', '/modules/common/tools.js', 'notify', 'echarts-dark', 'controllers/community/2dMapCtrl', 'controllers/common/ocxCtrl', 'controllers/user/userCtrl', 'config/common','yituFace'],
+    function (app, controllers, $, configFile, basicConfig, echartsConfig, tools, notify, dark, dMapCtrl, OCXCtrl, userCtrl, common, yituFace) {        var communityPanelCtrl = [
             '$scope', 
             '$state', 
             '$stateParams', 
@@ -311,31 +310,83 @@ define(
                 
                 // WeekAnalysis 一周感知数据量统计
                 var WeekAnalysisECharts = null;
-                var weekAnalysisOption = echartsConfig.BarEcharts(
-                    ['MAC感知', '开门记录', '事件感知', '人脸抓拍', '过车感知'],
-                    [120, 200, 150, 80, 70]
-                );
-
-                echarts.dispose(document.getElementById("WeekAnalysis"));
-                WeekAnalysisECharts = echarts.init(document.getElementById('WeekAnalysis'));
-                WeekAnalysisECharts.setOption(weekAnalysisOption);
-
-                WeekAnalysisECharts.on('click', function(params){
-                    console.log(params, 113)
-                })
+                // 1. 发送请求
+                function WeekAnalysisServer(type){
+                    var requestType = type ? type : 'type';
+                    communityAllService.weekSense(requestType).then(function(res) {
+                        if(res.resultCode == '200') {
+                            drawWeekAnalysisECharts(tools.jsonToBarEChartsData(res.data))
+                        }
+                    }).catch(function() {}).finally(function() {});
+                }
+                WeekAnalysisServer()
+                // 2. 接收到请求后，渲染图表
+                function drawWeekAnalysisECharts(options){
+                    var echartsOption = echartsConfig.BarEcharts(options.xAxisData, options.seriesData)
+                    echarts.dispose(document.getElementById("WeekAnalysis"));
+                    WeekAnalysisECharts = echarts.init(document.getElementById('WeekAnalysis'));
+                    WeekAnalysisECharts.setOption(echartsOption);
+                    drawRealtimeAnalysisECharts();
+    
+                    WeekAnalysisECharts.on('click', function(params){
+                        drawRealtimeAnalysisECharts(params.name)
+                    })
+                }
 
                 // WeekAnalysis - realtimeAnalysis 实时统计
                 var realtimeAnalysisECharts = null;
-                var realtimeAnalysisOption = echartsConfig.LineEcharts(['1200', '1400', '1008', '1411', '626', '588', '300', '100'])
-
-                realtimeAnalysisOption.xAxis.data = [];
-                for(var i = 0; i < 8; i++) {
-                    realtimeAnalysisOption.xAxis.data.push(common.formatDate(common.addSeconds(new Date(), -5 * (7 - i))).CurrentHms);
-                }
+                var realtimeAnalysisOption = null;
+                var realtimeAnalysisTimer = null;
+                $scope.realtimeAnalysisType = null;
 
                 echarts.dispose(document.getElementById("realtimeAnalysis"));
                 realtimeAnalysisECharts = echarts.init(document.getElementById('realtimeAnalysis'));
-                realtimeAnalysisECharts.setOption(realtimeAnalysisOption);
+
+                function RealtimeAnalysisServer(type){
+                    var requestType = basicConfig.WeekAnalysisType;
+                    var currentData = new Date();
+                    realtimeAnalysisOption.xAxis.data.shift();
+                    realtimeAnalysisOption.xAxis.data.push(common.formatDate(currentData).CurrentHms);
+
+                    var requestParams = {
+                        startTime: common.changeDateToString(common.addSeconds(new Date(),-5)),
+                        endTime: common.changeDateToString(new Date()),
+                        type: requestType[type]
+                    }
+                    communityAllService.daySenseType(requestParams).then(function(res) {
+                        if(res.resultCode == '200') {
+                            realtimeAnalysisOption.series[0].data.shift();
+                            realtimeAnalysisOption.series[0].data.push(res.data);
+                            realtimeAnalysisECharts.setOption(realtimeAnalysisOption);
+                        }else{
+                            $interval.cancel(realtimeAnalysisTimer);
+                        }
+                    }).catch(function() {}).finally(function() {});
+                }
+
+                function drawRealtimeAnalysisECharts(type){
+                    var triggerType = type ? type : 'MAC感知';
+                    if(triggerType === $scope.realtimeAnalysisType){
+                        return;
+                    }
+                    $scope.realtimeAnalysisType = triggerType;
+                    if(realtimeAnalysisTimer) {
+                        $interval.cancel(realtimeAnalysisTimer);
+                    }
+
+                    realtimeAnalysisOption = echartsConfig.LineEcharts()
+
+                    // 实时感知 - 5s
+                    realtimeAnalysisOption.xAxis.data = [];
+                    for(var i = 0; i < 8; i++) {
+                        realtimeAnalysisOption.xAxis.data.push(common.formatDate(common.addSeconds(new Date(), -5 * (7 - i))).CurrentHms);
+                    }
+
+                    RealtimeAnalysisServer(triggerType)
+                    realtimeAnalysisTimer = $interval(function() {
+                        RealtimeAnalysisServer(triggerType);
+                    }, 5000);
+                }
 
                 // TodayAnalysis - 今日实有警情分析
                 var TodayAnalysisECharts = null;
