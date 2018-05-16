@@ -1,5 +1,27 @@
 define(['controllers/controllers', 'jquery'],function(controllers, $) {
     var zTreeSearchCtrl = ['$scope', function($scope){
+        //搜索树
+        function getTreeName(layer, val) {
+            var newLayer = [];
+            for(var i = 0, len = layer.length; i < len; i++) {
+                var children = layer[i].children;
+                if(children && children.length > 0) {
+                    layer[i].children = getTreeName(children, val);
+                    if(layer[i].children.length == 0) {
+                        if(layer[i].name.indexOf(val) !== -1) {
+                            newLayer.push(layer[i]);
+                        }
+                    } else {
+                        newLayer.push(layer[i]);
+                    }
+                } else {
+                    if(layer[i].name.indexOf(val) !== -1) {
+                        newLayer.push(layer[i]);
+                    }
+                }
+            }
+            return newLayer;
+        }
         /* 树状搜索 */
         $scope.zTreeSearch = {
             communityAllInfo:[
