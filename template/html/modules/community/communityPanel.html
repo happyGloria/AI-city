@@ -75,7 +75,7 @@
                         <ul class="ageAnalysisList">
                             <li ng-repeat="item in ageData">
                                 <div class="item">
-                                    <div class="index">1</div>
+                                    <div class="index">{{$index+1}}</div>
                                     <div class="ageAnalysisTitle">{{item.name}}</div>
                                     <div class="prenum">{{item.data}}</div>
                                 </div>
@@ -126,15 +126,17 @@
                 </div>
             </div>
             <div class="roundPanel">
-                <div class="content PVGContent">
+                <div class="content PVGContent" ng-include="'/template/html/modules/component/panelPVG.html'">
                     ...
                 </div>
             </div>
             <!-- 底部面板 -->
     
         </div>
+        <!--底部面板-->
         <div class="PanelBottom" ng-class="isBottomClosed ? 'closed' : ''">
             <div class="triggerToggle" title="打开/关闭面板" ng-click="togglePanelBottomMethod()"></div>
+            <div ng-include="layerSelectTpl" ng-controller="layerSelectController"></div>
             <div class="commonPanelBg PanelBottomTab" ng-include="templateBottomPanelUrl" ng-controller="templateBottomController"></div>
         </div>
     </div>
