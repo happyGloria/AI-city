@@ -83,7 +83,7 @@ input,button{
     height: 0.3rem;
     border-radius: 3px;
     padding-left: .36rem;
-    background: url(../img/panel/searchIcon.png) .08rem center no-repeat;
+    background: url(../img/panel/searchicon.png) .08rem center no-repeat;
     background-size: .2rem .2rem;
 }
 .SearchBox .SearchTree{
@@ -1163,6 +1163,18 @@ span.rightItem.viewPic {
     margin-right: .3rem;
     margin-bottom: 0.1rem;
     overflow: hidden;
+}
+.CameraBox .Hd .status{
+    position: absolute;
+    right: .2rem;
+    font-size: .12rem;
+    color: #fff;
+}
+.CameraBox .emptyData{
+    color: #fff;
+    text-align: center;
+    font-size: .16rem;
+    line-height: 1rem;
 }
 .CameraBox .Hd::before{
     position: absolute;

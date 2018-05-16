@@ -228,19 +228,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     })
                 };
                 $scope.activeClass = true;
-                $scope.queryChangeTab = function(val){
-                    if(val === "4"){
-                        $scope.activeClass = false;
-                        $scope.villageCode = "";
-                        $scope.text.selectCamera = "";
-                    }else{
-                        $scope.activeClass = true;
-                        $scope.villageCode = $stateParams.id;
-                        $scope.text.selectCamera = "";
-                    }
-                    $scope.nowType = val;
-                    queryCameraList("",val);
-                };
 
                 /* 底部面板 - 监控Tab */
                 $scope.cameraList = [];
@@ -249,10 +236,8 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 $scope.queryCameraTab = function(val){
                     if(val === "4"){
                         $scope.activeClass = false;
-                        $scope.villageCode = "";
                     }else{
                         $scope.activeClass = true;
-                        $scope.villageCode = $stateParams.id;
                     }
                     $scope.nowType = val;
                     queryCameraList("",val);
