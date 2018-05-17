@@ -349,7 +349,7 @@
             <span ng-click="queryCameraTab('4')" ng-class="{'active':!activeClass}">道路监控</span>
             <div class="searchBox">
                 <div class="searchBtn"></div>
-                <input class='search' type="text" placeholder="请输入关键字搜索">
+                <input class='search' type="text" placeholder="请输入关键字搜索" ng-keyup="searchText(text.selectCamera)" ng-model="text.selectCamera">
             </div>
         </div>
         <div class="CameraBox">
