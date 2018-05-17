@@ -18,24 +18,27 @@
             <a target="_self" href="#/index/platform/0" >平台管理</a>
         </li>
     </ul>
-    <div class="loginOutBox" ng-click='openLog()'>
+    <!--<div class="loginOutBox" ng-click='openLog()'>
         <div class="loginOut"></div>
-    </div>
-    <div class="userInfoBox">
-        <div class="defaultInfo">
-            <div class="head">
-                <!-- <img src="" width="100%" height="100%"> -->
+    </div>-->
+    <div class="topRight">
+        <div class="SearchBox" ng-include="zTreeSearchTpl" ng-controller="zTreeSearchController"></div><div class="userPanel" ng-include="userTplUrl" ng-controller="userTplController"></div>
+        <!--<div class="userInfoBox">
+            <div class="defaultInfo">
+                <div class="head">
+                </div>
+                <div class="nicename">Administrator
+                    <span class="arrow"></span>
+                </div>
             </div>
-            <div class="nicename">Administrator
-                <span class="arrow"></span>
-            </div>
-        </div>
+        </div>-->
+        <!--<div class="searchBox">
+            <div class="searchBtn"></div>
+            <input class='search' type="text">
+        </div>-->
+        
     </div>
-    <div class="searchBox">
-        <div class="searchBtn"></div>
-        <input class='search' type="text">
-    </div>
-        <div class="menuList" ng-if='showSecondMenusHover' ng-mouseleave="hideSecondMenus()">
+    <div class="menuList" ng-if='showSecondMenusHover' ng-mouseleave="hideSecondMenus()">
         <ul ng-if="showSecondMenusHover=='ybls'" >
             <li>
                 <h2>实有安防设备</h2>

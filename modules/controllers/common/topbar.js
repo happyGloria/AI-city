@@ -1,14 +1,28 @@
 /**
  * Created by chenhao on 2018/5/10.
  */
-define(['controllers/controllers', 'jquery', 'config/configFile', 'layer', 'notify', 'moment'],
-	function(controllers, $, configFile, layer, notify, moment) {
+define(['app','controllers/controllers', 'jquery', 'config/configFile', 'layer', 'notify', 'moment','controllers/user/userCtrl',
+        'controllers/common/zTreeSearchCtrl',],
+	function(app,controllers, $, configFile, layer, notify, moment,userCtrl, zTreeSearchCtrl) {
         var navigationCtrl = ['$scope', '$location','$http','$rootScope', '$state', '$stateParams','$compile', '$interval', '$timeout',
             function ($scope, $location, $http,$rootScope, $state, $stateParams,  $compile,
 				$interval, $timeout) {
                 // location.href = '/#/index/communityChen/';
+                /* 顶部左侧用户信息 */
+                function registerUserTemplate() {
+					$scope.userTplUrl = 'template/html/modules/component/user.tpl.html';
+					app.register.controller('userTplController', userCtrl);
+                }
+                /* 左上角 村庄树结构 */
+                function registerZTreeSearchTemplate(){
+                    $scope.zTreeSearchTpl = 'template/html/modules/component/zTreeSearch.html';
+                    app.register.controller('zTreeSearchController', zTreeSearchCtrl)
+                }
+
                 $scope.initNav = function () {
                     $scope.activeNav = $location.$$path
+                    registerUserTemplate()
+                     registerZTreeSearchTemplate()
                 }
                 $scope.initNav()
                 $scope.showSecondMenus=function(val){

@@ -2,7 +2,6 @@
   width: 100%;
   height: 0.5rem;
   background-image: linear-gradient(-90deg, #18183C 0%, #143363 100%);
-  line-height: 0.5rem;
   position: relative;
 }
 .nav.hid{
@@ -40,6 +39,7 @@
 .nav .logo .logoText{
   float: left;
   font-size:0.2rem;
+  line-height: 0.5rem;
   color: #FFFFFF;
 }
 .nav .navList{
@@ -118,13 +118,18 @@
   color:#4488EE;
 }
 
-.nav .searchBox{
+.nav .topRight{
+  float: right;
+  padding-top: .08rem;
+  padding-right: .3rem;
+}
+.topRight .searchBox{
   float: right;
   width: 2rem;
   height: 0.5rem;
   position: relative;
 }
-.nav .searchBox .search {
+.topRight .searchBox .search {
   background-image: linear-gradient(0deg, #11396F 0%, #0A517E 100%);
   border-radius: 3px;
   outline: none;
@@ -135,7 +140,7 @@
   color:#fff;
   padding-left: 0.35rem;
 }
-.nav .searchBox .searchBtn{
+.topRight .searchBox .searchBtn{
       position: absolute;
       left: 0.12rem;
       top: 0.18rem;
@@ -144,7 +149,7 @@
       background: url(../img/panel/searchicon.png) no-repeat center/cover;
 
 }
-.nav .userInfoBox {
+.topRight .userInfoBox {
     float: right;
     width: 1.87rem;
     height: 0.5rem;
