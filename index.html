@@ -224,6 +224,20 @@
                 })
             }
 
+
+            // 关闭document
+            $(document).on('click',function(e){
+                e.stopPropagation()
+                e.preventDefault()
+                var target = $(e.target);
+                if(!target.hasClass('js-SearchTree') && !target.hasClass('js-SearchInput')){
+                    $('.js-SearchTree').hide()
+                }else if(target.hasClass('js-SearchInput')){
+                    $('.js-SearchTree').hide()
+                    target.parent().next('.js-SearchTree').show()
+                }
+            })
+
         })
     </script>
 </head>

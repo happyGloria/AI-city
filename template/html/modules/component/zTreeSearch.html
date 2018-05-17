@@ -1,7 +1,7 @@
 <div class="SearchShow">
-    <input class="searchInput" type="text" ng-blur="zTreeSearch.blur()" ng-focus="zTreeSearch.focus($event)" ng-model="zTreeSearch.communityName"  ng-keyup="zTreeSearch.keyup()" placeholder="请输入搜索内容">
+    <input class="searchInput js-SearchInput" type="text" ng-blur="zTreeSearch.blur()" ng-focus="zTreeSearch.focus($event)" ng-model="zTreeSearch.communityName"  ng-keyup="zTreeSearch.keyup()" placeholder="请输入搜索内容">
 </div>
-<div class="SearchTree" id="zTreeVillage">
+<div class="SearchTree js-SearchTree" id="zTreeVillage">
     <ul class="Search-ztree-ul">
         <li class="search-ztree-li" ng-repeat="item in zTreeSearch.communityAllInfo">
             <a href="javascript:;" ng-click="zTreeSearch.defaultVillage(item)" style="display: block;">
