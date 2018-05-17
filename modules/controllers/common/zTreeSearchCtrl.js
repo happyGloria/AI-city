@@ -30,6 +30,7 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                     name:'奉贤区',
                     open:true,
                     id:'1',
+                    villageCode: '',
                     children:[                   
                         {
                             name:'南桥镇',
@@ -96,15 +97,10 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                 $scope.$apply();
             },
             blur: function(){
-                console.log('trigger blur')
-                // if($("#zTreeVillage").is(":visible")){
-                //     $("#zTreeVillage").css("display","none");
-                // }
             },
-            focus: function(){
-                console.log('trigger focus...')
-                $("#zTreeVillage").css("display","block");
-                // $(".slimScrollDiv").css("display","block");
+            focus: function(e){
+                var curZtreeBox = $(e.target).parent().next('.SearchTree');
+                curZtreeBox.show()
                 // 添加滚动条
                 // var slimScrollDivW = $('.slimScrollDiv').width();
                 // slimScrollDivW = $('.slimScrollDiv').children().first().width();
@@ -130,13 +126,16 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
             keyup: function(){
                 this.communityAllInfo = getTreeName($.extend(true,[],communityAllInfoCopy),this.communityName);						
             },
+            defaultVillage: function(item){
+                $scope.zTreeSearch.communityName = item.name;
+                $scope.$emit('setCurVillageAllInfo', item);
+                $(".SearchTree").css("display","none");
+            },
             communityLocation: function(item){
                 $scope.zTreeSearch.communityName = item.name;
                 $scope.$emit('setCurVillageAllInfo', item);
-                $("#zTreeVillage").css("display","none");
-                console.log(item, 113)
+                $(".SearchTree").css("display","none");
 
-                // $(".slimScrollDiv").css("display","none");
                 map.setZoom(18);
                 map.setCenter(new NPMapLib.Geometry.Point(item.map2d.center.split(',')[0], item.map2d.center.split(',')[1]));
                 // var searchFlag = true;
