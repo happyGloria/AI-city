@@ -244,7 +244,7 @@ define([],function(){
                     textStyle: { color: '#5dbef6' },
                     axisPointer: { lineStyle: { color: '#1884b7' }},
                     extraCssText: 'box-shadow: 0 0 5px rgba(0,0,0,0.3)',
-                    formatter: "浜烘暟锛歿c} "
+                    formatter: "人数：{c} "
                 },
                 animation: false,
                 title: {

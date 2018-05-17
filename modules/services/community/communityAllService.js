@@ -47,9 +47,10 @@ define(['../services'],
 						return $q.reject(d);
 					});
 				};
-				//是有力量在线统计
-				var realPower = function() {
-					return $http.get('/zhsq/statistics/real-power').
+				//实有力量在线统计
+				var realPower = function(req) {
+					var url='/zhsq/statistics/real-power'
+					return $http.get('/zhsq/statistics/real-power?villageCode='+req).
 					then(function(response, error) {
 						if(error) {
 							return $q.reject(error);

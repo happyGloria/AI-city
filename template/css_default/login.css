@@ -24,7 +24,8 @@ input,button{
 	height: 100%;
 	min-width:100%;
 	padding-top: 1.08rem;
-	background: #2a4bb4 url(../img/login/login-bg.png) center/cover no-repeat;
+	background: #2a4bb4 url(../img/login/login-bg.png) center top no-repeat;
+	background-size: 19.2rem 10.8rem;
 }
 .Login input::-moz-placeholder {
     color: #20c5de;
@@ -56,7 +57,10 @@ input,button{
 	overflow: hidden;
 	text-indent: -9999px;
 	background: url(../img/login/login-logo.png?v=aa0.00) center no-repeat;
+	background-size: 3.24rem 3.72rem;
 }
+
+.LoginLogo {}
 .LoginForm{
 	width: 3.60rem;
 	margin: 0 auto;

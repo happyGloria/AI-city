@@ -364,6 +364,7 @@ define([
                 ECharts.on('click', function (params) {
                     cb(params)
                 });
+                    ECharts.setOption(option);
                 return ECharts
             }
             // 1. 一标六实数据
