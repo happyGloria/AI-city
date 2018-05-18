@@ -7,7 +7,7 @@ define([],function(){
         villageCodeNameInfo: [
             { id: 4, pId: 2, code: '310120101234', name: '杨王村', addressName: '奉贤区南桥镇杨王村' },
             { id: 5, pId: 2, code: '310120101203', name: '江海村', addressName: '奉贤区南桥镇江海村' },
-            { id: 6, pId: 3, code: '310120106203', name: '金星村', addressName: '奉贤区金汇镇金星村' },
+            { id: 6, pId: 3, code: '310120106203', name: '新强村', addressName: '奉贤区金汇镇新强村' },
             { id: 7, pId: 3, code: '310120106005', name: '金碧汇虹苑', addressName: '奉贤区金汇镇金碧汇虹苑' }
         ],
         villageNameMap: [
@@ -16,7 +16,7 @@ define([],function(){
             { id: 4, pId: 2, code: '310120101234', name: '杨王村', addressName: '奉贤区南桥镇杨王村' },
             { id: 5, pId: 2, code: '310120101203', name: '江海村', addressName: '奉贤区南桥镇江海村' },
             { id: 3, pId: 1, code: '310120106', name: '金汇镇', addressName: '奉贤区金汇镇' },
-            { id: 6, pId: 3, code: '310120106203', name: '金星村', addressName: '奉贤区金汇镇金星村' },
+            { id: 6, pId: 3, code: '310120106203', name: '新强村', addressName: '奉贤区金汇镇新强村' },
             { id: 7, pId: 3, code: '310120106005', name: '金碧汇虹苑', addressName: '奉贤区金汇镇金碧汇虹苑' }
         ],
         villageAllInfo: [

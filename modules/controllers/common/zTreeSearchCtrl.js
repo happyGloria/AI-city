@@ -85,7 +85,7 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                             name:'金汇镇',
                             open:true,
                             children: [
-                                { name: '金星村', open: true, villageCode: '310120106203' },
+                                { name: '新强村', open: true, villageCode: '310120106203' },
                                 { name: '金碧汇虹苑小区', open: true, villageCode: '310120106005' }
                             ]
                         },
