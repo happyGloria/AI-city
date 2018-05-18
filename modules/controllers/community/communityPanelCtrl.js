@@ -13,7 +13,7 @@ define([
     '/modules/common/tools.js', 
     'notify', 
     'echarts-dark', 
-    'controllers/community/2dMapCtrl',
+    'controllers/community/2dMapNewCtrl',
     'controllers/common/layerSelectCtrl',
     'controllers/community/communityBottomModuleCtrl',
     'controllers/common/ocxCtrl', 

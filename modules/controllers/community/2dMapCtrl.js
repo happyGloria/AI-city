@@ -267,7 +267,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 					map.addControl(ctr);
 					map.setZoom(15);
 					setTimeout(function() {
-						map.setCenter(new NPMapLib.Geometry.Point(13516944.0086354, 3656042.5008584));
+						map.setCenter(new NPMapLib.Geometry.Point(121.47568239694685,30.916563451192317));
 						huaTianLinLunKuo(); 
 						$scope.drawbiankuang('310104006001');
 					
