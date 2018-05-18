@@ -13,7 +13,7 @@ define([
     '/modules/common/tools.js', 
     'notify', 
     'echarts-dark', 
-    'controllers/community/2dMapNewCtrl',
+    'controllers/community/2dMapChenCtrl',
     'controllers/common/layerSelectCtrl',
     'controllers/community/communityBottomModuleCtrl',
     'controllers/common/ocxCtrl', 
@@ -49,7 +49,6 @@ define([
             $(".layout").find("div").eq(0).css({
                 "padding-top": "0px"
             });
-
             // villageCode
             $scope.villageCode = '';
             var villageCode =  $scope.villageCode||'';
@@ -70,7 +69,7 @@ define([
                 querySixEntityCount();
                 WeekAnalysisServer();
                 queryRealPower();
-                initiInside()
+                initiInside();
             }
             init()
 
