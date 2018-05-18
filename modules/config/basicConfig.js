@@ -43,7 +43,7 @@ define([],function(){
                 name: "杨王村",
                 villageCode: "310120101234",
                 map2d: {
-                    "center": "121.4307955058236, 30.89933443349524",
+                    "center": "121.49291636012474, 30.89821546263072",
                     "geometry": {
                         "type": "MultiPolygon",
                         "coordinates": [

@@ -44,7 +44,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                                     open: true, 
                                     villageCode: '310120101234',
                                     map2d:{
-                                        center: "13517386.928907,3655120.6969577"
+                                        center: "121.49291636012474, 30.89821546263072"
                                     }
                                 },
                                 { 
@@ -91,12 +91,12 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                 $scope.$emit('setCurVillageAllInfo', item);
                 $(".SearchTree").css("display","none");
 
-                map.setZoom(15);
+                map.setZoom(14);
                 map.setCenter(new NPMapLib.Geometry.Point(item.map2d.center.split(',')[0], item.map2d.center.split(',')[1]));
                 console.log(psArr, 109)
-                angular.forEach(psArr, function(psd) {
-                    if(item.villageCode == psd.villageCode) {
-                        psd.setStyle({
+                angular.forEach(psArr, function(ps) {
+                    if(item.villageCode == ps.villageCode) {
+                        ps.setStyle({
                             color: 'red', //颜色
                             fillColor: '#00b99e', //填充颜色
                             weight: 2, //宽度，以像素为单位
@@ -105,7 +105,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                             //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
                         });
                     } else {
-                        psd.setStyle({
+                        ps.setStyle({
                             color: '#00b99e', // '#ffc700', //颜色
                             fillColor: '#ff0000', // '#ffc700', //填充颜色
                             weight: 2, //宽度，以像素为单位
