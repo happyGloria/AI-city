@@ -1,5 +1,5 @@
-define(['controllers/controllers', 'jquery'],function(controllers, $) {
-    var zTreeSearchCtrl = ['$scope', function($scope){
+define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],function(controllers, $, basicConfig) {
+    var zTreeSearchCtrl = ['$scope','$rootScope', function($scope, $rootScope){
         //搜索树
         function getTreeName(layer, val) {
             var newLayer = [];
@@ -22,6 +22,8 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
             }
             return newLayer;
         }
+
+        var psArr = [];
         
         /* 树状搜索 */
         $scope.zTreeSearch = {
@@ -42,33 +44,7 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                                     open: true, 
                                     villageCode: '310120101234',
                                     map2d:{
-                                        "center": "13517386.928907,3655120.6969577",
-                                        "geometry": {
-                                            "coordinates": [
-                                                [
-                                                    [
-                                                        [13517181.741499998, 3655202.4809999987],
-                                                        [13517239.950000003, 3655056.4306999967],
-                                                        [13517312.939199999, 3654907.1657000035],
-                                                        [13517425.685000002, 3654917.9033999965],
-                                                        [13517425.685000002, 3654930.1750999987],
-                                                        [13517506.217699997, 3654930.9421000034],
-                                                        [13517507.751699999, 3654944.7476999983],
-                                                        [13517525.3922, 3654948.5825999975],
-                                                        [13517560.673199996, 3654946.2815999985],
-                                                        [13517572.177900001, 3654949.3495000005],
-                                                        [13517576.0128, 3654953.1843999997],
-                                                        [13517573.711800002, 3654990.7664000019],
-                                                        [13517552.2364, 3655198.6174999997],
-                                                        [13517444.414300002, 3655159.6626000032],
-                                                        [13517380.9142, 3655298.5691],
-                                                        [13517182.476300001, 3655212.0502000004],
-                                                        [13517181.741499998, 3655202.4809999987]
-                                                    ]
-                                                ]
-                                            ],
-                                            "type": "MultiPolygon"
-                                        },
+                                        center: "13517386.928907,3655120.6969577"
                                     }
                                 },
                                 { 
@@ -76,7 +52,7 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                                     open: true, 
                                     villageCode: '310120101203',
                                     map2d:{
-                                        "center": "13516948.194300003,3655262.3752999976"
+                                        center: "121.4307955058236, 30.89933443349524"
                                     }
                                 }
                             ]
@@ -101,27 +77,6 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
             focus: function(e){
                 var curZtreeBox = $(e.target).parent().next('.SearchTree');
                 curZtreeBox.show()
-                // 添加滚动条
-                // var slimScrollDivW = $('.slimScrollDiv').width();
-                // slimScrollDivW = $('.slimScrollDiv').children().first().width();
-                // $(".zTreeVillage").slimScroll({
-                //     width: '',
-                //     height: '2.5rem',
-                //     size: '8px', //组件宽度
-                //     color: '#7E7D7D', //滚动条颜色#0565b0
-                //     opacity: 0.1, //滚动条透明度
-                //     alwaysVisible: false, //是否 始终显示组件
-                //     railVisible: true, //是否 显示轨道
-                //     railColor: '#0565b0', //轨道颜色
-                //     railOpacity: 0.1, //轨道透明度
-                //     railClass: 'slimScrollRail', //轨道div类名 
-                //     barClass: 'slimScrollBar', //滚动条div类名
-                //     wrapperClass: 'slimScrollDiv', //外包div类名
-                //     allowPageScroll: false, //是否 使用滚轮到达顶端/底端时，滚动窗口
-                //     wheelStep: 20, //滚轮滚动量
-                //     borderRadius: '7px', //滚动条圆角
-                //     railBorderRadius: '7px' //轨道圆角
-                // });
             },
             keyup: function(){
                 this.communityAllInfo = getTreeName($.extend(true,[],communityAllInfoCopy),this.communityName);						
@@ -136,8 +91,30 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                 $scope.$emit('setCurVillageAllInfo', item);
                 $(".SearchTree").css("display","none");
 
-                map.setZoom(18);
+                map.setZoom(15);
                 map.setCenter(new NPMapLib.Geometry.Point(item.map2d.center.split(',')[0], item.map2d.center.split(',')[1]));
+                console.log(psArr, 109)
+                angular.forEach(psArr, function(psd) {
+                    if(item.villageCode == psd.villageCode) {
+                        psd.setStyle({
+                            color: 'red', //颜色
+                            fillColor: '#00b99e', //填充颜色
+                            weight: 2, //宽度，以像素为单位
+                            opacity: 1, //透明度，取值范围0 - 1
+                            fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+                            //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+                        });
+                    } else {
+                        psd.setStyle({
+                            color: '#00b99e', // '#ffc700', //颜色
+                            fillColor: '#ff0000', // '#ffc700', //填充颜色
+                            weight: 2, //宽度，以像素为单位
+                            opacity: 0.01, //透明度，取值范围0 - 1
+                            fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+                            //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+                        });
+                    }
+                })
                 // var searchFlag = true;
                 // angular.forEach(psArr, function(ps) {
                 //     if(searchFlag){
@@ -148,15 +125,80 @@ define(['controllers/controllers', 'jquery'],function(controllers, $) {
                 //                 weight: 2, //宽度，以像素为单位
                 //                 opacity: 1, //透明度，取值范围0 - 1
                 //                 fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-                //                 //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
                 //             })
                 //         }
                 //     }
-                // })
+                // })               
             }
         }
 
         var communityAllInfoCopy = $.extend(true, [], $scope.zTreeSearch.communityAllInfo);
+
+        //画小区轮廓
+        
+        $scope.drawbiankuang = function(villageCode) {
+            //地图控件
+            psArr = [];
+            angular.forEach(basicConfig.villageAllInfo, function(data) {
+                var mapGeometry = new MapPlatForm.Base.MapGeometry(map);
+                var ps = mapGeometry.getGeometryByGeoJson(data.map2d.geometry, map);
+                if(villageCode == data.villageCode) {
+                    ps.setStyle({
+                        color: '#ffc700', //颜色
+                        fillColor: '#ffc700', //填充颜色
+                        weight: 2, //宽度，以像素为单位
+                        opacity: 0.01, //透明度，取值范围0 - 1
+                        fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+                    });
+                } else {
+                    ps.setStyle({
+                        color: '#00b99e', // '#ffc700', //颜色
+                        fillColor: '#00b99e', // '#ffc700', //填充颜色
+                        weight: 2, //宽度，以像素为单位
+                        opacity: 0.01, //透明度，取值范围0 - 1
+                        fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+                    });
+                }
+                ps.villageCode = data.villageCode;
+                ps.setZIndex(120);
+                map.addOverlay(ps);
+                psArr.push(ps);
+                
+                (function(data, ps) {
+                    ps.addEventListener(NPMapLib.MARKER_EVENT_CLICK, function(point) {
+                        angular.forEach(psArr, function(data) {
+                            data.setStyle({
+                                color: '#f00', // '#ffc700', //颜色
+                                fillColor: '', // '#ffc700', //填充颜色
+                                weight: 2, //宽度，以像素为单位
+                                opacity: 0, //透明度，取值范围0 - 1
+                                fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+                                //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+                            });
+                        })
+                        point.setStyle({
+                            color: '#ff0', //颜色
+                            fillColor: '#ffc700', //填充颜色
+                            weight: 2, //宽度，以像素为单位
+                            opacity: 0, //透明度，取值范围0 - 1
+                            fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+                            //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+                        });
+                    });
+                })(data, ps);
+                
+            });
+
+            console.log(psArr, 186)
+        }
+
+        $scope.$on('mapLoadSuccessd', function(e, data){
+            console.log(data, 188)
+            if(data){
+                $scope.drawbiankuang()
+                console.log(data, 191)
+            }
+        })
     }]
     return zTreeSearchCtrl;
 })

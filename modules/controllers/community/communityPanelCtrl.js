@@ -60,6 +60,11 @@ define([
                 init()
             })
 
+            // 
+            $scope.$on('mapLoadSuccess', function(e, data){
+                $scope.$broadcast('mapLoadSuccessd', data)
+            })
+
             // 初始化函数
             function init(){
                 querySixEntityCount();
