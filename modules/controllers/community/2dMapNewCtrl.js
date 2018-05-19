@@ -45,7 +45,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 				}
 				init();
 
-                $scope.mapLoadSuccess = false;
+                $scope.mapLoadSuccess = [];
                 //当地图初始化完成时调用
 				window.mapSuccess = function(map) {
 					var ctr = new NPMapLib.Controls.MousePositionControl();
@@ -54,10 +54,67 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					setTimeout(function() {
 						map.setCenter(new NPMapLib.Geometry.Point(121.47568239694685,30.916563451192317));
 						huaTianLinLunKuo();
-                        $scope.mapLoadSuccess = true;
+                        $scope.mapLoadSuccess = $scope.drawbiankuang();
                         $scope.$emit('mapLoadSuccess', $scope.mapLoadSuccess);
 					}, 1500);
 				};
+
+				//画小区轮廓
+				$scope.drawbiankuang = function(villageCode) {
+					//地图控件
+					var psArr = [];
+					angular.forEach(basicConfig.villageAllInfo, function(data) {
+						var mapGeometry = new MapPlatForm.Base.MapGeometry(map);
+						var ps = mapGeometry.getGeometryByGeoJson(data.map2d.geometry, map);
+						if(villageCode == data.villageCode) {
+							ps.setStyle({
+								color: '#ffc700', //颜色
+								fillColor: '#ffc700', //填充颜色
+								weight: 2, //宽度，以像素为单位
+								opacity: 0.01, //透明度，取值范围0 - 1
+								fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+							});
+						} else {
+							ps.setStyle({
+								color: '#00b99e', // '#ffc700', //颜色
+								fillColor: '#00b99e', // '#ffc700', //填充颜色
+								weight: 2, //宽度，以像素为单位
+								opacity: 0.01, //透明度，取值范围0 - 1
+								fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+							});
+						}
+						ps.villageCode = data.villageCode;
+						ps.setZIndex(120);
+						map.addOverlay(ps);
+						psArr.push(ps);
+						
+						(function(data, ps) {
+							ps.addEventListener(NPMapLib.MARKER_EVENT_CLICK, function(point) {
+								angular.forEach(psArr, function(data) {
+									data.setStyle({
+										color: '#f00', // '#ffc700', //颜色
+										fillColor: '', // '#ffc700', //填充颜色
+										weight: 2, //宽度，以像素为单位
+										opacity: 0, //透明度，取值范围0 - 1
+										fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+										//lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+									});
+								})
+								point.setStyle({
+									color: '#ff0', //颜色
+									fillColor: '#ffc700', //填充颜色
+									weight: 2, //宽度，以像素为单位
+									opacity: 0, //透明度，取值范围0 - 1
+									fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
+									//lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+								});
+							});
+						})(data, ps);
+						
+					});
+		
+					return psArr;
+				}
             }
 		];
 		return twoDMapCtrl;

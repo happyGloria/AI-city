@@ -23,7 +23,6 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
             return newLayer;
         }
 
-        var psArr = [];
         
         /* 树状搜索 */
         $scope.zTreeSearch = {
@@ -113,70 +112,8 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
 
         var communityAllInfoCopy = $.extend(true, [], $scope.zTreeSearch.communityAllInfo);
 
-        //画小区轮廓
-        
-        $scope.drawbiankuang = function(villageCode) {
-            //地图控件
-            psArr = [];
-            angular.forEach(basicConfig.villageAllInfo, function(data) {
-                var mapGeometry = new MapPlatForm.Base.MapGeometry(map);
-                var ps = mapGeometry.getGeometryByGeoJson(data.map2d.geometry, map);
-                if(villageCode == data.villageCode) {
-                    ps.setStyle({
-                        color: '#ffc700', //颜色
-                        fillColor: '#ffc700', //填充颜色
-                        weight: 2, //宽度，以像素为单位
-                        opacity: 0.01, //透明度，取值范围0 - 1
-                        fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-                    });
-                } else {
-                    ps.setStyle({
-                        color: '#00b99e', // '#ffc700', //颜色
-                        fillColor: '#00b99e', // '#ffc700', //填充颜色
-                        weight: 2, //宽度，以像素为单位
-                        opacity: 0.01, //透明度，取值范围0 - 1
-                        fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-                    });
-                }
-                ps.villageCode = data.villageCode;
-                ps.setZIndex(120);
-                map.addOverlay(ps);
-                psArr.push(ps);
-                
-                (function(data, ps) {
-                    ps.addEventListener(NPMapLib.MARKER_EVENT_CLICK, function(point) {
-                        angular.forEach(psArr, function(data) {
-                            data.setStyle({
-                                color: '#f00', // '#ffc700', //颜色
-                                fillColor: '', // '#ffc700', //填充颜色
-                                weight: 2, //宽度，以像素为单位
-                                opacity: 0, //透明度，取值范围0 - 1
-                                fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-                                //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
-                            });
-                        })
-                        point.setStyle({
-                            color: '#ff0', //颜色
-                            fillColor: '#ffc700', //填充颜色
-                            weight: 2, //宽度，以像素为单位
-                            opacity: 0, //透明度，取值范围0 - 1
-                            fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-                            //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
-                        });
-                    });
-                })(data, ps);
-                
-            });
-
-            console.log(psArr, 186)
-        }
-
         $scope.$on('mapLoadSuccessd', function(e, data){
-            console.log(data, 188)
-            if(data){
-                $scope.drawbiankuang()
-                console.log(data, 191)
-            }
+            psArr = data;
         })
     }]
     return zTreeSearchCtrl;
