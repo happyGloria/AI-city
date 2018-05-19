@@ -40,20 +40,14 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                             // children: basicConfig.villageAllInfo
                             children: [
                                 { 
-                                    name: '杨王村', 
-                                    open: true, 
+                                    name: '杨王村',
                                     villageCode: '310120101234',
-                                    map2d:{
-                                        center: "121.49291636012474, 30.89821546263072"
-                                    }
+                                    map2d:{ "center": "121.49291636012474, 30.89821546263072" }
                                 },
                                 { 
-                                    name: '江海村', 
-                                    open: true, 
+                                    name: '江海村',
                                     villageCode: '310120101203',
-                                    map2d:{
-                                        center: "121.4307955058236, 30.89933443349524"
-                                    }
+                                    map2d:{ "center": "121.4307955058236, 30.89933443349524" }
                                 }
                             ]
                         },
@@ -61,8 +55,8 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                             name:'金汇镇',
                             open:true,
                             children: [
-                                { name: '新强村', open: true, villageCode: '310120106203' },
-                                { name: '金碧汇虹苑小区', open: true, villageCode: '310120106005' }
+                                { name: '新强村', villageCode: '310120106203' },
+                                { name: '金碧汇虹苑小区', villageCode: '310120106005' }
                             ]
                         },
                     ]
@@ -93,7 +87,6 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
 
                 map.setZoom(14);
                 map.setCenter(new NPMapLib.Geometry.Point(item.map2d.center.split(',')[0], item.map2d.center.split(',')[1]));
-                console.log(psArr, 109)
                 angular.forEach(psArr, function(ps) {
                     if(item.villageCode == ps.villageCode) {
                         ps.setStyle({
@@ -114,21 +107,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                             //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
                         });
                     }
-                })
-                // var searchFlag = true;
-                // angular.forEach(psArr, function(ps) {
-                //     if(searchFlag){
-                //         if(item.villageCode == ps.villageCode) {
-                //             ps.setStyle({
-                //                 color: 'red', //颜色
-                //                 fillColor: '#00b99e', //填充颜色
-                //                 weight: 2, //宽度，以像素为单位
-                //                 opacity: 1, //透明度，取值范围0 - 1
-                //                 fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-                //             })
-                //         }
-                //     }
-                // })               
+                })     
             }
         }
 
