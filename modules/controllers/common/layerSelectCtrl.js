@@ -48,6 +48,31 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
         //选择配置图层
         $scope.laterArr = [];
         $scope.selectLayer = function(layer) {
+            if(layer.id == 0){
+                if(layer.isChecked == 2) {
+                    angular.forEach(psArr, function(ps) {
+                        ps.setStyle({
+                            color: '#00b99e', // '#ffc700', //颜色
+                            fillColor: '#00b99e', // '#ffc700', //填充颜色
+                            weight: 0, //宽度，以像素为单位
+                            opacity: 0, //透明度，取值范围0 - 1
+                            fillOpacity:0.001 //填充的透明度，取值范围0 - 1,
+                            //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+                        });
+                    })
+                }else{
+                    angular.forEach(psArr, function(ps) {
+                        ps.setStyle({
+                            color: '#00b99e', // '#ffc700', //颜色
+                            fillColor: '#00b99e', // '#ffc700', //填充颜色
+                            weight: 2, //宽度，以像素为单位
+                            opacity: 0, //透明度，取值范围0 - 1
+                            fillOpacity: 0.3 //填充的透明度，取值范围0 - 1,
+                            //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+                        });
+                    })
+                }
+            }
             $scope.laterArr = [];
             if(layer.isChecked == 1 || layer.isChecked == 0) {
                 layer.isChecked = 2;
@@ -70,6 +95,9 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
         $scope.toggleLayer = function(number,isChecked) {
             
         }
+        $scope.$on('mapLoadSuccessd', function(e, data){
+            psArr = data;
+        })
     }]
     return layerSearchCtrl;
 })
