@@ -13,6 +13,8 @@ input,button{
 }
 .MapPanel .olMap{
     position: absolute;
+    top: 0.48rem;
+    background: #013543;
 }
 .communityPanel{
     position: absolute;

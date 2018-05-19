@@ -58,66 +58,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
                         $scope.$emit('mapLoadSuccess', $scope.mapLoadSuccess);
 					}, 1500);
 				};
-
-                //画小区轮廓
-				var psArr = [];
-
-				$scope.drawbiankuang = function(villageCode) {
-					//地图控件
-					psArr = [];
-					angular.forEach(basicConfig.villageAllInfo, function(data) {
-						var mapGeometry = new MapPlatForm.Base.MapGeometry(map);
-						var ps = mapGeometry.getGeometryByGeoJson(data.map2d.geometry, map);
-						if(villageCode == data.villageCode) {
-							ps.setStyle({
-								color: '#ffc700', //颜色
-								fillColor: '#ffc700', //填充颜色
-								weight: 2, //宽度，以像素为单位
-								opacity: 0.01, //透明度，取值范围0 - 1
-								fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-							});
-						} else {
-							ps.setStyle({
-								color: '#00b99e', // '#ffc700', //颜色
-								fillColor: '#00b99e', // '#ffc700', //填充颜色
-								weight: 2, //宽度，以像素为单位
-								opacity: 0.01, //透明度，取值范围0 - 1
-								fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-							});
-						}
-                        ps.villageCode = data.villageCode;
-						ps.setZIndex(120);
-						map.addOverlay(ps);
-						psArr.push(ps);
-                        
-						(function(data, ps) {
-							ps.addEventListener(NPMapLib.MARKER_EVENT_CLICK, function(point) {
-                                console.log(psArr, 91)
-								angular.forEach(psArr, function(data) {
-									data.setStyle({
-										color: '#f00', // '#ffc700', //颜色
-										fillColor: '', // '#ffc700', //填充颜色
-										weight: 2, //宽度，以像素为单位
-										opacity: 0, //透明度，取值范围0 - 1
-										fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-										//lineStyle: NPMapLib.LINE_TYPE_DASH //样式
-									});
-								})
-								point.setStyle({
-									color: '#ff0', //颜色
-									fillColor: '#ffc700', //填充颜色
-									weight: 2, //宽度，以像素为单位
-									opacity: 0, //透明度，取值范围0 - 1
-									fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
-									//lineStyle: NPMapLib.LINE_TYPE_DASH //样式
-								});
-								// openCommunity(data);
-							});
-                            $scope.$emit('InitPositionArr', { "MapPsArr": psArr, "MapPs": ps });
-						})(data, ps);
-                        
-					});
-				}
             }
 		];
 		return twoDMapCtrl;
