@@ -91,10 +91,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
             }
             $scope.layerList = getLayerisCheckedAll($scope.layerList, "frist");
         };
-        //控制显示或不显示图层
-        $scope.toggleLayer = function(number,isChecked) {
-            
-        }
+
         $scope.$on('mapLoadSuccessd', function(e, data){
             psArr = data;
         })

@@ -85,7 +85,7 @@ input,button{
     height: 0.3rem;
     border-radius: 3px;
     padding-left: .36rem;
-    background: url(../img/panel/searchicon.png) .08rem center no-repeat;
+    background: url(../img/panel/searchIcon.png) .08rem center no-repeat;
     background-size: .2rem .2rem;
 }
 .SearchBox .SearchTree{
