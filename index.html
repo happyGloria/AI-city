@@ -228,7 +228,7 @@
             // 关闭document
             $(document).on('click',function(e){
                 e.stopPropagation()
-                e.preventDefault()
+                // e.preventDefault()
                 var target = $(e.target);
                 if(!target.hasClass('js-SearchTree') && !target.hasClass('js-SearchInput')){
                     $('.js-SearchTree').hide()

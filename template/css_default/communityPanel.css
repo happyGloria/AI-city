@@ -238,6 +238,7 @@ input,button{
     left: .08rem;
 }
 .PanelMain .PanelRight{
+    padding-top: .16rem;
     right: .08rem;
 }
 .PanelMain .PanelBottom{
@@ -860,7 +861,9 @@ span.rightItem.viewPic {
     background-size: 3.8rem 0.3rem;
     margin: .26rem auto 0.1rem;
 }
-
+.PanelRight .commonPanel .title{
+    margin-top: .12rem;
+}
 /* roundPanel */
 .roundPanel{
     position: relative;

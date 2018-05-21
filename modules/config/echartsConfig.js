@@ -21,7 +21,7 @@ define([],function(){
                     axisLine: {show: false},
                     axisLabel: { fontSize: 10, color: '#5dbef6' }
                 },
-                grid: { left: '0', top:'12%', right: '5%', bottom: '3%', containLabel: true },
+                grid: { left: '0', top:'12%', right: '5%', bottom: '6%', containLabel: true },
                 series: [{
                     data: seriesData, // [120, 200, 150, 80, 70]
                     type: 'bar',
@@ -62,7 +62,7 @@ define([],function(){
                     left: '0',
                     top:'6%',
                     right: '5%',
-                    bottom: '3%',
+                    bottom: '6%',
                     containLabel: true
                 },
                 xAxis: {
@@ -160,6 +160,7 @@ define([],function(){
                     name: 'hill',
                     // type: 'pictorialBar',
                     type: 'bar',
+                    barWidth: 26,
                     barCategoryGap: '25%',
                     symbol: 'path://M150 50 L130 130 L170 130 Z',
                     label: {
