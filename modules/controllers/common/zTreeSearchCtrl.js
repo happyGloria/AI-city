@@ -54,8 +54,14 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                             name:'金汇镇',
                             open:true,
                             children: [
-                                { name: '新强村', villageCode: '310120106203' },
-                                { name: '金碧汇虹苑小区', villageCode: '310120106005' }
+                                {
+                                    name: '新强村', villageCode: '310120106203',
+                                    map2d: { "center": "121.56094138547245, 30.981818243131343" }
+                                },
+                                {
+                                    name: '金碧汇虹苑小区', villageCode: '310120106005',
+                                    map2d:{ "center": "121.50343855144186, 30.976030633753705" }
+                                }
                             ]
                         },
                     ]
