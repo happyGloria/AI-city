@@ -293,7 +293,7 @@ input,button{
     margin-top: -0.07rem;
     width: 0.18rem;
     height: 0.16rem;
-    background: url(../img/panel/triggerButton-b.png) no-repeat -0.84rem -0.23rem;
+    background: url(../img/panel/triggerButton-b.png) no-repeat -0.8rem -0.23rem;
     background-size: auto .34rem;
 }
 .PanelMain .PanelBottom.closed .triggerToggle::before{

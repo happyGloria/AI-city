@@ -95,6 +95,9 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
         $scope.$on('mapLoadSuccessd', function(e, data){
             psArr = data;
         })
+        $scope.$on('toggleLayerMethod', function(e, data){
+            $scope.toggleLayer = data
+        })
     }]
     return layerSearchCtrl;
 })

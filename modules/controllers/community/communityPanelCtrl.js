@@ -63,6 +63,10 @@ define([
             $scope.$on('mapLoadSuccess', function(e, data){
                 $scope.$broadcast('mapLoadSuccessd', data)
             })
+            //
+            $scope.$on('toggleLayerFn', function(e, data){
+                $scope.$broadcast('toggleLayerMethod', data)
+            })
 
             // 初始化函数
             function init(){
@@ -126,39 +130,6 @@ define([
                 $scope.ocxModelTpl = 'template/html/modules/component/ocxModel.html';
                 app.register.controller('ocxModelController', OCXCtrl)
             }
-
-            //查询摄像机列表start
-            function queryCameraList(text,type) {
-                $scope.queryMapInfoData = function(id) {
-                    var req = {
-                        villageCode: $scope.villageCode,
-                        cameraType: type || "1,2",
-                        cameraName: text || "",
-                        pageNumber: 1,
-                        pageSize: 999,
-                    }
-                    communityAllService.queryMapInfo(id, req).then(function(data) {
-                        if(data.resultCode == '200') {
-                            var list = data.data.list;
-                            $scope.cameraList = list;  
-                            $scope.villageName = data.villageName;
-                        } else {
-                            notify.warn('无法获取摄像机列表');
-                        }
-                    });
-                }
-                $scope.queryMapInfoData('camera');
-            };
-            //搜索摄像机
-            $scope.searchText = function(text){
-                queryCameraList(text,$scope.nowType);
-            };
-            //清空搜索摄像机
-            $scope.clearSearchText = function(){
-                $scope.text.selectCamera = "";
-                queryCameraList();
-            };
-            queryCameraList();
 
             //根据id查询当前摄像头视频
             $scope.queryVideoById = function(item) {
@@ -229,10 +200,8 @@ define([
                 if($scope.isBottomClosed) {
                     $scope.isBottomClosed = false;
                     bottomPanel.animate({ bottom: openPosition }, togglePanelTime);
-                    $('body').css({ 'overflowX': 'hidden'})
                 } else {
                     $scope.isBottomClosed = true;
-                    $('body').css({'overflow': 'hidden'})
                     bottomPanel.animate({ bottom: '-3.3rem' }, togglePanelTime);
                 }
             }

@@ -45,7 +45,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 				}
 				init();
 
-                $scope.mapLoadSuccess = [];
+                // $scope.mapLoadSuccess = [];
                 //当地图初始化完成时调用
 				window.mapSuccess = function(map) {
 					var ctr = new NPMapLib.Controls.MousePositionControl();
@@ -54,12 +54,14 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					setTimeout(function() {
 						map.setCenter(new NPMapLib.Geometry.Point(121.47568239694685,30.916563451192317));
 						huaTianLinLunKuo();
+						openCarPop();
 						// 实有安防设施 - 监控 - 小区监控、道路监控
 						$scope.toggleLayer(511,2);
 						$scope.toggleLayer(512,2);
 
-                        $scope.mapLoadSuccess = $scope.drawbiankuang();
-                        $scope.$emit('mapLoadSuccess', $scope.mapLoadSuccess);
+                        // $scope.mapLoadSuccess = $scope.drawbiankuang();
+                        $scope.$emit('mapLoadSuccess', $scope.drawbiankuang());
+						$scope.$emit('toggleLayerFn', $scope.toggleLayer)
 					}, 1500);
 				};
 
@@ -286,10 +288,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 				}
 				var openPowerWindow = function(obj) {
 					var person = obj.person;
-					//					var bq = obj.bq;
-					//					if(bq.indexOf(',') > 0) {
-					//						bq = bq.split(',');
-					//					}
 					var str = '<div class="map-layerLine">';
 					str += '<div style="">共' + obj.person.length + '人</div>';
 					str += '<div class="list" style="overflow-y:auto;height:100px">';
@@ -304,10 +302,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					var h = 140;
 					var position = obj.position;
 					position = new NPMapLib.Geometry.Point(position.split(',')[0], position.split(',')[1]);
-					// var title = '';
-					// var content = '';
-					// var paddingForPopups = new NPMapLib.Geometry.Extent(15, 15, 15, 15);
-					// var offset = new NPMapLib.Geometry.Size(0, 0);
 					powerInfoWindow = new NPMapLib.Symbols.InfoWindow(position, "", str, {
 						width: w, //信息窗宽度，单位像素
 						height: h, //信息窗高度，单位像素
@@ -416,6 +410,78 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					return newUrl
 				}
 
+				//定时弹出车辆抓拍窗口
+				var cartimer = null;
+				var carMarker;
+				var websocket = null;
+				var socketIp = basicConfig.websocketIP;
+				$scope.carData = {};
+				var i = 0;
+				var carInterval = null;
+				var carMarkerArr = [];
+				var carInfoWindowArr = [];
+				var carInfoWindow = null;
+
+
+				function openCarPop() {
+					if(websocket == null) {
+						//判断当前浏览器是否支持WebSocket
+						if('WebSocket' in window) {
+							websocket = new WebSocket(socketIp);
+						} else {
+							alert('Not support websocket')
+						}
+					}
+
+					websocket.onopen = function(event) {
+						websocket.send(JSON.stringify({
+							"villageCode": '',
+							"pushType": "3"
+						}));
+						console.log("success");
+					}
+					websocket.onerror = function() {
+						websocket = new WebSocket(socketIp);
+					};
+					//接收到消息的回调方法
+
+					websocket.onmessage = function(event) {
+						$scope.carData = JSON.parse(event.data).data;
+						console.log($scope.carData);
+						// debugger
+						if($scope.carData.length == 0){
+							return false;
+						}
+						$interval.cancel(carInterval);
+						var i = 0;
+						var num = $scope.carData.length;
+						carInterval = $interval(function() {
+							if(carInfoWindow){
+								angular.forEach(carMarkerArr, function(data) {
+									map.removeOverlay(data);
+								})
+								carInfoWindow.close();
+								carMarker.hide();
+							}
+							if(i >= num){
+								$interval.cancel(carInterval);
+								return false;
+							}else{
+								intercalCarLay(i);
+								i++
+							}
+						}, 1000);
+
+					}
+
+					//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+					window.onbeforeunload = function() {
+						websocket.close();
+
+					}
+				}
+
+				var faceInterval = null;
 				//控制显示或不显示图层
 				$scope.toggleLayer = function(number,isChecked) {
 					switch(number) {
@@ -1748,10 +1814,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 									},
 									click: function(e) {
 										removeWindow();
-										// var picNo;
-										// var items = ['1', '2', '3', '4', '5'];
-										// picNo = items[Math.floor(Math.random() * items.length)];
-										// var picUrl = window.location.href.split("/#")[0] + 'template/img/cover/' + picNo + '.jpg';
 										var picUrl=utils.getUrl(e.picUrl);
 										var position = e.location.lon + ',' + e.location.lat;
 										var obj = {
