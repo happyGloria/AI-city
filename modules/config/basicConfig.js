@@ -3,11 +3,12 @@
  **/
 define([],function(){
     return {
+        websocketIP: "ws://15.128.21.153:28080/zhsq/websocket", //推送的IP地址
         WeekAnalysisType: { '过车感知': 9, '开门记录': 10, '人脸抓拍': 11, 'MAC感知': 12, '事件感知': 13 },
         villageCodeNameInfo: [
             { id: 4, pId: 2, code: '310120101234', name: '杨王村', addressName: '奉贤区南桥镇杨王村' },
             { id: 5, pId: 2, code: '310120101203', name: '江海村', addressName: '奉贤区南桥镇江海村' },
-            { id: 6, pId: 3, code: '310120106203', name: '新强村', addressName: '奉贤区金汇镇新强村' },
+            { id: 6, pId: 3, code: '310120106206', name: '新强村', addressName: '奉贤区金汇镇新强村' },
             { id: 7, pId: 3, code: '310120106005', name: '金碧汇虹苑', addressName: '奉贤区金汇镇金碧汇虹苑' }
         ],
         villageNameMap: [
@@ -16,7 +17,7 @@ define([],function(){
             { id: 4, pId: 2, code: '310120101234', name: '杨王村', addressName: '奉贤区南桥镇杨王村' },
             { id: 5, pId: 2, code: '310120101203', name: '江海村', addressName: '奉贤区南桥镇江海村' },
             { id: 3, pId: 1, code: '310120106', name: '金汇镇', addressName: '奉贤区金汇镇' },
-            { id: 6, pId: 3, code: '310120106203', name: '新强村', addressName: '奉贤区金汇镇新强村' },
+            { id: 6, pId: 3, code: '310120106206', name: '新强村', addressName: '奉贤区金汇镇新强村' },
             { id: 7, pId: 3, code: '310120106005', name: '金碧汇虹苑', addressName: '奉贤区金汇镇金碧汇虹苑' }
         ],
         villageAllInfo: [
@@ -98,7 +99,7 @@ define([],function(){
             },
             {
                 name: "新强村",
-                villageCode: "310120106203",
+                villageCode: "310120106206",
                 map2d: {
                     "center": "121.56094138547245, 30.981818243131343",
                     "geometry": {
