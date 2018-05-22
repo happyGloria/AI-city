@@ -412,9 +412,9 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
             $(".population-per").css("height",height+"px");
             var villageCode = $stateParams.villageCode;
             if(!villageCode){
-              $("#yituIframe").attr("src","http://15.128.21.158:11180/#/estate/perception");
+              $("#yituIframe").attr("src","http://15.233.18.229:11180/#/estate/perception");
             }else{
-              $("#yituIframe").attr("src","http://15.128.21.158:11180/#/estate/perception?estate_id="+villageCode);
+              $("#yituIframe").attr("src","http://15.233.18.229:11180/#/estate/perception?estate_id="+villageCode);
             }
         }
 

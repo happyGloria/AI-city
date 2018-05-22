@@ -3,7 +3,7 @@
  *create by lzh 2018-01-16
  */
 define(['jquery', 'angular'], function($, angular) {
-    var yituFace_domain = "http://15.128.21.158:11180/business/api";
+    var yituFace_domain = "http://15.233.18.229:11180/business/api";
     var sessionId = "";
     //设置cookie
     function setCookie(c_name, value, expiredays) {
@@ -64,7 +64,7 @@ define(['jquery', 'angular'], function($, angular) {
     var yitu_login = function() {
         // debugger;
         var name = "dfwl";
-        var password = hex_md5("123456");
+        var password = hex_md5("dfwl");
         var param = JSON.stringify({
             "name": name,
             "password": password
@@ -158,7 +158,7 @@ define(['jquery', 'angular'], function($, angular) {
             dataType: "json",
             headers:{session_id:sessionId},
             beforeSend: function(xhr) {
-                // xhr.setRequestHeader("session_id",sessionId);
+                xhr.setRequestHeader("session_id",sessionId);
                 delCookie("session_id");
                 setCookie("session_id", sessionId);
                 //console.log(sessionId)
