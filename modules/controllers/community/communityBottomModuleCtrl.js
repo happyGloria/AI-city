@@ -17,7 +17,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 $scope.villageCode = $stateParams.id||''
                 //$scope.cameraSelectList = [{ F_ID: "all", F_Name: "全部" }];
                 $scope.cameraSelectList = [{ F_ID: "all", F_Name: "全部" }];
-                yituFace.yitu_queryRepositoryTask();
+                // yituFace.yitu_queryRepositoryTask();
                 $scope.$on('changeCurVillageInfo', function(e, data){
                     $scope.villageCode = data.villageCode||'';
                     $scope.curVillageInfo = data;
@@ -48,9 +48,10 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     $scope.yituIdLon = {};
                     //摄像机对应的小区编号
                     $scope.yituIdToValligeCode = {};
+                    // var req = {"resultCode":200,"resultMessage":"OK","villageName":"东航公寓","data":{"pageNumber":1,"pageSize":999,"totalRow":6,"isMore":0,"totalPage":1,"startIndex":0,"list":[{"id":5830,"villageCode":"310104006009","cameraId":"254","name":"人脸南1","cameraIp":"110.1.23.16","cameraPort":null,"login":null,"password":null,"streamSource":null,"buildingNo":null,"cameraType":2,"thridType":0,"inOutFlag":null,"tollgateID":null,"vehicleCapDirection":null,"isUsed":null,"isOnline":0,"createTime":null,"lon":1.35165689122E7,"lat":3657451.0490000024,"isDelete":null,"rowTime":null,"mrowTime":1518356251000,"ytCameraId":"230","villageName":null,"pvgChannelID":"16ad9670-5d79-42ca-b987-eb6a4c15d72e","count":null},{"id":5831,"villageCode":"310104006009","cameraId":"166","name":"人脸南2","cameraIp":"110.1.23.17","cameraPort":null,"login":null,"password":null,"streamSource":null,"buildingNo":null,"cameraType":2,"thridType":0,"inOutFlag":null,"tollgateID":null,"vehicleCapDirection":null,"isUsed":null,"isOnline":0,"createTime":null,"lon":1.3516573013300002E7,"lat":3657454.6208999977,"isDelete":null,"rowTime":null,"mrowTime":1518356251000,"ytCameraId":"231","villageName":null,"pvgChannelID":"ec8914dd-9043-4e8c-93eb-4b61ccd63432","count":null},{"id":5832,"villageCode":"310104006009","cameraId":"21","name":"微卡口南门进","cameraIp":"110.1.23.31","cameraPort":null,"login":null,"password":null,"streamSource":null,"buildingNo":null,"cameraType":2,"thridType":0,"inOutFlag":null,"tollgateID":null,"vehicleCapDirection":null,"isUsed":null,"isOnline":0,"createTime":null,"lon":1.3516539807999998E7,"lat":3657404.0852999985,"isDelete":null,"rowTime":null,"mrowTime":1518356251000,"ytCameraId":"232","villageName":null,"pvgChannelID":"04d12d97-7a19-4d02-8b49-0fa6625d6c62","count":null},{"id":5833,"villageCode":"310104006009","cameraId":"22","name":"微卡口南门出","cameraIp":"110.1.23.32","cameraPort":null,"login":null,"password":null,"streamSource":null,"buildingNo":null,"cameraType":2,"thridType":0,"inOutFlag":null,"tollgateID":null,"vehicleCapDirection":null,"isUsed":null,"isOnline":0,"createTime":null,"lon":1.3516541924600001E7,"lat":3657406.0697000027,"isDelete":null,"rowTime":null,"mrowTime":1518356251000,"ytCameraId":"233","villageName":null,"pvgChannelID":"f913918d-b868-481a-ab45-15532dfc9c15","count":null},{"id":5834,"villageCode":"310104006009","cameraId":"23","name":"微卡口北门进","cameraIp":"110.1.23.33","cameraPort":null,"login":null,"password":null,"streamSource":null,"buildingNo":null,"cameraType":2,"thridType":0,"inOutFlag":null,"tollgateID":null,"vehicleCapDirection":null,"isUsed":null,"isOnline":0,"createTime":null,"lon":1.3516562906100001E7,"lat":3657525.899700001,"isDelete":null,"rowTime":null,"mrowTime":1518356251000,"ytCameraId":"234","villageName":null,"pvgChannelID":"9b56ba6c-d154-420d-b059-16ace5783b7b","count":null},{"id":5835,"villageCode":"310104006009","cameraId":"24","name":"微卡口北门出","cameraIp":"110.1.23.34","cameraPort":null,"login":null,"password":null,"streamSource":null,"buildingNo":null,"cameraType":2,"thridType":0,"inOutFlag":null,"tollgateID":null,"vehicleCapDirection":null,"isUsed":null,"isOnline":0,"createTime":null,"lon":1.3516563170699999E7,"lat":3657523.121600002,"isDelete":null,"rowTime":null,"mrowTime":1518356251000,"ytCameraId":"235","villageName":null,"pvgChannelID":"cfda0d45-86de-4304-abba-23968345806e","count":null}]}}
+
                     communityAllService.queryMapInfo('camera',req).then(function(resp) {
                     if(resp.resultCode == '200') {
-                        debugger;
                         angular.forEach(resp.data.list,function(data){
                             if(data.ytCameraId){
                                 var obj={
@@ -413,10 +414,9 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 }
                 var newFaceId = "";
                 $scope.queryFaceListFun = function(cameraId, isClicked) {
-                    // 
                     var param = {
                         "condition": {
-                            "camera_ids": []
+                            "camera_ids": ["0","1"]
                         },
                         "order": {
                             "timestamp": -1
@@ -445,6 +445,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     //     camearIdArr.push(cameraId);
                     // }
                     yituFace.yitu_getFacePicsByCondition(param, function(data) {
+                        debugger;
                         // 
                         if (0 == data.rtn) {
                             // queryFaceStartNum = data.total;
@@ -535,7 +536,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 }
                 var indexLoad=null;
                 function querySearchFace(item) {
-                    debugger
                     var _param = {
                         uri_base64:base64encode(item.face_image_uri)
                     }
@@ -555,7 +555,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                         };
                         var  kuName='';
                         angular.forEach($scope.faceBuKong,function(data){
-                            debugger
                             if(data.type==5){
                                param.retrieval['repository_ids'].push(data.ytLibId);
                                kuName=data.name;
@@ -622,7 +621,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                         isSingleTable:true 
                     }
                     rightService.queryHistoryData(req).then(function(resp) {
-                        debugger;
                         if (200 != resp.resultCode || resp.data.length == 0) {
                             return;
                         }
@@ -896,7 +894,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 $scope.clickMore = function() {
                     var url = "www.baidu.com";
                     var title = "标题"
-                    debugger
                     //判断点击哪个模块“更多”
                     if ($scope.showTabName.door) {
                         url = window.location.href.split("/#")[0] + "#/index/doorrecord/"+$scope.villageCode;
@@ -1087,7 +1084,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     text: ""
                 }
                 $scope.checkFaceCamera = function(item) {
-                    debugger;
                     $scope.showInformationLoading = true;
                     $scope.selectFace.text = item.F_Name;
                     clearInterval(queryFaceListInteval);
@@ -1172,7 +1168,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 var lastRealPowerAndImportant = null;
                 //人脸，实有力量，关注人员
                 $scope.queryCompareFaceFun = function(id, isClicked, cameraId) {
-                    debugger;
+                    
                     var kuName='';
                     var param = {
                         "surveillance_ids": [],
@@ -1205,7 +1201,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                        param['surveillance_ids'].push(task_ids);
                     }
                     yituFace.yitu_alarm(param, function(resp) {
-                        debugger;
                         if ("0" != resp.rtn) {
                             // notify.error("人像请求错误")
                             return;
@@ -1254,7 +1249,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             // }
                         });
                         var newArr = $.extend([],$scope.compareFace[id]);
-                        debugger;
                         if(!!cameraId){
                            $scope.compareFace[id] = _.filter($scope.compareFace[id],function(item){
                                 return item.result1.camera_id == cameraId;
@@ -1399,7 +1393,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                  var startTime = moment().format("YYYY-MM-DD 00:00:00");
                 var endTime = moment().format("YYYY-MM-DD HH:mm:ss");
                 function queryOpenDoorRecordFun(){
-                    debugger
                     var req = {
                         villageCode:$scope.villageCode,
                         startTime:startTime,
@@ -1457,7 +1450,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     });
                 }
 
-           //跳转到实有警情事件界面
+                //跳转到实有警情事件界面
                 $scope.toFaceEventFun = function(type){
                     var params = {
                         type:type,

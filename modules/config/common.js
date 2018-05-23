@@ -48,7 +48,11 @@ define([''], function () {
         face_password: 'e10adc3949ba59abbe56e057f20f883e',
         //==================getUrl===============================
         getUrl:function(url){
-        	return '/zhsq/file/show?path='+url;
+            if(url){
+        	    return '/zhsq/file/show?path='+url;
+            }else{
+                return null;
+            }
         },
         //================================ datetimepicker 日历  ===========================
         //在固定日期上添加几天

@@ -158,7 +158,7 @@ define(['jquery', 'angular'], function($, angular) {
             dataType: "json",
             headers:{session_id:sessionId},
             beforeSend: function(xhr) {
-                xhr.setRequestHeader("session_id",sessionId);
+                // xhr.setRequestHeader("session_id",sessionId);
                 delCookie("session_id");
                 setCookie("session_id", sessionId);
                 //console.log(sessionId)

@@ -103,7 +103,7 @@ define([
             function register2dMapTemplate() {
                 $scope.template2dMapUrl = 'template/html/modules/community/2dMapPanel.html';
                 app.register.controller('templateControllerMap', dMapCtrl);
-            }
+            } 
             /* 引入底部栏 */
             function registerBottomTemplate() {
                 $scope.templateBottomPanelUrl = 'template/html/modules/community/communityBottomModule.html';

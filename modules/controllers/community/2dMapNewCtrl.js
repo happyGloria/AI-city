@@ -48,6 +48,8 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
                 // $scope.mapLoadSuccess = [];
                 //当地图初始化完成时调用
 				window.mapSuccess = function(map) {
+					// 矩形框选功能
+					var mapTools =new MapPlatForm.Base.MapTools(map)
 					var ctr = new NPMapLib.Controls.MousePositionControl();
 					map.addControl(ctr);
 					map.setZoom(12);
@@ -55,11 +57,39 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 						map.setCenter(new NPMapLib.Geometry.Point(121.47568239694685,30.916563451192317));
 						huaTianLinLunKuo();
 						openCarPop();
+
+						var style = {
+							color: "blue", //颜色
+							fillColor: "red", //填充颜色
+							weight: 2, //宽度，以像素为单位
+							opacity:1, //透明度，取值范围0 - 1
+							fillOpacity: 0.1, //填充的透明度，取值范围0 - 1,
+							strokeColor: 'blue',
+							strokeDashstyle:'dash',
+							lineStyle: NPMapLib.LINE_TYPE_DASH //样式
+						};
+						$scope.drawRectangle=function(){
+							map.removeOverlay($scope.geometry);
+							//框选不太准，画出来的框会偏左上，需要往右下画
+							mapTools.drawRectangle(function(res,geometry){
+								console.log(res)
+								var selectCameraList=$scope.cameraList.filter(function(v){
+									return v.lat>=res.bottom && v.lat<=res.top && v.lon>=res.left && v.lon>=res.right
+								})
+								console.log(selectCameraList)
+								$scope.geometry=geometry
+								map.addOverlay(geometry);
+							},style)
+						}
+						$scope.cancelDraw=function(){
+							map.removeOverlay($scope.geometry);
+							mapTools.cancelDraw();
+						}
+
 						// 实有安防设施 - 监控 - 小区监控、道路监控
 						$scope.toggleLayer(511,2);
 						$scope.toggleLayer(512,2);
 
-                        // $scope.mapLoadSuccess = $scope.drawbiankuang();
                         $scope.$emit('mapLoadSuccess', $scope.drawbiankuang());
 						$scope.$emit('toggleLayerFn', $scope.toggleLayer)
 					}, 1500);
@@ -325,6 +355,48 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					map.addOverlay(powerInfoWindow);
 					powerInfoWindow.open(null, false);
 				}
+				//Gps警务
+              
+				var addEvents1 = function() {
+					//左键单击
+					//alert(111);
+					// map.addEventListener(NPMapLib.MAP_EVENT_RIGHT_CLICK,function(){
+					// 	debugger;
+					// 		// mapTools.cancelMeasure();
+					// 	});
+					// map.addEventListener(NPMapLib.MAP_EVENT_CLICK, function(point) {
+					// 	debugger;
+                    //     // document.getElementById("searchCommunityMap").blur();
+				    //     // $(".communityAllNew-search-ztree").css("display","none");
+				    //     // $(".slimScrollDiv").css("display","none");
+					// 	// removeWindow();
+					// });
+				};
+				var removeWindow = function() {
+					if(infoWindow) {
+						infoWindow.close();
+						infoWindow = null;
+					}
+					if(gpsInfoWindow) {
+						gpsInfoWindow.close();
+						gpsInfoWindow = null;
+					}
+					if(powerInfoWindow) {
+						powerInfoWindow.close();
+						powerInfoWindow = null;
+					}
+					if(communityInfoWindow) {
+						communityInfoWindow.close();
+						communityInfoWindow = null;
+					}
+				}
+				//信息窗口
+				var infoWindow = null;
+				var gpsInfoWindow = null;
+				var powerInfoWindow = null;
+				var communityInfoWindow = null;
+
+
 				var openWindow = function(obj) {
 					if(obj.companyid && obj.companyid != '') {
 						localStorage.setItem('id_'+obj.villageCode, obj.companyid);
@@ -480,6 +552,79 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 
 					}
 				}
+
+				function intercalCarLay(val) {
+					var car = $scope.carData[val];
+					var lon = car.lon;
+					var lat = car.lat;
+					var pic = car.platePic;
+					var time = car.inOutTime;
+					var number = car.plateNumber;
+					var type = car.inOutType;
+					var door = car.tollgateName;
+					var address = car.address;
+					var position = lon + ',' + lat;
+					var size = new NPMapLib.Geometry.Size(32, 32);
+					var carObj = {
+						pic: pic,
+						door: door,
+						time: time,
+						type: type,
+						number: number,
+						address: address,
+						position: position
+					};
+					var pt = new NPMapLib.Geometry.Point(lon, lat);
+					var icon = new NPMapLib.Symbols.Icon("/template/img/newmap/car.png", size);
+					carMarker = new NPMapLib.Symbols.Marker(pt);
+					carMarker.setIcon(icon);
+					map.addOverlay(carMarker);
+					if(typeof(lon) != 'undefined' && typeof(lat) != 'undefined') {
+						openCarWindow(carObj);
+					} else {
+						//alert("车辆坐标不对")
+					}
+
+				}
+				var openCarWindow = function(obj) {
+					var str = '<div class="map-layerCon">';
+					str += '<div class="title">抓拍车辆</div>';
+					str += '<div class="cars-mapCon">';
+					str += '<div class="img-box">';
+					str += '<img src="/zhsq/file/show?path='+obj.pic + '" />';
+					str += '</div>';
+					str += '<div class="message-box">';
+					str += '<p class="name">' + obj.number + '</p>';
+					str += '<p>' + obj.time + '</p>';
+					str += '<p>' + (obj.address|| '') + '</p>';
+					str += '</div>';
+					str += '</div>';
+					str += '</div>';
+					var position = obj.position;
+					position = new NPMapLib.Geometry.Point(position.split(',')[0], position.split(',')[1]);
+					carInfoWindow = new NPMapLib.Symbols.InfoWindow(position, "", str, {
+						width: 200, //信息窗宽度，单位像素
+						height: 150, //信息窗高度，单位像素
+						autoSize: false,
+						//offset: offset, //信息窗位置偏移值
+						iscommon: false, //是否为普通窗体（不带箭头）
+						enableCloseOnClick: false, //移动地图，不关闭信息窗口。
+						//paddingForPopups: paddingForPopups, //信息窗自动弹回后，距离四边的值。isAdaptation为true时，该设置有效。
+						isAnimationOpen: false, //信息窗打开时，地图是否平滑移动，默认不平滑移动。
+						isAdaptation: false, //信息窗位置是否自适应，默认不自适应。
+						positionBlock: {
+							imageSrc: '/template/img/newmap/arrow.png',
+							imageSize: {
+								width: 20,
+								height: 11
+							}
+						}
+					});
+					//转换为像素坐标
+					var posPixel = map.pointToPixel(position);
+					map.addOverlay(carInfoWindow);
+					carInfoWindow.open(null, false);
+				};
 
 				var faceInterval = null;
 				//控制显示或不显示图层
@@ -702,7 +847,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 										$scope.villageCode=e.villageCode;
 										;
 										removeWindow();
-										clickBuilding(e.buildingNo,e.villageCode, e.villageCode);
+										clickBuilding(e.buildingNo,e.villageCode);
 									},
 									isAsynchronous: false,
 									labelYOffset: 28,
@@ -1088,17 +1233,17 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 									click: function(e) {
 										//无照片，return
 										return;
-										removeWindow();
-										var position = e.location.lon + ',' + e.location.lat;
-										var picUrl = utils.getUrl(e.picUrl);
-										var obj = {
-											name: '车棚:' + e.name,
-											address: "地址:" + e.place|| '',
-											pic: picUrl,
-											position: position
-										};
-										openWindow(obj);
-										addEvents1();
+										// removeWindow();
+										// var position = e.location.lon + ',' + e.location.lat;
+										// var picUrl = utils.getUrl(e.picUrl);
+										// var obj = {
+										// 	name: '车棚:' + e.name,
+										// 	address: "地址:" + e.place|| '',
+										// 	pic: picUrl,
+										// 	position: position
+										// };
+										// openWindow(obj);
+										// addEvents1();
 									},
 									fontColor: '#fff',
 									isAsynchronous: false,
@@ -1239,7 +1384,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 										e.changeStyle(style, true);
 									},
 									click: function(e) {
-										;
 										removeWindow();
 										var picUrl = utils.getUrl(e.picUrl);
 										var position = e.location.lon + ',' + e.location.lat;
@@ -2084,7 +2228,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 									}
 									communityAllService.queryMapInfo(id, req).then(function(data) {
 										if(data.resultCode == '200') {
-											;
 											shedPoint = data.data.list;
 											if(shedPoint && (shedPoint.length >= 0)) {
 												mapOpera.cluster.addClusterMarkers('shed', shedPoint);
@@ -2216,7 +2359,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 									}
 									communityAllService.queryMapInfo(id, req).then(function(data) {
 										if(data.resultCode == '200') {
-											;
 											doorPoint = data.data.list;
 											if(doorPoint && (doorPoint.length >= 0)) {
 												mapOpera.cluster.addClusterMarkers('door', doorPoint);
@@ -2438,12 +2580,61 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 									fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
 									//lineStyle: NPMapLib.LINE_TYPE_DASH //样式
 								});
+								removeWindow();
 							});
 						})(data, ps);
 						
 					});
 		
 					return psArr;
+				}
+
+				//点击默一栋楼
+				//
+				function clickBuilding(buildingNo,villageCode) {
+					var buildparam = {
+						name: buildingNo
+					};
+					localStorage.setItem("build_" +villageCode, JSON.stringify(buildparam));
+					// var url = window.location.href.split("#")[0] + "/#/index/clickBuilding/" + villageCode;
+					var url = '../../../template/html/modules/buildingHouse/building.html?villageCode='+villageCode;
+					var residentLayer = layer.open({
+						type: 2,
+						title: "楼栋",
+						skin: 'dark-layer',
+						shade: 0.7,
+						shadeClose: true,
+						area: ['7rem', '7.8rem'],
+						anim: 2,
+						scrollbar: false,
+						content: [url, 'no'], //iframe的url，no代表不显示滚动条
+						end: function() { //此处用于演示
+						},
+						success: function(layero, index) {
+							$(layero).find("iframe").eq(0).contents().find("html").css('font-size', $("html").css('font-size'))
+						}
+					});
+				}
+				window.clickResident = function() {
+					;
+					// var url = window.location.href.split("#")[0] + "/#/index/clickResident/"+$scope.villageCode;
+					var url = '../../../template/html/modules/buildingHouse/house.html?villageCode='+$scope.villageCode;
+					var residentLayer = layer.open({
+						type: 2,
+						title: "住户",
+						skin: 'dark-layer',
+						shade: 0.7,
+						shadeClose: true,
+						area: ['8.8rem', '7.5rem'],
+						anim: 2,
+						scrollbar: false,
+						content: [url, 'no'], //iframe的url，no代表不显示滚动条
+						end: function() { //此处用于演示
+						},
+						success: function(layero, index) {
+							$(layero).find("iframe").eq(0).contents().find("html").css('font-size', $("html").css('font-size'))
+						}
+					});
 				}
             }
 		];

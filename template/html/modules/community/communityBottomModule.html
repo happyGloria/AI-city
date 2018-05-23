@@ -16,10 +16,10 @@
             <span ng-class="{'active':faceTab.faceAll}" ng-click="queryFaceListFun('',true)">全部</span>
             <span ng-click="queryCompareFaceFunOut('realPower',true)" ng-class="{'active':faceTab.realPower}">实有力量</span>
             <span ng-click="queryCompareFaceFunOut('importantPeople',true)" ng-class="{'active':faceTab.importantPeople}">关注人员</span>
-            <div class="headerInfo" style="cursor: pointer;" ng-click="toFaceEventFun('senseFindOrLeave')">
+            <div class="headerInfo" ng-show="faceTab.faceAll">
                 <span class="title">今日人脸感知</span>
-                <span>感知发现: {{findAndLeaveObj.findObj.num}}人</span>
-                <span>感知离开: {{findAndLeaveObj.leaveObj.num}}人</span>
+                <span ng-click="toFaceEventFun('senseFindOrLeave')">感知发现: {{findAndLeaveObj.findObj.num}}人</span>
+                <span ng-click="toFaceEventFun('senseFindOrLeave')">感知离开: {{findAndLeaveObj.leaveObj.num}}人</span>
             </div>
             <div class="searchBox">
                 <div class="searchBtn"></div>
@@ -41,11 +41,17 @@
                         <div class="guijiIcon faceicon" ng-click="toMapTrack(1,item)" title='轨迹'>
                             <div class="icon"></div>
                         </div>
-                        <img ng-src="{{item.faceUrl}}" />
+                        <img class="img-box" ng-src="{{item.faceUrl}}" />
                     </div>
                     <div class="info">
-                        <p>{{item.name}}</p>
-                        <p>{{item.captureTime}}</p>
+                        <div class="">
+                            {{item.name}}
+                        </div>
+                        <div class="">
+                            {{item.captureTime}}
+                        </div>
+                        <!--<p>{{item.name}}</p>
+                        <p>{{item.captureTime}}</p>-->
                     </div>
                 </li>
             </ul>
