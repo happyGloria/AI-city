@@ -11,18 +11,25 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 				function huaTianLinLunKuo(){
                     var geometry={
                         "type": "Polygon",
-                        "coordinates": [
-                            [
-                                [ 121.47560682410649, 31.01384298861847 ],
-                                [ 121.51626292993991, 31.00778669160105 ],
-                                [ 121.52040376155647, 30.91864587904125 ],
-                                [ 121.47355126197134, 30.877583015100452 ],
-                                [ 121.42569975504014, 30.87776865743584 ],
-                                [ 121.42844702010949, 30.927235144248396 ],
-                                [ 121.43532381265447, 30.96903410607209 ],
-                                [ 121.47560682410649, 31.01384298861847 ]
-                            ]
-                        ]
+						"coordinates": [
+							[
+								[121.43886745935846, 30.77473353989906],
+								[121.41135168283003, 30.81831866986294],
+								[121.36466890252184, 30.836007800975132],
+								[121.33176121145458, 30.946185664497794],
+								[121.34066580029375, 30.97735830610781],
+								[121.48499497441921, 31.020413688176077],
+								[121.67259713281722, 30.98815474879805],
+								[121.7164794392232, 30.979851591778488],
+								[121.77625232174478, 30.945142019988534],
+								[121.77625668748327, 30.89274455247968],
+								[121.76869265536013, 30.876245607709233],
+								[121.76731941773085, 30.85150285002237],
+								[121.66712643498212, 30.845687821169925],
+								[121.53048577405231, 30.81271207805664],
+								[121.43886745935846, 30.77473353989906]
+							]
+						]
                     }
                     
 					var mapGeometry = new MapPlatForm.Base.MapGeometry(map);
@@ -52,9 +59,9 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					var mapTools =new MapPlatForm.Base.MapTools(map)
 					var ctr = new NPMapLib.Controls.MousePositionControl();
 					map.addControl(ctr);
-					map.setZoom(12);
+					map.setZoom(11);
 					setTimeout(function() {
-						map.setCenter(new NPMapLib.Geometry.Point(121.47568239694685,30.916563451192317));
+						map.setCenter(new NPMapLib.Geometry.Point(121.54235741904752,30.9103111981994));
 						huaTianLinLunKuo();
 						openCarPop();
 
@@ -2302,7 +2309,9 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 										pageNumber: 1,
 										pageSize: 9999,
 									}
+									debugger;
 									communityAllService.queryMapInfo(id, req).then(function(data) {
+										debugger;
 										if(data.resultCode == '200') {
 											;
 											cameraPoint = data.data.list;
@@ -2328,7 +2337,9 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 										pageSize: 9999,
 										cameraName:''
 									}
+									debugger;
 									communityAllService.queryMapInfo(id, req).then(function(data) {
+										debugger;
 										if(data.resultCode == '200') {
 											cameraPoint2 = data.data.list;
 											if(cameraPoint2 && (cameraPoint2.length >= 0)) {

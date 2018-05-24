@@ -15,9 +15,8 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 $scope.isCarOrNoCar = true;
                 $scope.alarmMsg = false;
                 $scope.villageCode = $stateParams.id||''
-                //$scope.cameraSelectList = [{ F_ID: "all", F_Name: "全部" }];
                 $scope.cameraSelectList = [{ F_ID: "all", F_Name: "全部" }];
-                // yituFace.yitu_queryRepositoryTask();
+
                 $scope.$on('changeCurVillageInfo', function(e, data){
                     $scope.villageCode = data.villageCode||'';
                     $scope.curVillageInfo = data;
@@ -254,7 +253,9 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             pageNumber: 1,
                             pageSize: 999,
                         }
+                        debugger
                         communityAllService.queryMapInfo(id, req).then(function(data) {
+                            debugger
                             if(data.resultCode == '200') {
                                 var list = data.data.list;
                                 $scope.cameraList = list;
@@ -416,7 +417,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 $scope.queryFaceListFun = function(cameraId, isClicked) {
                     var param = {
                         "condition": {
-                            "camera_ids": ["0","1"]
+                            "camera_ids": ["0","1"] // TODO, 布控单元摄像机ID
                         },
                         "order": {
                             "timestamp": -1
@@ -534,12 +535,15 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 $scope.contrastFaceImg = function(item) {
                     querySearchFace(item);
                 }
+                console.log($scope.faceBuKong, 536)
                 var indexLoad=null;
                 function querySearchFace(item) {
                     var _param = {
                         uri_base64:base64encode(item.face_image_uri)
                     }
+                    console.log(base64encode(item.face_image_uri), 542)
                     yituFace.yitu_getPic(_param, function(data) {
+                        console.log(data, 543)
                        indexLoad=layer.load();
                         var param = {
                             "condition": {},
@@ -547,11 +551,12 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             "start": 0,
                             "limit": 1,
                             "retrieval": {
-                                "face_image_id": item.face_image_id,
+                                // "face_image_id": item.face_image_id,
                                 "picture_image_content_base64":data,
-                                "threshold": 90,
-                                "using_ann": true,
-                                "repository_ids":[],                            }
+                                "threshold": 10,
+                                // "using_ann": true,
+                                "repository_ids":["4"]
+                            }
                         };
                         var  kuName='';
                         angular.forEach($scope.faceBuKong,function(data){
@@ -1189,12 +1194,12 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                         "limit": 5000
                     };
                     if(id){
-                        var task_ids='';
-                        var dd= id=='realPower'?2:4;
-                        console.log(task_ids);
+                        var task_ids='0'; // TODO,布控单元ID
+                        var dd = id =='realPower' ? 2 : 4;
+                        console.log($scope.faceBuKong, 1193)
                         angular.forEach($scope.faceBuKong,function(data){
-                            if(data.type==dd){
-                               task_ids=data.ytLibId;
+                            if(data.type == dd){
+                               task_ids = data.ytLibId;
                                kuName=data.name;
                             }
                         });
@@ -1230,11 +1235,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             v.result2.faceUrl = yituFace.yituFace_Pic + base64encode(v.result2.face_image_uri);
                             v.hit_detail.similary = Number(v.hit_detail.hit_similarity).toFixed(2);
                             v.captureTime = moment(v.hit_detail.timestamp * 1000).format('YYYY-MM-DD HH:mm:ss');
-                            v.person_id = v.result2.
-
-
-
-                                person_id;
+                            v.person_id = v.result2.person_id;
                             v.name = v.result2.name;
                             v.kuName=kuName;
                             v.cameraName = $scope.yituIdToCameraNameObj[v.result1.camera_id];
