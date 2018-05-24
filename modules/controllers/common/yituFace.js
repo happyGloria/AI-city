@@ -47,18 +47,9 @@ define(['jquery', 'angular'], function($, angular) {
                 if(data.rtn==0){
                    var cameraList=[];
                    for (var i=0;i<data.cameras.length;i++) {
-                      cameraList.push(data.cameras[i].id);
+                      cameraList.push({ 'id': data.cameras[i].id , 'name': data.cameras[i].name });
                    }
-                   var camerasArr = [];
-                   for (var i=0; i < data.cameras.length; i++) {
-                      camerasArr.push({ 'id': data.cameras[i].id , 'name': data.cameras[i].name });
-                   }
-                   localStorage.setItem('yitu_camerasList',JSON.stringify(camerasArr));
-
-                    // console.log(data.cameras, 57)
-                    // console.log(cameraList, 58) 结果如：["1", "0"]
-                    // console.log(camerasArr, 59) 结果如：[{id: "1", name: "南桥车站东"}, {id: "0", name: "南桥车站西"}]
-                    // callBack(param,cameraList,camerasArr);
+                   localStorage.setItem('yitu_camerasList',JSON.stringify(cameraList));
                 }
             }
         });
@@ -150,7 +141,11 @@ define(['jquery', 'angular'], function($, angular) {
                 setCookie("session_id", sessionId);
             },
             success: function(data) {
-                localStorage.setItem('yitu_repositoryList',JSON.stringify(data.results));
+                var repositoryArr = [];
+                if(data.rtn == 0){
+                    repositoryArr = data.results;
+                }
+                localStorage.setItem('yitu_repositoryList',JSON.stringify(repositoryArr));
             }
         });
     }
@@ -167,8 +162,11 @@ define(['jquery', 'angular'], function($, angular) {
                 setCookie("session_id", sessionId);
             },
             success: function(data) {
-                console.log(data);
-                localStorage.setItem('yitu_surveillancesList',JSON.stringify(data.surveillances));
+                var surveillancesArr = [];
+                if(data.rtn == 0){
+                    surveillancesArr = data.surveillances;
+                }
+                localStorage.setItem('yitu_surveillancesList',JSON.stringify(surveillancesArr));
             }
         });
     };
