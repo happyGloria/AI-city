@@ -243,6 +243,16 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     queryCameraList("",val);
                 };
 
+                function queryCameraTab(val){
+                    if(val === "4"){
+                        $scope.activeClass = false;
+                    }else{
+                        $scope.activeClass = true;
+                    }
+                    $scope.nowType = val;
+                    queryCameraList("",val);
+                };
+
                 //查询摄像机列表start
                 function queryCameraList(text,type) {
                     $scope.queryMapInfoData = function(id) {
@@ -414,10 +424,15 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     "importantPeople": false
                 }
                 var newFaceId = "";
+
+                $scope.yitu_camerasList = JSON.parse(localStorage.getItem('yitu_camerasList'));
+                $scope.yitu_repositoryList = JSON.parse(localStorage.getItem('yitu_repositoryList'));
+                $scope.yitu_surveillancesList = JSON.parse(localStorage.getItem('yitu_surveillancesList'));
+                
                 $scope.queryFaceListFun = function(cameraId, isClicked) {
                     var param = {
                         "condition": {
-                            "camera_ids": ["0","1"] // TODO, 布控单元摄像机ID
+                            "camera_ids": [] // TODO, 布控单元摄像机ID
                         },
                         "order": {
                             "timestamp": -1
@@ -428,10 +443,8 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     if(cameraId){
                        param.condition['camera_ids'].push(cameraId);
                     }else{
-                        angular.forEach($scope.cameraSelectList,function(data){
-                             if(data.F_ID!=='all'){
-                                param.condition['camera_ids'].push(data.F_ID);
-                             }
+                        angular.forEach($scope.yitu_camerasList,function(data){
+                            param.condition['camera_ids'].push(data.id);
                         });
                     }
                     if (isClicked) {
@@ -446,8 +459,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     //     camearIdArr.push(cameraId);
                     // }
                     yituFace.yitu_getFacePicsByCondition(param, function(data) {
-                        debugger;
-                        // 
                         if (0 == data.rtn) {
                             // queryFaceStartNum = data.total;
                             if(data.results.length > 0 && $scope.faceList.length > 0 && data.results[0].face_image_id ==$scope.faceList[0].face_image_id){
@@ -463,6 +474,11 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                                     v.picUrl = "";
                                 }
                                 v.captureTime = moment(v.timestamp * 1000).format('YYYY-MM-DD HH:mm:ss');
+                                $.each($scope.yitu_camerasList,function(index, value){
+                                    if(value.id === v.camera_id){
+                                        v.name = value.name;
+                                    }
+                                })
                             })
                             $scope.$apply(function() {
                                 $scope.faceList = data.results.concat($scope.faceList);
@@ -493,9 +509,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                }
                 //放大人像图片
                 $scope.enlargeImg = function(item) {
-                    ////;
-                    // swObj.shade.color('{"r":"0","g":"0","b":"0","a":"0.8"}');
-                    // swObj.shade.show("true");
                     var src = item.picUrl;
                     if (item.picUrl == "") {
                         layer.msg("暂无放大照片", {
@@ -537,8 +550,10 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 }
                 var indexLoad=null;
                 
-                function querySearchFace(item) { 
-                    yituFace.yitu_imageToBase64(base64encode(item.face_image_uri), function(data){
+                function querySearchFace(item) {
+                    console.log(item, 549);
+                    var resource = yituFace.yituFace_Pic + base64encode(item.face_image_uri);
+                    yituFace.yitu_imageToBase64(resource, function(data){
                         indexLoad=layer.load();
                         var param = {
                             "condition": {},
@@ -548,15 +563,12 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             "retrieval": {
                                 "picture_image_content_base64": data,
                                 "threshold": 35,
-                                "repository_ids":["4"]
+                                "repository_ids":[]
                             }
                         };
                         var  kuName='';
-                        angular.forEach($scope.faceBuKong,function(data){
-                            if(data.type==5){
-                                param.retrieval['repository_ids'].push(data.ytLibId);
-                                kuName=data.name;
-                            }
+                        angular.forEach($scope.yitu_repositoryList,function(data){
+                            param.retrieval['repository_ids'].push(data.id);
                         });
                         yituFace.yitu_contrastFaceAll(param, function(data) {
                             layer.close(indexLoad);
@@ -574,8 +586,14 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                                 })
                                 return;
                             }
+
                             $scope.$apply(function() {
                                 $scope.contrastFace = data.results[0];
+                                angular.forEach($scope.yitu_repositoryList, function(res){
+                                    if(res.id === $scope.contrastFace.repository_id){
+                                        kuName = res.name;
+                                    }
+                                })
                                 $scope.contrastFace.repository_id=kuName;
                                 $scope.contrastFace.faceUrl = yituFace.yituFace_Pic + base64encode(item.face_image_uri);
                                 $scope.contrastFace.picUrl = yituFace.yituFace_Pic + base64encode($scope.contrastFace.picture_uri);
@@ -864,6 +882,9 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             $scope.showFireTabName[key] = false;
                         }
                         $scope.showFireTabName.smoke = true;
+                    }
+                    if(tabName == 'camera'){
+                        queryCameraTab('4');
                     }
                     queryHistoryData(tabName);
                 }
@@ -1170,14 +1191,10 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     var kuName='';
                     var param = {
                         "surveillance_ids": [],
-                        // "camera_ids":$scope.yituIdArr,
                         "order": {
                             "timestamp": -1
                         },
                         "hit_condition": {
-                            // "hit_similarity": {
-                            //     "$gte": 80
-                            // },
                             "timestamp":{
                                 $gte:Number(moment().subtract(3,'days').format('X')),
                                 $lte:Number(moment().format('X'))
@@ -1187,7 +1204,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                         "limit": 5000
                     };
                     if(id){
-                        var task_ids='0'; // TODO,布控单元ID
+                        var task_ids='1'; // TODO,布控单元ID
                         var dd = id =='realPower' ? 2 : 4;
                         console.log($scope.faceBuKong, 1193)
                         angular.forEach($scope.faceBuKong,function(data){

@@ -32,11 +32,11 @@ define(['jquery', 'angular'], function($, angular) {
         else
             return null;
     }
-    //获取摄像机列表
+    //获取摄像机列表，获取到摄像机后存储到localStorage
     var yitu_getCameraList = function(param,callBack) {
         $.ajax({
             type: "get",
-            url: "business/api/camera",
+            url: "business/api/camera?depth=3&predecessor_id=2", // 注意，这里的depth和predecessor固定的定法哈，具体业务请咨询依图技术人员
             dataType: "json",
             headers: { session_id: sessionId },
             beforeSend: function(xhr) {
@@ -44,22 +44,26 @@ define(['jquery', 'angular'], function($, angular) {
                 setCookie("session_id", sessionId);
             },
             success: function(data) {
-                localStorage.setItem('yitu_camerasList',JSON.stringify(data.cameras));
                 if(data.rtn==0){
                    var cameraList=[];
                    for (var i=0;i<data.cameras.length;i++) {
                       cameraList.push(data.cameras[i].id);
                    }
-                   // var dd=[];
-                   // for (var i=0;i<data.cameras.length;i++) {
-                   //    dd.push(data.cameras[i].id+","+data.cameras[i].name);
-                   // }
-                   // console.log(dd)
-                   callBack(param,cameraList,data.cameras);
+                   var camerasArr = [];
+                   for (var i=0; i < data.cameras.length; i++) {
+                      camerasArr.push({ 'id': data.cameras[i].id , 'name': data.cameras[i].name });
+                   }
+                   localStorage.setItem('yitu_camerasList',JSON.stringify(camerasArr));
+
+                    // console.log(data.cameras, 57)
+                    // console.log(cameraList, 58) 结果如：["1", "0"]
+                    // console.log(camerasArr, 59) 结果如：[{id: "1", name: "南桥车站东"}, {id: "0", name: "南桥车站西"}]
+                    // callBack(param,cameraList,camerasArr);
                 }
             }
         });
     }
+
     //登录接口
     var yitu_login = function() {
         // debugger;
@@ -72,8 +76,9 @@ define(['jquery', 'angular'], function($, angular) {
         $.post("business/api/login", param, function(data) {
             if (0 == data.rtn) {
                 sessionId = data.session_id;
+                yitu_getCameraList()
                 yitu_queryRepositoryTask()
-                yitu_getCameraList("",function(param,data){})
+                yitu_getRepositorys()
                 return data;
             }
         }, "json");
@@ -145,6 +150,7 @@ define(['jquery', 'angular'], function($, angular) {
                 setCookie("session_id", sessionId);
             },
             success: function(data) {
+                localStorage.setItem('yitu_repositoryList',JSON.stringify(data.results));
                 callBack(data);
             }
         });
@@ -158,14 +164,12 @@ define(['jquery', 'angular'], function($, angular) {
             dataType: "json",
             headers:{session_id:sessionId},
             beforeSend: function(xhr) {
-                // xhr.setRequestHeader("session_id",sessionId);
                 delCookie("session_id");
                 setCookie("session_id", sessionId);
-                //console.log(sessionId)
             },
             success: function(data) {
                 console.log(data);
-                return data;
+                localStorage.setItem('yitu_surveillancesList',JSON.stringify(data.surveillances));
             }
         });
     };
@@ -309,7 +313,6 @@ define(['jquery', 'angular'], function($, angular) {
             headers: { session_id: sessionId },
             beforeSend: function(xhr) {
                 delCookie("session_id");
-                // setCookie("session_id","656038078@DEFAULT");
             },
             success: function(data) {
                 callBack(data);
@@ -347,7 +350,8 @@ define(['jquery', 'angular'], function($, angular) {
             var IM = null;
             IM = document.createElement('img');
             IM.setAttribute('crossOrigin', 'anonymous');
-            IM.src = yituFace_domain + "/storage/image?uri_base64=" + resource;
+            // IM.src = yituFace_domain + "/storage/image?uri_base64=" + resource;
+            IM.src = resource;
             IM.onload = function(){
                 var frameCanvas = document.createElement('canvas');
                     frameCanvas.width = IM.width;
@@ -368,7 +372,7 @@ define(['jquery', 'angular'], function($, angular) {
         yituFace_Pic: yituFace_domain + "/storage/image?uri_base64=",
         yitu_login: yitu_login,
         yitu_getRepositorys: yitu_getRepositorys,
-        yitu_queryRepositoryTask: yitu_queryRepositoryTask,
+        // // yitu_queryRepositoryTask: yitu_queryRepositoryTask,
         yitu_getCameraList:yitu_getCameraList,
         yitu_getClusterIds: yitu_getClusterIds,
         yitu_getFacePics: yitu_getFacePics,
