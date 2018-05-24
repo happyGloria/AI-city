@@ -56,7 +56,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                             children: [
                                 {
                                     name: '新强村', villageCode: '310120106206',
-                                    map2d: { "center": "121.56094138547245, 30.981818243131343" }
+                                    map2d: { "center": "121.5180205249759, 30.979476117213082" }
                                 },
                                 {
                                     name: '金碧汇虹苑小区', villageCode: '310120106005',

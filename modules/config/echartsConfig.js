@@ -346,21 +346,21 @@ define([],function(){
                         }
                     },
                     indicator: [{
-                            name: '车辆感知发现',
+                            name: '门未关',
                             max: 6500,
                             axisLabel:{ show:true, color:'#5dbef6' }
                         },
-                        { name: '智能分析', max: 16000 },
-                        { name: '消防告警', max: 30000 },
-                        { name: '刷卡异常', max: 38000 },
-                        { name: '案件接报', max: 52000 },
-                        { name: '车辆滞留', max: 25000 }
+                        { name: '刷卡异常', max: 16000 },
+                        { name: '车感知发现', max: 30000 },
+                        { name: '感知发现', max: 38000 },
+                        { name: '110警情', max: 52000 },
+                        { name: '车感知离开', max: 25000 }
                     ]
                 },
                 series: [{
                     type: 'radar',
                     data: [{
-                        value: [5000, 4000, 28000, 31000, 42000, 21000],
+                        value: [0, 0, 0, 0, 0, 0],
                         name: '数据',
                         itemStyle: {
                             normal: {

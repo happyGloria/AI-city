@@ -351,8 +351,8 @@
     <!-- 监控 -->
     <div class="monitoringContent" ng-if="showTabName.camera">
         <div class="btnBox clearfix">
-            <span ng-click="queryCameraTab('1,2')" ng-class="{'active':activeClass}">小区监控</span>
             <span ng-click="queryCameraTab('4')" ng-class="{'active':!activeClass}">道路监控</span>
+            <span ng-click="queryCameraTab('1,2')" ng-class="{'active':activeClass}">小区监控</span>
             <div class="searchBox">
                 <div class="searchBtn"></div>
                 <input class='search' type="text" placeholder="请输入关键字搜索" ng-keyup="searchText(text.selectCamera)" ng-model="text.selectCamera">

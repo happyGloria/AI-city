@@ -6,14 +6,14 @@ define([],function(){
         websocketIP: "ws://15.128.21.153:28080/zhsq/websocket", //推送的IP地址
         WeekAnalysisType: { '过车感知': 9, '开门记录': 10, '人脸抓拍': 11, 'MAC感知': 12, '事件感知': 13 },
         villageCodeNameInfo: [
-            { id: 1, pId: 0, code: '3101201', name: '奉贤区', addressName: '奉贤区' },
+            { id: 1, pId: 0, code: '310120***', name: '其他', addressName: '奉贤区' },
             { id: 4, pId: 2, code: '310120101234', name: '杨王村', addressName: '奉贤区南桥镇杨王村' },
             { id: 5, pId: 2, code: '310120101203', name: '江海村', addressName: '奉贤区南桥镇江海村' },
             { id: 6, pId: 3, code: '310120106206', name: '新强村', addressName: '奉贤区金汇镇新强村' },
             { id: 7, pId: 3, code: '310120106005', name: '金碧汇虹苑', addressName: '奉贤区金汇镇金碧汇虹苑' }
         ],
         villageNameMap: [
-            { id: 1, pId: 0, code: '310120', name: '奉贤区', addressName: '奉贤区' },
+            { id: 1, pId: 0, code: '310120***', name: '奉贤区', addressName: '奉贤区' },
             { id: 2, pId: 1, code: '310120101', name: '南桥镇', addressName: '奉贤区南桥镇' },
             { id: 4, pId: 2, code: '310120101234', name: '杨王村', addressName: '奉贤区南桥镇杨王村' },
             { id: 5, pId: 2, code: '310120101203', name: '江海村', addressName: '奉贤区南桥镇江海村' },

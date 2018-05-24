@@ -1204,13 +1204,13 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                         "limit": 5000
                     };
                     if(id){
-                        var task_ids='1'; // TODO,布控单元ID
+                        var task_ids= ""; // TODO,布控单元ID
                         var dd = id =='realPower' ? 2 : 4;
-                        console.log($scope.faceBuKong, 1193)
+                        $scope.faceBuKong = [{"ytLibId":"1","name":"ceshi","type":4}]
                         angular.forEach($scope.faceBuKong,function(data){
                             if(data.type == dd){
                                task_ids = data.ytLibId;
-                               kuName=data.name;
+                               kuName = data.name;
                             }
                         });
                        param['surveillance_ids'].push(task_ids);
@@ -1244,13 +1244,16 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             v.result1.picUrl = yituFace.yituFace_Pic + base64encode(v.result1.picture_uri);
                             v.result2.faceUrl = yituFace.yituFace_Pic + base64encode(v.result2.face_image_uri);
                             v.hit_detail.similary = Number(v.hit_detail.hit_similarity).toFixed(2);
-                            v.captureTime = moment(v.hit_detail.timestamp * 1000).format('YYYY-MM-DD HH:mm:ss');
+                            v.captureTime = moment(v.hit_detail.hit_timestamp * 1000).format('YYYY-MM-DD HH:mm:ss');
                             v.person_id = v.result2.person_id;
                             v.name = v.result2.name;
                             v.kuName=kuName;
-                            v.cameraName = $scope.yituIdToCameraNameObj[v.result1.camera_id];
-                            // v.lon = $scope.yituIdLon[v.result1.camera_id].lon;
-                            // v.lat = $scope.yituIdLon[v.result1.camera_id].lat;
+                            $.each($scope.yitu_camerasList, function(index, value){
+                                if(value.id == v.result1.camera_id){
+                                    v.cameraName = value.name;
+                                }
+                            })
+
                             if(id=='realPower'){
                               v.label=getFaceLabel(v.result2.person_id);
                             }
@@ -1324,17 +1327,18 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     $scope.contrastFace.person_id = item.person_id;
                     $scope.contrastFace.repository_id = item.kuName;//item.hit_detail.hit_repository_id;
                     $scope.contrastFace.name = item.name;
+                    $scope.$emit('setContrastFace', $scope.contrastFace);
                     // $scope.$apply();
                     layer.open({
                         type: 1,
                         title: '人脸对比',
                         skin: 'dark-layer',
-                        area: ['6.3rem', '3rem'],
+                        area: '6.3rem',
                         shade: 0.8,
                         scrollbar: false,
                         closeBtn: 1,
                         shadeClose: true,
-                        content: $("#contrastFace"),
+                        content: $("#contrastFaceLayer"),
                         end: function(index, layero) {
                             // swObj.shade.show("false");
                         },

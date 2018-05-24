@@ -59,9 +59,9 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					var mapTools =new MapPlatForm.Base.MapTools(map)
 					var ctr = new NPMapLib.Controls.MousePositionControl();
 					map.addControl(ctr);
-					map.setZoom(11);
+					map.setZoom(12);
 					setTimeout(function() {
-						map.setCenter(new NPMapLib.Geometry.Point(121.54235741904752,30.9103111981994));
+						map.setCenter(new NPMapLib.Geometry.Point(121.47568239694685,30.916563451192317));
 						huaTianLinLunKuo();
 						openCarPop();
 
@@ -2090,10 +2090,12 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 								
 								//查询进出口
 								$scope.queryMapInfoData = function(id) {
+									console.log(id, 2093)
 									var req = {
-										villageCode: ''
+										villageCode: $scope.villageCode
 									};
 									communityAllService.queryMapInfo(id, req).then(function(data) {
+										console.log(req, 2098)
 										if(data.resultCode == '200') {
 											buildingPoint = data.data;
 											if(buildingPoint && (buildingPoint.length >= 0)) {

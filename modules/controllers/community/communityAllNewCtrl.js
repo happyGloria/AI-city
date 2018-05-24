@@ -554,7 +554,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 				function intervalppECharts() {
 					//感知数量总量
 					communityAllService.allSense().then(function(resp) {
-						debugger;
 						if(resp.resultCode == '200') {
 							if(lastTotalNum == resp.data){
                                  $scope.allSenseData+= (parseInt(Math.random()*10)+1);

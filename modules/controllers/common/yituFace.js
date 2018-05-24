@@ -151,7 +151,6 @@ define(['jquery', 'angular'], function($, angular) {
             },
             success: function(data) {
                 localStorage.setItem('yitu_repositoryList',JSON.stringify(data.results));
-                callBack(data);
             }
         });
     }
@@ -296,7 +295,6 @@ define(['jquery', 'angular'], function($, angular) {
             },
             success: function(data) {
                 callBack(data);
-                return data;
             }
         });
     };

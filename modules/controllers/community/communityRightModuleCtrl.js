@@ -540,7 +540,8 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                                 "picture_image_content_base64":data,
                                 "threshold": 90,
                                 "using_ann": true,
-                                "repository_ids":[],                            }
+                                "repository_ids":[]
+                            }
                         };
                         var  kuName='';
                         angular.forEach($scope.faceBuKong,function(data){

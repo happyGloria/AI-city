@@ -479,6 +479,9 @@ input,button{
     margin-right: 0.1rem;
     padding: 0.1rem;
 }
+.contentView .content li img{
+    width: 100%;
+}
 .contentView .content.all li{
     height: 1.9rem;
 }

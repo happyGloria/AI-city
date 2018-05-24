@@ -720,104 +720,32 @@ define([
                 if(lastTotalNum == $scope.allSenseData){
                     $scope.allSenseData += (parseInt(Math.random()*10)+1);
                 }
-                // senseScroll.scrollTo($scope.allSenseData);
-                // ppScroll.scrollTo($scope.pptotleNum);
                 lastTotalNum = $scope.allSenseData;
                 angular.forEach(value, function(data) {
                     var type = "";
                     var list = [];
                     if(data.name == '过车感知') {
                         type = 'car';
-                        // carScroll.scrollTo(data.value);
                         $scope.carNum = data.value;
                     }
                     if(data.name == '开门记录') {
                         type = 'openDoor';
-                        // openDoorScroll.scrollTo(data.value);
                         $scope.openDoorNum = data.value;
                     }
                     if(data.name == '人脸抓拍') {
                         type = 'face';
-                        // faceScroll.scrollTo(data.value);
                         $scope.faceNum = data.value;
                     }
                     if(data.name == '事件感知') {
                         type = 'event';
-                        // eventScroll.scrollTo(data.value);
                         $scope.eventNum = data.value;
                     }
                     if(data.name == 'MAC感知') {
                         type = 'mac';
-                        // macScroll.scrollTo(data.value);
                         $scope.macNum = data.value;
                     }
                 });
             }
-            // var senseScroll = Scroller.getNewInstance({
-            //     direction:Scroller.DIRECTION.UP,
-            //     interval:2000,
-            //     width:80,
-            //     amount:14,
-            //     separatorType:Scroller.SEPARATOR.THOUSAND
-            // });
-            // senseScroll.appendTo(document.getElementById("senseNum"));
-            // senseScroll.start("0");
-            // var ppScroll = Scroller.getNewInstance({
-            //         direction:Scroller.DIRECTION.UP,
-            //         interval:2000,
-            //         width:80,
-            //         amount:18,
-            //         separatorType:Scroller.SEPARATOR.THOUSAND
-            //     });
-            // ppScroll.appendTo(document.getElementById("ppNum"));
-            // ppScroll.start("0");
-            // var carScroll = Scroller.getNewInstance({
-            //         direction:Scroller.DIRECTION.UP,
-            //         interval:2000,
-            //         width:80,
-            //         amount:18,
-            //         separatorType:Scroller.SEPARATOR.THOUSAND
-            //     });
-            // carScroll.appendTo(document.getElementById("carNum"));
-            // carScroll.start("0");
-            // var openDoorScroll = Scroller.getNewInstance({
-            //         direction:Scroller.DIRECTION.UP,
-            //         interval:2000,
-            //         width:80,
-            //         amount:18,
-            //         separatorType:Scroller.SEPARATOR.THOUSAND
-            //     });
-            // openDoorScroll.appendTo(document.getElementById("openDoorNum"));
-            // openDoorScroll.start("0");
-            // var faceScroll = Scroller.getNewInstance({
-            //         direction:Scroller.DIRECTION.UP,
-            //         interval:2000,
-            //         width:80,
-            //         amount:18,
-            //         separatorType:Scroller.SEPARATOR.THOUSAND
-            //     });
-            // faceScroll.appendTo(document.getElementById("faceNum"));
-            // faceScroll.start("0");
-            // var eventScroll = Scroller.getNewInstance({
-            //         direction:Scroller.DIRECTION.UP,
-            //         interval:2000,
-            //         width:80,
-            //         amount:18,
-            //         separatorType:Scroller.SEPARATOR.THOUSAND
-            //     });
-            // eventScroll.appendTo(document.getElementById("eventNum"));
-            // eventScroll.start("0");
-            // var macScroll = Scroller.getNewInstance({
-            //         direction:Scroller.DIRECTION.UP,
-            //         interval:2000,
-            //         width:80,
-            //         amount:18,
-            //         separatorType:Scroller.SEPARATOR.THOUSAND
-            //     });
-            // macScroll.appendTo(document.getElementById("macNum"));
-            // macScroll.start("0");
-
-
             
         }
     ]

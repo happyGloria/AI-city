@@ -166,6 +166,7 @@ define(['../services'],
                 };
                 //camera
                 var cameraList = function(req){
+                    debugger;
                     return $http.post('/zhsq/camera/getCameraByType',req).
                         then(function (response, error) {
                             if (error) {
