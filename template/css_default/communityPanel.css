@@ -1476,3 +1476,89 @@ span.rightItem.viewPic {
 .LayerSelect .layerSelect-li-box:hover i{
     background-position-y: -.16rem;
 }
+
+/* contrastFaceLayer */
+.layui-layer-content{
+    overflow: hidden;
+}
+.contrastFaceLayer{
+    display: flex;
+    padding: 0.2rem 0.3rem;
+}
+.contrastFaceLayer .photo{
+    width: 1.4rem;
+    padding-top: .2rem;
+}
+.contrastFaceLayer .photo .img-box {
+    position: relative;
+    overflow: hidden;
+    width: 1.4rem;
+    height: 1.8rem;
+}
+.contrastFaceLayer .photo img{
+	position:absolute;
+	width:auto;
+	height:100%;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%,-50%);
+	-ms-transform:translate(-50%,-50%);
+	transform:translate(-50%,-50%);
+}
+.contrastFaceLayer .photo .span-text{
+    display: block;
+    text-align: center;
+    font-size: 0.14rem;
+    color: #fff;
+    margin: 0.1rem 0;
+}
+.contrastFaceLayer .cell{
+    flex: 1;
+}
+.contrastFaceLayer .rate-box {
+    margin: 0.1rem auto;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    position: relative;
+    background: rgba(255,141,51,0.2);
+}
+.contrastFaceLayer .rate-con {
+    position: absolute;
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin-top: -0.45rem;
+    margin-left: -0.45rem;
+    background: rgba(255,141,51,1);
+}
+.contrastFaceLayer .rate-con .rate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    color: #fff;
+    font-size: 0.24rem;
+    z-index: 100;
+}
+.contrastFaceLayer .rate-con em {
+    font-size: 0.12rem;
+    font-style: normal;
+}
+.contrastFaceLayer .ul-middle {
+    margin: 0 0.2rem;
+}
+.contrastFaceLayer .ul-middle li {
+    line-height: 0.28rem;
+}
+.contrastFaceLayer .ul-middle .em-text {
+    font-style: normal;
+    min-width: 0.7rem;
+    display: inline-block;
+    text-align: right;
+    color: #a3a9b1;
+}

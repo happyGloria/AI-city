@@ -144,3 +144,39 @@
 </div>
 
 <div class="MapPanel" ng-include="template2dMapUrl" ng-controller="templateControllerMap"></div>
+
+<div id="contrastFaceLayer" class="contrastFaceLayer" style="display: none;">
+    <div class="photo">
+        <div class="img-box"><img ng-src="{{contrastFace.faceUrl}}" /></div>
+        <span class="span-text">抓拍人脸</span>
+    </div>
+    <div class="cell">
+        <div class="rate-box">
+            <div class="rate-con">
+                <span class="rate">{{contrastFace.similarity}}<em>%</em></span>
+            </div>
+        </div>
+        <ul class="ul-middle">
+            <li>
+                <em class="em-text">姓名：</em>
+                <span class="span-text">{{contrastFace.name}}</span>						
+            </li>
+            <li>
+                <em class="em-text">性别：</em>
+                <span class="span-text">{{contrastFace.gender}}</span>						
+            </li>
+            <li>
+                <em class="em-text">所在库：</em>
+                <span class="span-text">{{contrastFace.repository_id}}</span>						
+            </li>
+            <li>
+                <em class="em-text">证件号：</em>
+                <span class="span-text" ng-click="viewPeoplefile(contrastFace.person_id)" style="cursor:pointer;">{{contrastFace.person_id}}</span>						
+            </li>
+        </ul>
+    </div>
+    <div class="photo">
+        <div class="img-box"><img ng-src="{{contrastFace.picUrl}}" /></div>
+        <span class="span-text">比中人脸</span>
+    </div>
+</div>
