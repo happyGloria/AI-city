@@ -164,7 +164,7 @@ define(['jquery', 'angular'], function($, angular) {
                 //console.log(sessionId)
             },
             success: function(data) {
-               console.log(data);
+                console.log(data);
                 return data;
             }
         });
@@ -341,6 +341,25 @@ define(['jquery', 'angular'], function($, angular) {
         });
     };
 
+    // 处理图片为base64格式，并去掉前面的 'data:image/png;base64,'
+    var yitu_imageToBase64 = function(resource, callback){
+        if(resource){
+            var IM = null;
+            IM = document.createElement('img');
+            IM.setAttribute('crossOrigin', 'anonymous');
+            IM.src = yituFace_domain + "/storage/image?uri_base64=" + resource;
+            IM.onload = function(){
+                var frameCanvas = document.createElement('canvas');
+                    frameCanvas.width = IM.width;
+                    frameCanvas.height = IM.height;
+                var canvasFill = frameCanvas.getContext('2d')
+                    canvasFill.drawImage(IM, 0, 0);
+                var base64enCode = frameCanvas.toDataURL('image/png', .9);
+                var base64enCodeSplit = base64enCode.substring(22)
+                callback(base64enCodeSplit)
+            }
+        }
+    }
     //获取与依图相关摄像头信息接口
     
     yitu_login();
@@ -360,6 +379,7 @@ define(['jquery', 'angular'], function($, angular) {
         yitu_dossier:yitu_dossier,
         yitu_upLoadPic:yitu_upLoadPic,
         yitu_incomingAndLeaving:yitu_incomingAndLeaving,
-        yitu_getPic:yitu_getPic
+        yitu_getPic:yitu_getPic,
+        yitu_imageToBase64: yitu_imageToBase64
     };
 });

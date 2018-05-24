@@ -67,6 +67,9 @@ define([
             $scope.$on('toggleLayerFn', function(e, data){
                 $scope.$broadcast('toggleLayerMethod', data)
             })
+            $scope.$on('setContrastFace', function(e, data){
+                $scope.contrastFace = data;
+            })
 
             // 初始化函数
             function init(){
@@ -320,9 +323,102 @@ define([
 
             // TodayAnalysis - 今日实有警情分析
             var TodayAnalysisECharts = null;
-            var TodayAnalysisOption = echartsConfig.RadarEcharts()
+            var TodayAnalysisOption = echartsConfig.RadarEcharts();
             TodayAnalysisECharts = echarts.init(document.getElementById('TodayAnalysis'));
             TodayAnalysisECharts.setOption(TodayAnalysisOption);
+            var villageCodeAll = ['310104006001','310104006002','310104006004','310104006005','310104006006','310104006007','310104006008','310104006009','310104006010','310104006011'];
+            getEventStatie();
+            function getEventStatie() {
+					//警情事件统计
+					communityAllService.daySense().then(function(resp) {
+						if(resp.resultCode == '200') {
+							todayEventData = resp.data;
+								yituFace.yitu_dossier("incoming_dossier",villageCodeAll,function(data){
+			                      if(data.statistic_info.length>0){
+			                      	var obj = {};
+			                      	var discoveryNum = 0;
+			                      	obj.name = "感知发现";
+			                      	$.each(data.statistic_info,function(i,v){
+			                      		discoveryNum += v.delta_num;
+			                      	})
+			                        obj.value = discoveryNum;
+			                        todayEventData.push(obj);
+			                    	}
+			                      yituFace.yitu_dossier("leaving_dossier",villageCodeAll,function(data){
+			                        if(data.statistic_info.length>0){
+			                        	var obj = {};
+			                        	var discoveryNum = 0;
+			                        	obj.name = "感知离开";
+			                        	$.each(data.statistic_info,function(i,v){
+				                      		discoveryNum += v.delta_num;
+				                      	})
+				                        obj.value = discoveryNum;
+			                        	todayEventData.push(obj);
+			                      }
+			                      setTableStyleObj(todayEventData, '%');
+			                    });
+							})
+					};
+				}).catch(function(){}).finally(function(){
+                    debugger;
+						setTableStyleObj(todayEventData, '%');
+					})
+				}
+				//动态改变列表的长度，以最大数值为最长比例，其他依次按比例改版长度
+				function setTableStyleObj(arr, style) {
+					var max = 0;
+					angular.forEach(arr, function(data) {
+						if(data.value > max) {
+							max = data.value;
+						}
+					});
+					angular.forEach(arr, function(data) {
+						if(max == 0) {
+							data.style = "0%"
+						} else {
+							data.style = (data.value / max * 100).toFixed(2) + style;
+						}
+						if (data.name == "车辆感知发现") {
+							data.name = "车感知发现"
+						}
+						if (data.name == "车辆感知离开") {
+							data.name = "车感知离开"
+						}
+					});
+                    arr=[
+                        {name:'车感知离开',value:1000},
+                        {name:'110警情',value:2000},
+                        {name:'感知发现',value:3000},
+                        {name:'车感知发现',value:4000},
+                        {name:'刷卡异常',value:3000},
+                        {name:'门未关',value:2000}
+                    ]
+                    if(!arr){
+                        return;
+                    }
+                    debugger;
+                    //arr按照图标的栏目进行排序
+                    var arrNew = arr;
+                    arr.map(function(v){
+                        switch(v.name){
+                            case "门未关": arrNew[0]=v;break;
+                            case "刷卡异常": arrNew[1]=v;break;
+                            case "车感知发现": arrNew[2]=v;break;
+                            case "感知发现": arrNew[3]=v;break;
+                            case "110警情": arrNew[4]=v;break;
+                            case "车感知离开": arrNew[5]=v;break;
+                        }
+                    })
+                    var arrValue = arrNew.map(function(v){
+                        return v.value;
+                    })
+
+                    var TodayAnalysisOptionNew = echartsConfig.RadarEcharts();
+                    TodayAnalysisOptionNew.series[0].data[0].value=arrValue;
+                    TodayAnalysisECharts = echarts.init(document.getElementById('TodayAnalysis'));
+                    TodayAnalysisECharts.setOption(TodayAnalysisOptionNew);
+				}
+
 
             // resize echarts
             $(window).resize(function() {
@@ -555,6 +651,174 @@ define([
                     
                 })
             }
+
+            var eChartsTime = 5000;
+            getperceptionEChartsAll();
+            function getperceptionEChartsAll() {
+                intervalppECharts();
+                $interval(function() {
+                    intervalppECharts();
+                }, eChartsTime);
+            }
+            $scope.pptotleNum=0;
+            $scope.allSenseData=0;
+            $scope.carNum = 0;
+            $scope.openDoorNum = 0;
+            $scope.faceNum = 0;
+            $scope.eventNum = 0;
+            $scope.macNum = 0;
+            //上一次感知数量总量
+            var lastTotalNum = 1;
+            function intervalppECharts() {
+                //感知数量总量
+                communityAllService.allSense().then(function(resp) {
+                    if(resp.resultCode == '200') {
+                        if(lastTotalNum == resp.data){
+                                $scope.allSenseData+= (parseInt(Math.random()*10)+1);
+                        }else{
+                            $scope.allSenseData = resp.data;
+                        }
+                        console.log(resp.data);
+                        increase();
+                    }
+                }).catch(function() {}).finally(function() {});
+                //今日感知增量
+
+                
+            }
+            function increase(){
+                communityAllService.dayIncremental().then(function(resp) {
+                    if(resp.resultCode == '200') {
+                        var dayIncrementalData  = resp.data;
+                        var num = 0;
+                        var arr=[];
+                        communityAllService.todaySenseType_face().then(function(res){
+                            $scope.allSenseData += res.total;
+                            $.each(dayIncrementalData,function(i,v){
+                                if (v.name =='人脸抓拍') {
+                                    v.value = res.today;
+                                }
+                            });
+                        }).catch(function(){
+                        }).finally(function(){
+                            dealDaySenseTypeData(dayIncrementalData,num,arr)
+                        })
+                        
+                    }
+                }).catch(function() {}).finally(function() {});
+            }
+            //接口保护，代码段抽出
+            function dealDaySenseTypeData(value,num,arr){
+                angular.forEach(value, function(data) {
+                    num += data.value;
+                });
+                if($scope.pptotleNum >= num){
+                    $scope.pptotleNum+= (parseInt(Math.random()*10)+1);
+                }else{
+                    $scope.pptotleNum =num;
+                }
+                if(lastTotalNum == $scope.allSenseData){
+                    $scope.allSenseData += (parseInt(Math.random()*10)+1);
+                }
+                // senseScroll.scrollTo($scope.allSenseData);
+                // ppScroll.scrollTo($scope.pptotleNum);
+                lastTotalNum = $scope.allSenseData;
+                angular.forEach(value, function(data) {
+                    var type = "";
+                    var list = [];
+                    if(data.name == '过车感知') {
+                        type = 'car';
+                        // carScroll.scrollTo(data.value);
+                        $scope.carNum = data.value;
+                    }
+                    if(data.name == '开门记录') {
+                        type = 'openDoor';
+                        // openDoorScroll.scrollTo(data.value);
+                        $scope.openDoorNum = data.value;
+                    }
+                    if(data.name == '人脸抓拍') {
+                        type = 'face';
+                        // faceScroll.scrollTo(data.value);
+                        $scope.faceNum = data.value;
+                    }
+                    if(data.name == '事件感知') {
+                        type = 'event';
+                        // eventScroll.scrollTo(data.value);
+                        $scope.eventNum = data.value;
+                    }
+                    if(data.name == 'MAC感知') {
+                        type = 'mac';
+                        // macScroll.scrollTo(data.value);
+                        $scope.macNum = data.value;
+                    }
+                });
+            }
+            // var senseScroll = Scroller.getNewInstance({
+            //     direction:Scroller.DIRECTION.UP,
+            //     interval:2000,
+            //     width:80,
+            //     amount:14,
+            //     separatorType:Scroller.SEPARATOR.THOUSAND
+            // });
+            // senseScroll.appendTo(document.getElementById("senseNum"));
+            // senseScroll.start("0");
+            // var ppScroll = Scroller.getNewInstance({
+            //         direction:Scroller.DIRECTION.UP,
+            //         interval:2000,
+            //         width:80,
+            //         amount:18,
+            //         separatorType:Scroller.SEPARATOR.THOUSAND
+            //     });
+            // ppScroll.appendTo(document.getElementById("ppNum"));
+            // ppScroll.start("0");
+            // var carScroll = Scroller.getNewInstance({
+            //         direction:Scroller.DIRECTION.UP,
+            //         interval:2000,
+            //         width:80,
+            //         amount:18,
+            //         separatorType:Scroller.SEPARATOR.THOUSAND
+            //     });
+            // carScroll.appendTo(document.getElementById("carNum"));
+            // carScroll.start("0");
+            // var openDoorScroll = Scroller.getNewInstance({
+            //         direction:Scroller.DIRECTION.UP,
+            //         interval:2000,
+            //         width:80,
+            //         amount:18,
+            //         separatorType:Scroller.SEPARATOR.THOUSAND
+            //     });
+            // openDoorScroll.appendTo(document.getElementById("openDoorNum"));
+            // openDoorScroll.start("0");
+            // var faceScroll = Scroller.getNewInstance({
+            //         direction:Scroller.DIRECTION.UP,
+            //         interval:2000,
+            //         width:80,
+            //         amount:18,
+            //         separatorType:Scroller.SEPARATOR.THOUSAND
+            //     });
+            // faceScroll.appendTo(document.getElementById("faceNum"));
+            // faceScroll.start("0");
+            // var eventScroll = Scroller.getNewInstance({
+            //         direction:Scroller.DIRECTION.UP,
+            //         interval:2000,
+            //         width:80,
+            //         amount:18,
+            //         separatorType:Scroller.SEPARATOR.THOUSAND
+            //     });
+            // eventScroll.appendTo(document.getElementById("eventNum"));
+            // eventScroll.start("0");
+            // var macScroll = Scroller.getNewInstance({
+            //         direction:Scroller.DIRECTION.UP,
+            //         interval:2000,
+            //         width:80,
+            //         amount:18,
+            //         separatorType:Scroller.SEPARATOR.THOUSAND
+            //     });
+            // macScroll.appendTo(document.getElementById("macNum"));
+            // macScroll.start("0");
+
+
+            
         }
     ]
     return communityPanelCtrl;

@@ -535,38 +535,32 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 $scope.contrastFaceImg = function(item) {
                     querySearchFace(item);
                 }
-                console.log($scope.faceBuKong, 536)
                 var indexLoad=null;
-                function querySearchFace(item) {
-                    var _param = {
-                        uri_base64:base64encode(item.face_image_uri)
-                    }
-                    console.log(base64encode(item.face_image_uri), 542)
-                    yituFace.yitu_getPic(_param, function(data) {
-                        console.log(data, 543)
-                       indexLoad=layer.load();
+                
+                function querySearchFace(item) { 
+                    yituFace.yitu_imageToBase64(base64encode(item.face_image_uri), function(data){
+                        indexLoad=layer.load();
                         var param = {
                             "condition": {},
                             "order": { "similarity": -1 },
                             "start": 0,
                             "limit": 1,
                             "retrieval": {
-                                // "face_image_id": item.face_image_id,
-                                "picture_image_content_base64":data,
-                                "threshold": 10,
-                                // "using_ann": true,
+                                "picture_image_content_base64": data,
+                                "threshold": 35,
                                 "repository_ids":["4"]
                             }
                         };
                         var  kuName='';
                         angular.forEach($scope.faceBuKong,function(data){
                             if(data.type==5){
-                               param.retrieval['repository_ids'].push(data.ytLibId);
-                               kuName=data.name;
+                                param.retrieval['repository_ids'].push(data.ytLibId);
+                                kuName=data.name;
                             }
                         });
                         yituFace.yitu_contrastFaceAll(param, function(data) {
                             layer.close(indexLoad);
+                            console.log(data, 588)
                             if (0 != data.rtn || data.results.length == 0) {
                                 layer.msg("暂无对比信息", {
                                     success: function(layero) {
@@ -587,18 +581,18 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                                 $scope.contrastFace.picUrl = yituFace.yituFace_Pic + base64encode($scope.contrastFace.picture_uri);
                                 $scope.contrastFace.similarity = Number($scope.contrastFace.similarity).toFixed(2);
                                 $scope.contrastFace.gender = $scope.contrastFace.gender == 0 ? "未知" : $scope.contrastFace.gender == 1 ? "男" : "女";
+                                $scope.$emit('setContrastFace', $scope.contrastFace);
                                 layer.open({
                                     type: 1,
                                     title: '人脸对比',
                                     skin: 'dark-layer',
-                                    area: ['6.3rem', '3rem'],
+                                    area: '6.5rem',
                                     shade: 0.8,
                                     scrollbar: false,
                                     closeBtn: 1,
                                     shadeClose: true,
-                                    content: $("#contrastFace"),
+                                    content: $("#contrastFaceLayer"),
                                     end: function(index, layero) {
-                                        // swObj.shade.show("false");
                                     },
                                     success: function(layero) {
                                         $(layero).append(iframe);
@@ -606,8 +600,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                                 });
                             })
                         });
-                    });
-                    
+                    })
                 }
 
                 //人脸模块end
@@ -1239,8 +1232,8 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             v.name = v.result2.name;
                             v.kuName=kuName;
                             v.cameraName = $scope.yituIdToCameraNameObj[v.result1.camera_id];
-                            v.lon = $scope.yituIdLon[v.result1.camera_id].lon;
-                            v.lat = $scope.yituIdLon[v.result1.camera_id].lat;
+                            // v.lon = $scope.yituIdLon[v.result1.camera_id].lon;
+                            // v.lat = $scope.yituIdLon[v.result1.camera_id].lat;
                             if(id=='realPower'){
                               v.label=getFaceLabel(v.result2.person_id);
                             }
