@@ -44,13 +44,13 @@ define(['jquery', 'angular'], function($, angular) {
                 setCookie("session_id", sessionId);
             },
             success: function(data) {
+                var cameraList=[];
                 if(data.rtn==0){
-                   var cameraList=[];
                    for (var i=0;i<data.cameras.length;i++) {
                       cameraList.push({ 'id': data.cameras[i].id , 'name': data.cameras[i].name });
                    }
-                   localStorage.setItem('yitu_camerasList',JSON.stringify(cameraList));
                 }
+                localStorage.setItem('yitu_camerasList',JSON.stringify(cameraList));
             }
         });
     }
