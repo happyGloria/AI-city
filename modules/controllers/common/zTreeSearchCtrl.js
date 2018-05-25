@@ -32,6 +32,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                     open:true,
                     id:'1',
                     villageCode: '',
+                    map2d:{ "center": "121.47568239694685,30.916563451192317" },
                     children:[                   
                         {
                             name:'南桥镇',
@@ -84,6 +85,9 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                 $scope.zTreeSearch.communityName = item.name;
                 $scope.$emit('setCurVillageAllInfo', item);
                 $(".SearchTree").css("display","none");
+                map.setZoom(12);
+                map.setCenter(new NPMapLib.Geometry.Point(item.map2d.center.split(',')[0], item.map2d.center.split(',')[1]));
+                
             },
             communityLocation: function(item){
                 $scope.zTreeSearch.communityName = item.name;

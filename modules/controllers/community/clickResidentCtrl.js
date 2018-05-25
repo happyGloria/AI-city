@@ -9,7 +9,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
         $(".layout").find("div").eq(0).css({
           "padding-top": "0px"
         });
-         debugger
         var villageCode = $stateParams.villageCode || '';
         var key = 'resident_' + villageCode;
         var resident = $scope.resident = JSON.parse(localStorage.getItem(key));

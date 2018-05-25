@@ -2311,9 +2311,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 										pageNumber: 1,
 										pageSize: 9999,
 									}
-									debugger;
 									communityAllService.queryMapInfo(id, req).then(function(data) {
-										debugger;
 										if(data.resultCode == '200') {
 											;
 											cameraPoint = data.data.list;
@@ -2339,9 +2337,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 										pageSize: 9999,
 										cameraName:''
 									}
-									debugger;
 									communityAllService.queryMapInfo(id, req).then(function(data) {
-										debugger;
 										if(data.resultCode == '200') {
 											cameraPoint2 = data.data.list;
 											if(cameraPoint2 && (cameraPoint2.length >= 0)) {

@@ -241,7 +241,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 				$scope.changeTab('villageCode');
 
 				function oneweekData(data,xAxisData,seriesData){
-					debugger
 					data.sort(function(a,b){
 						return parseInt(b.value) - parseInt(a.value);
 					})

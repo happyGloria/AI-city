@@ -255,31 +255,16 @@ define(['../services'],
 							url = '/zhsq/vehicle/getVehicleTollgateList'
 							break;
 					}
-					debugger;
-					if(id=="camera"){
-					    req.pageSize='99';
-						return $http.get('/zhsq/camera/getCameraByType?villageCode='+req.villageCode+'&cameraType='+req.cameraType+'&cameraName='+req.cameraName+'&pageNumber='+req.pageNumber+'&pageSize='+req.pageSize
-						).then(function(response, error) {
-							if(error) {
-								return $q.reject(error);
-							} else {
-								return $q.when(response.data);
-							}
-						}, function(d) {
-							return $q.reject(d);
-						});
-					}else{
-						return $http.post(url, req).
-						then(function(response, error) {
-							if(error) {
-								return $q.reject(error);
-							} else {
-								return $q.when(response.data);
-							}
-						}, function(d) {
-							return $q.reject(d);
-						});
-					}
+					return $http.post(url, req).
+					then(function(response, error) {
+						if(error) {
+							return $q.reject(error);
+						} else {
+							return $q.when(response.data);
+						}
+					}, function(d) {
+						return $q.reject(d);
+					});
 				}
 
 				return {

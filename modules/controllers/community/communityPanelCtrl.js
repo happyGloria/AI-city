@@ -360,7 +360,6 @@ define([
 							})
 					};
 				}).catch(function(){}).finally(function(){
-                    debugger;
 						setTableStyleObj(todayEventData, '%');
 					})
 				}
@@ -385,20 +384,19 @@ define([
 							data.name = "车感知离开"
 						}
 					});
-                    arr=[
-                        {name:'车感知离开',value:1000},
-                        {name:'110警情',value:2000},
-                        {name:'感知发现',value:3000},
-                        {name:'车感知发现',value:4000},
-                        {name:'刷卡异常',value:3000},
-                        {name:'门未关',value:2000}
-                    ]
+                    // arr=[
+                    //     {name:'车感知离开',value:1000},
+                    //     {name:'110警情',value:2000},
+                    //     {name:'感知发现',value:3000},
+                    //     {name:'车感知发现',value:4000},
+                    //     {name:'刷卡异常',value:3000},
+                    //     {name:'门未关',value:2000}
+                    // ]
                     if(!arr){
                         return;
                     }
-                    debugger;
                     //arr按照图标的栏目进行排序
-                    var arrNew = arr;
+                    var arrNew = arr.slice(0);
                     arr.map(function(v){
                         switch(v.name){
                             case "门未关": arrNew[0]=v;break;
@@ -409,12 +407,23 @@ define([
                             case "车感知离开": arrNew[5]=v;break;
                         }
                     })
+                    var maxNum = 0;
                     var arrValue = arrNew.map(function(v){
+                        if(maxNum<v.value){
+                            maxNum = v.value;
+                        }
                         return v.value;
                     })
 
+                    var arrMax = arrNew.map(function(v){
+                        v.max = maxNum;
+                        return v;
+                    })
+                    
+
                     var TodayAnalysisOptionNew = echartsConfig.RadarEcharts();
                     TodayAnalysisOptionNew.series[0].data[0].value=arrValue;
+                    TodayAnalysisOptionNew.radar.indicator = arrMax;
                     TodayAnalysisECharts = echarts.init(document.getElementById('TodayAnalysis'));
                     TodayAnalysisECharts.setOption(TodayAnalysisOptionNew);
 				}

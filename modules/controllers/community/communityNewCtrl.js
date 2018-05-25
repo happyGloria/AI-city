@@ -19,13 +19,11 @@
 
                 //三维地图建筑物点击事件
                 window.threeMapClickFun = function(obj){
-                    debugger
                   // alert(JSON.stringify(data));
                   // alert($scope.startIndoor)
                   // alert(communityNewService.queryCameraList);
                   //判断点击位置是否为楼栋
                     if (obj.tag == "building-top") {
-                        debugger
                         var buildparam = {
                             // name: obj.objname.split("_")[1]
                              name:obj.name.split("_")[1],
@@ -54,7 +52,6 @@
                         });
                     }
                      if (obj.tag == "menjin-top") {
-                        debugger
                         if(!obj.name){
                             return ;
                         }
@@ -89,7 +86,6 @@
                             pageSize: 999,
                         }
                         communityAllService.queryMapInfo('camera', req).then(function(data) {
-                            debugger
                             if(data.resultCode == '200') {
                             var obj = data.data.list[0];
                             localStorage.setItem("ocxVideoSrc",JSON.stringify(obj));
@@ -165,7 +161,6 @@
 
                 //三维地图start
                 function mapInit() {
-                    debugger;
                     var width = $("body").width() - 0.15*(document.body.clientWidth/1920)*100;
                     var ls_height = $("body").height() - $("#threeHeader").height() - $(".footer").height();
                     sessionStorage.setItem("communityCode",$stateParams.id || '310104006001');
