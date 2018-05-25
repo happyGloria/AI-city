@@ -1,21 +1,23 @@
 /**
  * Created by jgx on 2016/4/12.
  */
-define(['controllers/controllers', 'jquery', 'notify'],
-    function (controllers, $, notify) {
+define(['controllers/controllers', 'jquery', 'notify'],function (controllers, $, notify) {
 
-        var loginCtrl;
-        loginCtrl = ['$scope', 'loginService',
-            function ($scope, loginService) {
-                $scope.$on('$stateChangeSuccess', function() {
-                    var $starmapH = $('.sm-starmap-application').height();
-                    var $contentH = $('.content-box').height();
-                    if($starmapH > $contentH){
-                        $('.sm-starmap-application').css('min-height','100%');
-                    }else{
-                        $('.sm-starmap-application').height($contentH);
-                    }
-                });
+        var loginCtrl = ['$scope', 'loginService', function ($scope, loginService) {
+                window.onResize = function() {
+                    var baseWidth = 1920;
+                    var screenWidth = document.body.clientWidth;
+                    windowHtmlSize = screenWidth / baseWidth * 100;
+                    var defSize = screenWidth / baseWidth;
+                    var axisFontSize = defSize * 24;
+                    $("html").css({
+                        fontSize: windowHtmlSize + 'px'
+                    });
+                }
+                onResize();
+                $(window).resize(function() {
+                    onResize();
+                })
 
                 // $('.user').focus(function(){
                 //     $('.user').addClass('focus');
