@@ -4,7 +4,7 @@
 define(
     [
         'angular',
-        'controllers/community/communityRightModuleCtrl',
+        // 'controllers/community/communityRightModuleCtrl',
         'angularResource',
         'uiRoute',
         'angularRoute',
@@ -25,7 +25,7 @@ define(
         'services/index',
         'directives/index'
     ],
-    function(angular, communityRightModuleCtrl) {
+    function(angular) {
         var angularModule = angular.module('app', ['ngRoute', 'ngResource', 'controllers', 'services', 'directives', 'ui.router', 'ui.bootstrap'], function($compileProvider, $controllerProvider) {});
         //自定义过滤器
         angularModule.filter('paging', function() {
@@ -121,7 +121,7 @@ define(
                     factory: $provide.factory,
                     service: $provide.service
                 };
-                angularModule.register.controller('templateController', communityRightModuleCtrl);
+                // angularModule.register.controller('templateController', communityRightModuleCtrl);
             }
         ]);
 
