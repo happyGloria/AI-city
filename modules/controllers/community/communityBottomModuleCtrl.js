@@ -21,13 +21,13 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     $scope.villageCode = data.villageCode||'';
                     $scope.curVillageInfo = data;
                      init()
+                     queryCameraList();
                 })
                 function init() {
                     //查询实有力量身份证对应的标签
                     // queryRealPowerLable();
                     getEventFun();
                     manholeCoverFun();
-                    queryCameraList();
                     getCkAllList();
                     //获取人像库
                     $scope.getPeopleAll=[];
@@ -227,23 +227,12 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                         $scope.macList = resp.data.list;
                     })
                 };
-                $scope.activeClass = true;
 
                 /* 底部面板 - 监控Tab */
                 $scope.cameraList = [];
-                $scope.activeClass = true;
+                $scope.activeClass = false;
                 $scope.villageCodeNameInfo = basicConfig.villageCodeNameInfo;
                 $scope.queryCameraTab = function(val){
-                    if(val === "4"){
-                        $scope.activeClass = false;
-                    }else{
-                        $scope.activeClass = true;
-                    }
-                    $scope.nowType = val;
-                    queryCameraList("",val);
-                };
-
-                function queryCameraTab(val){
                     if(val === "4"){
                         $scope.activeClass = false;
                     }else{
@@ -263,9 +252,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             pageNumber: 1,
                             pageSize: 999,
                         }
-                        debugger
                         communityAllService.queryMapInfo(id, req).then(function(data) {
-                            debugger
                             if(data.resultCode == '200') {
                                 var list = data.data.list;
                                 $scope.cameraList = list;
@@ -295,7 +282,13 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     queryCameraList();
                 };
                 $scope.toggleCamera = function(index){
-                     $scope.villageCodeNameInfo[index].showType = !$scope.villageCodeNameInfo[index].showType
+                    $.each($scope.villageCodeNameInfo,function(k,v){
+                        if(k==index){
+                            $scope.villageCodeNameInfo[index].showType = !$scope.villageCodeNameInfo[index].showType
+                        }else{
+                            $scope.villageCodeNameInfo[k].showType = false;
+                        }
+                    })
                 }
 
                 //匹配3d地图摄像机和tsl表里的cameraid
@@ -883,8 +876,9 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                         }
                         $scope.showFireTabName.smoke = true;
                     }
+                    console.log(tabName, 879)
                     if(tabName == 'camera'){
-                        queryCameraTab('4');
+                        $scope.queryCameraTab('4');
                     }
                     queryHistoryData(tabName);
                 }

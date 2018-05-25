@@ -38,9 +38,9 @@
                         <div class="fangdaIcon faceicon"  ng-click="enlargeImg(item)" title='放大'>
                             <div class="icon"></div>
                         </div>
-                        <div class="guijiIcon faceicon" ng-click="toMapTrack(1,item)" title='轨迹'>
+                        <!--<div class="guijiIcon faceicon" ng-click="toMapTrack(1,item)" title='轨迹'>
                             <div class="icon"></div>
-                        </div>
+                        </div>-->
                         <img class="img-box" ng-src="{{item.faceUrl}}" />
                     </div>
                     <div class="info">
@@ -65,9 +65,9 @@
                         <div class="fangdaIcon faceicon"  ng-click="contractEnlargeImgFun(item)" title='放大'>
                             <div class="icon"></div>
                         </div>
-                        <div class="guijiIcon faceicon" ng-click="toMapTrack(1,item)" title='轨迹'>
+                        <!--<div class="guijiIcon faceicon" ng-click="toMapTrack(1,item)" title='轨迹'>
                             <div class="icon"></div>
-                        </div>
+                        </div>-->
                         <img ng-src="{{item.result1.faceUrl}}" />
                     </div>
                     <div class="info">
@@ -88,9 +88,9 @@
                         <div class="fangdaIcon faceicon" ng-click="contractEnlargeImgFun(item)" title='放大'>
                             <div class="icon"></div>
                         </div>
-                        <div class="guijiIcon faceicon" ng-click="toMapTrack(1,item)" title='轨迹'>
+                        <!--<div class="guijiIcon faceicon" ng-click="toMapTrack(1,item)" title='轨迹'>
                             <div class="icon"></div>
-                        </div>
+                        </div>-->
                         <img ng-src="{{item.result1.faceUrl}}" />
                     </div>
                     <div class="info">
@@ -372,7 +372,7 @@
             </div>
             <div ng-if="!villageCode" ng-repeat="items in villageCodeNameInfo">
                 <h2 class="Hd" ng-click="toggleCamera($index)">{{items.name}} <sapn class="status">{{!items.showType ? '打开' : '收起'}}</sapn></h2>
-                <div class="Bd" ng-show="!items.showType">
+                <div class="Bd" ng-show="items.showType">
                     <ul ng-if="getCameraList(cameraList, items.code).length > 0" class="CameraList clearfix">
                         <li ng-click="clickCamera(item)" ng-repeat="item in getCameraList(cameraList, items.code)">
                             <span class="name">{{item.name}}</span>
