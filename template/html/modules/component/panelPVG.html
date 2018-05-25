@@ -1,5 +1,7 @@
   <div style="height:100%;">
-    <object id="ZHOCX-PVG" class="UIOCX" width="100%" height="100%" type="applicatin/x-firebreath"><param name="onload" value="pluginLoaded"/></object>
+    <object id="ZHOCX-PVG" class="UIOCX" standby="Waiting..." width="100%" height="100%"  classid="clsid:294EEBEC-7677-4EBA-B2D7-3FD669FBF2A2">
+      <param name="onload" value="pluginLoaded"/>
+    </object>
   </div>
   <script>
   var getErrorCode = function (x) {
@@ -703,11 +705,18 @@
                   //是否布防布控，0为否
                   "displayMode": 0,
                   //解码方式 -1，默认 0，软解 1，硬解
-                  "hwdecoder": -1
+                  "hwdecoder": 1
             };
             pix.PlayEx2(JSON.stringify(param), 0, function(index, result){
-              console.log(getErrorCode(result));
+              if(result!=0){
+                pix.PlayEx2(JSON.stringify(param), 0, function(index2, result2){
+                  if(result2==0){
+                    console.log('第二次拉取视频日志:'+getErrorCode(result2));
+                  }
+                }, 0, function(){}, 0, function(){}, 0);
+              }else{
+                console.log('第一次拉取视频日志:'+getErrorCode(result));
+              }
             }, 0, function(){}, 0, function(){}, 0);
-          
       })
   </script>
