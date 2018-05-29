@@ -5,14 +5,14 @@
 
 #### 1.1 页面功能
 
-| 功能模块                 | UI展示                                                | 相关信息                                                     |
-| ------------------------ | ----------------------------------------------------- | ------------------------------------------------------------ |
-| 搜索                     | ![search](img/ybls-search.png)                        | `modules/controllers/community/2dMapCtrl.js`<br />`$scope.communityMap`<br />`modules/config/configFile.js` |
-| 一标六实                 | ![实有警情事件](img/ybls-total.png)                   | `template/html/modules/community/communityAllNew.html`，43~72<br />`#/index/communityAllNewChart/` |
-| 实有力量在线统计         | ![实有力量在线统计](img/ybls-power-total.png)         |                                                              |
-| 今日实有警情事件情况统计 | ![今日实有警司事件情况统计](img/ybls-event-total.png) |                                                              |
-| 感知数据统计             | ![感知数据统计](img/ybls-ganzhi-total.png)            |                                                              |
-| 今日感知增量             | ![今日感知数据](img/ybls-today-total.png)             | `modules/controllers/community/communityAllNewCtrl.js`<br />648<br />`echarts.init(document.getElementById('perceptionAllCharts'))` |
+| 功能模块                 | UI展示                                                       | 相关信息                                                     |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 搜索                     | ![search](./docs/img/ybls-search.png)                        | `modules/controllers/community/2dMapCtrl.js`<br />`$scope.communityMap`<br />`modules/config/configFile.js` |
+| 一标六实                 | ![实有警情事件](./docs/img/ybls-total.png)                   | `template/html/modules/community/communityAllNew.html`，43~72<br />`#/index/communityAllNewChart/` |
+| 实有力量在线统计         | ![实有力量在线统计](./docs/img/ybls-power-total.png)         |                                                              |
+| 今日实有警情事件情况统计 | ![今日实有警司事件情况统计](./docs/img/ybls-event-total.png) |                                                              |
+| 感知数据统计             | ![感知数据统计](./docs/img/ybls-ganzhi-total.png)            |                                                              |
+| 今日感知增量             | ![今日感知数据](./docs/img/ybls-today-total.png)             | `modules/controllers/community/communityAllNewCtrl.js`<br />648<br />`echarts.init(document.getElementById('perceptionAllCharts'))` |
 
 #### 1.2 NPGIS地图
 
@@ -111,7 +111,7 @@ http://map.netposa.com:9500/doc/tags/NPGIS%20JS%20SDK%E6%8E%A5%E5%8F%A3%E4%BD%BF
 
 * UI视图
 
-  ![3D地图点击弹出层](img/20180426121308.jpg)
+  ![3D地图点击弹出层](./docs/img/20180426121308.jpg)
 
 * 代码：（`clickBuilding()`）
 
@@ -123,7 +123,7 @@ http://map.netposa.com:9500/doc/tags/NPGIS%20JS%20SDK%E6%8E%A5%E5%8F%A3%E4%BD%BF
 
 * UI
 
-  ![住户](img/people-pop.png)
+  ![住户](./docs/img/people-pop.png)
 
 * 代码：（`clickResident()`）
 
@@ -132,11 +132,11 @@ http://map.netposa.com:9500/doc/tags/NPGIS%20JS%20SDK%E6%8E%A5%E5%8F%A3%E4%BD%BF
 
 * 点击证件号跳转
 
-  | 说明                              | UI                              |                                  |                                  |
-  | --------------------------------- | ------------------------------- | -------------------------------- | -------------------------------- |
-  | 住户信息                          | 车辆信息                        | 门禁记录                         | 人脸抓拍                         |
-  | ![住房信息](img/people-house.png) | ![车辆信息](img/people-car.png) | ![门禁记录](img/people-door.png) | ![人脸抓拍](img/people-face.png) |
-  |                                   |                                 |                                  |                                  |
+  | 说明                                     | UI                                     |                                         |                                         |
+  | ---------------------------------------- | -------------------------------------- | --------------------------------------- | --------------------------------------- |
+  | 住户信息                                 | 车辆信息                               | 门禁记录                                | 人脸抓拍                                |
+  | ![住房信息](./docs/img/people-house.png) | ![车辆信息](./docs/img/people-car.png) | ![门禁记录](./docs/img/people-door.png) | ![人脸抓拍](./docs/img/people-face.png) |
+  |                                          |                                        |                                         |                                         |
 
 
 
