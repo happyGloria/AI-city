@@ -146,7 +146,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 					};
 					communityAllService.findGpsByPage(req).then(function(data) {
 						if(data.resultCode == '200') {
-							debugger
 							gpsPoint=data.data.list;
 							setgps();
 						} else {

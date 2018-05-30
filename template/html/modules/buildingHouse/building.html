@@ -26,7 +26,7 @@
 				       		<table class="floor-table">
 					       		<thead>
 					       			<tr>
-					       				<th colspan="{{buildData[0].list.length}}">{{villageName}}{{buildNum}}号</th>
+					       				<th colspan="{{buildHousePerLevel}}">{{villageName}}{{buildNum}}</th>
 					       			</tr>
 					       		</thead>
 					       		<tbody>
@@ -130,6 +130,7 @@
                    "视线对象":"sightPeople-icon,视线对象",
                    "烟感":"smoke-icon,烟感"
             }; 
+            $scope.buildHousePerLevel = 0;
               $scope.clickBuilding = function(){
                   var req = {
                     buildingNo:$scope.buildNum,
@@ -160,6 +161,9 @@
                                 }
                                 if (v.list.length > maxHouseNum) {
                                   maxHouseNum = v.list.length;
+                                }
+                                if(v.list.length > $scope.buildHousePerLevel){
+                                  $scope.buildHousePerLevel = v.list.length;
                                 }
                                   //加人物标签
                                   w.lableArr = [];

@@ -98,8 +98,8 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 					})
 					$scope.toDevicePage = function(obj){
 						console.log(obj)
-						return
-						debugger
+						// return
+						// debugger
 						var urlParam = {
 							name: obj.name,
 							value: obj.num
