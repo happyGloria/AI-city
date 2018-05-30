@@ -208,6 +208,109 @@ define([
                     bottomPanel.animate({ bottom: '-3.3rem' }, togglePanelTime);
                 }
             }
+
+            				/**110警情//////////////////////////////////////////////////////
+		         *
+		         */
+                warningFun();
+                function warningFun() {
+                    var start = moment().format("YYYY-MM-DD 00:00:00");
+                      var end = moment().format("YYYY-MM-DD HH:mm:ss");
+                    $scope.warningParams = {
+                        villageCode: "",
+                        inboundTimeStart: start,
+                        inboundTimeEnd: end,
+                        pageSize: 10,
+                        pageNumber: 1,
+                        caseId: "",
+                        calleeNo: "",
+                        callerName: "",
+                        caseAddress: "",
+                        caseDesc: "",
+                        eventDealState: ""
+                    };
+                    $scope.warningPage = {
+                        totalRow: 0,
+                        count: 0
+                    };
+
+                    //定义一个缓存数据ID的数组
+                    $scope.warningIds = [];
+                    $scope.queryWarnList = function (value) {
+                        $scope.warningIds = [];
+                        $scope.loader = true;
+                        if (value) {
+                            $scope.warningParams.pageNumber = 1;
+                        }
+                        var req1 = {
+                                 villageCode: "",
+                                    pageSize: $scope.warningParams.pageSize,
+                                  pageNumber: $scope.warningParams.pageNumber,
+                            inboundTimeStart: $scope.warningParams.inboundTimeStart,
+                              inboundTimeEnd: $scope.warningParams.inboundTimeEnd,
+                                      caseId: $scope.warningParams.caseId,
+                                    calleeNo: $scope.warningParams.calleeNo,
+                                  callerName: $scope.warningParams.callerName,
+                                 caseAddress: $scope.warningParams.caseAddress,
+                                    caseDesc: $scope.warningParams.caseDesc,
+                              eventDealState: $scope.warningParams.eventDealState,
+                        };
+                        var promise = moreService.warningList(req1);
+                        promise.then(function (resp) {
+                            if (resp.resultCode == 200) {
+                                $scope.warningListData = resp.data.list;
+                                console.log(resp.data.list, 262);
+                                $scope.warningPage.totalRow = resp.data.totalRow;
+                                //获取当前页面警情的数据ID
+                                for (var i = 0; i < $scope.warningListData.length; i++) {
+                                    $scope.warningIds.push($scope.warningListData[i].id);
+                                }
+                            }
+                            // 获取滚动条的总宽度
+                            $scope.$watch('$viewContentLoaded', function (e, config) {
+                                var scrollList = angular.element(".scroll").children();
+                                var ssa = null;
+                                angular.forEach(scrollList, function (item, index) {
+                                    ssa += item.clientWidth;
+                                })
+                            })
+                        }).catch(function () { }).finally(function () {
+                            $scope.loader = false;
+                        });
+                    };
+                    $scope.queryWarnList();
+                    $scope.changeCode = function (val) {
+                        $scope.warningParams.caseAddress = val;
+                    };
+                };
+
+                setTimeout(function () {
+                    var widths = null;
+                    for (var i = 0; i < $(".js-scroll li").length; i++) {
+                        widths += $(".js-scroll li").eq(i).height();
+                    }
+                    var nums = 0;
+                    function goleft() {
+                        if (nums == -widths) {
+                            nums = 0;
+                        }
+                        nums -= 1;
+                        $(".js-scroll").css({
+                            top: nums
+                        })
+                    }
+                    // 设置滚动速度
+                    var timer = setInterval(goleft, 120);
+                    // 设置鼠标经过时滚动停止
+                    $(".js-scroll").hover(function () {
+                        clearInterval(timer);
+                    }, function () {
+                        timer = setInterval(goleft, 120);
+                    })
+                }, 500)
+
+
+                // 110报警end///////////////////////////////////////////////////
             
             /*
              * 一标六实统计页
@@ -326,108 +429,107 @@ define([
             var TodayAnalysisOption = echartsConfig.RadarEcharts();
             TodayAnalysisECharts = echarts.init(document.getElementById('TodayAnalysis'));
             TodayAnalysisECharts.setOption(TodayAnalysisOption);
-            var villageCodeAll = ['310104006001','310104006002','310104006004','310104006005','310104006006','310104006007','310104006008','310104006009','310104006010','310104006011'];
-            getEventStatie();
-            function getEventStatie() {
-					//警情事件统计
-					communityAllService.daySense().then(function(resp) {
-						if(resp.resultCode == '200') {
-							todayEventData = resp.data;
-								yituFace.yitu_dossier("incoming_dossier",villageCodeAll,function(data){
-			                      if(data.statistic_info.length>0){
-			                      	var obj = {};
-			                      	var discoveryNum = 0;
-			                      	obj.name = "感知发现";
-			                      	$.each(data.statistic_info,function(i,v){
-			                      		discoveryNum += v.delta_num;
-			                      	})
-			                        obj.value = discoveryNum;
-			                        todayEventData.push(obj);
-			                    	}
-			                      yituFace.yitu_dossier("leaving_dossier",villageCodeAll,function(data){
-			                        if(data.statistic_info.length>0){
-			                        	var obj = {};
-			                        	var discoveryNum = 0;
-			                        	obj.name = "感知离开";
-			                        	$.each(data.statistic_info,function(i,v){
-				                      		discoveryNum += v.delta_num;
-				                      	})
-				                        obj.value = discoveryNum;
-			                        	todayEventData.push(obj);
-			                      }
-			                      setTableStyleObj(todayEventData, '%');
-			                    });
-							})
-					};
-				}).catch(function(){}).finally(function(){
-						setTableStyleObj(todayEventData, '%');
-					})
-				}
-				//动态改变列表的长度，以最大数值为最长比例，其他依次按比例改版长度
-				function setTableStyleObj(arr, style) {
-					var max = 0;
-					angular.forEach(arr, function(data) {
-						if(data.value > max) {
-							max = data.value;
-						}
-					});
-					angular.forEach(arr, function(data) {
-						if(max == 0) {
-							data.style = "0%"
-						} else {
-							data.style = (data.value / max * 100).toFixed(2) + style;
-						}
-						if (data.name == "车辆感知发现") {
-							data.name = "车感知发现"
-						}
-						if (data.name == "车辆感知离开") {
-							data.name = "车感知离开"
-						}
-					});
-                    // arr=[
-                    //     {name:'车感知离开',value:1000},
-                    //     {name:'110警情',value:2000},
-                    //     {name:'感知发现',value:3000},
-                    //     {name:'车感知发现',value:4000},
-                    //     {name:'刷卡异常',value:3000},
-                    //     {name:'门未关',value:2000}
-                    // ]
-                    if(!arr){
-                        return;
+            // var villageCodeAll = ['310104006001','310104006002','310104006004','310104006005','310104006006','310104006007','310104006008','310104006009','310104006010','310104006011'];
+            // getEventStatie();
+            // function getEventStatie() {
+            //     communityAllService.daySense().then(function(resp) {
+            //         if(resp.resultCode == '200') {
+            //             todayEventData = resp.data;
+            //                 yituFace.yitu_dossier("incoming_dossier",villageCodeAll,function(data){
+            //                     if(data.statistic_info.length>0){
+            //                     var obj = {};
+            //                     var discoveryNum = 0;
+            //                     obj.name = "感知发现";
+            //                     $.each(data.statistic_info,function(i,v){
+            //                         discoveryNum += v.delta_num;
+            //                     })
+            //                     obj.value = discoveryNum;
+            //                     todayEventData.push(obj);
+            //                     }
+            //                     yituFace.yitu_dossier("leaving_dossier",villageCodeAll,function(data){
+            //                     if(data.statistic_info.length>0){
+            //                         var obj = {};
+            //                         var discoveryNum = 0;
+            //                         obj.name = "感知离开";
+            //                         $.each(data.statistic_info,function(i,v){
+            //                             discoveryNum += v.delta_num;
+            //                         })
+            //                         obj.value = discoveryNum;
+            //                         todayEventData.push(obj);
+            //                     }
+            //                     setTableStyleObj(todayEventData, '%');
+            //                 });
+            //             })
+            //         };
+            //     }).catch(function(){}).finally(function(){
+            //         setTableStyleObj(todayEventData, '%');
+            //     })
+            // }
+
+            //动态改变列表的长度，以最大数值为最长比例，其他依次按比例改版长度
+            function setTableStyleObj(arr, style) {
+                var max = 0;
+                angular.forEach(arr, function(data) {
+                    if(data.value > max) {
+                        max = data.value;
                     }
-                    //arr按照图标的栏目进行排序
-                    var arrNew = arr.slice(0);
-                    arr.map(function(v){
-                        switch(v.name){
-                            case "门未关": arrNew[0]=v;break;
-                            case "刷卡异常": arrNew[1]=v;break;
-                            case "车感知发现": arrNew[2]=v;break;
-                            case "感知发现": arrNew[3]=v;break;
-                            case "110警情": arrNew[4]=v;break;
-                            case "车感知离开": arrNew[5]=v;break;
-                        }
-                    })
-                    var maxNum = 0;
-                    var arrValue = arrNew.map(function(v){
-                        if(maxNum<v.value){
-                            maxNum = v.value;
-                        }
-                        return v.value;
-                    })
+                });
+                angular.forEach(arr, function(data) {
+                    if(max == 0) {
+                        data.style = "0%"
+                    } else {
+                        data.style = (data.value / max * 100).toFixed(2) + style;
+                    }
+                    if (data.name == "车辆感知发现") {
+                        data.name = "车感知发现"
+                    }
+                    if (data.name == "车辆感知离开") {
+                        data.name = "车感知离开"
+                    }
+                });
+                // arr=[
+                //     {name:'车感知离开',value:1000},
+                //     {name:'110警情',value:2000},
+                //     {name:'感知发现',value:3000},
+                //     {name:'车感知发现',value:4000},
+                //     {name:'刷卡异常',value:3000},
+                //     {name:'门未关',value:2000}
+                // ]
+                if(!arr){
+                    return;
+                }
+                //arr按照图标的栏目进行排序
+                var arrNew = arr.slice(0);
+                arr.map(function(v){
+                    switch(v.name){
+                        case "门未关": arrNew[0]=v;break;
+                        case "刷卡异常": arrNew[1]=v;break;
+                        case "车感知发现": arrNew[2]=v;break;
+                        case "感知发现": arrNew[3]=v;break;
+                        case "110警情": arrNew[4]=v;break;
+                        case "车感知离开": arrNew[5]=v;break;
+                    }
+                })
+                var maxNum = 0;
+                var arrValue = arrNew.map(function(v){
+                    if(maxNum<v.value){
+                        maxNum = v.value;
+                    }
+                    return v.value;
+                })
 
-                    var arrMax = arrNew.map(function(v){
-                        v.max = maxNum;
-                        return v;
-                    })
-                    
+                var arrMax = arrNew.map(function(v){
+                    v.max = maxNum;
+                    return v;
+                })
+                
 
-                    var TodayAnalysisOptionNew = echartsConfig.RadarEcharts();
-                    TodayAnalysisOptionNew.series[0].data[0].value=arrValue;
-                    TodayAnalysisOptionNew.radar.indicator = arrMax;
-                    TodayAnalysisECharts = echarts.init(document.getElementById('TodayAnalysis'));
-                    TodayAnalysisECharts.setOption(TodayAnalysisOptionNew);
-				}
-
+                var TodayAnalysisOptionNew = echartsConfig.RadarEcharts();
+                TodayAnalysisOptionNew.series[0].data[0].value=arrValue;
+                TodayAnalysisOptionNew.radar.indicator = arrMax;
+                TodayAnalysisECharts = echarts.init(document.getElementById('TodayAnalysis'));
+                TodayAnalysisECharts.setOption(TodayAnalysisOptionNew);
+            }
 
             // resize echarts
             $(window).resize(function() {
@@ -442,7 +544,7 @@ define([
                 ECharts.on('click', function (params) {
                     cb(params)
                 });
-                    ECharts.setOption(option);
+                ECharts.setOption(option);
                 return ECharts
             }
             // 1. 一标六实数据

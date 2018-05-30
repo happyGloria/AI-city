@@ -1016,7 +1016,7 @@ span.rightItem.viewPic {
 .PanelPerception{
     position: absolute;
     top: 0.6rem;
-    right: 0.1rem;
+    left: 0.1rem;
     z-index: 1;
     height: 0.5rem;
     background: #120912 linear-gradient(0deg, 
@@ -1073,6 +1073,61 @@ span.rightItem.viewPic {
     float: left;
     
 }
+
+/* 警情警告 */
+.PanelPoliceAlert{
+    position: absolute;
+    top: 0.6rem;
+    right: 0.1rem;
+    width: 4.62rem;
+    z-index: 1;
+    height: 0.56rem;
+    font-size: .12rem;
+    padding: .03rem .1rem;
+    background: #120912 linear-gradient(0deg, 
+		#120938 0%, 
+        #061336 100%);
+    border-radius: .03rem;
+    text-align: center;
+    color: #5dbef6;
+}
+.PanelPoliceAlert .emptyData{
+    line-height: .56rem;
+    font-size: .15rem;
+}
+.PanelPoliceAlert li{
+    margin-bottom: .1rem;
+}
+.PanelPoliceAlert .information{
+    line-height: .16rem;
+}
+.PanelPoliceAlert .information span{
+    display: block;
+    text-align: left;
+}
+.PanelPoliceAlert .inner{
+    position: relative;
+    height: .48rem;
+    overflow: hidden;
+}
+.PanelPoliceAlert .inner .js-scroll{
+    position: absolute;
+}
+.PanelPoliceAlert .createTime{
+    border: .01rem solid #ffcb54;
+    color: #ffcb54;
+    line-height: .18rem;
+    height: .42rem;
+    margin-top: .04rem;
+    padding: 0.02rem 0.1rem;
+    float: left;
+    border-radius: .03rem;
+    display: block;
+    float: left;
+    margin-right: .13rem;
+    text-align: center;
+}
+
 
 /* MapPanel 地图 */
 .MapPanelController{

@@ -1,6 +1,7 @@
 <style>
     body{
         overflow-x:hidden;
+        overflow-y:hidden;
     }
 </style>
 <div class="communityPanel">
@@ -48,6 +49,20 @@
                 <div class="num" id="macNum">{{macNum}}</div>
             </li>
         </ul>
+    </div>
+    <div class="PanelPoliceAlert">
+        <div class="inner">
+            <div class="emptyData" ng-if="warningListData.length == 0">暂无警情数据</div>
+            <ul ng-if="warningListData.length > 0" class="js-scroll">
+                <li ng-repeat = "item in warningListData">
+                    <span class="createTime">{{item.inboundTime}}</span>
+                    <div class="information">
+                        <span>报警人：{{item.callOperatorName}}（{{item.callerNo}}）</span>
+                        <span>案发地址：{{item.caseAddress}} 。 案件描述：{{item.caseDesc}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="PanelMain">
         <!-- 左侧面板 -->

@@ -87,7 +87,6 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                 $(".SearchTree").css("display","none");
                 map.setZoom(12);
                 map.setCenter(new NPMapLib.Geometry.Point(item.map2d.center.split(',')[0], item.map2d.center.split(',')[1]));
-                
             },
             communityLocation: function(item){
                 $scope.zTreeSearch.communityName = item.name;
