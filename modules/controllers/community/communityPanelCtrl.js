@@ -837,23 +837,23 @@ define([
                     var list = [];
                     if(data.name == '过车感知') {
                         type = 'car';
-                        $scope.carNum = data.value;
+                        $scope.carNum = data.value ? data.value : 0;
                     }
                     if(data.name == '开门记录') {
                         type = 'openDoor';
-                        $scope.openDoorNum = data.value;
+                        $scope.openDoorNum = data.value ? data.value : 0;
                     }
                     if(data.name == '人脸抓拍') {
                         type = 'face';
-                        $scope.faceNum = data.value;
+                        $scope.faceNum = data.value ? data.value : 0;
                     }
                     if(data.name == '事件感知') {
                         type = 'event';
-                        $scope.eventNum = data.value;
+                        $scope.eventNum = data.value ? data.value : 0;
                     }
                     if(data.name == 'MAC感知') {
                         type = 'mac';
-                        $scope.macNum = data.value;
+                        $scope.macNum = data.value ? data.value : 0;
                     }
                 });
             }
