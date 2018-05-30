@@ -3,9 +3,8 @@
  */
 define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig.js', 'notify', 'echarts-dark', 'config/common', 'npgis2','yituFace'],
 	function(app, controllers, $, basicConfig, notify, dark, utils, npgis2,yituFace) {
-		var twoDMapCtrl = ['$scope', '$state', '$stateParams', 'communityAllService', 'mapService', '$compile', 'communityRightModuleService', 'moreService', '$interval',
-			function($scope, $state, $stateParams, communityAllService, mapService, $compile, rightService, moreService, $interval) {
-
+		var twoDMapCtrl = ['$scope', '$state', '$stateParams', 'communityAllService', '$compile', '$interval',
+			function($scope, $state, $stateParams, communityAllService, $compile, $interval) {
 				var tianLinPs =null;
 				var isTianLinShow=true;
 				function huaTianLinLunKuo(){
@@ -94,8 +93,11 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 						}
 
 						// 实有安防设施 - 监控 - 小区监控、道路监控
-						$scope.toggleLayer(511,2);
-						$scope.toggleLayer(512,2);
+						// $scope.toggleLayer(511,2);
+						// $scope.toggleLayer(512,2);
+						$scope.toggleLayer(22,2);
+						$scope.toggleLayer(21,2);
+						$scope.toggleLayer(23,2);
 
                         $scope.$emit('mapLoadSuccess', $scope.drawbiankuang());
 						$scope.$emit('toggleLayerFn', $scope.toggleLayer)
@@ -188,6 +190,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 				var gpsLayer;
 				var time = utils.changeDayToString(new Date());
 				//gps
+				var gpsInterval = null;
 				$scope.queryPoliceHour = function() {
 					var req = {
 						villageCode:'',
@@ -197,11 +200,17 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 						startTime:utils.changeDayToString(utils.addSeconds(new Date(),-1))+" 00:00:00",
 						endTime: utils._changeDayToObject(new Date())+":00"
 					}
+					gpsInterval = setInterval(function() {
+						getGpsData(req);
+					},2000)
+					getGpsData(req);
+					
+				}
+				var getGpsData = function(req){
 					communityAllService.findGpsByPage(req).then(function(data) {
 						if(data.resultCode == '200') {
 							gpsPoint=data.data.list;
 							setgps();
-						} else {
 						}
 					});
 				}
@@ -296,6 +305,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
                      str += '<span class="text">警员手机:' + obj.policeMobileNo + '</span>';
 					}
 					str += '<span class="text">' + obj.GPSDataTime + '</span>';
+					str += '<span id="lookVideo" class="text" style="color: #bcf3ff;cursor: pointer;">查看视频</span>';
 					str += '</div>'
 					str += '</div>';
 					var position = obj.position;
@@ -322,7 +332,40 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					var posPixel = map.pointToPixel(gpsInfoWindow);
 					map.addOverlay(gpsInfoWindow);
 					gpsInfoWindow.open(null, false);
+					$("#lookVideo").on('click', function() {
+						removeWindow();
+						$scope.queryVideoByIdV(obj);
+					})
 				}
+				//根据id查询当前摄像头视频
+                $scope.queryVideoByIdV = function(item) {
+                    var obj={
+                        cameraIp:item.cameraIp,
+                        cameraPort:item.cameraPort,
+                        login:item.login,
+                        password:item.password,
+                        name:item.name,
+                        pvgChannelID:item.pvgChannelID
+                    }
+                    localStorage.setItem("ocxVideoSrc",JSON.stringify(obj));
+                    cameraId = layer.open({
+                        type: 2,
+                        title: "视频播放",
+                        skin: 'dark-layer',
+                        area: ['8.6rem', '6.8rem'],
+                        shade: 0.8,
+                        closeBtn: 1,
+                        shadeClose: true,
+                        content: ['../../../lib/video/ocx_video.html', 'no'],
+                        end: function(index, layero) {
+                            cameraId = null;
+                        },
+                        success: function(layero) {
+                            $(layero).find("iframe").contents().find("html").css('font-size', $("html").css('font-size'))
+                            $(layero).append(iframe);
+                        }
+                    });
+                }
 				var openPowerWindow = function(obj) {
 					var person = obj.person;
 					var str = '<div class="map-layerLine">';
@@ -368,16 +411,16 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					//左键单击
 					//alert(111);
 					// map.addEventListener(NPMapLib.MAP_EVENT_RIGHT_CLICK,function(){
-					// 	debugger;
+						// debugger;
 					// 		// mapTools.cancelMeasure();
 					// 	});
-					// map.addEventListener(NPMapLib.MAP_EVENT_CLICK, function(point) {
-					// 	debugger;
-                    //     // document.getElementById("searchCommunityMap").blur();
-				    //     // $(".communityAllNew-search-ztree").css("display","none");
-				    //     // $(".slimScrollDiv").css("display","none");
-					// 	// removeWindow();
-					// });
+					map.addEventListener(NPMapLib.MAP_EVENT_CLICK, function(point) {
+						// debugger;
+                        // document.getElementById("searchCommunityMap").blur();
+				        // $(".communityAllNew-search-ztree").css("display","none");
+				        // $(".slimScrollDiv").css("display","none");
+						removeWindow();
+					});
 				};
 				var removeWindow = function() {
 					if(infoWindow) {
@@ -775,7 +818,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 									click: function(e) {
 										removeWindow();
 										var position = e.location.lon + ',' + e.location.lat;
-										removeWindow();
+										// removeWindow();
 										var obj = {
 											position: position,
 											name: e.precinctName,
@@ -852,7 +895,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 									},
 									click: function(e) {
 										$scope.villageCode=e.villageCode;
-										;
 										removeWindow();
 										clickBuilding(e.buildingNo,e.villageCode);
 									},
@@ -2092,7 +2134,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 								$scope.queryMapInfoData = function(id) {
 									console.log(id, 2093)
 									var req = {
-										villageCode: $scope.villageCode
+										villageCode: ''
 									};
 									communityAllService.queryMapInfo(id, req).then(function(data) {
 										console.log(req, 2098)
@@ -2181,6 +2223,9 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 										if(data.resultCode == '200') {
 											;
 											employerPoint = data.data.list;
+											// debugger
+											// employerPoint[0].lon = "121.45844596529295";
+											// employerPoint[0].lat = "30.913720241252882";
 											if(employerPoint && (employerPoint.length >= 0)) {
 												mapOpera.cluster.addClusterMarkers('employer', employerPoint);
 											}
@@ -2516,7 +2561,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 							if($scope.isShowSewer) {
 								$scope.queryMapInfoData = function(id) {
 									var req = {
-										villageCode:'',
+										villageCode: '',
 										pageNumber: 1,
 										pageSize: 999,
 										startTime: '',
@@ -2625,8 +2670,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 					});
 				}
 				window.clickResident = function() {
-					;
-					// var url = window.location.href.split("#")[0] + "/#/index/clickResident/"+$scope.villageCode;
 					var url = '../../../template/html/modules/buildingHouse/house.html?villageCode='+$scope.villageCode;
 					var residentLayer = layer.open({
 						type: 2,

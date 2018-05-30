@@ -27,7 +27,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     //查询实有力量身份证对应的标签
                     // queryRealPowerLable();
                     getEventFun();
-                    manholeCoverFun();
+                    // manholeCoverFun();
                     getCkAllList();
                     //获取人像库
                     $scope.getPeopleAll=[];
