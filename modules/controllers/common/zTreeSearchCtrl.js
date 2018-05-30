@@ -93,7 +93,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                 $scope.$emit('setCurVillageAllInfo', item);
                 $(".SearchTree").css("display","none");
 
-                map.setZoom(15);
+                if(item.villageCode == '310120106005' ){ map.setZoom(17); }else{ map.setZoom(15); }
                 map.setCenter(new NPMapLib.Geometry.Point(item.map2d.center.split(',')[0], item.map2d.center.split(',')[1]));
                 angular.forEach(psArr, function(ps) {
                     if(item.villageCode == ps.villageCode) {
@@ -115,7 +115,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                             //lineStyle: NPMapLib.LINE_TYPE_DASH //样式
                         });
                     }
-                })     
+                })
             }
         }
 
