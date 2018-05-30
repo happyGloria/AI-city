@@ -45,6 +45,7 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
                 return isChecked == layer.length ? 0 : isChecked == 0 ? 2 : 1;
             }
         }
+
         //选择配置图层
         $scope.laterArr = [];
         $scope.selectLayer = function(layer) {
@@ -91,12 +92,14 @@ define(['controllers/controllers', 'jquery', '/modules/config/basicConfig.js'],f
             }
             $scope.layerList = getLayerisCheckedAll($scope.layerList, "frist");
         };
-
+        
         $scope.$on('mapLoadSuccessd', function(e, data){
             psArr = data;
         })
         $scope.$on('toggleLayerMethod', function(e, data){
             $scope.toggleLayer = data
+            // 地图加载完成后，小区勾选高度显示
+            $scope.selectLayer({id: 0, isChecked: 0})
         })
     }]
     return layerSearchCtrl;
