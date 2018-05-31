@@ -1,0 +1,34 @@
+{
+    "mapOpts":
+    {
+        "minZoom": 10,
+        "maxZoom": 18,
+        "defaultZoom":18,
+        "centerPoint": [121.46954675546338,30.919911396365844],
+        "restrictedExtent": [13478926.539104,3595651.244330,13576307.31314,3669642.2877104],
+        "projection": "EPSG:900913"
+    },
+    "vectorLayer": [
+        {
+            "layerName": "shanghaiBaseMap1",
+            "layerType": "NPMapLib.Layers.GaoDeLayer",
+            "layerOpt":
+            {
+                "url": ["http://172.19.59.8:25003/v3/tile?x=${x}&y=${y}&z=${z}"],
+                "centerPoint": [121.46954675546338,30.919911396365844],
+                "isBaseLayer": true                
+            }
+        },
+        {
+            "layerName": "shanghaiBaseMap2",
+            "layerType": "NPMapLib.Layers.GaoDeLayer",
+            "layerOpt":
+            {
+                "url": ["http://172.19.59.8:25033/v3/tile?x=${x}&y=${y}&z=${z}"],
+                "isBaseLayer": false,
+                "centerPoint": [121.46954675546338,30.919911396365844]
+            }
+        }
+    ],
+    "sattilateLayer": []
+}
