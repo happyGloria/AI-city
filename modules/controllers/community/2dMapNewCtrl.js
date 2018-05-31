@@ -92,6 +92,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 							mapTools.cancelDraw();
 						}
 
+						addEvents1();
 						// 实有安防设施 - 监控 - 小区监控、道路监控
 						// $scope.toggleLayer(511,2);
 						// $scope.toggleLayer(512,2);
@@ -407,7 +408,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 				}
 				//Gps警务
               
-				var addEvents1 = function() {
+				/*var addEvents1 = function() {
 					//左键单击
 					//alert(111);
 					// map.addEventListener(NPMapLib.MAP_EVENT_RIGHT_CLICK,function(){
@@ -419,6 +420,14 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
                         // document.getElementById("searchCommunityMap").blur();
 				        // $(".communityAllNew-search-ztree").css("display","none");
 				        // $(".slimScrollDiv").css("display","none");
+						removeWindow();
+					});
+				};*/
+				var addEvents1 = function() {
+					map.addEventListener(NPMapLib.MAP_EVENT_CLICK, function(point) {
+                        document.getElementById("searchCommunityMap").blur();
+				        $(".communityAllNew-search-ztree").css("display","none");
+				        $(".slimScrollDiv").css("display","none");
 						removeWindow();
 					});
 				};

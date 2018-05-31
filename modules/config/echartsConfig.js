@@ -310,7 +310,7 @@ define([],function(){
         },
         
         // 今日实有警情分析
-        RadarEcharts: function(){
+        RadarEcharts: function(seriesData){
             return {
                 tooltip: {
                     backgroundColor: '#091f3c',
@@ -347,20 +347,20 @@ define([],function(){
                     },
                     indicator: [{
                             name: '门未关',
-                            max: 6500,
+                            // max: 100,
                             axisLabel:{ show:true, color:'#5dbef6' }
                         },
-                        { name: '刷卡异常', max: 16000 },
-                        { name: '车感知发现', max: 30000 },
-                        { name: '感知发现', max: 38000 },
-                        { name: '110警情', max: 52000 },
-                        { name: '车感知离开', max: 25000 }
+                        { name: '刷卡异常', /*max: 100*/ },
+                        { name: '车感知发现', /*max: 100*/ },
+                        { name: '感知发现', /*max: 100*/ },
+                        { name: '110警情', /*max: 100*/ },
+                        { name: '车感知离开', /*max: 100*/ }
                     ]
                 },
                 series: [{
                     type: 'radar',
                     data: [{
-                        value: [0, 0, 0, 0, 0, 0],
+                        value: seriesData ? seriesData :[0, 0, 0, 0, 0, 0],
                         name: '数据',
                         itemStyle: {
                             normal: {
