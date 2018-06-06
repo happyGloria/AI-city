@@ -134,9 +134,9 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat = "item in policeData track by $index">
-						<td>{{item.policeName}}</td>
-						<td>{{item.pcNumber}}</td>
-						<td>{{item.policeMobileNo}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.policeNumber}}</td>
+						<td>{{item.telephoneNumber}}</td>
 						<td>{{item.department}}</td>
 					</tr>
 				</tbody>
@@ -178,10 +178,13 @@
 				<input type="text" class="form-control pull-left" name="" ng-model="policeGpsParams.telephone" placeholder="请输入电话">
 			</div>
 			<div class="form-group-level clearfix">
-				<label class="control-label pull-left">部门编号</label>
-				<input type="text" class="form-control pull-left" name="" ng-model="policeGpsParams.department" placeholder="请输入部门">
+				<label class="control-label pull-left">派出所</label>
+				<!--<input type="text" class="form-control pull-left" name="" ng-model="policeGpsParams.department" placeholder="请输入部门">-->
+				<select ng-model="policeGpsParams.serviceMode" class="pull-left">
+					<option ng-repeat="x in departmentList" value="{{x.code}}">{{x.name}}</option>
+				</select>
 			</div>
-			<div class="form-group-level clearfix">
+			<!--<div class="form-group-level clearfix">
 				<label class="control-label pull-left">勤务模式</label>
 				<select ng-model="policeGpsParams.serviceMode" class="pull-left">
 					<option ng-repeat="x in serviceModeNameList" value="{{x.code}}">{{x.name}}</option>
@@ -192,7 +195,7 @@
 				<select ng-model="policeGpsParams.workStatus" class="pull-left">
 					<option ng-repeat="x in workStatusNameList" value="{{x.code}}">{{x.name}}</option>
 				</select>
-			</div>
+			</div>-->
 			<!-- <div class="form-group-level clearfix">
 				<label class="control-label pull-left">区块</label>
 				<select ng-model="policeGpsParams.serviceMode" class="pull-left">
@@ -202,7 +205,7 @@
 			<div class="form-group-level clearfix">
 				<label class="control-label pull-left">工作时间</label>
 		        <div class="datetimepicker pull-left">
-		        	<input type="text" id="warningStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="policeGpsParams.startTime" placeholder="开始时间">
+		        	<input type="text" id="warningStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="policeGpsParams.startTime" placeholder="选择工作时间">
 		        </div>
 		        <div class="pull-left">--</div>
 		        <div class="datetimepicker">
@@ -216,6 +219,8 @@
 					<input type="file" style="z-index: 9999;width:38px;height:38px;display:inline-block;opacity:0;position:relative;top:-53px;cursor: pointer;" id="imageFile" class="upload" name="mpFile" ng-click="uploadImg()">
 				</div>
 			</div>
+			<!-- <a class="btn search-btn btn-blue margin-left-10" href="../../../../chajian/execl.xlsx">模板下载</a> -->
+			<button class="btn search-btn btn-blue margin-left-10" ng-click="downedExcel()">模板下载</button>
 			<button class="btn search-btn btn-blue margin-left-10" ng-click="policeGps()">查询</button>
 		</div>
 		<div class="form-bottom">				
@@ -230,8 +235,9 @@
 					<tr>
 						<th>姓名</th>
 						<th>警号</th>
+						<th>职务</th>
 						<th>手机</th>
-						<th>部门</th>
+						<th>派出所</th>
 						<th>勤务模式</th>
 						<th>状态</th>
 						<th>工作开始时间</th>
@@ -241,7 +247,9 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat = "item in policeGpsData track by $index">
-						<td ng-click="locationFun(item)">{{item.peopleName}}</td>
+						<!-- <td ng-click="locationFun(item)">{{item.peopleName}}</td> -->
+						<td>{{item.peopleName}}</td>
+						<td>{{item.policeNumber}}</td>
 						<td>{{item.policeNumber}}</td>
 						<td>{{item.telephone}}</td>
 						<td>{{item.department}}</td>

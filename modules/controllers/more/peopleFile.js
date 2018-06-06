@@ -80,7 +80,27 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 					"credentialNo": idcardNo,
 					"credentialType":10
 				};
-				var promise = moreService.peopleFile(req1);
+				var promise = moreService.peopleFile(req1); 
+				// var req3 = {
+				// 	"apiType":"querySyrk",
+				// 	"pageIndex":1,
+				// 	"pageSize":"10",
+				// 	"zjhm":310230196211274191
+				// }
+				// $.ajax({
+				// 	type: "post",
+				// 	url: "/da4downloadApi/api/query",
+				// 	dataType: "json",
+				// 	contentType: 'application/json;charset=UTF-8',
+				// 	data: JSON.stringify(req3),
+				// 	success: function(resp) {
+				// 		debugger;
+				// 	},
+				// 	error: function(err) {
+				// 		debugger;
+				// 	}
+				// }); 
+				
 				promise.then(function(resp) {
 					if (resp.resultCode == 200) {
 						$scope.peopleFile = resp.data;
@@ -99,6 +119,23 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 								}
 							})
 						}
+						var req3 = {
+							"apiType":"querySyrk",
+							"pageIndex":1,
+							"pageSize":"10",
+							"zjhm":$scope.peopleFile.credentialNo
+						}
+						var promise1 = moreService.ecsPepleFile(JSON.stringify(req3));
+						promise1.then(function(resp2) {
+							if (resp2.code == 200) {
+								$scope.peopleFile.nation = resp2.resultData.data[0].MZHZ;
+								$scope.peopleFile.nationality = resp2.resultData.data[0].GJHZ;
+								$scope.peopleFile.education = resp2.resultData.data[0].WHCDHZ;
+								$scope.peopleFile.bqArr = resp2.resultData.data[0].YHZGXHZ;
+								$scope.peopleFile.maritalStatus = resp2.resultData.data[0].HYZKHZ;
+								$scope.peopleFile.residenceAddress = resp2.resultData.data[0].JZDZ;
+							}
+						})
 					}
 				}).catch(function() {}).finally(function() {});
 			};

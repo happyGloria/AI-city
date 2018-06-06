@@ -13,7 +13,7 @@
                         <i class="arrow-icon" ng-if="layerChild.hasChild=='true'"></i>
                     </div>	
                     <ul class="layerSelect-li-list-last" ng-show="layerChild.isMouseOn=='true' && layerChild.hasChild=='true'">
-                        <li class="layerSelect-li-list-li-last" ng-repeat="layerChildChild in layerChild.child"   style="cursor: pointer;">
+                        <li class="layerSelect-li-list-li-last" ng-repeat="layerChildChild in layerChild.child" style="cursor: pointer;">
                             <span class="checkBox" ng-class="layerChildChild.isChecked==0?'':layerChildChild.isChecked==1?'checkPart':'checkAll'" ng-click="selectLayer(layerChildChild)"></span>
                             <span class="text" ng-click="selectLayer(layerChildChild)">{{layerChildChild.name}}</span>
                         </li>

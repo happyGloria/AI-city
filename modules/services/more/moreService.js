@@ -4,12 +4,12 @@
  */
 define(['../services'],
     function (services) {
-        services.factory('moreService', ['$q','$http',
-            function ($q,$http) {
-                
+        services.factory('moreService', ['$q', '$http',
+            function ($q, $http) {
+
                 //获取门禁设备列表
-                var doorDevice = function(req){
-                    return $http.post('/zhsq/access/getAccessDeviceList',req).
+                var doorDevice = function (req) {
+                    return $http.post('/zhsq/access/getAccessDeviceList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -18,11 +18,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //门禁记录列表
-                var openDoorRecord = function(req){
-                    return $http.post('/zhsq/dynamicSense/findDynamicSenseList',req).
+                var openDoorRecord = function (req) {
+                    return $http.post('/zhsq/dynamicSense/findDynamicSenseList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -31,11 +31,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //ck报警
-                var ckAlarmList = function(req){
-                    return $http.post('/zhsq/ck/ckAlarmList',req).
+                var ckAlarmList = function (req) {
+                    return $http.post('/zhsq/ck/ckAlarmList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -44,11 +44,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
-                }; 
+                        });
+                };
                 //ck设备
-                var ckDeviceList = function(req){
-                    return $http.post('/zhsq/ck/ckDeviceList',req).
+                var ckDeviceList = function (req) {
+                    return $http.post('/zhsq/ck/ckDeviceList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -57,11 +57,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //门未关
-                var getNotCloseList = function(req){
-                    return $http.post('/zhsq/openRecord/notLocked ',req).
+                var getNotCloseList = function (req) {
+                    return $http.post('/zhsq/openRecord/notLocked ', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -70,11 +70,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //刷卡异常
-                var getDoorAlarmList = function(req){
-                    return $http.post('/zhsq/openRecord/warningPeople',req).
+                var getDoorAlarmList = function (req) {
+                    return $http.post('/zhsq/openRecord/warningPeople', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -83,11 +83,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //消防报警列表--事件
-                var smokeAlarmList = function(req){
-                    return $http.post('/zhsq/fire/fireAlarmList',req).//PBD/smoke/captrueSmokeList
+                var smokeAlarmList = function (req) {
+                    return $http.post('/zhsq/fire/fireAlarmList', req).//PBD/smoke/captrueSmokeList
                         then(function (response, error) {///PBD/xfyg/alarmList
                             if (error) {
                                 return $q.reject(error);
@@ -96,11 +96,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //消防设备列表
-                var smokeDeviceList = function(req){
-                    return $http.post('/zhsq/fire/fireDeviceList',req).///PBD/xfyg/deviceList
+                var smokeDeviceList = function (req) {
+                    return $http.post('/zhsq/fire/fireDeviceList', req).///PBD/xfyg/deviceList
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -109,12 +109,12 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //动态感知数据列表 
                 // pushType 1:人脸,2:开门记录,3:过车,4:wifi,5:消防,6:烟感,7:电气,8:水压,9:巡视,10:在岗,11:位移,12:视频
-                var captrueCarList = function(req){
-                    return $http.post('/zhsq/dynamicSense/findDynamicSenseList',req).///kakou/poiList
+                var captrueCarList = function (req) {
+                    return $http.post('/zhsq/dynamicSense/findDynamicSenseList', req).///kakou/poiList
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -123,11 +123,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //查询卡扣列表
-                var getVehicleTollgateList = function(req){
-                    return $http.post('/zhsq/vehicle/getVehicleTollgateList',req).///kakou/poiList
+                var getVehicleTollgateList = function (req) {
+                    return $http.post('/zhsq/vehicle/getVehicleTollgateList', req).///kakou/poiList
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -136,11 +136,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //小区Mac
-                var captrueMacList = function(req){
-                    return $http.post('/zhsq/dynamicSense/findDynamicSenseList',req).
+                var captrueMacList = function (req) {
+                    return $http.post('/zhsq/dynamicSense/findDynamicSenseList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -149,11 +149,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //wifi设备
-                var wifiList = function(req){
-                    return $http.post('/zhsq/wifi/getWifiDeviceList',req).
+                var wifiList = function (req) {
+                    return $http.post('/zhsq/wifi/getWifiDeviceList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -162,12 +162,12 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //camera
-                var cameraList = function(req){
+                var cameraList = function (req) {
                     debugger;
-                    return $http.post('/zhsq/camera/getCameraByType',req).
+                    return $http.post('/zhsq/camera/getCameraByType', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -176,11 +176,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //facecamera
-                var faceCameralist = function(req){
-                    return $http.post('/zhsq/camera/getCameraByType',req).
+                var faceCameralist = function (req) {
+                    return $http.post('/zhsq/camera/getCameraByType', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -189,11 +189,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //factPeople
-                var factPeople = function(req){
-                    return $http.post('/zhsq/people/peopleList',req).
+                var factPeople = function (req) {
+                    return $http.post('/zhsq/people/peopleList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -202,11 +202,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
                 //一人一档
-                var peopleFile = function(req){
-                    return $http.post('/zhsq/people/getPeopleBaseInfo',req).
+                var peopleFile = function (req) {
+                    return $http.post('/zhsq/people/getPeopleBaseInfo', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -215,34 +215,67 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
+                //ecs的人口数据
+                var ecsPepleFile = function (req) {
+                    // return $http.post('/da4downloadApi/api/query', req).then(function (response, error) {
+                    //     debugger
+                    //     if (error) {
+                    //         return $q.reject(error);
+                    //     } else {
+                    //         return $q.when(response.data);
+                    //     }
+                    // }, function (d) {
+                    //     debugger
+                    //     return $q.reject(d);
+                    // });
+
+
+                    return $http({
+						method:'post',
+						timeout:2000,
+						url:'/da4downloadApi/api/query',
+						data:req,
+						headers:{
+						 'Content-Type': 'application/json;charset=UTF-8'
+						}
+						
+					}).
+					then(function(response, error) {
+						if(error) {
+							return $q.reject(error);
+						} else {
+							return $q.when(response.data);
+						}
+					}, function(d) {
+						return $q.reject(d);
+					});
+                }
                 //人脸抓拍
-                var checkFace = function(formData,callback){
+                var checkFace = function (formData, callback) {
                     debugger
-                    var request = new XMLHttpRequest(); 
-                      //上传连接地址 
-                      request.open("POST", "/PBD/fds/formdataApi?reqURI=/search/checkFace"); 
-                      request.onreadystatechange=function() 
-                      { 
-                        if (request.readyState==4) 
-                        { 
-                          if(request.status==200){ 
-                            debugger
-                            callback(request.responseText);
-                            console.log("上传成功"); 
-                          }else{ 
-                            console.log("上传失败,检查上传地址是否正确"); 
-                          } 
-                        } 
-                      } 
-                      request.send(formData); 
+                    var request = new XMLHttpRequest();
+                    //上传连接地址 
+                    request.open("POST", "/PBD/fds/formdataApi?reqURI=/search/checkFace");
+                    request.onreadystatechange = function () {
+                        if (request.readyState == 4) {
+                            if (request.status == 200) {
+                                debugger
+                                callback(request.responseText);
+                                console.log("上传成功");
+                            } else {
+                                console.log("上传失败,检查上传地址是否正确");
+                            }
+                        }
+                    }
+                    request.send(formData);
                 };
 
 
                 //人脸抓拍
-                var searchaccesslog = function(req){
-                    return $http.post('/PBD/fds/rawApi?reqURI=/search/searchaccesslog',req).
+                var searchaccesslog = function (req) {
+                    return $http.post('/PBD/fds/rawApi?reqURI=/search/searchaccesslog', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -251,12 +284,12 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 };
 
                 //实时力量列表接口
-                var queryCommunityPowerList = function(req){
-                    return $http.post('/PBD/realPower/realPowerList',req).
+                var queryCommunityPowerList = function (req) {
+                    return $http.post('/PBD/realPower/realPowerList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -265,12 +298,12 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
 
                 //实时力量查询多张图片
-                var queryCommunityPowerPic = function(req){
-                    return $http.post('/PBD/realPower/faceRealPowerInfo',req).
+                var queryCommunityPowerPic = function (req) {
+                    return $http.post('/PBD/realPower/faceRealPowerInfo', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -279,13 +312,13 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //布控告警
-                var monitorList = function(req){
-                    return $http.post('/zhsq/facelibMapper/alert',req,{
-                        'headers':{
-                            'Content-Type':'application/json;charset=UTF-8'
+                var monitorList = function (req) {
+                    return $http.post('/zhsq/facelibMapper/alert', req, {
+                        'headers': {
+                            'Content-Type': 'application/json;charset=UTF-8'
                         }
                     }).
                         then(function (response, error) {
@@ -299,8 +332,8 @@ define(['../services'],
                         });
                 }
                 //110警情
-                var warningList = function(req){
-                    return $http.post('/zhsq/policeAlert/getPoliceAlerts',req).
+                var warningList = function (req) {
+                    return $http.post('/zhsq/policeAlert/getPoliceAlerts', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -309,11 +342,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //实有单位列表
-                var factCompanyList = function(req){
-                    return $http.post('/zhsq/village/getRealCompanyList',req).
+                var factCompanyList = function (req) {
+                    return $http.post('/zhsq/village/getRealCompanyList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -322,11 +355,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //从业人员详情
-                var peopleDetailList = function(req){
-                    return $http.post('/zhsq/village/getRealCompanyPeopleList',req).
+                var peopleDetailList = function (req) {
+                    return $http.post('/zhsq/village/getRealCompanyPeopleList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -335,11 +368,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //查询实有安防设施列表接口
-                var queryFacilityList = function(req){
-                    return $http.post('/zhsq/fire/getSecurityEquipment',req).
+                var queryFacilityList = function (req) {
+                    return $http.post('/zhsq/fire/getSecurityEquipment', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -348,11 +381,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //查询实有安防力量列表接口
-                var queryPowerList = function(req){
-                    return $http.post('/zhsq/realPowerEquip/getCountRealPower',req).
+                var queryPowerList = function (req) {
+                    return $http.post('/zhsq/realPowerEquip/getCountRealPower', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -361,11 +394,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //车辆状态接口
-                var queryCarStatus = function(req){
-                    return $http.post('/PBD/car/carStatsList',req).
+                var queryCarStatus = function (req) {
+                    return $http.post('/PBD/car/carStatsList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -374,11 +407,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //实有力量
-                var queryFactPower = function(req){
-                    return $http.post('/zhsq/realPowerEquip/getRealPowerGroupByLabel',req).
+                var queryFactPower = function (req) {
+                    return $http.post('/zhsq/realPowerEquip/getRealPowerGroupByLabel', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -387,11 +420,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //单位信息-一人一档
-                var queryCompanyInfo = function(req){
-                    return $http.post('/PBD/SYDW/getcompanyPersonbyID',req).
+                var queryCompanyInfo = function (req) {
+                    return $http.post('/PBD/SYDW/getcompanyPersonbyID', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -400,11 +433,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //处理事件-确认按钮接口
-                var detailEvent = function(req){
-                    return $http.post('/zhsq/eventDeal/deal',req).
+                var detailEvent = function (req) {
+                    return $http.post('/zhsq/eventDeal/deal', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -413,11 +446,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //感知发现
-                var senseFind = function(req){
-                    return $http.post('/PBD/sensing/discovery',req).
+                var senseFind = function (req) {
+                    return $http.post('/PBD/sensing/discovery', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -426,12 +459,12 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
-                
+
                 //感知离开
-                var senseLeave = function(req){
-                    return $http.post('/zhsq/openRecord/senseLeave',req).
+                var senseLeave = function (req) {
+                    return $http.post('/zhsq/openRecord/senseLeave', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -440,11 +473,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //智能分析
-                var analysis = function(req){
-                    return $http.post('/zhsq/eventAnalysis/queryEventAnalysis',req).
+                var analysis = function (req) {
+                    return $http.post('/zhsq/eventAnalysis/queryEventAnalysis', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -453,11 +486,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //动态感知-过车-过车统计列表
-                var queryDiffTypeVehicle = function(req){
-                    return $http.post('/zhsq/vehicle/queryDiffTypeVehicle',req).
+                var queryDiffTypeVehicle = function (req) {
+                    return $http.post('/zhsq/vehicle/queryDiffTypeVehicle', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -466,11 +499,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //实有事件-外来车辆滞留
-                var senseCar = function(req){
-                    return $http.post('/zhsq/vehicle/notLeave',req).
+                var senseCar = function (req) {
+                    return $http.post('/zhsq/vehicle/notLeave', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -479,11 +512,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //实有人口查询数量类别接口
-                var queryRealPeopleNum = function(req){
-                    return $http.post('/zhsq/people/peopleTypeCount',req).
+                var queryRealPeopleNum = function (req) {
+                    return $http.post('/zhsq/people/peopleTypeCount', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -492,11 +525,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
 
                 //感知离开，发现，实际登记人口数量查询
-                var querySenceFindAndLeave = function(){
+                var querySenceFindAndLeave = function () {
                     return $http.post('/PBD/syrk/syrkNum').
                         then(function (response, error) {
                             if (error) {
@@ -506,12 +539,12 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
-                
+
                 //实有装备
-                var queryRealEquiments = function(req){
-                    return $http.post('/zhsq/realPowerEquip/getEquipmentList',req).
+                var queryRealEquiments = function (req) {
+                    return $http.post('/zhsq/realPowerEquip/getEquipmentList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -520,24 +553,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //快递人员
-                var queryExpressPeople = function(req){
-                    return $http.post('/zhsq/people/expressPeopleList',req).
-                    then(function (response, error) {
-                            if (error) {
-                                return $q.reject(error);
-                            } else {
-                                return $q.when(response.data);
-                            }
-                        }, function (d) {
-                            return $q.reject(d);
-                    });
-                }
-                //人车到mac
-                var carRecordMacDetail = function(req){
-                    return $http.post('/PBD/car/carRecordMacDetail',req).
+                var queryExpressPeople = function (req) {
+                    return $http.post('/zhsq/people/expressPeopleList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -546,7 +566,20 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
+                }
+                //人车到mac
+                var carRecordMacDetail = function (req) {
+                    return $http.post('/PBD/car/carRecordMacDetail', req).
+                        then(function (response, error) {
+                            if (error) {
+                                return $q.reject(error);
+                            } else {
+                                return $q.when(response.data);
+                            }
+                        }, function (d) {
+                            return $q.reject(d);
+                        });
                 }
                 // //车辆感知--登记数
                 // var registerCar = function(req){
@@ -562,7 +595,7 @@ define(['../services'],
                 //     });
                 // }
                 //快递静态数据
-                var queryExpressPeopleStatic = function(req){
+                var queryExpressPeopleStatic = function (req) {
                     return $http.post('/PBD/fds/getKuaidiAccessLog').
                         then(function (response, error) {
                             if (error) {
@@ -572,11 +605,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //一人一档中的事件
-                var getSomeoneAffair = function(req){
-                    return $http.post('/zhsq/eventDeal/findEventDeal',req).
+                var getSomeoneAffair = function (req) {
+                    return $http.post('/zhsq/eventDeal/findEventDeal', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -585,11 +618,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //车辆感知发现
-                var carSenseFind = function(req){
-                    return $http.post('/zhsq/vehicle/senseDiscovery',req).
+                var carSenseFind = function (req) {
+                    return $http.post('/zhsq/vehicle/senseDiscovery', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -598,12 +631,12 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
-                
+
                 //车辆感知离开
-                var carSenseLeave = function(req){
-                    return $http.post('/zhsq/vehicle/senseLeaveList',req).
+                var carSenseLeave = function (req) {
+                    return $http.post('/zhsq/vehicle/senseLeaveList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -612,11 +645,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //一人一档车辆信息，获取车牌号
-                var getCarNo = function(req){
-                    return $http.post('/PBD/car/getCarInfoList',req).
+                var getCarNo = function (req) {
+                    return $http.post('/PBD/car/getCarInfoList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -625,11 +658,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //一人一档车辆信息，违章列表
-                var getWeiTing = function(req){
-                    return $http.post('/zhsq/vehicle/queryPeccancyCar',req).
+                var getWeiTing = function (req) {
+                    return $http.post('/zhsq/vehicle/queryPeccancyCar', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -638,11 +671,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //一人一档车辆信息，卡口过车
-                var getKakou = function(req){
-                    return $http.post('/zhsq/vehicle/queryKakouJiLu',req).
+                var getKakou = function (req) {
+                    return $http.post('/zhsq/vehicle/queryKakouJiLu', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -651,11 +684,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //窨井盖设备列表
-                var getJingGai = function(req){
-                    return $http.post('/zhsq/cover/getManholecoverList',req).
+                var getJingGai = function (req) {
+                    return $http.post('/zhsq/cover/getManholecoverList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -664,11 +697,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //微型消防站
-                var getFireStation = function(req){
-                    return $http.post('/zhsq/fire/getFireStationList',req).
+                var getFireStation = function (req) {
+                    return $http.post('/zhsq/fire/getFireStationList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -677,11 +710,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //案件接报
-                var getReceivedCase = function(req){
-                    return $http.post('/zhsq/policeRecv/getPoliceRecvList',req).
+                var getReceivedCase = function (req) {
+                    return $http.post('/zhsq/policeRecv/getPoliceRecvList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -690,11 +723,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //消防-动态感知,右侧模块
-                var dynamicAwareFire = function(req){
-                    return $http.post('/zhsq/dynamicSense/findDynamicSenseList',req).
+                var dynamicAwareFire = function (req) {
+                    return $http.post('/zhsq/dynamicSense/findDynamicSenseList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -703,11 +736,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //一人一档-房屋信息
-                var getHouseInfoList = function(req){
-                    return $http.post('/zhsq/village/getHouseInfoList',req).
+                var getHouseInfoList = function (req) {
+                    return $http.post('/zhsq/village/getHouseInfoList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -716,11 +749,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //一人一档-用户移动设备mac
-                var getUserMacList = function(req){
-                    return $http.post('/zhsq/wifi/getUserMacList',req).
+                var getUserMacList = function (req) {
+                    return $http.post('/zhsq/wifi/getUserMacList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -729,11 +762,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //一人一档-mac信息
-                var getWifiDataList = function(req){
-                    return $http.post('/zhsq/wifi/getWifiDataList',req).
+                var getWifiDataList = function (req) {
+                    return $http.post('/zhsq/wifi/getWifiDataList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -742,11 +775,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //多小区首页-一标六实chart
-                var queryFact = function(req){
-                    return $http.post('/zhsq/statistics/six-entity-type',req).
+                var queryFact = function (req) {
+                    return $http.post('/zhsq/statistics/six-entity-type', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -755,11 +788,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //多小区首页-警员
-                var queryPolice = function(req){
-                    return $http.post('/zhsq/wifi/getWifiDataList',req).
+                var queryPolice = function (req) {
+                    return $http.post('/zhsq/wifi/getWifiDataList', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -768,11 +801,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //实有房屋
-                var factHouseList = function(req){
-                    return $http.post('/zhsq/village/getHouseListByBuilding',req).
+                var factHouseList = function (req) {
+                    return $http.post('/zhsq/village/getHouseListByBuilding', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -781,11 +814,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //警员
-                var getPoliceList = function(req){
-                    return $http.post('/zhsq/gps/findGpsByPage',req).
+                var getPoliceList = function (req) {
+                    return $http.post('/zhsq/gps/findGpsByPage', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -794,11 +827,46 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
+                
+				//查询警员列表
+				var findPoliceMenInfoByCondition = function(req) {
+					return $http.post('zhsq/police/findPoliceMenInfoByCondition', req).
+					then(function(response, error) {
+						if(error) {
+							return $q.reject(error);
+						} else {
+							return $q.when(response.data);
+						}
+					}, function(d) {
+						return $q.reject(d);
+					});
+
+                    // return $http({
+					// 	method:'post',
+					// 	timeout:2000,
+					// 	url:'zhsq/police/findPoliceMenInfoByCondition',
+					// 	data:req,
+					// 	headers:{
+					// 	 'Content-Type': 'application/json;charset=UTF-8'
+					// 	}
+						
+					// }).
+					// then(function(response, error) {
+					// 	if(error) {
+					// 		return $q.reject(error);
+					// 	} else {
+					// 		return $q.when(response.data);
+					// 	}
+					// }, function(d) {
+					// 	return $q.reject(d);
+					// });
+				};
+
                 //警务流程处理
-                var dealPoliceInfo = function(req){
-                    return $http.post('/zhsq/eventDeal/dealPoliceInfo',req).
+                var dealPoliceInfo = function (req) {
+                    return $http.post('/zhsq/eventDeal/dealPoliceInfo', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -807,11 +875,11 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //警员排班表
-                var getPoliceTable = function(req){
-                    return $http.post('/zhsq/police/queryPoliceSchedule',req).
+                var getPoliceTable = function (req) {
+                    return $http.post('/zhsq/police/queryPoliceSchedule', req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -820,11 +888,37 @@ define(['../services'],
                             }
                         }, function (d) {
                             return $q.reject(d);
-                    });
+                        });
                 }
                 //警务流程查看
-                var lookDetail = function(req){
-                    return $http.post('/zhsq/eventDeal/queryDealProcessRecord',req).
+                var lookDetail = function (req) {
+                    return $http.post('/zhsq/eventDeal/queryDealProcessRecord', req).
+                        then(function (response, error) {
+                            if (error) {
+                                return $q.reject(error);
+                            } else {
+                                return $q.when(response.data);
+                            }
+                        }, function (d) {
+                            return $q.reject(d);
+                        });
+                }
+                //手动派单
+                var shouDongPaiDang = function (req) {
+                    return $http.post('/zhsq/policeAlert/shouDongPaiDang', req).
+                        then(function (response, error) {
+                            if (error) {
+                                return $q.reject(error);
+                            } else {
+                                return $q.when(response.data);
+                            }
+                        }, function (d) {
+                            return $q.reject(d);
+                        });
+                }
+                //查询重点人员和关注人员总数
+                var keyPersonData = function(req){
+                    return $http.get('/zhsq/facelibMapper/getFaceAlertSUM',req).
                         then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
@@ -834,11 +928,17 @@ define(['../services'],
                         }, function (d) {
                             return $q.reject(d);
                     });
-                }
-                //手动派单
-                var shouDongPaiDang = function(req){
-                    return $http.post('/zhsq/policeAlert/shouDongPaiDang',req).
-                        then(function (response, error) {
+                };
+
+                //布控告警--重点人员
+                var importantmonitorList = function(req){
+                    console.log(req)
+                    return $http.post('/zhsq/facelibMapper/alertEx',req,{
+                        'headers':{
+                            // 'Content-Type':'application/x-www-form-urlencoded'
+                            'Content-Type':'application/json;charset=UTF-8'
+                        }
+                    }).then(function (response, error) {
                             if (error) {
                                 return $q.reject(error);
                             } else {
@@ -911,6 +1011,8 @@ define(['../services'],
                     dealPoliceInfo:dealPoliceInfo,
                     getPoliceTable:getPoliceTable,
                     lookDetail:lookDetail,
+                    importantmonitorList:importantmonitorList,
+                    keyPersonData:keyPersonData,
                     shouDongPaiDang:shouDongPaiDang
                 }
             }

@@ -3,7 +3,8 @@
  *create by lzh 2018-01-16
  */
 define(['jquery', 'angular'], function($, angular) {
-    var yituFace_domain = "http://15.233.18.229:11180/business/api";
+    // var yituFace_domain = "http://15.233.18.229:11180/business/api";
+    var yituFace_domain = "http://15.233.18.20:11180/business/api";
     var sessionId = "";
     //设置cookie
     function setCookie(c_name, value, expiredays) {
@@ -95,7 +96,7 @@ define(['jquery', 'angular'], function($, angular) {
                 // setCookie("session_id","656038078@DEFAULT");
             },
             success: function(data) {
-                debugger
+                // debugger
                // console.log("人脸抓拍" + data);
                 callBack(data)
                 return data;

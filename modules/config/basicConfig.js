@@ -150,6 +150,7 @@ define([],function(){
                 }
             }
         ],
+        carToken:'ZnhxfDIwMTgtMDYtMDMgMDY6MDA6MDB8MjAxOC0xMC0wMSAxMjowMDowMA--',
         layerList:[{
             id: 0, name: '小区', type: 'village', isChecked: 2, hasChild: 'false'
         },

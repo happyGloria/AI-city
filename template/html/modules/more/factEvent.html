@@ -37,7 +37,286 @@
 			<span class="title">{{villageName}}</span>
 		</div>
 	</div>
+	<!-- monitor布控告警 new, 2018.06.05 -->
+	<div ng-show="showTab.monitor">
+		<ul class="menu-child clearfix">
+			<li class="menu-li-child" ng-click="changeChildTab('importantPeople')" ng-class="{'active':showChildTab.importantPeople}">重点人员</li>
+			<li class="menu-li-child" ng-click="changeChildTab('followPeople')" ng-class="{'active':showChildTab.followPeople}">关注人员</li>
+		</ul>
+		<!-- 重点人员 -->
+		<div class="car-find" ng-show="showChildTab.importantPeople">			
+			<div class="find-list-box">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+						<label class="control-label pull-left">小区</label>
+						<select ng-model="importantmonitorParams.addressName" class="pull-left" ng-change="changeCode(warningParams.addressName)">
+							<option value="">请选择</option>
+							<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+						</select>
+				</div>	
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">处理状态</label>
+					<select ng-model="importantmonitorParams.eventDealState" class="pull-left" id="findCarSelectVillage">
+						<option value="" selected>请选择</option>
+						<option ng-repeat="x in importantprocessStates" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">对比来源</label>
+					<select ng-model="importantmonitorParams.compareState" class="pull-left" id="">
+						<option value="" selected>请选择</option>
+						<option ng-repeat="x in importantcompareStates" value="{{x.code}}">{{x.name}}</option>
+					</select>
+					<!-- <select class="pull-left" ng-init='importantmonitorParams.compareState' ng-model="importantmonitorParams.compareState" ng-options='x.name for x in peopleTypeArr '> -->
+				</select>
+				</div>	
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警时间</label>
+					<div class="datetimepicker pull-left">
+						<input type="text" id="importantmonitorParamsStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="importantmonitorParams.captureTimeStart"  placeholder="开始时间">
+					</div>
+					<div class="pull-left">--</div>
+					<div class="datetimepicker pull-left">
+						<input type="text" id="importantmonitorParamsEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="importantmonitorParams.captureTimeEnd" placeholder="结束时间">
+					</div>
+				</div>			
+				<button class="btn btn-blue margin-left-10" ng-click="queryimportantMonitorList(1)">查询</button>			
+			</div>
+			<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="8%" />
+					<col width="8%" />
+					<col width="8%" />
+					<col width="12%" />
+					<col width="10%" />
+					<col width="12%" />
+					<col width="6%" />
+					<col width="12%" />
+					<col width="10%" />
+					<col width="20%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>抓拍人脸</th>
+						<th>相似度</th>
+						<th>比中人脸</th>
+						<th>抓拍时间</th>
+						<th>小区</th>
+						<th>抓拍地点</th>
+						<th>姓名</th>
+						<th>身份证号</th>
+						<th>标签</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in importantmonitorData track by $index">
+						<td><img style="width: 100%;" src="{{item.faceImageBase64}}"/></td>						
+						<td>{{item.similarity}}%</td>						
+						<td><img style="width: 100%;cursor: pointer;" src="{{item.targetFaceImageBase64}}" ng-click="goToFace(item)"/></td>						
+						<td>{{item.captureTime}}</td>						
+						<td>{{item.villageName}}</td>						
+						<td>{{item.lastPlace}}</td>						
+						<td>{{item.name}}</td>						
+						<td>
+							<a href="#/index/peoplefile/{{item.personId}}/{{villageCode}}" target="_blank">{{item.personId}}</a></td>
+						</td>						
+						<td>{{item.ytFaceLibName}}</td>						
+						<td class="state-td">
+							<div ng-if="item.dealState == '0'">
+								<span class="colorRed">待分配</span>
+								<span class="td-dispose-btn" ng-click="policeDeal(item,$index)">派单</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '61'">
+								<span class="colorRed">待接警</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="policeDeal(item,$index)">派单</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '62'">
+								<span class="colorRed">已接警</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '63'">
+								<span class="colorRed">到场</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '64'">
+								<span class="colorRed">处理中</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '65'">
+								<span class="colorGreen">已完成</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index,'monitor')">查看</span>
+							</div>
+						</td>						
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="importantmonitorParamsPage.totalRow==0 && !loader">
+				<i class="icon-base icon-32 icon-table-empty"></i>
+				<span class="empty-text">没有查询到符合条件的记录</span>
+			</div>
+			<div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="importantmonitorParamsPage.totalRow > 0">
+			<pagination total-items="importantmonitorParamsPage.totalRow"
+						ng-model="importantmonitorParams.pageNumber"
+						max-size="3"
+						items-per-page="importantmonitorParams.pageSize"
+						class="pagination-sm pull-right"
+						previous-text="上一页"
+						next-text="下一页"
+						first-text="首页"
+						last-text="末页"
+						ng-click="queryimportantMonitorList()">
+			</pagination>
+		</div>
+		</div>
+		<!-- 关注人员 -->
+		<div class="car-find" ng-show="showChildTab.followPeople">			
+			<div class="find-list-box">
+				<div class="form-group-level clearfix" ng-if="judgeAllCommunityFlag">
+						<label class="control-label pull-left">小区</label>
+						<select ng-model="monitorParams.addressName" class="pull-left" ng-change="changeCode(warningParams.addressName)">
+							<option value="">请选择</option>
+							<option ng-repeat="x in villageNameMap" value="{{x.code}}">{{x.name}}</option>
+						</select>
+				</div>	
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">处理状态</label>
+					<select ng-model="monitorParams.eventDealState" class="pull-left" id="findCarSelectVillage">
+						<option value="" selected>请选择</option>
+						<option ng-repeat="x in processState" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>	
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">对比来源</label>
+					<select ng-model="monitorParams.compareState" class="pull-left" id="">
+						<option value="" selected>请选择</option>
+						<option ng-repeat="x in compareState" value="{{x.code}}">{{x.name}}</option>
+					</select>
+				</div>
+				<div class="form-group-level clearfix">
+					<label class="control-label pull-left">报警时间</label>
+					<div class="datetimepicker pull-left">
+						<input type="text" id="monitorParamsStartTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="monitorParams.condition.captureTimeStart"  placeholder="开始时间">
+					</div>
+					<div class="pull-left">--</div>
+					<div class="datetimepicker pull-left">
+						<input type="text" id="monitorParamsEndTime" class="conditionInput form-control ng-pristine ng-untouched ng-valid" ng-model="monitorParams.condition.captureTimeEnd" placeholder="结束时间">
+					</div>
+				</div>			
+				<button class="btn btn-blue margin-left-10" ng-click="queryMonitorList(1)">查询</button>			
+			</div>
+			<div class="form-bottom">				
+			<table class="table table-base waterprint">
+				<colgroup>
+					<col width="8%" />
+					<col width="8%" />
+					<col width="8%" />
+					<col width="12%" />
+					<col width="10%" />
+					<col width="12%" />
+					<col width="6%" />
+					<col width="12%" />
+					<col width="10%" />
+					<col width="20%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>抓拍人脸</th>
+						<th>相似度</th>
+						<th>比中人脸</th>
+						<th>抓拍时间</th>
+						<th>小区</th>
+						<th>抓拍地点</th>
+						<th>姓名</th>
+						<th>身份证号</th>
+						<th>标签</th>
+						<th>状态</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = "item in monitorData track by $index">
+						<td><img style="width: 100%;cursor: pointer;" src="{{item.faceImageBase64}}" ng-click="goToFace(item)"></td>						
+						<td>{{item.similarity}}%</td>						
+						<td><img style="width: 100%;" src="{{item.targetFaceImageBase64}}"/></td>						
+						<td>{{item.captureTime}}</td>						
+						<td>{{item.villageName}}</td>						
+						<td>{{item.lastPlace}}</td>						
+						<td>{{item.name}}</td>						
+						<td>
+						<!-- {{item.personId}} -->
+								<a href="#/index/peoplefile/{{item.personId}}/{{villageCode}}" target="_blank">{{item.personId}}</a></td>
+						</td>						
+						<td>{{item.ytFaceLibName}}</td>						
+						<td class="state-td">
+							<div ng-if="item.dealState == '0'">
+								<span class="colorRed">待分配</span>
+								<span class="td-dispose-btn" ng-click="policeDeal(item,$index)">派单</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '61'">
+								<span class="colorRed">待接警</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="policeDeal(item,$index)">派单</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '62'">
+								<span class="colorRed">已接警</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '63'">
+								<span class="colorRed">到场</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '64'">
+								<span class="colorRed">处理中</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index)">查看</span>
+								<span class="td-dispose-btn" ng-click="endProcess(item,$index)">结束</span>
+							</div>
+							<div ng-if="item.dealState == '65'">
+								<span class="colorGreen">已完成</span>
+								<span class="td-look-btn" ng-click="lookDetail(item,$index,'monitor')">查看</span>
+							</div>
+						</td>						
+					</tr>
+				</tbody>
+			</table>
+			<div class="table-empty" ng-if="monitorParamsPage.totalRow==0 && !loader">
+				<i class="icon-base icon-32 icon-table-empty"></i>
+				<span class="empty-text">没有查询到符合条件的记录</span>
+			</div>
+			<div ng-if="loader" style="position: absolute;top:30%;left:50%">
+				<div class="ball-clip-rotate"></div>
+			</div>
+		</div>
+		<div class="pagination-wrap pagination-wrap-fixed no-jumpButton clearfix" ng-if="monitorParamsPage.totalRow > 0">
+			<pagination total-items="monitorParamsPage.totalRow"
+						ng-model="monitorParams.pageNumber"
+						max-size="3"
+						items-per-page="monitorParams.pageSize"
+						class="pagination-sm pull-right"
+						previous-text="上一页"
+						next-text="下一页"
+						first-text="首页"
+						last-text="末页"
+						ng-click="queryMonitorList()">
+			</pagination>
+		</div>
+		</div>
+	</div>
 	<!-- monitor布控告警 -->
+  <!-- 布控报警 old
 	<div ng-show="showTab.monitor">
 		<div class="car-find">			
 			<div class="find-list-box">	
@@ -146,6 +425,7 @@
         </div>
 		</div>
 	</div>
+  -->
 	<!--start人口感知-->
 	<div ng-show="showTab.people" class="population-per" style="height:inherit">
 		<iframe frameborder="0" width=100% scrolling="yes" height=100% id="yituIframe"></iframe>

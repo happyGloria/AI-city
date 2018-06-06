@@ -7,7 +7,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
         var doorRecordCtrl = ['$scope', '$state', '$http','$stateParams', 'moreService','$compile','$timeout',
             function ($scope,$state,$http,$stateParams,moreService,$compile,$timeout) {
                 $(".layout").find("div").eq(0).css({"padding-top":"0px"});
-                debugger
                 var villageCode = $stateParams.villageCode;
                 $scope.villageCode = villageCode;
                 var iframe = '<iframe id="iframebar" src="about:blank" frameBorder=0  marginHeight=0 marginWidth=0 style="position:absolute;visibility:inherit; top:0px;left:0px;height:100%;width:100%;z-index:-1;"' + 'filter="progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=0)"></iframe>';
@@ -78,7 +77,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 };
                   
                 $scope.factPower = function(value){
-                  debugger
                   $scope.loader = true;
                    if (value) {
                       $scope.initParams.pageNumber = 1;
@@ -122,23 +120,51 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                      count:0
                   };
                   $scope.police = function(){
-                    var req = {
+                    // var req = {
+                    //   pageSize:$scope.policeParams.pageSize,
+                    //   pageNumber:$scope.policeParams.pageNumber,
+                    //   pcMark:$scope.policeParams.pcMark,
+                    //   pcNumber:$scope.policeParams.pcNumber,
+                    //   department:$scope.policeParams.department,
+                    //   policeName:$scope.policeParams.policeName,
+                    //   policeMobileNo:$scope.policeParams.policeMobileNo
+                    // };
+                    var a = {};
+                    if($scope.policeParams.pageNumber==""){
+                      a.pageNum = $scope.policeParams.pageNumber
+                    }
+                    if($scope.policeParams.pageSize==""){
+                      a.pageSize = $scope.policeParams.pageSize
+                    }
+                    if($scope.policeParams.pcNumber==""||$scope.policeParams.pcNumber==null){
+                      a.policeNumber = $scope.policeParams.pcNumber
+                    }
+                    if($scope.policeParams.policeName==""||$scope.policeParams.policeName==null){
+                      a.name = $scope.policeParams.policeName
+                    }
+                    if($scope.policeParams.policeMobileNo==""||$scope.policeParams.policeMobileNo==null){
+                      a.telephoneNumber = $scope.policeParams.policeMobileNo
+                    }
+                    if($scope.policeParams.department==""||$scope.policeParams.department==null){
+                      a.department = $scope.policeParams.department
+                    }
+                    var a = {
+                      pageNum:$scope.policeParams.pageNumber,
                       pageSize:$scope.policeParams.pageSize,
-                      pageNumber:$scope.policeParams.pageNumber,
-                      pcMark:$scope.policeParams.pcMark,
-                      pcNumber:$scope.policeParams.pcNumber,
-                      department:$scope.policeParams.department,
-                      policeName:$scope.policeParams.policeName,
-                      policeMobileNo:$scope.policeParams.policeMobileNo
-                    };
-                    moreService.getPoliceList(req).then(function(resp){
+                      policeNumber:$scope.policeParams.pcNumber,
+                      name:$scope.policeParams.policeName,
+                      telephoneNumber:$scope.policeParams.policeMobileNo,
+                      department:$scope.policeParams.department
+                    }
+                    debugger;
+                    moreService.findPoliceMenInfoByCondition(a).then(function(resp){
+                      debugger;
                       $scope.policeData = resp.data.list;
                       $scope.policePage.totalRow=resp.data.totalRow
                     })
                   };
                   $scope.police();
                 }
-                
                 if (val == "1") {
                   policeFun();
                 }else{
@@ -174,7 +200,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 };
                 
                 $scope.locationFun = function(item){
-                  debugger;
                   var list = [];
                   // item.lon = 13516817.539;
                   // item.lat = 3655058.811;
@@ -230,6 +255,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
 
                 //警员排班表start
                 $scope.serviceModeNameList = configFile.serviceModeNameList;
+                $scope.departmentList = configFile.departmentList;
                 $scope.workStatusNameList = configFile.workStatusNameList;
                 var initStartTime = moment().format("YYYY-MM-DD 00:00:00");
                 var initEndTime = moment().format("YYYY-MM-DD 23:59:59");
@@ -246,10 +272,10 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                   telephone:"",
                   regionCode:"",
                   departmentNo:"",
-                  workStatus:""
+                  workStatus:"",
+                  type:"1"
                 };
                 $scope.policeGps = function(){
-                  debugger;
                   $scope.policeGpsPage={
                      totalRow:0,
                      count:0
@@ -269,10 +295,10 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     telephone:$scope.policeGpsParams.telephone,
                     regionCode:$scope.policeGpsParams.regionCode,
                     departmentNo:$scope.policeGpsParams.departmentNo,
-                    workStatus:$scope.policeGpsParams.workStatus
+                    workStatus:$scope.policeGpsParams.workStatus,
+                    type:$scope.policeGpsParams.type
                   };
                   moreService.getPoliceTable(req).then(function(resp){
-                    debugger;
                     $.each(resp.data.list,function(i,v){
                       v.communityName = configFile.communityCodeToName[v.villageCode];
                       v.serviceName = configFile.serviceModeToName[v.serviceMode+''];
@@ -290,7 +316,6 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 };
                  //上传excel到服务器
                 function uploadPicFun() {
-                  debugger;
                   var data = new FormData();
                   var filesArr = document.querySelector('input[type=file]').files;
                   if(filesArr.length == 0){
@@ -310,16 +335,23 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                         transformRequest: angular.identity
                       }).success(function(resp) {
                         //上传成功的操作
-                        if (!!resp.data && !!resp.data.isSuccessed) {
+                        if (resp.data && resp.data.isSuccessed) {
                             notify.success("EXCEL上传成功！")
                         } else {
-                          notify.warn('EXCEL上传失败！');
+                          var messageTitle = resp.data.message ? resp.data.message : 'EXCEL上传失败'
+                          notify.warn(messageTitle);
                         }
                       }).error(function(error) {});
                   }else{
                     notify.warn('请选择正确的EXCEL格式！');
                   }
                 }
+                  //模板下载
+                  $scope.downedExcel=function(){
+                   window.open("./chajian/execl.xlsx"); 
+                  }
+
+
                 //警员排班表end
             }
         ];

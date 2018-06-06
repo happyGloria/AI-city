@@ -1,0 +1,79 @@
+<div class="morelayer" style="background-color: #061622">
+<div class="secondLevel-head">
+	<div class="pull-left secondLevel-head-left"><span class="title " style="color:#fff;">人员抓拍记录</span></div>
+	<div class="pull-right secondLevel-head-right">
+		<i class="icon-house"></i>
+		<span class="title ng-binding"></span>
+	</div>
+</div>
+<div class="population-per" style="padding:20px 100px">
+	<div class="page-body">
+            <div class="clearfix">
+                <div class="pull-left face-pic-content">
+                    <img ng-src={{facePath.img}}>
+                    <h3>基本信息</h3>
+                    <div class="content-info-style">
+                         <div class="info-item" ng-if=!!tempInfo.name>
+                            <span class="info-face-title">{{tempInfo.name}}</span>
+                             <span class="gender">{{tempInfo.gender?tempInfo.gender:'未知'}}</span>
+                        </div>
+                        <div class="info-item" ng-if=tempInfo.personId>
+                            <span>身份证号： </span>
+                            <span class="ng-binding">{{tempInfo.personId}}</span>
+                        </div>
+                    </div>
+                    <div class="dossier-label info-section">
+                        <h3>标签</h3>
+                        <div class="dossier-tags" ng-class="{true: 'no-wrap'}[!showAll]"  show-all="true" >
+				   		 <span class="single-tag" ng-style="{'background-color': tag.color}" style="background-color: orange;">
+				     {{tempInfo.labels}}</span>
+					   </div>
+                  	</div>
+                 </div>
+                <div class="section-content">
+                    <h3 class="section-title">相关抓拍</h3>
+                    <ul class="capture-list" ng-if="tempFaceRecordArr.length">
+                        <li ng-repeat="item in tempFaceRecordArr" ng-click="seeDetailImg(item.face_image_uri)" >
+                            <div class="image-wrapper">
+                                <img ng-src={{item.face_image_uri}}>
+                            </div>
+                            <p style="text-overflow: ellipsis;overflow: hidden; white-space: nowrap;" title="{{item.timestamp}}">{{item.timestamp}}</p>
+                            <p style="text-overflow: ellipsis;overflow: hidden; white-space: nowrap;" title="{{item.cameId}}">{{item.cameId}}</p>
+                            <p>{{tempInfo.villageName}}</p>
+                        </li>
+                    </ul>
+                    <div ng-if="loader" style="position: absolute;top:30%;left:50%">
+                        <div class="ball-clip-rotate"></div>
+                    </div>
+                    <div class="capture-list" ng-if="!tempFaceRecordArr.length">
+                     <div class="table-empty" ng-if="!loader">
+                        <i class="icon-base icon-32 icon-table-empty"></i>
+                        <span class="empty-text">没有查询到符合条件的记录</span>
+                    </div>
+                    </div>
+                    <div class="pull-right-content">
+                    <div class="pagination-wrap pagination-wrap-fixed no-jumpButton " ng-if="tempFaceRecordArr.length">
+       					 <pagination total-items="facePage.totalSize"
+		                    ng-model="facePage.pageNumber"
+		                    max-size="3"
+		                    items-per-page="facePage.pageSize"
+		                    class="pagination-sm pull-right"
+		                    previous-text="上一页"
+		                    next-text="下一页"
+		                    first-text="首页"
+		                    last-text="末页"
+		                    ng-click="queryfaceRecord(facePage.pageNumber)">
+      					  </pagination>
+   						 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+<div id="factRecordPop" class=" sendOrders clearfix" style="min-width:150px;min-height:150px;display:none;background-color: #061622;">
+<img ng-src={{faceImgUrl.path}} class="default-img-face">
+</div>
+</div>
+

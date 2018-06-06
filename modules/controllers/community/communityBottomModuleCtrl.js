@@ -555,7 +555,7 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                             "limit": 1,
                             "retrieval": {
                                 "picture_image_content_base64": data,
-                                "threshold": 35,
+                                "threshold": 80,
                                 "repository_ids":[]
                             }
                         };
@@ -621,7 +621,10 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                 $scope.carList = [];
                 $scope.nonmotorList = [];
                 $scope.macList = [];
-
+                $scope.clickCar = function (bean){
+                    var token = basicConfig.carToken;
+                    window.open("http://15.0.17.79:9000/#/echartable?plateNum="+bean.plateNumber+"&plateType=02&token="+token);
+                }
                 function queryHistoryData(type) {
                     var req = {
                         villageCode: $scope.villageCode,
@@ -1200,7 +1203,9 @@ define(['app', 'controllers/controllers', 'jquery','/modules/config/configFile.j
                     if(id){
                         var task_ids= ""; // TODO,布控单元ID
                         var dd = id =='realPower' ? 2 : 4;
-                        $scope.faceBuKong = [{"ytLibId":"1","name":"ceshi","type":4}]
+                        $scope.faceBuKong = [
+                            {"ytLibId":"4771","name":"四维模型前科人员","type":4}
+                        ];
                         angular.forEach($scope.faceBuKong,function(data){
                             if(data.type == dd){
                                task_ids = data.ytLibId;

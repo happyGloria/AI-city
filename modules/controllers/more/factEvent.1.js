@@ -32,28 +32,12 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
         /**页面初始化
          *
          */
-        //判断入口是不是多小区首页
-        if(!!villageCode){
-           $scope.judgeAllCommunityFlag = false;
-        }else{
-           $scope.judgeAllCommunityFlag = true;
-        }
         function init() {
+          debugger
           $scope.doorNotCloseParams = null;
           $scope.abnormalCardParams = null;
-
-          // 获取重点人员首页缓存数据
-          $scope.importantmonitorParams ={   
-            villageCode:"", 
-            eventDealState:"" ,
-            captureTimeStart:moment().subtract(1,'months').format("YYYY-MM-DD 00:00:00"),  
-            captureTimeEnd: moment().format("YYYY-MM-DD HH:mm:ss"), 
-            ytFaceLibType:1 ,
-            pageSize: 10,
-            pageNumber: 1,
-            ytFaceLibId:''
-          };
-
+          //判断入口是不是多小区首页
+          $scope.judgeAllCommunityFlag = false;
           var key = "factEvent" + villageCode;
           if (localStorage.getItem(key) && "undefined" != localStorage.getItem(key)) {
             obj = JSON.parse(localStorage.getItem(key));
@@ -66,13 +50,8 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
               if (obj.type == "senseFindOrLeave") {
                 $scope.changeTab("people");
               }
-              if (obj.type == "importantPeople") {
+              if (obj.type == "monitor") {
                 $scope.changeTab("monitor");
-                $scope.changeChildTab("importantPeople");
-              }
-              if (obj.type == "followPeople") {
-                $scope.changeTab("monitor");
-                $scope.changeChildTab("followPeople");
               }
               if (obj.type == "fireNotice") {
                 $scope.changeTab("notice");
@@ -121,6 +100,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
               }
             }else{
               if (obj.type == "senseFindOrLeave") {
+                debugger
                 $scope.changeTab("people");
               }
               if (obj.type == "monitor") {
@@ -174,174 +154,27 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
             }
 
           } else {
-            importantPeopleFun()
+            monitorFun()
           }
 
         }
-        /**布控告警--重点人员
+
+        /**布控告警
          *
          */
-        function importantPeopleFun() {
-          var start = moment().subtract(1,'months').format("YYYY-MM-DD 00:00:00");
+        function monitorFun() {
+          var start = moment().format("YYYY-MM-DD 00:00:00");
           var end = moment().format("YYYY-MM-DD HH:mm:ss");
-          console.log(start,end)
-           $scope.sessionValue = '1'
-          $scope.importantmonitorParams = $scope.importantmonitorParams || {   
-            villageCode:"", 
-            eventDealState:"" ,
-            captureTimeStart: start, 
-            captureTimeEnd: end,
-            ytFaceLibType:1 ,
-            pageSize: 10,
-            pageNumber: 1,
-            ytFaceLibId:''
-          };
-          $scope.importantmonitorParams.captureTimeStart = start;
-          $scope.importantmonitorParams.captureTimeEnd = end;
-          laydate.render({
-            elem: '#importantmonitorParamsStartTime',
-            type: "datetime",
-            value: start,
-            done: function(value, date, endDate) {
-              $scope.importantmonitorParams.captureTimeStart = value;
-            }
-          });
-
-          laydate.render({
-            elem: '#importantmonitorParamsEndTime',
-            type: "datetime",
-            value: end,
-            done: function(value, date, endDate) {
-              $scope.importantmonitorParams.captureTimeEnd = value;
-            }
-          });
-          $scope.importantmonitorParamsPage = {
-            totalRow: 0,
-            count: 0
-          };   
-          $scope.importantprocessStates = [{
-            code: "0",
-            name: "待分配"
-          },{
-            code: "61",
-            name: "待接警"
-          },{
-            code: "62",
-            name: "已接警"
-          },{
-            code: "64",
-            name: "处理中"
-          },{
-            code: "65",
-            name: "已完成"
-          }]; 
-          $scope.importantcompareStates = [
-          {
-            code: "301",
-            name: "在逃人员库"
-          },{
-            code: "302",
-            name: "维稳对象库"
-          },{
-            code: "303",
-            name: "吸毒人员库"
-          },{
-            code: "304",
-            name: "肇事肇祸精神病人"
-          }];
-          // if(sessionStorage.getItem('ytFaceLibId')){
-          //   $scope.importantmonitorParams.compareState = sessionStorage.getItem('ytFaceLibId');  
-          // }       
-          $scope.queryimportantMonitorList = function(value) {
-            $scope.loader = true;
-            if (value) {
-              $scope.importantmonitorParams.pageNumber = 1;
-            }
-            var req1 = {              
-              pageSize: $scope.importantmonitorParams.pageSize,
-              pageNumber: $scope.importantmonitorParams.pageNumber,
-              villageCode:$scope.importantmonitorParams.addressName||''||villageCode, 
-              eventDealState:$scope.importantmonitorParams.eventDealState ||'' ,
-              captureTimeStart:$scope.importantmonitorParams.captureTimeStart, 
-              captureTimeEnd:$scope.importantmonitorParams.captureTimeEnd,
-              ytFaceLibType:1 ,
-              ytFaceLibId:$scope.importantmonitorParams.compareState ||''
-            };
-            
-            var promise = moreService.importantmonitorList(req1);
-              promise.then(function(resp) {
-                if (resp.resultCode == 200) {
-                  var listData = resp.data.list;                 
-                  listData.forEach(function(item) {
-                      item.similarity = Number(item.similarity).toFixed(2);
-                      item.faceImageBase64 =  item.faceRequestUrl + base64encode(item.faceUrl);;
-                      item.targetFaceImageBase64 = item.faceRequestUrl + base64encode(item.targetFaceUrl);
-                      item.captureTime = item.captureTime.split(".")[0];
-                      item.villageName = configFile.communityCodeToName[item.villageCode];
-                      if(item.name === "刘玉付"){
-                        item.targetFaceImageBase64 = "../../../template/img/333.jpg";
-                      }
-                      if(item.id === "1410"){
-                        item.faceImageBase64 = "../../../template/img/111.jpg";
-                      }
-                      if(item.id === "1411"){
-                        item.faceImageBase64 = "../../../template/img/222.jpg";
-                      }
-                  })
-                  $scope.importantmonitorData = listData;
-                  $scope.importantmonitorParamsPage.totalRow = resp.data.totalRow;
-                }
-              }).catch(function() {}).finally(function() {
-                $scope.loader = false;
-              });
-
-
-          };
-
-          $scope.queryimportantMonitorList();
-          $scope.goToFace=function(info){
-              localStorage.setItem("faceInfo",JSON.stringify(info));
-              window.open('#/index/factRecord/');
-          }
-
-
-
-        }
-
-        /**布控告警--关注人员
-         *
-         */
-         function monitorFun() {
-          
           $scope.monitorParams = $scope.monitorParams || {            
             "condition": {
               "eventId": "",
               "name": "",
               "personId": "",
-              "captureTimeStart":moment().subtract(1,'week').format("YYYY-MM-DD 00:00:00"),
-              "captureTimeEnd":  moment().format("YYYY-MM-DD HH:mm:ss"),
               "eventDealState": ""
             },
             "pageSize": 10,
-            "pageNumber": 1,
+            "pageNumber": 1
           };
-          laydate.render({
-            elem: '#monitorParamsStartTime',
-            type: "datetime",
-            value: $scope.monitorParams.condition.captureTimeStart,
-            done: function(value, date, endDate) {
-              $scope.monitorParams.condition.captureTimeStart = value;
-            }
-          });
-
-          laydate.render({
-            elem: '#monitorParamsEndTime',
-            type: "datetime",
-            value: $scope.monitorParams.condition.captureTimeEnd,
-            done: function(value, date, endDate) {
-              $scope.monitorParams.condition.captureTimeEnd = value;
-            }
-          });
           $scope.monitorParamsPage = {
             totalRow: 0,
             count: 0
@@ -361,14 +194,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
           },{
             code: "65",
             name: "已完成"
-          }]; 
-          $scope.compareState = [{
-            code: "299",
-            name: "前科人员库"
-          },{
-            code: "305",
-            name: "社区服刑人员"
-          }];
+          }];       
           $scope.queryMonitorList = function(value) {
             $scope.loader = true;
             if (value) {
@@ -382,10 +208,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
                 name: $scope.monitorParams.name ||'',
                 personId: $scope.monitorParams.personId ||'',
                 eventDealState: $scope.monitorParams.eventDealState ||'',
-                villageCode:$scope.monitorParams.addressName||''||villageCode,
-                captureTimeStart:$scope.monitorParams.condition.captureTimeStart,
-                captureTimeEnd:$scope.monitorParams.condition.captureTimeEnd,
-                ytFaceLibId:$scope.monitorParams.compareState || ""
+                villageCode:villageCode
               }
             };
             $.ajax({
@@ -399,20 +222,11 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
                 if (resp.resultCode == 200) {
                   var listData = resp.data.list;
                   listData.forEach(function(item) {
-                      item.similarity = Number(item.similarity).toFixed(2);
-                      item.faceImageBase64 = yituFace.yituFace_Pic + base64encode(item.faceUrl);;
-                      item.targetFaceImageBase64 =  yituFace.yituFace_Pic + base64encode(item.targetFaceUrl);
-                      item.captureTime = item.captureTime.split(".")[0];
-                      item.villageName = configFile.communityCodeToName[item.villageCode];
-                      if(item.name === "刘玉付"){
-                        item.targetFaceImageBase64 = "../../../template/img/333.jpg";
-                      }
-                      if(item.id === "1410"){
-                        item.faceImageBase64 = "../../../template/img/111.jpg";
-                      }
-                      if(item.id === "1411"){
-                        item.faceImageBase64 = "../../../template/img/222.jpg";
-                      }
+                    item.similarity = Number(item.similarity).toFixed(2);
+                    item.faceImageBase64 = "data:image/png;base64," + item.faceImageBase64;
+                    item.targetFaceImageBase64 = "data:image/png;base64," + item.targetFaceImageBase64;
+                    item.captureTime = item.captureTime.split(".")[0];
+                    item.villageName = configFile.communityCodeToName[item.villageCode];
                   })
                   $scope.monitorData = listData;                    
                   $scope.monitorParamsPage.totalRow = resp.data.totalRow;
@@ -427,6 +241,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
           $scope.queryMonitorList();
         }
 
+        
         /**110警情
          *
          */
@@ -1397,47 +1212,43 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
                     //调列表接口刷新列表
                     var eventType = currentItem.eventType;
                       switch(eventType){
-                        case 1:
-                          senseLeaveFun();
-                          break;
-                        case 2:
-                          senseFindFun();
-                          break;
-                        case 3:
-                          carSenseLeaveFun();
-                          break;
-                        case 4:
-                          carSenseFindFun();
-                          break;
-                        case 5:
-                          outCarStayFun();
-                          break;
-                        case 6:
-                          warningFun();
-                          break;
-                        case 7:
-                          receivedCaseFun();
-                          break;
-                        case 8:
-                          abnormalCardFun();
-                          break;
-                        case 9:
-                          fireNoticeFun();
-                          break;
-                        case 10:
-                          analysisFun();
-                          break;
-                        case 11:
-                          doorNotCloseFun();
-                          break;
-                        case 12:
-                          monitorFun();
-                          break;
-                        case 13:
-                        case 14:
-                        importantPeopleFun();
+                      case 1:
+                        senseLeaveFun();
                         break;
-                        default:
+                      case 2:
+                        senseFindFun();
+                        break;
+                      case 3:
+                        carSenseLeaveFun();
+                        break;
+                      case 4:
+                        carSenseFindFun();
+                        break;
+                      case 5:
+                        outCarStayFun();
+                        break;
+                      case 6:
+                        warningFun();
+                        break;
+                      case 7:
+                        receivedCaseFun();
+                        break;
+                      case 8:
+                        abnormalCardFun();
+                        break;
+                      case 9:
+                        fireNoticeFun();
+                        break;
+                      case 10:
+                        analysisFun();
+                        break;
+                      case 11:
+                        doorNotCloseFun();
+                        break;
+                      case 12:
+                        monitorFun();
+                        break;
+                      default:
                         break;
                      }
 
@@ -1577,8 +1388,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
           }
           $scope.showTab[tabName] = true;
           if (tabName == "monitor") {
-            // monitorFun();
-            $scope.changeChildTab("importantPeople");
+            monitorFun();
           }
           if (tabName == "case") {
             $scope.changeChildTab("warning");
@@ -1598,8 +1408,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
          *
          */
         $scope.showChildTab = {
-          "importantPeople":true,
-          "warning": false,
+          "warning": true,
           "receivedCase": false,
           "senseFind": false,
           "senseLeave": false,
@@ -1610,8 +1419,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
           "fireNotice": false,
           "analysis": false,
           "carSenseFind": false,
-          "carSenseLeave": false,
-          "followPeople":false
+          "carSenseLeave": false
         }
 
         $scope.changeChildTab = function(tabName) {
@@ -1663,12 +1471,6 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
           }
           if (tabName == "carSenseLeave") {
             carSenseLeaveFun();
-          }
-           if (tabName == "importantPeople") {
-            importantPeopleFun();
-          }
-          if (tabName == "followPeople") {
-            monitorFun();
           }
         }
 
@@ -1854,7 +1656,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
               workStatus:statusStr
             };
             moreService.getPoliceTable(req).then(function(resp){
-              // debugger
+              debugger
               var i = 0;
               $.each(resp.data.list,function(i,v){
                 v.communityName = configFile.communityCodeToName[v.villageCode];
@@ -1898,7 +1700,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
             console.log($scope.currentSelected)
           };
         $scope.checkAll = function(){
-          // debugger
+          debugger
             $scope.selectAll = !$scope.selectAll;
             if ($scope.policeGpsData.length>0) {
               if ($scope.selectAll) {
@@ -1923,7 +1725,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
             console.log($scope.currentSelected)
         };
         $scope.removeCurrent = function(item){
-          // debugger
+          debugger
           $.each($scope.policeGpsData,function(i,v){
             if (item.idcardNo == v.idcardNo) {
               $scope.policeGpsData[i].checked = false;

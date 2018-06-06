@@ -399,6 +399,17 @@ define(['app', 'angularAMD'], function (app, angularAMD) {
                 },
                 resolve: {}
             })
+            .state('index.factRecord', {
+                url: '/factRecord/',
+                views: {
+                    'topbar@index': {},
+                    'main@index': angularAMD.route({
+                        templateUrl: 'template/html/modules/more/factRecord.html',
+                        controllerUrl: 'controllers/more/factRecord'
+                    })
+                },
+                resolve: {}
+            })
             .state('index.communityRight', {
                 url: '/communityRight/',
                 views: {

@@ -100,6 +100,89 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/configFile.
 						}
 					}).catch(function() {}).finally(function() {});
 				}
+
+				/* 重点关注人员布控统计功能模块 start 
+				*@edit welson
+				*@date 2018/06/05
+				*/
+				// 默认显示重点人员
+				$scope.isShowKeyPerson = true;
+				// 重点人员与关注人员切换
+				$scope.changeFocusType = function(bool){
+					if(bool == $scope.isShowKeyPerson){return;}
+					$scope.isShowKeyPerson = !$scope.isShowKeyPerson;
+					!!$scope.isShowKeyPerson && $scope.switchFocusImg('escape', 1);
+					!$scope.isShowKeyPerson && $scope.switchFocusImg('former', 2);
+				};
+				// 查询重点或者关注人员列表参数初始化，为了获取人员头像
+				$scope.keyPersonParams = {
+					ytFaceLibId: '301',
+					ytFaceLibType: '1',
+					pageNumber:1,
+					pageSize:4,
+					currentIndex:1
+				};
+				$scope.keyPersonList = [];
+				// 重点关注人员初始化
+				$scope.focusPerson = {
+					'escape':{name:'在逃人员', num:0, active:true, ytFaceLibId:'301'},
+					'stableObject':{name:'维稳对象', num:0, active:false, ytFaceLibId:'302'},
+					'drug':{name:'吸毒人员', num:0, active:false, ytFaceLibId:'303'},
+					'patient':{name:'精神病人', num:0, active:false, ytFaceLibId:'304'},
+					'former':{name:'前科人员', num:0, active:false, ytFaceLibId:'299'},
+					'serve':{name:'社区服刑', num:0, active:false, ytFaceLibId:'305'},
+				};
+				// 请求后台，获取重点人员数据
+				$scope.getKeyPersonData = function(){
+					moreService.keyPersonData().then(function(resp){
+						if(resp.resultCode == '200') {
+							var data = resp.data;
+							var i;
+							for(var key in $scope.focusPerson){
+								for(i=0,T=data.length;i<T;i++){
+									if(data[i].name === $scope.focusPerson[key].name){
+										$scope.focusPerson[key].num = data[i].num;
+										continue;
+									}
+								}
+							}
+						}
+					}).catch(function(){});
+					// 默认查询重点人员中的在逃人员
+					$scope.getKeyPersonList('301', '1');
+				};
+				// 请求后台，获取重点或者关注人员列表信息，取前四条数据，获取人员头像
+				$scope.getKeyPersonList = function(ytFaceLibId, ytFaceLibType){
+					$scope.isLoadingKeyPerson = true;
+					$scope.keyPersonList = [];
+					$scope.keyPersonParams.ytFaceLibId = ytFaceLibId;
+					$scope.keyPersonParams.ytFaceLibType = ytFaceLibType;
+					moreService.importantmonitorList($scope.keyPersonParams).then(function(resp){
+						if(resp.resultCode == '200') {
+							$scope.keyPersonList = resp.data.list;
+							for(var i=0,l=$scope.keyPersonList.length;i<l;i++){
+								$scope.keyPersonList[i].imgSrc = yituFace.yituFace_Pic + base64encode($scope.keyPersonList[i].faceUrl);
+							};
+						}
+						$scope.isLoadingKeyPerson = false;
+					}).catch(function(){
+						$scope.isLoadingKeyPerson = false;
+					});
+				};
+				// 重点和关注人员，不同类别人员切换
+				$scope.switchFocusImg = function(str, index){
+					for(var key in $scope.focusPerson){
+						$scope.focusPerson[key].active = str === key ? true : false;
+					};
+					var type = !!$scope.isShowKeyPerson ? 1 : 2;
+					$scope.getKeyPersonList($scope.focusPerson[str].ytFaceLibId, type);
+					$scope.keyPersonParams.currentIndex = index;
+				};
+
+				// 重点关注人员总数初始化
+				$scope.getKeyPersonData();
+				/*  -- 重点关注人员布控统计功能模块 end --  */
+
 				//今日实有警情时间处置情况统计
 				getEventStatie();
 				dayEventFun();

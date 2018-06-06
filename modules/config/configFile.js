@@ -22,6 +22,32 @@ define([], function() {
           { 'code':'310104006010', 'name':'华鼎广场' ,'addressName':'中山西路2368弄'},
           { 'code':'310104006011', 'name':'田林十三村','addressName':'田林十三村' }
         ],
+		departmentList:[
+			{
+                code:"1,2,3,4,5",
+                name:"全部"
+             },
+			{
+                code:"1",
+                name:"派出所1"
+              },
+              {
+                code:"2",
+                name:"派出所2"
+              },
+              {
+                code:"3",
+                name:"派出所3"
+              },
+              {
+                code:"4",
+                name:"派出所4"
+              },
+              {
+                code:"5",
+                name:"派出所5"
+        	}
+		],
 		serviceModeNameList:[
 			{
                 code:"1,2,3,4,5",

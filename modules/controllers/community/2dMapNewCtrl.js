@@ -278,7 +278,8 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 								policeName:e.policeName,
 								policeMobileNo:e.policeMobileNo,
 								GPSDataTime: e.gpsDataTime,
-								pcMark:e.pcMark
+								pcMark:e.pcMark,
+								pvgChannelID:e.pvgChannelID
 							}
 							openGpsWindow(obj);
 							addEvents1();
@@ -425,9 +426,9 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 				};*/
 				var addEvents1 = function() {
 					map.addEventListener(NPMapLib.MAP_EVENT_CLICK, function(point) {
-                        document.getElementById("searchCommunityMap").blur();
-				        $(".communityAllNew-search-ztree").css("display","none");
-				        $(".slimScrollDiv").css("display","none");
+                        // document.getElementById("searchCommunityMap").blur();
+				        // $(".communityAllNew-search-ztree").css("display","none");
+				        // $(".slimScrollDiv").css("display","none");
 						removeWindow();
 					});
 				};
@@ -2625,6 +2626,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 						
 						(function(data, ps) {
 							ps.addEventListener(NPMapLib.MARKER_EVENT_CLICK, function(point) {
+								debugger;
 								angular.forEach(psArr, function(data) {
 									data.setStyle({
 										color: '#f00', // '#ffc700', //颜色
@@ -2643,6 +2645,7 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 									fillOpacity: 0.01 //填充的透明度，取值范围0 - 1,
 									//lineStyle: NPMapLib.LINE_TYPE_DASH //样式
 								});
+								openCommunity(data);
 								removeWindow();
 							});
 						})(data, ps);
@@ -2651,6 +2654,77 @@ define(['app', 'controllers/controllers', 'jquery', '/modules/config/basicConfig
 		
 					return psArr;
 				}
+
+				var openCommunity = function(data) {
+					if(communityInfoWindow) {
+						communityInfoWindow.close();
+						communityInfoWindow = null;
+					}
+					var position = data.map2d.center;
+					opencommunityWindow(data);
+				}
+
+				var opencommunityWindow = function(obj) {
+					var req={
+						villageCode:obj.villageCode
+					}
+					if("310120106005"!=obj.villageCode) return;//村不显示详情，小区才显示详情
+					communityAllService.getVillageByVillageCode(req).then(function(data) {
+						if(data.resultCode == '200') {
+						var info=data.data[0];
+                        var str = '<div class = "map-layerCon-new clearfix" >' +
+						'<span class = ""></span><div class = "housing-layer-left pull-left" >' +
+						'<div class = "img-box" >' +
+						'<img src = "'+utils.getUrl(info.picUrl)+'"/>' +
+						'</div>' +
+						// '<button class = "map-btn" onclick="window.open2d('+obj.villageCode+')">一标六实</button> ' +
+						// '<button class = "map-btn" onclick="window.open3d('+obj.villageCode+')">全景地图</button> ' +
+						'</div>' +
+						'<div class = "housing-layer-right pull-left" >' +
+						'<div class = "title" >' + info.villageName + '</div>' +
+						'<ul class = "housing-message-ul">' +
+						'<li class = "housing-message-li" >' +
+						'<label > 地点：</label>' +
+						'<span class = "span-text"> '+info.address+' </span> ' +
+						'</li> ' +
+						'<li class = "housing-message-li" >' +
+						'<label > 居民楼： </label>' +
+						'<span class = "span-text"><strong >'+info.buildingNum+'</strong>栋</span >' +
+						'</li>' +
+						'<li class = "housing-message-li">' +
+						'<label> 居民： </label>' +
+						'<span class = "span-text"> <strong> '+info.houseNum+' </strong>户</span>' +
+						'</li></ul></div></div>';
+					var position = obj.map2d.center;
+					position = new NPMapLib.Geometry.Point(position.split(',')[0], position.split(',')[1]);
+					// var title = '';
+					// var content = '';
+					// var paddingForPopups = new NPMapLib.Geometry.Extent(15, 15, 15, 15);
+					// var offset = new NPMapLib.Geometry.Size(0, 0);
+					communityInfoWindow = new NPMapLib.Symbols.InfoWindow(position, "", str, {
+						width: 458, //信息窗宽度，单位像素
+						height: 270, //信息窗高度，单位像素
+						autoSize: false,
+						//offset: offset, //信息窗位置偏移值
+						iscommon: false, //是否为普通窗体（不带箭头）
+						enableCloseOnClick: false, //移动地图，不关闭信息窗口。
+						//paddingForPopups: paddingForPopups, //信息窗自动弹回后，距离四边的值。isAdaptation为true时，该设置有效。
+						isAnimationOpen: false, //信息窗打开时，地图是否平滑移动，默认不平滑移动。
+						isAdaptation: false, //信息窗位置是否自适应，默认不自适应。
+						positionBlock: {
+							imageSrc: '/template/img/newmap/arrow.png',
+							imageSize: {
+								width: 20,
+								height: 11
+							}
+						}
+					});
+					map.addOverlay(communityInfoWindow);
+					communityInfoWindow.open(null, true);   
+					}
+					});
+					addEvents1();
+				};
 
 				//点击默一栋楼
 				//
